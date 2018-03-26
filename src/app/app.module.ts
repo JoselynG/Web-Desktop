@@ -1,3 +1,5 @@
+import { MaterialDesignModule } from './material-design/material-design.module';
+import { InicioModule } from './inicio/inicio.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +14,9 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialDesignModule,
+    InicioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
