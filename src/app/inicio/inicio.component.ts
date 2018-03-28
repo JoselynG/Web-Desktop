@@ -17,7 +17,7 @@ export class InicioComponent implements OnInit {
   listas: Lista[]= [
     {
       type: 'alone',
-      link: '/lista',
+      link: '/inicio',
       label: 'Inicio',
       icon: true,
       iconName: 'home',
@@ -27,7 +27,7 @@ export class InicioComponent implements OnInit {
       label: 'Control de servicio',
       icon: true,
       iconName: 'date_range',
-      link: '/inicio',
+      link: '/lista',
       group: [
         {
           type: 'alone',
@@ -98,7 +98,7 @@ export class InicioComponent implements OnInit {
       type: 'alone',
       label: 'Reportes',
       icon: true,
-      iconName: 'assesment',
+      iconName: 'assessment',
       link: '/lista',
     },   
     
