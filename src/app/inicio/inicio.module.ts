@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     InicioRoutingModule,
     MaterialDesignModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   declarations: [LoginComponent, InicioComponent]
 })
