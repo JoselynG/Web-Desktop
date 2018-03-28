@@ -1,0 +1,29 @@
+<mat-toolbar class="toolbar mat-elevation-z1">
+    <div class="left">
+        <img src="/assets/img/logo.png" alt="logo" class="logo">
+    </div>
+    <div class="right">
+        <div class="notifications">
+            <button mat-icon-button>
+                <mat-icon>notifications</mat-icon>
+            </button>
+        </div>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item disabled>
+                        <mat-icon>person</mat-icon>
+                        <span>Mi perfil</span>
+                </button>
+            <button mat-menu-item disabled>
+                        <mat-icon>card_travel</mat-icon>
+                        <span>Mi negocio</span>
+                </button>
+        </mat-menu>
+        <div class="perfil" [matMenuTriggerFor]="menu">
+            <span>Maynard J. Keenan</span>
+            <div class="img-radius">
+                <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
+            </div>
+        </div>
+    </div>
+</mat-toolbar>

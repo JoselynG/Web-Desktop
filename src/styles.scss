@@ -33,6 +33,11 @@
     -webkit-font-smoothing: antialiased;
 }
 
+html,
+body {
+    height: 100%;
+}
+
 * {
     font-family: 'Roboto';
     box-sizing: border-box;

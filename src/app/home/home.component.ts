@@ -7,13 +7,13 @@ interface Lista {
   iconName?: string;
   group?: Lista[];
 }
-
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class InicioComponent implements OnInit {
+export class HomeComponent implements OnInit {
+  width="255px";
   listas: Lista[]= [
     {
       type: 'alone',
