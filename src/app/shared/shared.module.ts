@@ -2,6 +2,7 @@
 import { MaterialDesignModule} from './../material-design/material-design.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BackgroundImageComponent } from './components/background-image/background-image.component';
 
 
 
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
     MaterialDesignModule,
 
   ],
-  declarations: [],
-  exports: [MaterialDesignModule, CommonModule]
+  declarations: [BackgroundImageComponent],
+  exports: [MaterialDesignModule, BackgroundImageComponent, CommonModule]
 })
 export class SharedModule { }
