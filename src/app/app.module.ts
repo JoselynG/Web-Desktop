@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './home/login/login.component';
 import { ToolbarComponent } from './home/toolbar/toolbar.component';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ToolbarComponent } from './home/toolbar/toolbar.component';
     HomeComponent,
     LoginComponent,
     NavListComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    TestComponent
     
   ],
   imports: [

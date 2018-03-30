@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd, NavigationStart } from '@angular/router';
+import "rxjs/add/operator/map";
+import 'rxjs/add/operator/filter';
+
 interface Lista {
   type: string;
   link?: string;
@@ -7,12 +11,14 @@ interface Lista {
   iconName?: string;
   group?: Lista[];
 }
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  showInterfaz = true;
   width="255px";
   listas: Lista[]= [
     {
@@ -103,9 +109,15 @@ export class HomeComponent implements OnInit {
     },   
     
   ];
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private router: Router) { 
+    router.events.filter(event => event instanceof NavigationStart)
+        .map(url => url['url'])
+        .subscribe(v => {
+           this.showInterfaz = (v == "/" || v == "" ) ? false : true;
+        });
   }
 
+  ngOnInit() {
+    
+  }
 }

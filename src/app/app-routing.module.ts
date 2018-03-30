@@ -1,3 +1,4 @@
+import { TestComponent } from './test/test.component';
 import { LoginComponent } from './home/login/login.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,10 @@ const routes: Routes = [
     component: LoginComponent
     //pathMatch: 'full',
     //redirectTo: 'inicio'
+  },
+  {
+    path:'test',
+    component: TestComponent
   }
 ];
 
