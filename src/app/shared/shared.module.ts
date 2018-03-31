@@ -3,6 +3,7 @@ import { MaterialDesignModule} from './../material-design/material-design.module
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BackgroundImageComponent } from './components/background-image/background-image.component';
+import { BadgeDirective } from './directives/badge.directive';
 
 
 
@@ -12,7 +13,7 @@ import { BackgroundImageComponent } from './components/background-image/backgrou
     MaterialDesignModule,
 
   ],
-  declarations: [BackgroundImageComponent],
-  exports: [MaterialDesignModule, BackgroundImageComponent, CommonModule]
+  declarations: [BackgroundImageComponent, BadgeDirective],
+  exports: [MaterialDesignModule,BadgeDirective, BackgroundImageComponent, CommonModule]
 })
 export class SharedModule { }
