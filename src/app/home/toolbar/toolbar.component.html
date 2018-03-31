@@ -10,19 +10,30 @@
         </div>
 
         <mat-menu #menu="matMenu">
-            <button mat-menu-item disabled>
-                        <mat-icon>person</mat-icon>
-                        <span>Mi perfil</span>
-                </button>
-            <button mat-menu-item disabled>
-                        <mat-icon>card_travel</mat-icon>
-                        <span>Mi negocio</span>
-                </button>
+            <button class="button-info" mat-menu-item disabled>
+                <div class="wrapper-info">
+                    <div class="img-radius">
+                        <img [src]="userInfo.imageUrl" class="img-perfil" alt="perfil">
+                    </div>
+                    <div class="multi-list">
+                        <span class="name"> {{userInfo.fullName}} </span>
+                        <span class="color-gray">{{userInfo.email}} </span>
+                    </div>
+                </div>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>person</mat-icon>
+                <span>Mi perfil</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>card_travel</mat-icon>
+                <span>Mi negocio</span>
+            </button>
         </mat-menu>
         <div class="perfil" [matMenuTriggerFor]="menu">
-            <span>Maynard J. Keenan</span>
+            <span>{{ userInfo.fullName }}</span>
             <div class="img-radius">
-                <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
+                <img [src]="userInfo.imageUrl" class="img-perfil" alt="perfil">
             </div>
         </div>
     </div>
