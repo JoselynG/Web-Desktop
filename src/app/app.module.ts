@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 
+=======
+import { InicioModule } from './modules/inicio/inicio.module';
+import { TimelineComponent } from './modules/control-servicio/timeline/timeline.component';
+>>>>>>> a0cdd7fbd44954ca9cc34c961ffdb35345f3faa1
 import { NavListComponent } from './home/nav-list/nav-list.component';
 import { SharedModule } from './shared/shared.module';
 import { MaterialDesignModule } from './material-design/material-design.module';
@@ -20,15 +25,21 @@ import { TestComponent } from './test/test.component';
     LoginComponent,
     NavListComponent,
     ToolbarComponent,
+<<<<<<< HEAD
 
     TestComponent,
  
     
+=======
+    TimelineComponent,
+    TestComponent, 
+>>>>>>> a0cdd7fbd44954ca9cc34c961ffdb35345f3faa1
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    InicioModule,
     SharedModule
 
   ],
