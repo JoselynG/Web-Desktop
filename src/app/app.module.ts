@@ -1,4 +1,4 @@
-import { TimelineComponent } from './modules/control-servicio/timeline/timeline.component';
+
 import { NavListComponent } from './home/nav-list/nav-list.component';
 import { SharedModule } from './shared/shared.module';
 import { MaterialDesignModule } from './material-design/material-design.module';
@@ -20,7 +20,7 @@ import { TestComponent } from './test/test.component';
     LoginComponent,
     NavListComponent,
     ToolbarComponent,
-    TimelineComponent,
+
     TestComponent,
  
     

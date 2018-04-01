@@ -3,7 +3,7 @@ import { LoginComponent } from './home/login/login.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TimelineComponent } from './modules/control-servicio/timeline/timeline.component';
+
 
 const routes: Routes = [
  {
@@ -16,10 +16,6 @@ const routes: Routes = [
     path:'test',
     component: TestComponent
   },
-  {
-    path:'timeline',
-    component: TimelineComponent
-  }
 ];
 
 @NgModule({
