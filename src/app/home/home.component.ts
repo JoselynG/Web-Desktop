@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
         },
         {
           type: 'alone',
-          link: '/test/sub2',
+          link: '/timeline',
           label: 'Timeline',
           icon: false,
           iconName: 'account_box',
