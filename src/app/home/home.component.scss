@@ -11,10 +11,6 @@
     display: flex;
 }
 
-.content {
-    overflow-y: scroll;
-}
-
 @media (max-width: 600px) {
     .ctn {
         height: calc(100% - 56px);
