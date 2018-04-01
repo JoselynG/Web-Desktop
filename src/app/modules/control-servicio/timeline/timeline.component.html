@@ -1,0 +1,55 @@
+<div class="ctn">
+    <div class="search">
+        <div class="input-search mat-elevation-z1">
+            <mat-icon>search</mat-icon>
+            <mat-form-field class="full-width inputs">
+                <input matInput placeholder="Buscar cita o servicio prestado por código" autocomplete="off" type="search">
+            </mat-form-field>
+        </div>
+        <div class="select mat-elevation-z1">
+            <mat-form-field class="valor">
+                <mat-select value="Todo desde hoy">
+                    <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                        {{ filtro.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="citas" *ngFor="let detalle of detalles">
+        <mat-card class="detalle">
+            <div class="hora">
+                <h4>9:18 am</h4>
+            </div>
+            <div class="contenido">
+                <div class="client">
+                    <div class="img-radius">
+                        <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
+                    </div>
+                    <div class="name">
+                        <span class="bold">{{detalle.clientName}}</span><span> tiene una cita para:</span>
+                    </div>
+                </div>
+                <div class="det">
+                    <h4>Servicios: {{detalle.servicios}}</h4>
+                    <h4>Empleado: {{detalle.empleado}}</h4>
+                </div>
+                <div class="btn" *ngIf="detalle.type=='ejecucion'">
+                    <button mat-button class="prim">REGISTRAR SERVICIO</button>
+                    <button mat-button class="sec">CANCELAR CITA</button>
+                </div>
+                <div class="btn" *ngIf="detalle.type=='prestado'">
+                    <button mat-button class="sec">VER DETALLE</button>
+                </div>
+                <div class="btn" *ngIf="detalle.type=='programado'">
+                    <button mat-button class="prim">EDITAR CITA</button>
+                    <button mat-button class="sec">CANCELAR CITA</button>
+                </div>
+            </div>
+            <div class="codigo">
+                <mat-icon *ngIf="detalle.icon">{{detalle.iconName}}</mat-icon>
+                <h4>{{detalle.codigo}}</h4>
+            </div>
+        </mat-card>
+    </div>
+</div>
