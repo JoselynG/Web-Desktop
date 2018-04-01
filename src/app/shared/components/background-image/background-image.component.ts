@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BackgroundImageComponent implements OnInit {
   @Input() imageUrl: string;
   @Input() iHeight = "50%";
+  @Input() bgColor ="#f9f7f7";
   constructor() { }
 
   ngOnInit() {
