@@ -1,0 +1,32 @@
+.ctn {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .card {
+        width: 500px;
+        margin-top: 25px;
+        margin-left: 200px;
+        h4 {
+            color: #6C798F;
+            font-size: 13px;
+            line-height: 20px;
+            font-weight: bold;
+        }
+        .inputs {
+            margin: 5px 0px;
+            width: 440px;
+        }
+        .title {
+            margin: 20px 0px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        .btn {
+            margin-top: 25px;
+            margin-bottom: 5px;
+        }
+    }
+}

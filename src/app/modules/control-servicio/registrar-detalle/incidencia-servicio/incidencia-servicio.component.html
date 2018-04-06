@@ -1,0 +1,25 @@
+<div class="ctn">
+    <mat-card class="card">
+        <h3 class="title">
+            Registrar incidencia de servicio
+        </h3>
+        <h4>Orden de servicio nº: 12345</h4>
+        <div class="select">
+            <mat-form-field class="valor">
+                <mat-select placeholder="Seleccione el servicio">
+                    <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                        {{ filtro.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <mat-form-field class="example-full-width inputs">
+            <input matInput placeholder="Empleado encargado" value="Jon Connington">
+        </mat-form-field>
+        <mat-form-field class="example-full-width inputs">
+            <textarea matInput placeholder="Incidencia" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="accent" routerLink="/timeline/registrar" class="c-white btn">Agregar</button>
+    </mat-card>
+</div>

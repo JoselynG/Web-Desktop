@@ -1,0 +1,57 @@
+<div class="content">
+    <div class="boton">
+        <button mat-raised-button><mat-icon>keyboard_backspace</mat-icon> Volver</button>
+    </div>
+    <div class="ctn">
+        <div class="registro">
+            <h4>Registro de servicio prestado</h4>
+            <mat-card class="detalle">
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Cliente" value="Illyrio Mopatis">
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Fecha" value="02 Mar 2018">
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Hora de inicio" value="03:30 PM">
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Hora de finalización" value="04:30">
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Servicios de peluquería" value="Desrizado, Peinado con tenacilla, Secado">
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Servicios de maquillaje" value="Maquillaje completo">
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Insumos utilizados" value="">
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Empleados que realizaron los servicios" value="Jon Connington, Septa Lemore">
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Código de descuento" value="82746-2392">
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <textarea matInput placeholder="Comentarios" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
+                </mat-form-field>
+                <button mat-raised-button color="accent" routerLink="/timeline" class="c-white btn">Registrar</button>
+            </mat-card>
+        </div>
+        <div class="incidencias">
+            <h4>Incidencias</h4>
+            <mat-card class="lista-incidencia">
+                <h5>Planchado de cabello</h5><br>
+                <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam dolorum aut, nobis rem in commodi illo rerum aperiam facilis explicabo deserunt provident dignissimos blanditiis tempora voluptates recusandae, nemo nam natus?</mat-card-content>
+            </mat-card>
+            <mat-card class="lista-incidencia">
+                <h5>Baños de color</h5><br>
+                <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</mat-card-content>
+            </mat-card>
+            <div class="">
+                <button mat-button class="btn" routerLink="/timeline/registrar-incidencia">AGREGAR INCIDENCIA</button>
+            </div>
+        </div>
+    </div>
+</div>
