@@ -1,0 +1,8 @@
+<div class="content">
+    <mat-card class="calendario">
+        <div *ngIf="calendarioOpcion">
+            <ng-fullcalendar #ucCalendar [options]="calendarioOpcion" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)" (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+        </div>
+    </mat-card>
+
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, NavigationStart } from '@angular/router';
-import "rxjs/add/operator/map";
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
 interface Lista {
@@ -19,8 +19,8 @@ interface Lista {
 })
 export class HomeComponent implements OnInit {
   showInterfaz = true;
-  width="255px";
-  listas: Lista[]= [
+  width = '255px' ;
+  listas: Lista[] = [
     {
       type: 'alone',
       link: '/test',
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/inicio',
+          link: '/agenda',
           label: 'Agenda',
           icon: false,
           iconName: 'add_shopping_cart',
@@ -106,18 +106,16 @@ export class HomeComponent implements OnInit {
       icon: true,
       iconName: 'assessment',
       link: '/lista',
-    },   
-    
+    },
   ];
-  constructor(private route: ActivatedRoute, private router: Router) { 
+  constructor(private route: ActivatedRoute, private router: Router) {
     router.events.filter(event => event instanceof NavigationStart)
         .map(url => url['url'])
         .subscribe(v => {
-           this.showInterfaz = (v == "/" || v == "" ) ? false : true;
+           this.showInterfaz = (v === '/' || v === '' ) ? false : true;
         });
   }
 
   ngOnInit() {
-    
   }
 }

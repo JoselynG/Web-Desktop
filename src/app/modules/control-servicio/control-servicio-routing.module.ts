@@ -1,3 +1,4 @@
+import { AgendaComponent } from './agenda/agenda.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TimelineComponent } from './timeline/timeline.component';
@@ -7,17 +8,21 @@ import { IncidenciaServicioComponent } from './registrar-detalle/incidencia-serv
 
 const routes: Routes = [
   {
-    path:'timeline',
+    path: 'timeline',
     component: TimelineComponent
   },
   {
-    path:'timeline/registrar',
+    path: 'timeline/registrar',
     component: RegistrarDetalleComponent
   },
   {
-    path:'timeline/registrar-incidencia',
+    path: 'timeline/registrar-incidencia',
     component: IncidenciaServicioComponent
   },
+  {
+    path: 'agenda',
+    component: AgendaComponent
+  }
 
 ];
 

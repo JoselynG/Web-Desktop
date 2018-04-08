@@ -15,9 +15,9 @@ interface Lista {
   styleUrls: ['./nav-list.component.scss']
 })
 export class NavListComponent implements OnInit {
- @Input() width = "300px";
+ @Input() width: '300px';
  @Input() listas: Lista[];
-   
+
 
   constructor() {
   }

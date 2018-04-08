@@ -1,3 +1,4 @@
+import { AgendaComponent } from './modules/control-servicio/agenda/agenda.component';
 import { TestComponent } from './test/test.component';
 import { LoginComponent } from './home/login/login.component';
 import { AppComponent } from './app.component';
@@ -7,13 +8,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
  {
-    path:'',
+    path: '',
     component: LoginComponent
-    //pathMatch: 'full',
-    //redirectTo: 'inicio'
+    // pathMatch: 'full',
+    // redirectTo: 'inicio'
   },
   {
-    path:'test',
+    path: 'test',
     component: TestComponent
   },
 ];

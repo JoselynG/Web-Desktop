@@ -12,7 +12,7 @@ import { ToolbarComponent } from './home/toolbar/toolbar.component';
 import { TestComponent } from './test/test.component';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ControlServicioModule } from './modules/control-servicio/control-servicio.module';
-
+import { FullCalendarModule } from 'ng-fullcalendar';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,6 @@ import { ControlServicioModule } from './modules/control-servicio/control-servic
     NavListComponent,
     ToolbarComponent,
     TestComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -31,6 +30,7 @@ import { ControlServicioModule } from './modules/control-servicio/control-servic
     InicioModule,
     SharedModule,
     ControlServicioModule,
+    FullCalendarModule,
     MaterialDesignModule
   ],
   providers: [],
