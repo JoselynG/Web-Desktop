@@ -2,8 +2,9 @@ import { MaterialDesignModule } from './../../material-design/material-design.mo
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlServicioRoutingModule } from './control-servicio-routing.module';
-import { TimelineComponent, CancelarCitaComponent } from './timeline/timeline.component';
-import { RegistrarDetalleComponent, IncidenciaServicioComponent } from './registrar-detalle/registrar-detalle.component';
+import { TimelineComponent, CancelarCitaComponent, IncidenciaCitaComponent} from './timeline/timeline.component';
+import { RegistrarDetalleComponent, IncidenciaServicioComponent} from './registrar-detalle/registrar-detalle.component';
+
 
 
 
@@ -13,13 +14,12 @@ import { RegistrarDetalleComponent, IncidenciaServicioComponent } from './regist
     CommonModule,
     ControlServicioRoutingModule,
     MaterialDesignModule,
-  
-    
   ],
   entryComponents: [
     CancelarCitaComponent,
-    IncidenciaServicioComponent
+    IncidenciaServicioComponent,
+    IncidenciaCitaComponent
   ],
-  declarations: [TimelineComponent, RegistrarDetalleComponent, IncidenciaServicioComponent, CancelarCitaComponent],
+  declarations: [TimelineComponent, RegistrarDetalleComponent, IncidenciaServicioComponent, CancelarCitaComponent, IncidenciaCitaComponent],
 })
 export class ControlServicioModule { }

@@ -65,6 +65,16 @@ export class TimelineComponent implements OnInit {
       console.log('mostrado');
     });
  }
+ openDialogIncidencia(){
+  const dialogRef = this.dialog.open(IncidenciaCitaComponent, {
+    height: '600px',
+    width: '500px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('mostrado incidencia');
+  });
+}
  
   ngOnInit() {
   }
@@ -77,3 +87,10 @@ export class TimelineComponent implements OnInit {
   styleUrls: ['./cancelar-cita.component.scss']
 })
 export class CancelarCitaComponent  {}
+
+@Component({
+  selector: 'app-incidencia-cita',
+  templateUrl: './incidencia-cita.component.html',
+  styleUrls: ['./incidencia-cita.component.scss']
+})
+export class IncidenciaCitaComponent  {}
