@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent } from '@angular/material';
+import {ENTER, COMMA} from '@angular/cdk/keycodes';
 @Component({
   selector: 'app-registrar-detalle',
   templateUrl: './registrar-detalle.component.html',
@@ -20,7 +20,43 @@ export class RegistrarDetalleComponent implements OnInit {
       console.log('mostrado');
     });
  }
+ visible: boolean = true;
+  selectable: boolean = true;
+  removable: boolean = true;
+  addOnBlur: boolean = true;
 
+  // Enter, comma
+  separatorKeysCodes = [ENTER, COMMA];
+
+  insumos = [
+    { name: 'Champú' },
+    { name: 'Tinte' },
+    { name: 'Gel' },
+  ];
+
+
+  add(event: MatChipInputEvent): void {
+    let input = event.input;
+    let value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.insumos.push({ name: value.trim() });
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(fruit: any): void {
+    let index = this.insumos.indexOf(fruit);
+
+    if (index >= 0) {
+      this.insumos.splice(index, 1);
+    }
+  }
   ngOnInit() {
   }
 

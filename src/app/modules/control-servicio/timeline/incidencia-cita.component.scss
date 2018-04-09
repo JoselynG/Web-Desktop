@@ -13,6 +13,9 @@
         margin: 5px 0px;
         width: 440px;
     }
+    input:disabled {
+        color: black;
+    }
     .title {
         color: #6C798F;
         font-size: 18px;

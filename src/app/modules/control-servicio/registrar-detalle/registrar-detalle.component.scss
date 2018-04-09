@@ -27,6 +27,9 @@
                     margin: 5px 0px;
                     width: 450px;
                 }
+                input:disabled {
+                    color: black;
+                }
             }
         }
         .incidencias {
