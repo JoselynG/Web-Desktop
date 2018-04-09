@@ -43,6 +43,7 @@
                 </div>
                 <div class="btn" *ngIf="detalle.type=='programado'">
                     <button mat-button class="prim">REGISTRAR INCIDENCIA</button>
+                    <button mat-button class="sec" (click)="openDialog()">CANCELAR CITA</button>
                 </div>
             </div>
             <div class="codigo">

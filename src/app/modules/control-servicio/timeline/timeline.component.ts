@@ -1,4 +1,6 @@
+
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 interface Detalle{
   clientName: string;
@@ -51,9 +53,27 @@ export class TimelineComponent implements OnInit {
     {value: 'servicios', viewValue: 'Servicios prestados'}
   ];
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
+ 
+  openDialog(){
+    const dialogRef = this.dialog.open(CancelarCitaComponent, {
+      height: '600px',
+      width: '500px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('mostrado');
+    });
+ }
+ 
   ngOnInit() {
   }
 
 }
+
+@Component({
+  selector: 'app-cancelar-cita',
+  templateUrl: './cancelar-cita.component.html',
+  styleUrls: ['./cancelar-cita.component.scss']
+})
+export class CancelarCitaComponent  {}

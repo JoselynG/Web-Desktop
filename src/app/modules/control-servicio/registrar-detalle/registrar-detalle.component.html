@@ -1,6 +1,6 @@
 <div class="content">
     <div class="boton">
-        <button mat-raised-button><mat-icon>keyboard_backspace</mat-icon> Volver</button>
+        <span matTooltip="Timeline"><button mat-raised-button routerLink="/timeline"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
     </div>
     <div class="ctn">
         <div class="registro">
@@ -50,7 +50,7 @@
                 <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</mat-card-content>
             </mat-card>
             <div class="">
-                <button mat-button class="btn" routerLink="/timeline/registrar-incidencia">AGREGAR INCIDENCIA</button>
+                <button mat-button class="btn" (click)="openDialog()">AGREGAR INCIDENCIA</button>
             </div>
         </div>
     </div>
