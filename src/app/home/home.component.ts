@@ -52,11 +52,30 @@ export class HomeComponent implements OnInit {
       ]
     },
     {
-      type: 'alone',
+      type: 'group',
       link: '/list3',
       label: 'Atención al cliente',
       icon: true,
       iconName: 'phone',
+       group: [
+        {
+          type: 'alone',
+          link: '/reclamos',
+          label: 'reclamos',
+          icon: false,
+          iconName: 'x',
+        },
+
+        {
+          type: 'alone',
+          link: '/sugerencia',
+          label: 'sugerencias',
+          icon: false,
+          iconName: 'x',
+        }
+
+
+       ]
     },
     {
       type: 'alone',

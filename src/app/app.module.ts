@@ -12,7 +12,7 @@ import { ToolbarComponent } from './home/toolbar/toolbar.component';
 import { TestComponent } from './test/test.component';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ControlServicioModule } from './modules/control-servicio/control-servicio.module';
-
+import { AtencionClienteModule } from './modules/atencion-cliente/atencion-cliente.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { ControlServicioModule } from './modules/control-servicio/control-servic
     InicioModule,
     SharedModule,
     ControlServicioModule,
-    MaterialDesignModule
+    MaterialDesignModule,
+    AtencionClienteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

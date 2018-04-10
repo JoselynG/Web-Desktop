@@ -1,0 +1,45 @@
+<div class="reclamo" mat-grid-list cols="3" rowHeight="60px">
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let dato of datos" >
+    <mat-expansion-panel-header >
+      <mat-panel-title>
+      {{dato.nombre}}
+      </mat-panel-title>
+      <mat-panel-title>
+        #{{dato.orden}}
+      </mat-panel-title>
+      <mat-panel-title>
+        {{dato.fecha}}
+      </mat-panel-title>
+      <mat-panel-title>
+        {{dato.tipo}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <h3>Descripcion del reclamo.</h3>
+      <p>{{dato.descripcion}}</p>
+
+      
+    <mat-divider></mat-divider>
+
+    <h3>Garantia de la orden.</h3>
+
+       <dl>
+          <div *ngFor= "let servicio of dato.servicios">
+          <dt>{{servicio.nombre}}</dt>
+          <dd>{{servicio.descripcion}}</dd>
+          </div>
+      </dl>
+
+      <h3>fecha de vencimiento de garantia:  {{dato.fechaV}}</h3>  
+       
+
+
+      
+      <button mat-raised-button color="accent">Dar Respuesta</button>
+    
+
+  </mat-expansion-panel>
+  
+</mat-accordion>
+</div>
