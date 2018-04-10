@@ -11,11 +11,10 @@
     display: flex;
 }
 
-.content {
-    overflow: hidden;
-    overflow-y: visible;
-}
-
+//.content {
+// overflow: hidden;
+//  overflow-y: visible;
+//}
 @media (max-width: 600px) {
     .ctn {
         height: calc(100% - 56px);

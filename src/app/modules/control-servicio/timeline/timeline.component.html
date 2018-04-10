@@ -52,4 +52,20 @@
             </div>
         </mat-card>
     </div>
+
+</div>
+<div class="fab-btn">
+    <button mat-fab color="accent" (click)="mostrar()" class="f-btn first">
+            <mat-icon>add</mat-icon>
+        </button>
+    <span matTooltip="Nueva cita">
+            <button mat-mini-fab *ngIf=(show) class="f-btn fab-btn2 second">
+                <mat-icon>date_range</mat-icon>
+            </button>
+    </span>
+    <span matTooltip="Nuevo servicio prestado">
+            <button mat-mini-fab *ngIf=(show) class="f-btn third fab-btn3">
+                <mat-icon>airline_seat_recline_extra</mat-icon>
+            </button>
+    </span>
 </div>

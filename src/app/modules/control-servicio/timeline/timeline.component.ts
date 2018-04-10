@@ -76,7 +76,21 @@ export class TimelineComponent implements OnInit {
   });
 }
  
+show: boolean;
+
+mostrar(){
+  if (this.show){
+    this.show = false;
+    console.log('mostrar');
+  }
+  else{
+    this.show = true;
+    console.log('ocultar');
+  }
+}
+
   ngOnInit() {
+    this.show=false;
   }
 
 }

@@ -140,3 +140,48 @@
         }
     }
 }
+
+.fab-btn {
+    margin-left: 800px;
+    position: relative;
+    .f-btn {
+        position: absolute;
+        .first {
+            z-index: 101;
+        }
+        .second {
+            z-index: 100;
+        }
+        .third {
+            z-index: 99;
+        }
+    }
+}
+
+@keyframes fab1 {
+    from {
+        top: 0px;
+    }
+    to {
+        top: -100px;
+    }
+}
+
+@keyframes fab2 {
+    from {
+        top: 0px;
+    }
+    to {
+        top: -50px;
+    }
+}
+
+.second {
+    animation: fab2 500ms;
+    animation-fill-mode: forwards;
+}
+
+.third {
+    animation: fab1 500ms;
+    animation-fill-mode: forwards;
+}
