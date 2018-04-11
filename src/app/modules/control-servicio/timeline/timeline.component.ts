@@ -59,11 +59,13 @@ export class TimelineComponent implements OnInit {
       fecha: '21 Jul 2018'
     },
   ];
+  filtroSelec = '';
   filtro = [
     {value: 'solicitud', viewValue: 'Solicitudes'},
     {value: 'todo', viewValue: 'Citas desde hoy'},
-    {value: 'citas', viewValue: 'Citas pendientes (1)'},
-    {value: 'servicios', viewValue: 'Servicios prestados'}
+    {value: 'programado', viewValue: 'Citas pendientes (1)'},
+    {value: 'prestado', viewValue: 'Servicios prestados'},
+    {value: 'ejecucion', viewValue: 'Servicios en ejecución'}
   ];
   empleadosSeleccionados = [];
   empleados = ['Qohollo', 'Irri Handmaiden', 'Thoros', 'Maester'];

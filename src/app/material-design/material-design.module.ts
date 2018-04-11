@@ -3,7 +3,7 @@ import { MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule, MatT
 
 
 @NgModule({
-  imports: [MatButtonModule, MatTableModule, MatPaginatorModule, MatCheckboxModule, MatCardModule, MatInputModule, MatToolbarModule, MatStepperModule, MatRippleModule, MatExpansionModule, MatSlideToggleModule, MatDialogModule, MatListModule, MatIconModule, MatMenuModule, MatSelectModule, MatChipsModule],
-  exports: [MatButtonModule, MatTableModule, MatPaginatorModule, MatCheckboxModule, MatCardModule, MatInputModule, MatToolbarModule, MatStepperModule, MatRippleModule, MatExpansionModule, MatSlideToggleModule, MatDialogModule, MatListModule, MatIconModule, MatMenuModule, MatSelectModule, MatChipsModule],
+  imports: [MatButtonModule, MatTableModule, MatPaginatorModule, MatCheckboxModule, MatCardModule, MatInputModule, MatToolbarModule, MatStepperModule, MatRippleModule, MatExpansionModule, MatSlideToggleModule, MatDialogModule, MatListModule, MatIconModule, MatMenuModule, MatSelectModule, MatChipsModule, MatTooltipModule],
+  exports: [MatButtonModule, MatTableModule, MatPaginatorModule, MatCheckboxModule, MatCardModule, MatInputModule, MatToolbarModule, MatStepperModule, MatRippleModule, MatExpansionModule, MatSlideToggleModule, MatDialogModule, MatListModule, MatIconModule, MatMenuModule, MatSelectModule, MatChipsModule, MatTooltipModule],
 })
 export class MaterialDesignModule { }

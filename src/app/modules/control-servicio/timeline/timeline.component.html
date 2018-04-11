@@ -21,8 +21,8 @@
         </div>
         <div class="select mat-elevation-z1">
             <mat-form-field class="valor">
-                <mat-select>
-                    <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                <mat-select [(ngModel)]="filtroSelec">
+                    <mat-option *ngFor="let filtro of filtro" selected="todo" [value]="filtro.value">
                         {{ filtro.viewValue }}
                     </mat-option>
                 </mat-select>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="citas" *ngFor="let detalle of detalles">
-        <mat-card class="detalle">
+        <mat-card class="detalle" *ngIf="filtroSelec=='todo' || filtroSelec==''">
             <div class="hora">
                 <h4 *ngIf="detalle.type=='solicitud'">{{detalle.fecha}}</h4>
                 <h4>9:18 am</h4>
@@ -60,6 +60,117 @@
                     <button mat-button class="sec">DAR RESPUESTA</button>
                 </div>
                 <div class="btn" *ngIf="detalle.type=='programado'">
+                    <button mat-button class="prim" (click)="openDialogIncidencia()">REGISTRAR INCIDENCIA</button>
+                    <button mat-button class="sec" (click)="openDialog()">CANCELAR CITA</button>
+                </div>
+            </div>
+            <div class="codigo">
+                <mat-icon *ngIf="detalle.icon">{{detalle.iconName}}</mat-icon>
+                <h4>{{detalle.codigo}}</h4>
+            </div>
+        </mat-card>
+        <mat-card class="detalle" *ngIf="filtroSelec == 'ejecucion' && detalle.type == 'ejecucion'">
+            <div class="hora">
+                <h4>9:18 am</h4>
+            </div>
+            <div class="contenido">
+                <div class="client">
+                    <div class="img-radius">
+                        <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
+                    </div>
+                    <div class="name">
+                        <span class="bold">{{detalle.clientName}}</span><span> tiene una cita para:</span>
+                    </div>
+                </div>
+                <div class="det">
+                    <h4>Servicios: {{detalle.servicios}}</h4>
+                    <h4>Empleado: {{detalle.empleado}}</h4>
+                </div>
+                <div class="btn">
+                    <button mat-button class="prim" routerLink="/timeline/registrar">REGISTRAR SERVICIO</button>
+                    <button mat-button class="sec">CANCELAR CITA</button>
+                </div>
+            </div>
+            <div class="codigo">
+                <mat-icon *ngIf="detalle.icon">{{detalle.iconName}}</mat-icon>
+                <h4>{{detalle.codigo}}</h4>
+            </div>
+        </mat-card>
+        <mat-card class="detalle" *ngIf="filtroSelec=='prestado' && detalle.type == 'prestado'">
+            <div class="hora">
+
+                <h4>9:18 am</h4>
+            </div>
+            <div class="contenido">
+                <div class="client">
+                    <div class="img-radius">
+                        <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
+                    </div>
+                    <div class="name">
+                        <span class="bold">{{detalle.clientName}}</span><span> tiene una cita para:</span>
+                    </div>
+                </div>
+                <div class="det">
+                    <h4>Servicios: {{detalle.servicios}}</h4>
+                    <h4>Empleado: {{detalle.empleado}}</h4>
+                </div>
+
+                <div class="btn">
+                    <button mat-button class="sec">VER DETALLE</button>
+                </div>
+
+            </div>
+            <div class="codigo">
+                <mat-icon *ngIf="detalle.icon">{{detalle.iconName}}</mat-icon>
+                <h4>{{detalle.codigo}}</h4>
+            </div>
+        </mat-card>
+        <mat-card class="detalle" *ngIf="filtroSelec=='solicitud' && detalle.type == 'solicitud'">
+            <div class="hora">
+                <h4>{{detalle.fecha}}</h4>
+                <h4>9:18 am</h4>
+            </div>
+            <div class="contenido">
+                <div class="client">
+                    <div class="img-radius">
+                        <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
+                    </div>
+                    <div class="name">
+                        <span class="bold">{{detalle.clientName}}</span><span> tiene una cita para:</span>
+                    </div>
+                </div>
+                <div class="det">
+                    <h4>Servicios: {{detalle.servicios}}</h4>
+                    <h4>Empleado: {{detalle.empleado}}</h4>
+                </div>
+                <div class="btn" (click)="openDialogResponder()">
+                    <button mat-button class="sec">DAR RESPUESTA</button>
+                </div>
+            </div>
+            <div class="codigo">
+                <mat-icon *ngIf="detalle.icon">{{detalle.iconName}}</mat-icon>
+                <h4>{{detalle.codigo}}</h4>
+            </div>
+        </mat-card>
+        <mat-card class="detalle" *ngIf="filtroSelec=='programado'  && detalle.type == 'programado'">
+            <div class="hora">
+                <h4>9:18 am</h4>
+            </div>
+            <div class="contenido">
+                <div class="client">
+                    <div class="img-radius">
+                        <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
+                    </div>
+                    <div class="name">
+                        <span class="bold">{{detalle.clientName}}</span><span> tiene una cita para:</span>
+                    </div>
+                </div>
+                <div class="det">
+                    <h4>Servicios: {{detalle.servicios}}</h4>
+                    <h4>Empleado: {{detalle.empleado}}</h4>
+                </div>
+
+                <div class="btn">
                     <button mat-button class="prim" (click)="openDialogIncidencia()">REGISTRAR INCIDENCIA</button>
                     <button mat-button class="sec" (click)="openDialog()">CANCELAR CITA</button>
                 </div>
