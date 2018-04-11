@@ -52,18 +52,55 @@ export class HomeComponent implements OnInit {
       ]
     },
     {
-      type: 'alone',
+      type: 'group',
       link: '/list3',
       label: 'Atención al cliente',
       icon: true,
       iconName: 'phone',
+      group: [
+        {
+          type: 'alone',
+          link: '/inicio',
+          label: 'Reclamos',
+          icon: false,
+          
+        },
+        {
+          type: 'alone',
+          link: '/inicio',
+          label: 'Sugerencias',
+          icon: false,
+        },
+        
+        {
+          type: 'alone',
+          link: '/inicio',
+          label: 'Tipo de reclamo',
+          icon: false,
+        },
+      ]
     },
     {
-      type: 'alone',
+      type: 'group',
       label: 'Usuarios',
       icon: true,
       iconName: 'group',
       link: '/lista',
+      group: [
+        {
+          type: 'alone',
+          link: '/inicio',
+          label: 'Listado',
+          icon: false,
+          
+        },
+        {
+          type: 'alone',
+          link: '/inicio',
+          label: 'Roles',
+          icon: false,
+        },
+      ]
     },
     {
       type: 'alone',
@@ -80,11 +117,25 @@ export class HomeComponent implements OnInit {
       link: '/lista',
     },
     {
-      type: 'alone',
+      type: 'group',
       label: 'Promociones',
       icon: true,
       iconName: 'receipt',
       link: '/lista',
+      group: [
+        {
+          type: 'alone',
+          link: '/inicio',
+          label: 'Difundir promoción',
+          icon: false,
+        },
+        {
+          type: 'alone',
+          link: '/inicio',
+          label: 'Promociones',
+          icon: false,
+        },
+      ]
     },
     {
       type: 'alone',
@@ -94,11 +145,43 @@ export class HomeComponent implements OnInit {
       link: '/lista',
     },
     {
-      type: 'alone',
+      type: 'group',
       label: 'Portal Web',
       icon: true,
       iconName: 'web_asset',
       link: '/lista',
+      group: [
+        {
+          type: 'alone',
+          link: '/inicio',
+          label: 'Diseño',
+          icon: false,
+        },
+        {
+          type: 'alone',
+          link: '/timeline',
+          label: 'Landing',
+          icon: false,          
+        },
+        {
+          type: 'alone',
+          link: '/timeline',
+          label: 'Blog',
+          icon: false,          
+        },
+        {
+          type: 'alone',
+          link: '/timeline',
+          label: 'Galeria',
+          icon: false,          
+        },
+        {
+          type: 'alone',
+          link: '/timeline',
+          label: 'Empresa',
+          icon: false,          
+        },
+      ]
     },
     {
       type: 'alone',

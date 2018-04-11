@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { FormControl, Validators } from '@angular/forms';
 
 interface Detalle{
   clientName: string;
@@ -10,6 +11,7 @@ interface Detalle{
   icon: boolean;
   iconName?: string;
   codigo: string;
+  fecha?: string;
   
 }
 
@@ -46,13 +48,25 @@ export class TimelineComponent implements OnInit {
       icon: false,
       codigo: '#94900-2457'     
     },
+    {
+      clientName: "Varys the spyder",
+      servicios: "Baño de color, peinado con tenacillas",
+      empleado: "Irri Handmaiden",
+      type: 'solicitud',
+      icon: true,
+      iconName: 'av_timer',
+      codigo: '    #16445-6560',
+      fecha: '21 Jul 2018'
+    },
   ];
   filtro = [
-    {value: 'todo', viewValue: 'Todo desde hoy'},
+    {value: 'solicitud', viewValue: 'Solicitudes'},
+    {value: 'todo', viewValue: 'Citas desde hoy'},
     {value: 'citas', viewValue: 'Citas pendientes (1)'},
     {value: 'servicios', viewValue: 'Servicios prestados'}
   ];
-
+  empleadosSeleccionados = [];
+  empleados = ['Qohollo', 'Irri Handmaiden', 'Thoros', 'Maester'];
   constructor(public dialog: MatDialog) {}
  
   openDialog(){
@@ -75,7 +89,25 @@ export class TimelineComponent implements OnInit {
     console.log('mostrado incidencia');
   });
 }
- 
+openDialogResponder(){
+  const dialogRef = this.dialog.open(ResponderSolicitudComponent, {
+    height: '600px',
+    width: '500px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('mostrado incidencia');
+  });}
+  openDialogNuevo(){
+    const dialogRef = this.dialog.open(NuevaCitaComponent, {
+      height: '600px',
+      width: '500px'
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('mostrado incidencia');
+    });
+  }
 show: boolean;
 
 mostrar(){
@@ -108,3 +140,24 @@ export class CancelarCitaComponent  {}
   styleUrls: ['./incidencia-cita.component.scss']
 })
 export class IncidenciaCitaComponent  {}
+
+@Component({
+  selector: 'app-responder-solicitud',
+  templateUrl: './responder-solicitud.component.html',
+  styleUrls: ['./responder-solicitud.component.scss']
+})
+export class ResponderSolicitudComponent {
+  
+  //filtroControl = new FormControl('', [Validators.required]);
+  valor=false;
+  filtro = [
+    {value: false, viewValue: 'Positiva'},
+    {value: true, viewValue: 'Negativa'},
+  ];
+}
+@Component({
+  selector: 'app-nueva-cita',
+  templateUrl: './nueva-cita.component.html',
+  styleUrls: ['./nueva-cita.component.scss']
+})
+export class NuevaCitaComponent  {}
