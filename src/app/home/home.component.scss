@@ -11,6 +11,11 @@
     display: flex;
 }
 
+.content {
+    overflow: scroll;
+    width: 1000px;
+}
+
 @media (max-width: 600px) {
     .ctn {
         height: calc(100% - 56px);

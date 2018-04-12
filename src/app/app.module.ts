@@ -1,3 +1,4 @@
+import { CancelarCitaComponent } from './modules/control-servicio/timeline/timeline.component';
 import { NavListComponent } from './home/nav-list/nav-list.component';
 import { SharedModule } from './shared/shared.module';
 import { MaterialDesignModule } from './material-design/material-design.module';
@@ -13,6 +14,10 @@ import { TestComponent } from './test/test.component';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ControlServicioModule } from './modules/control-servicio/control-servicio.module';
 import { AtencionClienteModule } from './modules/atencion-cliente/atencion-cliente.module';
+import { FormsModule } from '@angular/forms';
+
+
+
 
 @NgModule({
   declarations: [
@@ -32,9 +37,11 @@ import { AtencionClienteModule } from './modules/atencion-cliente/atencion-clien
     SharedModule,
     ControlServicioModule,
     MaterialDesignModule,
-    AtencionClienteModule
+    AtencionClienteModule,
+    FormsModule
   ],
   providers: [],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

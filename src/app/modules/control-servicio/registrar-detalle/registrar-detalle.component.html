@@ -1,42 +1,48 @@
 <div class="content">
     <div class="boton">
-        <button mat-raised-button><mat-icon>keyboard_backspace</mat-icon> Volver</button>
+        <span matTooltip="Timeline"><button mat-raised-button routerLink="/timeline"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
     </div>
     <div class="ctn">
         <div class="registro">
             <h4>Registro de servicio prestado</h4>
             <mat-card class="detalle">
                 <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Cliente" value="Illyrio Mopatis">
+                    <input matInput placeholder="Cliente" value="Illyrio Mopatis" disabled>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Fecha" value="02 Mar 2018">
+                    <input matInput placeholder="Fecha" value="02 Mar 2018" disabled>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Hora de inicio" value="03:30 PM">
+                    <input matInput placeholder="Hora de inicio" value="03:30 PM" disabled>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Hora de finalización" value="04:30">
+                    <input matInput placeholder="Hora de finalización" value="04:30" disabled>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Servicios de peluquería" value="Desrizado, Peinado con tenacilla, Secado">
+                    <input matInput placeholder="Servicios de peluquería" value="Desrizado, Peinado con tenacilla, Secado" disabled>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Servicios de maquillaje" value="Maquillaje completo">
+                    <input matInput placeholder="Servicios de maquillaje" value="Maquillaje completo" disabled>
+                </mat-form-field>
+                <mat-form-field class="demo-chip-list inputs">
+                    <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let insumo of insumos" [selectable]="selectable" [removable]="removable" (remove)="remove(insumo)">
+                            {{insumo.name}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Insumos" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
+                    </mat-chip-list>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Insumos utilizados" value="">
+                    <input matInput placeholder="Empleados que realizaron los servicios" value="Jon Connington, Septa Lemore" disabled>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Empleados que realizaron los servicios" value="Jon Connington, Septa Lemore">
-                </mat-form-field>
-                <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Código de descuento" value="82746-2392">
+                    <input matInput placeholder="Código de descuento" value="82746-2392" disabled>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
                     <textarea matInput placeholder="Comentarios" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
                 </mat-form-field>
-                <button mat-raised-button color="accent" routerLink="/timeline" class="c-white btn">Registrar</button>
+                <button mat-raised-button color="accent" (click)="openSnackBar()" routerLink="/timeline" class="c-white btn">Registrar</button>
             </mat-card>
         </div>
         <div class="incidencias">
@@ -50,7 +56,7 @@
                 <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</mat-card-content>
             </mat-card>
             <div class="">
-                <button mat-button class="btn" routerLink="/timeline/registrar-incidencia">AGREGAR INCIDENCIA</button>
+                <button mat-button class="btn" (click)="openDialog()">AGREGAR INCIDENCIA</button>
             </div>
         </div>
     </div>
