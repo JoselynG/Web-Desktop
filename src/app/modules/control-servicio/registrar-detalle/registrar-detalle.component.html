@@ -42,7 +42,7 @@
                 <mat-form-field class="example-full-width inputs">
                     <textarea matInput placeholder="Comentarios" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
                 </mat-form-field>
-                <button mat-raised-button color="accent" routerLink="/timeline" class="c-white btn">Registrar</button>
+                <button mat-raised-button color="accent" (click)="openSnackBar()" routerLink="/timeline" class="c-white btn">Registrar</button>
             </mat-card>
         </div>
         <div class="incidencias">

@@ -1,6 +1,6 @@
 
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 
 interface Detalle{
@@ -124,7 +124,7 @@ mostrar(){
 }
 
   ngOnInit() {
-    this.show=false;
+    this.show = false;
   }
 
 }
@@ -151,7 +151,7 @@ export class IncidenciaCitaComponent  {}
 export class ResponderSolicitudComponent {
   
   //filtroControl = new FormControl('', [Validators.required]);
-  valor=false;
+  valor = false;
   filtro = [
     {value: false, viewValue: 'Positiva'},
     {value: true, viewValue: 'Negativa'},
@@ -162,4 +162,17 @@ export class ResponderSolicitudComponent {
   templateUrl: './nueva-cita.component.html',
   styleUrls: ['./nueva-cita.component.scss']
 })
-export class NuevaCitaComponent  {}
+export class NuevaCitaComponent  {
+  empleadosSeleccionados = [];
+  empleadosSeleccionadosP = [];
+  serviciosPeluSeleccionados = [];
+  serviciosMaqSeleccionados = [];
+  empleados = ['Qohollo', 'Irri Handmaiden', 'Thoros', 'Maester'];
+  serviciosPelu = ['Corte de Cabello', 'Secado', 'Planchado', 'keratina', 'Peinado', 'Tinte', 'Mechas', 'Lavado', 'otros'];
+  serviciosMaq = ['Maquillaje de noche', 'Maquillaje de día', 'Cejas', 'otros'];
+  constructor(public dialogRef: MatDialogRef<NuevaCitaComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
+}
