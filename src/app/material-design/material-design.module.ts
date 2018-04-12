@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import {MatGridListModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule, MatToolbarModule, MatStepperModule, MatRippleModule, MatExpansionModule, MatListModule, MatIconModule, MatMenuModule, MatSelectModule } from '@angular/material';
+import {MatGridListModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule, MatToolbarModule, MatStepperModule, MatRippleModule, MatExpansionModule, MatListModule, MatIconModule, MatMenuModule, MatSelectModule, MatDividerModule } from '@angular/material';
 
 
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule, MatToolbarModule, MatStepperModule, MatRippleModule, MatExpansionModule, MatListModule, MatIconModule, MatMenuModule, MatSelectModule],
-  exports: [MatGridListModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule, MatToolbarModule, MatStepperModule, MatRippleModule, MatExpansionModule, MatListModule, MatIconModule, MatMenuModule, MatSelectModule],
+  imports: [MatGridListModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule, MatToolbarModule, MatStepperModule, MatRippleModule, MatExpansionModule, MatListModule, MatIconModule, MatMenuModule, MatSelectModule, MatDividerModule],
+  exports: [MatGridListModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule, MatToolbarModule, MatStepperModule, MatRippleModule, MatExpansionModule, MatListModule, MatIconModule, MatMenuModule, MatSelectModule, MatDividerModule],
 })
 export class MaterialDesignModule { }

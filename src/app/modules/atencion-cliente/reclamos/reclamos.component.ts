@@ -30,10 +30,10 @@ export class ReclamosComponent implements OnInit {
 	orden: '001',
 	fecha: '10 abril 2018',
 	tipoR: 'producto',
-	descripcion:'el producto que se utilizo cuando me aplicaron tratamiento de keratina, me causó alergia, pido pronta atencion y me regresen mi dinero.',
+	descripcion:'El producto que se utilizo cuando me aplicaron tratamiento de keratina, me causó alergia, pido pronta atencion y me regresen mi dinero.',
 	   servicios: [
 	       {	nombre:'Tratamiento Keratina',
-           		descripcion:'nalals'
+           		descripcion:'wuachu wuachu'
     		}
                      
 	   ],
@@ -48,7 +48,7 @@ export class ReclamosComponent implements OnInit {
 	descripcion:' Me hicieron mal el corte, me di cuenta al irme de la peluqueria',
 	   servicios: [
 	       {	nombre:'Corte de Cabello',
-           		descripcion:'debe fijarse de su corte antes de salir de la peluqueria'
+           		descripcion:'Debe fijarse de su corte antes de salir de la peluqueria'
     		}
                      
 	   ],
