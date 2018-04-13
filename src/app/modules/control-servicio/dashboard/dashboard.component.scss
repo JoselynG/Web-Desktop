@@ -112,6 +112,48 @@
             background-color: #FD0087;
             height: 400px;
             width: 280px;
+            color: white;
+            mat-card-header {
+                display: flex;
+                flex-direction: column;
+                h6 {
+                    font-weight: 600;
+                    margin-bottom: 15px;
+                }
+                h1 {
+                    font-size: 35px;
+                    font-weight: 600;
+                    margin-bottom: 15px;
+                }
+            }
+            mat-card-content {
+                width: 280px;
+                height: 190px;
+                .for {
+                    display: flex;
+                    flex-direction: row;
+                    color: white;
+                    h5 {
+                        font-weight: 500;
+                        margin-bottom: 10px;
+                    }
+                    .name {
+                        width: 190px;
+                    }
+                }
+            }
+            mat-card-footer {
+                align-items: flex-end;
+                .btn {
+                    color: white !important;
+                    font-size: 14px;
+                    //font-weight: bold;
+                    line-height: 19px;
+                    height: 30px;
+                    margin-top: 10px;
+                    margin-left: 150px;
+                }
+            }
         }
     }
     .fila2 {
@@ -121,16 +163,131 @@
         .card1 {
             height: 300px;
             width: 290px;
+            padding: 0;
+            mat-card-header {
+                h5 {
+                    margin: 10px;
+                    color: #6C798F;
+                }
+            }
+            mat-card-content {
+                height: 170px;
+                width: 290px;
+                margin-top: 30px;
+                margin-left: 50px;
+                img {
+                    width: 240px;
+                }
+            }
+            mat-card-footer {
+                display: flex;
+                flex-direction: row;
+                .select {
+                    width: 150px;
+                    margin-left: 40px;
+                    .valor {
+                        //     margin-left: 15px;
+                        width: 110px;
+                        font-size: 13px;
+                        color: #6C798F;
+                    }
+                }
+                .btn {
+                    color: #6C798F;
+                    font-size: 14px;
+                    font-weight: bold;
+                    line-height: 19px;
+                    height: 30px;
+                    margin-top: 10px;
+                }
+            }
         }
         .card2 {
             height: 300px;
             width: 290px;
             margin-left: 20px;
             margin-right: 20px;
+            padding: 0;
+            mat-card-header {
+                h5 {
+                    margin: 10px;
+                    color: #6C798F;
+                }
+            }
+            mat-card-content {
+                height: 170px;
+                width: 290px;
+                margin-top: 30px;
+                margin-left: 30px;
+                img {
+                    width: 240px;
+                    height: 210px;
+                }
+            }
+            mat-card-footer {
+                display: flex;
+                flex-direction: row;
+                .select {
+                    width: 150px;
+                    margin-left: 40px;
+                    .valor {
+                        //     margin-left: 15px;
+                        width: 110px;
+                        font-size: 13px;
+                        color: #6C798F;
+                    }
+                }
+                .btn {
+                    color: #6C798F;
+                    font-size: 14px;
+                    font-weight: bold;
+                    line-height: 19px;
+                    height: 30px;
+                    margin-top: 10px;
+                }
+            }
         }
         .card3 {
             height: 300px;
             width: 280px;
+            padding: 0;
+            mat-card-header {
+                h5 {
+                    margin: 10px;
+                    color: #6C798F;
+                }
+            }
+            mat-card-content {
+                height: 170px;
+                width: 290px;
+                margin-top: 30px;
+                margin-left: 50px;
+                img {
+                    width: 240px;
+                }
+            }
+            mat-card-footer {
+                display: flex;
+                flex-direction: row;
+                .select {
+                    width: 150px;
+                    margin-left: 40px;
+                    .valor {
+                        //     margin-left: 15px;
+                        width: 110px;
+                        font-size: 13px;
+                        color: #6C798F;
+                    }
+                }
+                .btn {
+                    color: #6C798F;
+                    font-size: 14px;
+                    font-weight: bold;
+                    line-height: 19px;
+                    height: 30px;
+                    margin-top: 10px;
+                }
+            }
         }
     }
 }
