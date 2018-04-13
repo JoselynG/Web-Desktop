@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   listas: Lista[]= [
     {
       type: 'alone',
-      link: '/test',
+      link: '/dashboard',
       label: 'Inicio',
       icon: true,
       iconName: 'home',
