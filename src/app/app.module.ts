@@ -1,4 +1,4 @@
-import { CancelarCitaComponent } from './modules/control-servicio/timeline/timeline.component';
+import { AgendaModule } from './modules/agenda/agenda.module';
 import { NavListComponent } from './home/nav-list/nav-list.component';
 import { SharedModule } from './shared/shared.module';
 import { MaterialDesignModule } from './material-design/material-design.module';
@@ -11,10 +11,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './home/login/login.component';
 import { ToolbarComponent } from './home/toolbar/toolbar.component';
 import { TestComponent } from './test/test.component';
-import { InicioModule } from './modules/inicio/inicio.module';
-import { ControlServicioModule } from './modules/control-servicio/control-servicio.module';
 import { AtencionClienteModule } from './modules/atencion-cliente/atencion-cliente.module';
 import { FormsModule } from '@angular/forms';
+import { InicioModule } from './modules/inicio/inicio.module';
 
 
 
@@ -33,12 +32,12 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    InicioModule,
     SharedModule,
-    ControlServicioModule,
+    InicioModule,
     MaterialDesignModule,
     AtencionClienteModule,
-    FormsModule
+    FormsModule,
+    AgendaModule
   ],
   providers: [],
   

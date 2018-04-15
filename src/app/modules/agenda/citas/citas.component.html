@@ -12,8 +12,8 @@
                     <mat-select-trigger>
                         {{empleadosSeleccionados ? empleadosSeleccionados[0] : ''}}
                         <span *ngIf="empleadosSeleccionados.length > 1">
-                                        (+{{empleadosSeleccionados.length - 1}} otros)
-                                    </span>
+                                (+{{empleadosSeleccionados.length - 1}} otros)
+                            </span>
                     </mat-select-trigger>
                     <mat-option color="accent" *ngFor="let empleado of empleados" [value]="empleado">{{empleado}}</mat-option>
                 </mat-select>
@@ -50,14 +50,11 @@
                     <h4>Empleado: {{detalle.empleado}}</h4>
                 </div>
                 <div class="btn" *ngIf="detalle.type=='ejecucion'">
-                    <button mat-button class="prim" routerLink="/timeline/registrar">REGISTRAR SERVICIO</button>
+                    <button mat-button class="prim" routerLink="/registrarDetalle">REGISTRAR SERVICIO</button>
                     <button mat-button class="sec">CANCELAR CITA</button>
                 </div>
                 <div class="btn" *ngIf="detalle.type=='prestado'">
                     <button mat-button class="sec">VER DETALLE</button>
-                </div>
-                <div class="btn" (click)="openDialogResponder()" *ngIf="detalle.type=='solicitud'">
-                    <button mat-button class="sec">DAR RESPUESTA</button>
                 </div>
                 <div class="btn" *ngIf="detalle.type=='programado'">
                     <button mat-button class="prim" (click)="openDialogIncidencia()">REGISTRAR INCIDENCIA</button>
@@ -125,33 +122,6 @@
                 <h4>{{detalle.codigo}}</h4>
             </div>
         </mat-card>
-        <mat-card class="detalle" *ngIf="filtroSelec=='solicitud' && detalle.type == 'solicitud'">
-            <div class="hora">
-                <h4>{{detalle.fecha}}</h4>
-                <h4>9:18 am</h4>
-            </div>
-            <div class="contenido">
-                <div class="client">
-                    <div class="img-radius">
-                        <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
-                    </div>
-                    <div class="name">
-                        <span class="bold">{{detalle.clientName}}</span><span> tiene una cita para:</span>
-                    </div>
-                </div>
-                <div class="det">
-                    <h4>Servicios: {{detalle.servicios}}</h4>
-                    <h4>Empleado: {{detalle.empleado}}</h4>
-                </div>
-                <div class="btn" (click)="openDialogResponder()">
-                    <button mat-button class="sec">DAR RESPUESTA</button>
-                </div>
-            </div>
-            <div class="codigo">
-                <mat-icon *ngIf="detalle.icon">{{detalle.iconName}}</mat-icon>
-                <h4>{{detalle.codigo}}</h4>
-            </div>
-        </mat-card>
         <mat-card class="detalle" *ngIf="filtroSelec=='programado'  && detalle.type == 'programado'">
             <div class="hora">
                 <h4>9:18 am</h4>
@@ -182,19 +152,4 @@
         </mat-card>
     </div>
 
-</div>
-<div class="fab-btn">
-    <button mat-fab color="accent" (click)="mostrar()" class="f-btn first">
-            <mat-icon>add</mat-icon>
-        </button>
-    <span matTooltip="Nueva cita">
-            <button mat-mini-fab *ngIf=(show) (click)="openDialogNuevo()" class="f-btn fab-btn2 second">
-                <mat-icon>date_range</mat-icon>
-            </button>
-    </span>
-    <span matTooltip="Nuevo servicio prestado">
-            <button mat-mini-fab *ngIf=(show) class="f-btn third fab-btn3">
-                <mat-icon>airline_seat_recline_extra</mat-icon>
-            </button>
-    </span>
 </div>

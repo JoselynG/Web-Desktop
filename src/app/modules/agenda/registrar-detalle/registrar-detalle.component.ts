@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent, MatSnackBar } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent } from '@angular/material';
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
 @Component({
   selector: 'app-registrar-detalle',
@@ -8,8 +8,7 @@ import {ENTER, COMMA} from '@angular/cdk/keycodes';
 })
 export class RegistrarDetalleComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
-
+  constructor(public dialog: MatDialog) { }
 
   openDialog(){
     const dialogRef = this.dialog.open(IncidenciaServicioComponent, {
@@ -62,6 +61,7 @@ export class RegistrarDetalleComponent implements OnInit {
   }
 
 }
+
 @Component({
   selector: 'app-incidencia-servicio',
   templateUrl: './incidencia-servicio.component.html',

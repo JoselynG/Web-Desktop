@@ -30,78 +30,72 @@ export class HomeComponent implements OnInit {
     },
     {
       type: 'group',
-      label: 'Control de servicio',
+      label: 'Tablas básicas',
       icon: true,
-      iconName: 'date_range',
+      iconName: 'dns',
       link: '/lista',
       group: [
         {
           type: 'alone',
           link: '/inicio',
-          label: 'Agenda',
+          label: 'Maestros',
           icon: false,
           iconName: 'add_shopping_cart',
         },
         {
           type: 'alone',
           link: '/timeline',
-          label: 'Timeline',
-          icon: false,
-          iconName: 'account_box',
+          label: 'Parámetros',
+          icon: false
+        },
+        {
+          type: 'alone',
+          link: '/timeline',
+          label: 'Categorías',
+          icon: false
         },
       ]
     },
     {
       type: 'group',
       link: '/list3',
-      label: 'Atención al cliente',
+      label: 'Administración',
       icon: true,
-      iconName: 'phone',
+      iconName: 'settings',
       group: [
         {
           type: 'alone',
-          link: '/reclamos',
-          label: 'Reclamos',
+          link: '/',
+          label: 'Portal Web',
           icon: false,
-          
         },
         {
           type: 'alone',
-          link: '/sugerencia',
-          label: 'Sugerencias',
+          link: '/',
+          label: 'Sistema',
           icon: false,
-        },
-        
+        },        
         {
           type: 'alone',
-          link: '/inicio',
-          label: 'Tipo de reclamo',
+          link: '/',
+          label: 'Seguridad funcional',
+          icon: false,
+        },        
+        {
+          type: 'alone',
+          link: '/',
+          label: 'Base de datos',
+          icon: false,
+        },        
+        {
+          type: 'alone',
+          link: '/',
+          label: 'Consejos',
           icon: false,
         },
       ]
     },
-    {
-      type: 'group',
-      label: 'Usuarios',
-      icon: true,
-      iconName: 'group',
-      link: '/lista',
-      group: [
-        {
-          type: 'alone',
-          link: '/inicio',
-          label: 'Listado',
-          icon: false,
-          
-        },
-        {
-          type: 'alone',
-          link: '/inicio',
-          label: 'Roles',
-          icon: false,
-        },
-      ]
-    },
+    
     {
       type: 'alone',
       label: 'Servicios',
@@ -111,76 +105,83 @@ export class HomeComponent implements OnInit {
     },
     {
       type: 'alone',
-      label: 'Códigos de descuento',
-      icon: true,
-      iconName: 'gradient',
-      link: '/lista',
-    },
-    {
-      type: 'group',
       label: 'Promociones',
       icon: true,
       iconName: 'receipt',
       link: '/lista',
-      group: [
-        {
-          type: 'alone',
-          link: '/inicio',
-          label: 'Difundir promoción',
-          icon: false,
-        },
-        {
-          type: 'alone',
-          link: '/inicio',
-          label: 'Promociones',
-          icon: false,
-        },
-      ]
+    
     },
     {
       type: 'alone',
-      label: 'Parámetros',
+      label: 'Clientes',
       icon: true,
-      iconName: 'home',
+      iconName: 'group',
       link: '/lista',
     },
     {
       type: 'group',
-      label: 'Portal Web',
+      label: 'Agenda',
       icon: true,
-      iconName: 'web_asset',
+      iconName: 'date_range',
+      link: '/lista',
+      group: [
+        {
+          type: 'alone',
+          link: '/solicitudes',
+          label: 'Solicitudes',
+          icon: false,
+        },
+        {
+          type: 'alone',
+          link: '/citas',
+          label: 'Citas',
+          icon: false,          
+        },
+        {
+          type: 'alone',
+          link: '/ordenes',
+          label: 'Órdenes de servicio',
+          icon: false,          
+        },
+        {
+          type: 'alone',
+          link: '/reclamosOrdenes',
+          label: 'Reclamos',
+          icon: false,          
+        }
+      ]
+    },
+    {
+      type: 'group',
+      label: 'Atención al cliente',
+      icon: true,
+      iconName: 'call',
       link: '/lista',
       group: [
         {
           type: 'alone',
           link: '/inicio',
-          label: 'Diseño',
+          label: 'Sugerencias',
           icon: false,
         },
         {
           type: 'alone',
           link: '/timeline',
-          label: 'Landing',
+          label: 'Reclamos',
           icon: false,          
         },
         {
           type: 'alone',
           link: '/timeline',
-          label: 'Blog',
+          label: 'Opiniones',
           icon: false,          
         },
         {
           type: 'alone',
           link: '/timeline',
-          label: 'Galeria',
+          label: 'Dudas',
           icon: false,          
-        },
-        {
-          type: 'alone',
-          link: '/timeline',
-          label: 'Empresa',
-          icon: false,          
-        },
+        }
       ]
     },
     {
