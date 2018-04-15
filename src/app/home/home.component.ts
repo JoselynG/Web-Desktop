@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit {
       label: 'Servicios',
       icon: true,
       iconName: 'build',
-      link: '/lista',
+      link: '/servicios',
     },
     {
       type: 'alone',

@@ -14,6 +14,7 @@ import { TestComponent } from './test/test.component';
 import { AtencionClienteModule } from './modules/atencion-cliente/atencion-cliente.module';
 import { FormsModule } from '@angular/forms';
 import { InicioModule } from './modules/inicio/inicio.module';
+import { ServiciosModule } from './modules/servicios/servicios.module';
 
 
 
@@ -37,7 +38,8 @@ import { InicioModule } from './modules/inicio/inicio.module';
     MaterialDesignModule,
     AtencionClienteModule,
     FormsModule,
-    AgendaModule
+    AgendaModule,
+    ServiciosModule
   ],
   providers: [],
   
