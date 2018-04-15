@@ -1,3 +1,4 @@
+import { ParametrosModule } from './modules/parametros/parametros.module';
 import { AgendaModule } from './modules/agenda/agenda.module';
 import { NavListComponent } from './home/nav-list/nav-list.component';
 import { SharedModule } from './shared/shared.module';
@@ -39,7 +40,8 @@ import { ServiciosModule } from './modules/servicios/servicios.module';
     AtencionClienteModule,
     FormsModule,
     AgendaModule,
-    ServiciosModule
+    ServiciosModule,
+    ParametrosModule
   ],
   providers: [],
   

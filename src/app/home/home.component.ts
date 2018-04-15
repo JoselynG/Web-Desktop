@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
         },
         {
           type: 'alone',
-          link: '/timeline',
+          link: '/parametros',
           label: 'Parámetros',
           icon: false
         },
@@ -97,11 +97,26 @@ export class HomeComponent implements OnInit {
     },
     
     {
-      type: 'alone',
+      type: 'group',
       label: 'Servicios',
       icon: true,
       iconName: 'build',
-      link: '/servicios',
+      link: '/lista',
+      group: [
+        {
+          type: 'alone',
+          link: '/servicios',
+          label: 'Servicios',
+          icon: false,
+        },
+        {
+          type: 'alone',
+          link: '/insumos',
+          label: 'Insumos',
+          icon: false,
+        },        
+      ]
+    
     },
     {
       type: 'alone',

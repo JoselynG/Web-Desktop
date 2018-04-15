@@ -1,0 +1,47 @@
+<mat-tab-group>
+    <mat-tab label="Tipo de Servicio">
+
+        <!-- el buscar -->
+        <div class="ctn">
+            <div class="search">
+                <div class="input-search ">
+                    <mat-icon>search</mat-icon>
+                    <mat-form-field class="full-width inputs">
+                        <input matInput placeholder="Buscar por servicio" autocomplete="off" type="search">
+                    </mat-form-field>
+                </div>
+
+                <!-- el boton -->
+                <div class="boton">
+                    <button mat-raised-button color="accent" (click)="openDialog()" class="btn">Nuevo tipo de servicio</button>
+                </div>
+            </div>
+            <div class="carta">
+                <mat-card class="matc">
+                    <mat-card-header>
+                        <div class="fila1">
+                            <div class="nombre">
+                                <h5>Peluquería</h5>
+                            </div>
+                            <div class="boton">
+                                <button mat-icon-button class="btn2">
+                                <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                              </button>
+                                <button mat-raised-button color="accent" (click)="openDialogEditar()" class="btn-carta ">Editar</button>
+                            </div>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="fila2">
+                            <p>
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat delectus facilis earum, adipisci quisquam ipsa veritatis repudiandae architecto, sequi, officia soluta nemo. Libero fuga deserunt itaque commodi, temporibus provident vero.
+                            </p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Tab 2">Content 2</mat-tab>
+</mat-tab-group>
