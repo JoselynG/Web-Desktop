@@ -123,7 +123,7 @@ export class HomeComponent implements OnInit {
       label: 'Promociones',
       icon: true,
       iconName: 'receipt',
-      link: '/lista',
+      link: '/promociones',
     
     },
     {

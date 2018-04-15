@@ -1,0 +1,280 @@
+
+<div class="ctn" style="position: relative;">
+  <div class="search">
+      <div class="input-search mat-elevation-z1">
+          <mat-icon>search</mat-icon>
+          <mat-form-field class="full-width inputs">
+              <input matInput placeholder="Buscar promociones por servicio" autocomplete="off" type="search">
+          </mat-form-field>
+        
+</div>
+    
+    <div  class="input-search mat-elevation-z1    ">
+            <mat-icon>date_range</mat-icon>
+            <mat-form-field class="valor">
+                <input matInput placeholder="Desde: 10/04/2018" autocomplete="off" type="search">
+            </mat-form-field>
+       
+    </div>
+        <div class="input-search mat-elevation-z1    ">
+            <mat-icon>date_range</mat-icon>
+            <mat-form-field class="full-width inputs">
+                <input matInput placeholder="Hasta: 10/03/2018" autocomplete="off" type="search">
+            </mat-form-field>
+        </div>
+    </div>
+  <div class="btn">   
+      <button mat-raised-button color="accent" routerLink="/timeline/registrar">Registrar Promoción</button>
+   </div>
+ 
+<div class="citas" *ngFor="let detalle of detalles">
+    
+  <mat-card class="detalle">
+          
+         <div class="contenido">
+              
+              <div class="det ">
+
+                    <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
+                    <pre>                                      </pre>
+                    <div class="client">
+            
+                    <div class="name">
+                        <span class="bold">{{detalle.NombrePromo}}</span>
+                        <pre>                                                </pre>
+                    </div>
+                </div>
+                  <p>Servicio: {{detalle.servicio}}</p>
+                  <p>Detalle: {{detalle.descripcion}}</p>
+                  <p>Desde: {{detalle.fechaInicio}}</p>
+                  <p>Hasta: {{detalle.fechaFin}}</p>
+                  <div class="pres">
+                  <pre>                                                 Descuento  50%   </pre>
+                  <pre>                                                 USD             $12   </pre>
+                </div>
+           </div>
+                    
+  </div>
+              
+ </mat-card>
+     
+</div>
+  <mat-card class="example-card1">
+        
+    <img mat-card-image src="/assets/img/perfil.jpg" alt="Photo of a Shiba Inu">
+    <div class="menu">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon class="icon">more_vert</mat-icon>
+            </button>
+               <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                  <span>Editar</span>
+              </button>
+                <button mat-menu-item >
+                  <span>Eliminar</span>
+              </button>
+                
+               </mat-menu>
+            </div>
+   
+    <mat-card-content>
+        
+            <div class="name">
+                    <span class="bold">PROMOCIÓN A</span>
+                    <pre>                                                </pre>
+                </div>
+                  <p>Servicio: Marcados, Recogidos</p>
+                  <p>Detalle:Estes es otra promoción para el servicio de Marcados. </p>
+                  <p>Desde: 10/04/2018</p>
+                  <p>Hasta: 20/04/2019</p>
+                  <pre>                    </pre>
+                  <div class="pres">
+                  <pre>Depilación Láser                                  USD    $17    </pre>
+                  </div>
+    </mat-card-content>
+   
+    
+  </mat-card>
+  
+  <mat-card class="example-card2">
+   
+        <img mat-card-image src="/assets/img/perfil.jpg" alt="Photo of a Shiba Inu">
+        <div class="menu">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon class="icon">more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                      <span>Editar</span>
+                    </button>
+                    <button mat-menu-item >
+                      <span>Eliminar</span>
+                    </button>
+                    
+                  </mat-menu>
+                </div>
+        <mat-card-content>
+            
+                <div class="name">
+                        <span class="bold">PROMOCIÓN B</span>
+                        <pre>                                                </pre>
+                    </div>
+                      <p>Servicio:Baño de color, Marcados</p>
+                      <p>Detalle:Estes es otra promoción para  Bano de color. </p>
+                      <p>Desde: 09/04/2018</p>
+                      <p>Hasta: 20/12/2019</p>
+                      <pre>                    </pre>
+                      <div class="pres">
+                      <pre>Depilación Láser                                  USD    $5    </pre>
+                      <pre>                                                   </pre>
+                      
+                    </div>
+        </mat-card-content>
+</mat-card>
+
+      <mat-card class="example-card3">
+            
+            <img mat-card-image src="/assets/img/perfil.jpg" alt="Photo of a Shiba Inu">
+            <div class="menu">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon class="icon">more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                          <span>Editar</span>
+                        </button>
+                        <button mat-menu-item >
+                          <span>Eliminar</span>
+                        </button>
+                        
+                      </mat-menu>
+                    </div>
+            <mat-card-content>
+                
+                    <div class="name">
+                            <span class="bold">PROMOCIÓN C</span>
+                            <pre>                                                </pre>
+                        </div>
+                          <p>Servicio:Corte de Cabello largo </p>
+                          <p>Detalle:Estes es una promocion  para el servicio de Corte de Cabello  </p>
+                          <p>Desde: 10/04/2018</p>
+                          <p>Hasta: 20/04/2019</p>
+                          <pre>                    </pre>
+                          <div class="pres">
+                          <pre>Depilación Láser                                  USD    $12    </pre>
+                          </div>
+            </mat-card-content>
+           
+            
+          </mat-card>
+
+          
+          <mat-card class="example-card4">
+                
+                <img mat-card-image src="/assets/img/perfil.jpg" alt="Photo of a Shiba Inu">
+                <div class="menu">
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon class="icon">more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                              <span>Editar</span>
+                            </button>
+                            <button mat-menu-item >
+                              <span>Eliminar</span>
+                            </button>
+                            
+                          </mat-menu>
+                        </div>
+                <mat-card-content>
+                    
+                        <div class="name">
+                                <span class="bold">PROMOCIÓN D</span>
+                                <pre>                                                </pre>
+                            </div>
+                              <p>Servicio:Corte de Cabello corto </p>
+                              <p>Detalle:Estes es una promocion  para el servicio de Corte de Cabello corto  </p>
+                              <p>Desde: 10/09/2018</p>
+                              <p>Hasta: 20/09/2019</p>
+                              <pre>                    </pre>
+                              <div class="pres">
+                              <pre>Depilación Láser                                  USD    $3    </pre></div>
+                </mat-card-content>
+               
+            
+                  </mat-card>
+        
+  
+                  <mat-card class="example-card5">
+                        
+                        <img mat-card-image src="/assets/img/perfil.jpg" alt="Photo of a Shiba Inu">
+                        <div class="menu">
+                                <button mat-icon-button [matMenuTriggerFor]="menu">
+                                    <mat-icon class="icon">more_vert</mat-icon>
+                                  </button>
+                                  <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                      <span>Editar</span>
+                                    </button>
+                                    <button mat-menu-item >
+                                      <span>Eliminar</span>
+                                    </button>
+                                    
+                                  </mat-menu>
+                                </div>
+                        <mat-card-content>
+                            
+                                <div class="name">
+                                        <span class="bold">PROMOCIÓN E</span>
+                                        <pre>                                                </pre>
+                                    </div>
+                                      <p>Servicio:Corte de Cabello rizo </p>
+                                      <p>Detalle:Estes es una promocion  para el servicio de Corte de Cabello rizo  </p>
+                                      <p>Desde: 10/09/2018</p>
+                                      <p>Hasta: 20/09/2019</p>
+                                      <pre>                    </pre>
+                                      <div class="pres">
+                                      <pre>Depilación Láser                                  USD    $300    </pre>
+                                      </div>
+                        </mat-card-content>
+                       
+                    
+                          </mat-card>
+                          <mat-card class="example-card6">
+   
+                                <img mat-card-image src="/assets/img/perfil.jpg" alt="Photo of a Shiba Inu">
+                                <div class="menu">
+                                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                                            <mat-icon class="icon">more_vert</mat-icon>
+                                          </button>
+                                          <mat-menu #menu="matMenu">
+                                            <button mat-menu-item>
+                                              <span>Editar</span>
+                                            </button>
+                                            <button mat-menu-item >
+                                              <span>Eliminar</span>
+                                            </button>
+                                            
+                                          </mat-menu>
+                                        </div>
+                                <mat-card-content>
+                                    
+                                        <div class="name">
+                                                <span class="bold">PROMOCIÓN F</span>
+                                                <pre>                                                </pre>
+                                            </div>
+                                              <p>Servicio:Planchado de Cabello </p>
+                                              <p>Detalle:Estes es una promoción  para el Planchado  </p>
+                                              <p>Desde: 01/09/2018</p>
+                                              <p>Hasta: 02/09/2019</p>
+                                              <pre>                    </pre>
+                                              <div class="pres">
+                                              <pre>Depilación Láser                                  USD    $4    </pre>
+                                            </div>
+                                            
+                                </mat-card-content>
+                               
+                            
+                               </mat-card>
+</div>
+
