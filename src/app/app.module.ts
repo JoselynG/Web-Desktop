@@ -1,4 +1,4 @@
-import { ParametrosModule } from './modules/parametros/parametros.module';
+
 import { AgendaModule } from './modules/agenda/agenda.module';
 import { NavListComponent } from './home/nav-list/nav-list.component';
 import { SharedModule } from './shared/shared.module';
@@ -16,6 +16,7 @@ import { AtencionClienteModule } from './modules/atencion-cliente/atencion-clien
 import { FormsModule } from '@angular/forms';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ServiciosModule } from './modules/servicios/servicios.module';
+import { AdminSistemaModule } from './modules/admin-sistema/admin-sistema.module';
 
 
 
@@ -41,7 +42,8 @@ import { ServiciosModule } from './modules/servicios/servicios.module';
     FormsModule,
     AgendaModule,
     ServiciosModule,
-    ParametrosModule
+   
+    AdminSistemaModule
   ],
   providers: [],
   

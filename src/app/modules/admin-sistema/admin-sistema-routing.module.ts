@@ -1,6 +1,6 @@
-import { ParametrosComponent } from './parametros.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ParametrosComponent } from './parametros/parametros.component';
 
 const routes: Routes = [
   {
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ParametrosRoutingModule { }
+export class AdminSistemaRoutingModule { }

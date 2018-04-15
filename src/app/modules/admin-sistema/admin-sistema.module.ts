@@ -1,15 +1,15 @@
-import { MaterialDesignModule } from './../../material-design/material-design.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ParametrosRoutingModule } from './parametros-routing.module';
-import { ParametrosComponent, CrearTipoServicioComponent, EditarTipoServicioComponent } from './parametros.component';
+import { AdminSistemaRoutingModule } from './admin-sistema-routing.module';
+import { EditarTipoServicioComponent, CrearTipoServicioComponent, ParametrosComponent } from './parametros/parametros.component';
 import { FormsModule } from '@angular/forms';
+import { MaterialDesignModule } from '../../material-design/material-design.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ParametrosRoutingModule,
+    AdminSistemaRoutingModule,
     MaterialDesignModule,
     FormsModule
   ],
@@ -17,7 +17,6 @@ import { FormsModule } from '@angular/forms';
     CrearTipoServicioComponent,
     EditarTipoServicioComponent
   ],
-  
   declarations: [ParametrosComponent,  CrearTipoServicioComponent, EditarTipoServicioComponent]
 })
-export class ParametrosModule { }
+export class AdminSistemaModule { }
