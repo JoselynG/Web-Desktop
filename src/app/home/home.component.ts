@@ -160,25 +160,25 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/inicio',
+          link: '/sugerencias',
           label: 'Sugerencias',
           icon: false,
         },
         {
           type: 'alone',
-          link: '/timeline',
+          link: '/reclamos',
           label: 'Reclamos',
           icon: false,          
         },
         {
           type: 'alone',
-          link: '/timeline',
+          link: '/opiniones',
           label: 'Opiniones',
           icon: false,          
         },
         {
           type: 'alone',
-          link: '/timeline',
+          link: '/dudas',
           label: 'Dudas',
           icon: false,          
         }
