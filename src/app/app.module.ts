@@ -16,6 +16,7 @@ import { AtencionClienteModule } from './modules/atencion-cliente/atencion-clien
 import { FormsModule } from '@angular/forms';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ServiciosModule } from './modules/servicios/servicios.module';
+import { Promocion } from './modules/promocion/promocion.module';
 
 
 
@@ -41,7 +42,8 @@ import { ServiciosModule } from './modules/servicios/servicios.module';
     FormsModule,
     AgendaModule,
     ServiciosModule,
-    ParametrosModule
+    ParametrosModule,
+    Promocion
   ],
   providers: [],
   
