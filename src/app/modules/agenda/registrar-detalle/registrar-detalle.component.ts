@@ -24,7 +24,8 @@ export class RegistrarDetalleComponent implements OnInit {
   selectable: boolean = true;
   removable: boolean = true;
   addOnBlur: boolean = true;
-
+  insumoSeleccionados = [];
+  insumo = ['Silicón', 'Agua Oxigenada', 'Acondicionador', 'Keratina', 'ganchos negros', 'polvo compacto', 'labial'];
   // Enter, comma
   separatorKeysCodes = [ENTER, COMMA];
 

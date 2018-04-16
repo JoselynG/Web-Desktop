@@ -20,7 +20,7 @@ const routes: Routes = [
     component: OpinionesComponent
   },
   {
-    path:'sugerencias',
+    path:'atencionCliente',
     component: SugerenciasComponent
   }
 ];

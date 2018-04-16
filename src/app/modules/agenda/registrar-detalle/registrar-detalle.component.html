@@ -24,13 +24,30 @@
                 <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Servicios de maquillaje" value="Maquillaje completo" disabled>
                 </mat-form-field>
+
+                <mat-form-field class="valor inputs">
+                    <mat-select placeholder="Insumos utilizados" [(ngModel)]="insumoSeleccionados" multiple>
+                        <mat-select-trigger>
+                            {{insumoSeleccionados ? insumoSeleccionados[0] : ''}}
+                            <span *ngIf="insumoSeleccionados.length > 1">
+                                        (+{{insumoSeleccionados.length - 1}} otros)
+                                    </span>
+                        </mat-select-trigger>
+                        <mat-option color="accent" *ngFor="let ins of insumo" [value]="ins">{{ins}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
                 <mat-form-field class="demo-chip-list inputs">
                     <mat-chip-list #chipList>
                         <mat-chip *ngFor="let insumo of insumos" [selectable]="selectable" [removable]="removable" (remove)="remove(insumo)">
                             {{insumo.name}}
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
-                        <input placeholder="Insumos" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
+                        <mat-chip *ngFor="let ins of insumoSeleccionados" [selectable]="selectable" [removable]="removable" (remove)="remove(ins)">
+                            {{ins}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Insumos" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" disabled/>
                     </mat-chip-list>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">

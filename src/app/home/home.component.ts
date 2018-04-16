@@ -66,12 +66,6 @@ export class HomeComponent implements OnInit {
         {
           type: 'alone',
           link: '/',
-          label: 'Portal Web',
-          icon: false,
-        },
-        {
-          type: 'alone',
-          link: '/',
           label: 'Sistema',
           icon: false,
         },        
@@ -95,12 +89,48 @@ export class HomeComponent implements OnInit {
         },
       ]
     },
+    {
+      type: 'group',
+      label: 'Portal Web',
+      icon: true,
+      iconName: 'web_asset',
+      link: '/lista',
+      group: [
+        {
+          type: 'alone',
+          link: '/slista',
+          label: 'Diseño',
+          icon: false,
+        },
+        {
+          type: 'alone',
+          link: '/asd',
+          label: 'Landing',
+          icon: false,
+        },        
+        
+        {
+          type: 'alone',
+          link: '/asd',
+          label: 'Galería',
+          icon: false,
+        },        
+        
+        {
+          type: 'alone',
+          link: '/asd',
+          label: 'Empresa',
+          icon: false,
+        },        
+      ]
+    
+    },
     
     {
       type: 'group',
-      label: 'Servicios',
+      label: 'Marketing',
       icon: true,
-      iconName: 'build',
+      iconName: 'business_center',
       link: '/lista',
       group: [
         {
@@ -111,19 +141,11 @@ export class HomeComponent implements OnInit {
         },
         {
           type: 'alone',
-          link: '/insumos',
-          label: 'Insumos',
+          link: '/promociones',
+          label: 'Promociones',
           icon: false,
         },        
       ]
-    
-    },
-    {
-      type: 'alone',
-      label: 'Promociones',
-      icon: true,
-      iconName: 'receipt',
-      link: '/promociones',
     
     },
     {
@@ -167,37 +189,11 @@ export class HomeComponent implements OnInit {
       ]
     },
     {
-      type: 'group',
+      type: 'alone',
       label: 'Atención al cliente',
       icon: true,
       iconName: 'call',
-      link: '/lista',
-      group: [
-        {
-          type: 'alone',
-          link: '/sugerencias',
-          label: 'Sugerencias',
-          icon: false,
-        },
-        {
-          type: 'alone',
-          link: '/reclamos',
-          label: 'Reclamos',
-          icon: false,          
-        },
-        {
-          type: 'alone',
-          link: '/opiniones',
-          label: 'Opiniones',
-          icon: false,          
-        },
-        {
-          type: 'alone',
-          link: '/dudas',
-          label: 'Dudas',
-          icon: false,          
-        }
-      ]
+      link: '/atencionCliente',
     },
     {
       type: 'alone',
