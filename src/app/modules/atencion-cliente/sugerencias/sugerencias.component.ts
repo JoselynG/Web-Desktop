@@ -26,7 +26,7 @@ export class SugerenciasComponent implements OnInit {
       nombre: 'Maria Anzola',
       orden: '001',
       fecha: '10 abril 2018',
-      tipoR: 'producto',
+      tipoR: 'Sugerencia',
       descripcion:'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni architecto necessitatibus exercitationem, quae nam nisi impedit perferendis asperiores recusandae commodi dignissimos, nemo tempora explicabo modi maxime amet, veritatis et autem!',
       servicios: [
       {	nombre:'Tratamiento Keratina',
@@ -41,7 +41,7 @@ export class SugerenciasComponent implements OnInit {
         nombre: 'Yanior Zambrano',
         orden: '002',
         fecha: '11 abril 2018',
-        tipoR: 'servicio',
+        tipoR: 'Duda',
         descripcion:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni architecto necessitatibus exercitationem, quae nam nisi impedit perferendis asperiores recusandae commodi dignissimos, nemo tempora explicabo modi maxime amet, veritatis et autem!',
         servicios: [
           {	nombre:'Corte de Cabello',
@@ -53,6 +53,14 @@ export class SugerenciasComponent implements OnInit {
 
 
  ];
+ filtroSelec = '';
+ filtro = [
+  {value: 'todo', viewValue: 'Todos'},
+  {value: 'sugerencia', viewValue: 'Sugerencia'},
+  {value: 'duda', viewValue: 'Dudas'},
+  {value: 'opinion', viewValue: 'Opiniones'},
+  {value: 'reclamo', viewValue: 'Reclamos'}
+];
   constructor() { }
 
   ngOnInit() {

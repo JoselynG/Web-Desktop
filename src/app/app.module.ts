@@ -16,8 +16,8 @@ import { AtencionClienteModule } from './modules/atencion-cliente/atencion-clien
 import { FormsModule } from '@angular/forms';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ServiciosModule } from './modules/servicios/servicios.module';
-import { AdminSistemaModule } from './modules/admin-sistema/admin-sistema.module';
 import { PromocionModule } from './modules/promocion/promocion.module';
+import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.module';
 
 
 
@@ -43,7 +43,7 @@ import { PromocionModule } from './modules/promocion/promocion.module';
     FormsModule,
     AgendaModule,
     ServiciosModule,
-    AdminSistemaModule,
+    TablasBasicasModule,
     PromocionModule
   ],
   providers: [],
