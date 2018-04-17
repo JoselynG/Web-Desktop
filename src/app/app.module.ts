@@ -1,4 +1,4 @@
-import { ParametrosModule } from './modules/parametros/parametros.module';
+
 import { AgendaModule } from './modules/agenda/agenda.module';
 import { NavListComponent } from './home/nav-list/nav-list.component';
 import { SharedModule } from './shared/shared.module';
@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ServiciosModule } from './modules/servicios/servicios.module';
 import { Promocion } from './modules/promocion/promocion.module';
+import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.module';
 
 
 
@@ -42,7 +43,7 @@ import { Promocion } from './modules/promocion/promocion.module';
     FormsModule,
     AgendaModule,
     ServiciosModule,
-    ParametrosModule,
+    TablasBasicasModule,
     Promocion
   ],
   providers: [],

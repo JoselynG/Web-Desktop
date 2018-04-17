@@ -3,7 +3,7 @@
         <div class="input-search mat-elevation-z1">
             <mat-icon>search</mat-icon>
             <mat-form-field class="full-width inputs">
-                <input matInput placeholder="Buscar sugerencias por cliente" autocomplete="off" type="search">
+                <input matInput placeholder="Buscar por cliente" autocomplete="off" type="search">
             </mat-form-field>
         </div>
         <div class="select mat-elevation-z1">
@@ -22,6 +22,15 @@
           <mat-icon>date_range</mat-icon>
         </button>
         </div>
+        <div class="select2 mat-elevation-z1">
+            <mat-form-field class="valor filtro">
+                <mat-select [(ngModel)]="filtroSelec">
+                    <mat-option *ngFor="let filtro of filtro" selected="todo" [value]="filtro.value">
+                        {{ filtro.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
     <div class="col">
         <div class="usuario">
@@ -31,9 +40,9 @@
         <div class="fecha">
             <h4>Fecha de realización</h4>
         </div>
-        <!-- <div class="origen">
-      <h4>Origen del reclamo</h4>
-  </div>-->
+        <div class="origen">
+            <h4>Origen del reclamo</h4>
+        </div>
     </div>
     <div class="panel">
         <mat-accordion>
@@ -48,9 +57,9 @@
                     <mat-panel-description class="date">
                         {{dato.fecha}}
                     </mat-panel-description>
-                    <!-- <mat-panel-description class="type">
-                    {{dato.tipoR}}
-                </mat-panel-description>-->
+                    <mat-panel-description class="type">
+                        {{dato.tipoR}}
+                    </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="desc">
                     <br>

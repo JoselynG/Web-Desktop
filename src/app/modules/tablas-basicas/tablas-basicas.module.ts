@@ -1,18 +1,19 @@
-import { MaterialDesignModule } from './../../material-design/material-design.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ParametrosRoutingModule } from './parametros-routing.module';
-import { ParametrosComponent, CrearTipoServicioComponent, EditarTipoServicioComponent } from './parametros.component';
+import { TablasBasicasRoutingModule } from './tablas-basicas-routing.module';
 import { FormsModule } from '@angular/forms';
+import { MaterialDesignModule } from '../../material-design/material-design.module';
+import { EditarTipoServicioComponent, CrearTipoServicioComponent, ParametrosComponent } from './parametros/parametros.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ParametrosRoutingModule,
+    TablasBasicasRoutingModule,
     MaterialDesignModule,
     FormsModule
   ],
+  
   entryComponents:[
     CrearTipoServicioComponent,
     EditarTipoServicioComponent
@@ -20,4 +21,4 @@ import { FormsModule } from '@angular/forms';
   
   declarations: [ParametrosComponent,  CrearTipoServicioComponent, EditarTipoServicioComponent]
 })
-export class ParametrosModule { }
+export class TablasBasicasModule { }
