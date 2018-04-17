@@ -1,8 +1,6 @@
-
+<div class="configurar" >Difundir Promoción:</div>
 <div  class="anchodesplegable">
   
-
-
 <div  class= "desplegable2"> 
 <mat-accordion>
   
@@ -11,63 +9,128 @@
     <mat-expansion-panel-header>
       
       <mat-panel-description>
-        dkdjcvkjvfjk
-
+         Crear Promoción:
       </mat-panel-description>
+    
     </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
- 
-                <mat-form-field class="example-full-width inputs">
-                  <input matInput placeholder="Fecha" value="   ">
-                </mat-form-field>
-                <mat-form-field class="example-full-width inputs">
-                  <input matInput placeholder="Descripvión" value="promocion">
-                  <button mat-raised-button color="accent">Agregar Promoción</button>
-                   </mat-form-field>  
+   
+    <div class="registro">
   
-
-
-            
-  </mat-expansion-panel>
+      <mat-card class="detalle">
+          <mat-form-field class="example-full-width inputs">
+              <input matInput placeholder="Titulo:" >
+          </mat-form-field>
+          <mat-form-field class="example-full-width inputs">
+              <input  matInput placeholder="FechaInicio:" >
+              <mat-icon class="icono" >date_range</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="example-full-width inputs">
+              <input matInput placeholder="FechaFin:" >
+              <mat-icon class="icono">date_range</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="valor inputs">
+              <mat-select placeholder="Seleccione el servicio a Promocionar">
+                  <mat-option >
+                      Corte Cabello
+                  </mat-option>
+                  <mat-option >
+                        Secado
+                    </mat-option>
+                    <mat-option >
+                       Planchado
+                        </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width inputs">
+              <input matInput placeholder="Porcentaje de Descuento:" >
+          </mat-form-field>
+          <mat-form-field class="example-full-width inputs">
+              
+              <input matInput  placeholder="Imagen:"  >
+          </mat-form-field>
+        
+        <mat-form-field>
+          <textarea matInput placeholder="Descripcion:" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi bbbbbbbbbbbb</textarea>
+        </mat-form-field>
+        <br>
+        
+          <button mat-raised-button color="accent" (click)="openSnackBar()" routerLink="/timeline" class="c-white btn">Registrar</button>
+      </mat-card>
+     
+    
+ 
+  </div>
+                 
+    </mat-expansion-panel>
 </mat-accordion>
 
 </div>
 </div>
 
 
+<div class="configurar" > Difundir Por Párametro</div>
 <div  class= "desplegable1"> 
+    
 <mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Personal data
-      </mat-panel-title>
-      <mat-panel-description>
-        Type your name and age
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+  
+    <mat-expansion-panel *ngFor="let dato of datos" (opened)="panelOpenState = true">
+         <mat-expansion-panel-header>
+             <mat-panel-title class="title">
+                {{dato.nombreTP}}
+             </mat-panel-title> 
+           
+         </mat-expansion-panel-header>
+        
+        <mat-divider></mat-divider>
+        <div class="garantia">
+            <br>
+            
+            <dl>
+                <div *ngFor="let Tpa of dato.Parametros">
+                 <div class="letra">
+                  <mat-checkbox >
 
-    <mat-form-field>
-      <input matInput placeholder="First name">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Age">
-    </mat-form-field>
-  </mat-expansion-panel>
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Self aware panel
-      </mat-panel-title>
-      <mat-panel-description>
-       Aqui va el formulario
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
-  </mat-expansion-panel>
+                    {{Tpa.nombre}}
+                  </mat-checkbox>
+                </div>
+                   <br>
+                </div>
+            </dl>
+            
+        </div>
+       
+    </mat-expansion-panel>
 </mat-accordion>
 
-</div>
+<div class="tabla">
+<mat-accordion isdisabled >
+    
+    <mat-expansion-panel >
+         <mat-expansion-panel-header >
+             
+            <mat-panel-title class="title">
+              Tipo (Emulción Epicutanea):
+             </mat-panel-title>
+
+         </mat-expansion-panel-header >
+        <div *ngFor="let Val of valores">
+           
+            <mat-checkbox >
+               {{Val.valor}}
+               <br>
+               <br>
+               <br>
+               </mat-checkbox>
+               <div class="letra2">
+               {{Val.descrip}}
+               </div>
+            <mat-divider></mat-divider>
+          
+        </div>
+        <br>
+        <button mat-raised-button color="accent" (click)="openSnackBar()" routerLink="/timeline" class="c-white btn">Difundir</button>
+    </mat-expansion-panel>
+    
+</mat-accordion>
+
 

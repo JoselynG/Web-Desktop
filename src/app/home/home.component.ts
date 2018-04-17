@@ -45,13 +45,13 @@ export class HomeComponent implements OnInit {
         {
           type: 'alone',
           link: '/parametros',
-          label: 'Parámetros',
+          label: 'Categorías',
           icon: false
         },
         {
           type: 'alone',
           link: '/timeline',
-          label: 'Categorías',
+          label: 'Parámetros',
           icon: false
         },
       ]
@@ -196,11 +196,60 @@ export class HomeComponent implements OnInit {
       link: '/atencionCliente',
     },
     {
-      type: 'alone',
+      type: 'group',
       label: 'Reportes',
       icon: true,
       iconName: 'assessment',
       link: '/lista',
+      group: [
+        {
+          type: 'alone',
+          link: '/sdsc',
+          label: 'Solicitudes',
+          icon: false,
+        },
+        {
+          type: 'alone',
+          link: '/sdcdc',
+          label: 'Citas',
+          icon: false,          
+        },
+        {
+          type: 'alone',
+          link: '/sdc',
+          label: 'Clientes',
+          icon: false,          
+        },
+        {
+          type: 'alone',
+          link: '/dcdc',
+          label: 'Servicios',
+          icon: false,          
+        },
+        
+        {
+          type: 'alone',
+          link: '/dcdc',
+          label: 'Incidencias',
+          icon: false,          
+        },
+        
+        {
+          type: 'alone',
+          link: '/dcdc',
+          label: 'Reclamos',
+          icon: false,          
+        },
+        
+        {
+          type: 'alone',
+          link: '/dcdc',
+          label: 'Calificaciones',
+          icon: false,          
+        }
+
+      ]
+    
     },   
     
   ];
