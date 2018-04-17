@@ -18,6 +18,7 @@ import { InicioModule } from './modules/inicio/inicio.module';
 import { ServiciosModule } from './modules/servicios/servicios.module';
 import { AdminSistemaModule } from './modules/admin-sistema/admin-sistema.module';
 import { PromocionModule } from './modules/promocion/promocion.module';
+import { ClientesModule } from "./modules/clientes/clientes.module";
 
 
 
@@ -44,7 +45,8 @@ import { PromocionModule } from './modules/promocion/promocion.module';
     AgendaModule,
     ServiciosModule,
     AdminSistemaModule,
-    PromocionModule
+    PromocionModule,
+    ClientesModule
   ],
   providers: [],
   

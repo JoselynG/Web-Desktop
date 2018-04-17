@@ -153,7 +153,7 @@ export class HomeComponent implements OnInit {
       label: 'Clientes',
       icon: true,
       iconName: 'group',
-      link: '/lista',
+      link: '/clientes',
     },
     {
       type: 'group',
