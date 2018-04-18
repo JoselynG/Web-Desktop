@@ -1,10 +1,10 @@
     <div class="boton">
-        <span style="flex:0;" matTooltip="Listado"><button mat-raised-button routerLink="/listado"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
-        <div style="flex:auto;"></div>
-        <div style="flex:1; display: flex; justify-content: flex-end; padding: 0 25px 10px 0;">
-            <div style="position: relative;">Completitud del perfil: &nbsp;&nbsp;&nbsp;75%
-                <mat-progress-spinner [style.opacity]="'0.2'" class="rueda-progreso" color="primary" diameter="50" mode="determinate" value="100"></mat-progress-spinner>
-                <mat-progress-spinner class="rueda-progreso" color="accent" diameter="50" mode="determinate" value="75"></mat-progress-spinner>
+        <span class="span1" matTooltip="Listado"><button mat-raised-button routerLink="../"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
+        <div class="separador"></div>
+        <div class="div-para-rueda">
+            <div class="div-rueda">Completitud del perfil: &nbsp;&nbsp;&nbsp;75%
+                <mat-progress-spinner [style.opacity]="'0.2'" color="primary" diameter="50" mode="determinate" value="100"></mat-progress-spinner>
+                <mat-progress-spinner color="accent" diameter="50" mode="determinate" value="75"></mat-progress-spinner>
             </div>
         </div>
     </div>
@@ -43,18 +43,21 @@
 
         <div class="valores-parametro" *ngIf="datos_a_mostrar.length > 0" style="height: 600px;">
             <div style="display: flex; flex-wrap: wrap;">
-                <mat-card *ngFor="let vp of datos_a_mostrar" style="width: 95%; margin: 5px;">
+                <mat-card style="width: 95%; margin: 5px;">
                     <mat-card-title>
-                        {{vp.nombre_parametro.nombre}}
+                        {{datos_a_mostrar[n].nombre_parametro.nombre}}
                     </mat-card-title>
                     <mat-card-content>
-                        <div *ngFor="let datos of vp.valores_parametro">
+                        <div *ngFor="let datos of datos_a_mostrar[n].valores_parametro">
                             <mat-divider></mat-divider><br>
                             <mat-radio-button value=""><h4>&nbsp;&nbsp;{{datos.nombre}}</h4></mat-radio-button>
                             <p style="padding: 10px 40px 0 40px;">{{datos.descripcion}}</p><br>
                         </div>
                     </mat-card-content>
                 </mat-card>
+                <div style="padding-top: 5px; width:95%; display:flex; justify-content: flex-end;">
+                <button mat-raised-button color="accent" (click)="siguiente()">Siguiente</button>
+                </div>
             </div>
         </div>
     </div>

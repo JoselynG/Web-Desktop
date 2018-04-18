@@ -26,8 +26,8 @@ export class ClientesComponent implements OnInit {
 /**///////////////////////////////////////////////////// */
 @Component({
   selector: 'app-cliente-principal',
-  templateUrl: './cliente.principal.component.html',
-  styleUrls: ['./cliente.principal.component.scss'],
+  templateUrl: './cliente-principal.component.html',
+  styleUrls: ['./cliente-principal.component.scss'],
   /*providers:[
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
@@ -48,16 +48,15 @@ export class ClientePrincipalComponent implements OnInit {
 /**///////////////////////////////////////////////////// */
 @Component({
   selector: 'app-cliente-perfil',
-  templateUrl: './cliente.perfil.component.html',
-  styleUrls: ['./cliente.perfil.component.scss'],
+  templateUrl: './cliente-perfil.component.html',
+  styleUrls: ['./cliente-perfil.component.scss'],
 })
 export class ClientePerfilComponent implements OnInit {
 
   listaTipoParam: ITipoParametro[]=[
       {id:1,nombre:"Cabello",descripcion:"el cabello",fecha_creacion:"2018-03-02",estatus:"activo"},
       {id:2,nombre:"Piel",descripcion:"la piel",fecha_creacion:"2018-03-03",estatus:"activo"},
-      {id:3,nombre:"Ojos",descripcion:"los ojos",fecha_creacion:"2018-03-04",estatus:"activo"},
-      {id:4,nombre:"Labios",descripcion:"los labios",fecha_creacion:"2018-03-05",estatus:"activo"}
+      {id:3,nombre:"Ojos",descripcion:"los ojos",fecha_creacion:"2018-03-04",estatus:"activo"}
   ];
   parametros: IParametro[]=[
       {id:1,id_tipo_parametro:1,//Cabello
@@ -67,7 +66,9 @@ export class ClientePerfilComponent implements OnInit {
       {id:3,id_tipo_parametro:2,//Piel
       nombre:"Textura",descripcion:"la Textura",fecha_creacion:"2018-02-02",estatus:"activo"},
       {id:4,id_tipo_parametro:2,//Piel
-      nombre:"Color",descripcion:"el color",fecha_creacion:"2018-02-02",estatus:"activo"}
+      nombre:"Color",descripcion:"el color",fecha_creacion:"2018-02-02",estatus:"activo"},
+      {id:5,id_tipo_parametro:3,//Ojos
+      nombre:"Color",descripcion:"el color de ojos",fecha_creacion:"2018-02-02",estatus:"activo"}
   ];
 
   valoresParametro: IValorParametro[]=[
@@ -77,31 +78,54 @@ export class ClientePerfilComponent implements OnInit {
       {id:2,id_parametro:2,//tipo (emulsion epicutanea)
       nombre:"Seco",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
       fecha_creacion:"2018-02-02",estatus:"activo"},
-      {id:1,id_parametro:2,//tipo (emulsion epicutanea)
+      {id:3,id_parametro:2,//tipo (emulsion epicutanea)
       nombre:"Graso",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
       fecha_creacion:"2018-02-02",estatus:"activo"},
-      {id:1,id_parametro:2,//tipo (emulsion epicutanea)
+      {id:4,id_parametro:2,//tipo (emulsion epicutanea)
       nombre:"Mixto",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
-      fecha_creacion:"2018-02-02", estatus:"activo"}
+      fecha_creacion:"2018-02-02", estatus:"activo"},
+      {id:5,id_parametro:1,//longitud cabello
+        nombre:"Largo",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+        fecha_creacion:"2018-02-02", estatus:"activo"},
+      {id:6,id_parametro:1,//longitud cabello
+        nombre:"Corto",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+        fecha_creacion:"2018-02-02", estatus:"activo"},
+      {id:7,id_parametro:3,//textura piel
+        nombre:"Lisa",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+        fecha_creacion:"2018-02-02", estatus:"activo"},
+        {id:8,id_parametro:3,//textura piel
+          nombre:"Aspera",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+          fecha_creacion:"2018-02-02", estatus:"activo"},
+          {id:9,id_parametro:4,//color piel
+            nombre:"Clara",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+            fecha_creacion:"2018-02-02", estatus:"activo"},
+            {id:10,id_parametro:4,//color piel
+              nombre:"Oscura",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+              fecha_creacion:"2018-02-02", estatus:"activo"},
+              {id:11,id_parametro:5,//color ojos
+                nombre:"Azules",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+                fecha_creacion:"2018-02-02", estatus:"activo"},
+                {id:12,id_parametro:5,//color ojos
+                  nombre:"Verdes",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+                  fecha_creacion:"2018-02-02", estatus:"activo"}
   ];
 
+  datos_a_mostrar: IParametroValorParametro[]=[];
 
   constructor() { }
   ngOnInit() { /*Aca se inicializa la lista de valores parametro*/
     this.parametros.forEach(elem=> {let longi=0;let arra:IValorParametro[]=[];this.valoresParametro.forEach(element => {if(element.id_parametro==elem.id){longi=arra.push(element);}});longi=this.datos_a_mostrar.push({nombre_parametro:elem,valores_parametro:arra});});
   }
 
-  datos_a_mostrar: IParametroValorParametro[]= [];
-
   checkear(parametro){
     if (parametro.estatus=="activo")
     {parametro.estatus="inactivo";
     ///////////////////////////////////////////////BORRA UN PARAMETRO DE LA LISTA PARA MOSTRAR VALORES PARAMETROS.
-    let borrado:any;
+    let borrado:IParametroValorParametro[];
     this.datos_a_mostrar.forEach(element => {
       if (element.nombre_parametro.id==parametro.id) {
         borrado=this.datos_a_mostrar.splice(this.datos_a_mostrar.indexOf(element),1);
-      }
+         }
     });
     ///////////////////////////////////////////////
     } 
@@ -114,6 +138,16 @@ export class ClientePerfilComponent implements OnInit {
       if(element.id_parametro==parametro.id){longitud=arr.push(element);}});
     longitud=this.datos_a_mostrar.push({nombre_parametro:parametro,valores_parametro:arr});
     ///////////////////////////////////////////////
+    }
+  }
+
+  n=0;
+  siguiente(){
+    if(this.n==(this.datos_a_mostrar.length-1)){
+      this.n=0;
+    }
+    else{
+      this.n++;
     }
   }
 
