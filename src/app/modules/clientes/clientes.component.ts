@@ -100,14 +100,14 @@ export class ClientePerfilComponent implements OnInit {
             nombre:"Clara",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
             fecha_creacion:"2018-02-02", estatus:"activo"},
             {id:10,id_parametro:4,//color piel
-              nombre:"Oscura",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
-              fecha_creacion:"2018-02-02", estatus:"activo"},
-              {id:11,id_parametro:5,//color ojos
-                nombre:"Azules",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
-                fecha_creacion:"2018-02-02", estatus:"activo"},
-                {id:12,id_parametro:5,//color ojos
-                  nombre:"Verdes",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
-                  fecha_creacion:"2018-02-02", estatus:"activo"}
+            nombre:"Oscura",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+            fecha_creacion:"2018-02-02", estatus:"activo"},
+          {id:11,id_parametro:5,//color ojos
+          nombre:"Azules",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+          fecha_creacion:"2018-02-02", estatus:"activo"},
+          {id:12,id_parametro:5,//color ojos
+            nombre:"Verdes",descripcion:"jkjh kfhasofk fiohfoawhf klhlwaknlfwkj wfawlf awkfhawlnfwl wkhjfawhflaw wklfhawl",
+            fecha_creacion:"2018-02-02", estatus:"activo"}
   ];
 
   datos_a_mostrar: IParametroValorParametro[]=[];
@@ -122,12 +122,6 @@ export class ClientePerfilComponent implements OnInit {
     {parametro.estatus="inactivo";
     this.n=0;
     ///////////////////////////////////////////////BORRA UN PARAMETRO DE LA LISTA PARA MOSTRAR VALORES PARAMETROS.
-    /*let borrado:IParametroValorParametro[];
-    this.datos_a_mostrar.forEach(element => {
-      if (element.nombre_parametro.id==parametro.id) {
-        borrado=this.datos_a_mostrar.splice(this.datos_a_mostrar.indexOf(element),1);
-         }
-    });*/
     let b:IParametroValorParametro[];
     for (let i = 0; i < this.datos_a_mostrar.length; i++) {
       const element = this.datos_a_mostrar[i];
@@ -150,7 +144,6 @@ export class ClientePerfilComponent implements OnInit {
     ///////////////////////////////////////////////
     }
   }
-
   n=0;
   siguiente(){
     if(this.n==(this.datos_a_mostrar.length-1)){
@@ -160,10 +153,7 @@ export class ClientePerfilComponent implements OnInit {
       this.n++;
     }
   }
-
 }
-
-
 
 //Interfaces
 /* DEL CLIENTE */

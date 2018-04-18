@@ -1,0 +1,30 @@
+<div class="heading-panel">
+    <!--Controla el contenido que se despliega en cada tab-->
+    <mat-tab-group #grupoTabs (click)="verificarTab(grupoTabs)" (keydown)="verificarTab(grupoTabs)">
+      <mat-tab label="Imagenes">
+        <!--++++++-->
+        <app-imagenes></app-imagenes>
+        <!--++++++-->
+      </mat-tab>
+      
+      <mat-tab label="Colores">
+        <!--++++++-->
+        <!--++++++-->
+      </mat-tab>
+
+      <mat-tab label="Tipografia">
+          <!--++++++-->
+          <!--++++++-->
+        </mat-tab>
+    </mat-tab-group>
+    
+    <!--Posiciona los botones a la parte superior derecha de la pantalla-->
+    <div class="button-row">
+        <button mat-raised-button>
+          <mat-icon>save</mat-icon> Guardar
+        </button>
+        <button mat-raised-button>
+          <mat-icon>visibility</mat-icon> Previsualizar
+        </button>
+    </div>
+    </div>

@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/slista',
+          link: '/disenio',
           label: 'Diseño',
           icon: false,
         },

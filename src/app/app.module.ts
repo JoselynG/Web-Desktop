@@ -19,6 +19,7 @@ import { ServiciosModule } from './modules/servicios/servicios.module';
 import { AdminSistemaModule } from './modules/admin-sistema/admin-sistema.module';
 import { PromocionModule } from './modules/promocion/promocion.module';
 import { ClientesModule } from "./modules/clientes/clientes.module";
+import { PortalWebModule } from './modules/portal-web/portal-web.module';
 
 
 
@@ -46,7 +47,8 @@ import { ClientesModule } from "./modules/clientes/clientes.module";
     ServiciosModule,
     AdminSistemaModule,
     PromocionModule,
-    ClientesModule
+    ClientesModule,
+    PortalWebModule
   ],
   providers: [],
   
