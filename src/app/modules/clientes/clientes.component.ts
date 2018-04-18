@@ -120,13 +120,22 @@ export class ClientePerfilComponent implements OnInit {
   checkear(parametro){
     if (parametro.estatus=="activo")
     {parametro.estatus="inactivo";
+    this.n=0;
     ///////////////////////////////////////////////BORRA UN PARAMETRO DE LA LISTA PARA MOSTRAR VALORES PARAMETROS.
-    let borrado:IParametroValorParametro[];
+    /*let borrado:IParametroValorParametro[];
     this.datos_a_mostrar.forEach(element => {
       if (element.nombre_parametro.id==parametro.id) {
         borrado=this.datos_a_mostrar.splice(this.datos_a_mostrar.indexOf(element),1);
          }
-    });
+    });*/
+    let b:IParametroValorParametro[];
+    for (let i = 0; i < this.datos_a_mostrar.length; i++) {
+      const element = this.datos_a_mostrar[i];
+      if (element.nombre_parametro.id==parametro.id) {
+        b=this.datos_a_mostrar.splice(this.datos_a_mostrar.indexOf(element),1);
+        break;
+      }
+    }
     ///////////////////////////////////////////////
     } 
     else
@@ -137,6 +146,7 @@ export class ClientePerfilComponent implements OnInit {
     this.valoresParametro.forEach(element => {
       if(element.id_parametro==parametro.id){longitud=arr.push(element);}});
     longitud=this.datos_a_mostrar.push({nombre_parametro:parametro,valores_parametro:arr});
+    this.n=(longitud-1);
     ///////////////////////////////////////////////
     }
   }
