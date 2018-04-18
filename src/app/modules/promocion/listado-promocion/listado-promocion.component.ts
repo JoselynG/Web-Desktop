@@ -18,12 +18,12 @@ interface Detalle {
   styleUrls: ['./listado-promocion.component.scss']
 })
 export class ListadoPromocionComponent implements OnInit {
-/*
+
   detalles: Detalle [] = [
     {
       NombrePromo: 'Promoción A',
       servicio: 'Corte cabello largo',
-      descripcion: 'Estes es una promocion  para el servicio de Corte de Cabello ',
+      descripcion: 'Estes es una promocion  de Corte de Cabello',
       type: 'ejecucion',
       icon: true,
       iconName: 'alarm',
@@ -53,8 +53,43 @@ export class ListadoPromocionComponent implements OnInit {
       fechaInicio: '10/04/2018',
       fechaFin: ' 10/05/2018'
     },
+
+    {
+      NombrePromo: 'Promoción B',
+      servicio: 'Baño de color, Marcados',
+      descripcion: 'Este es otra promocón para el servicio de Baño de Color.',
+      type: 'ejecucion',
+      icon: true,
+      iconName: 'check_circle',
+      codigo: '#88554-1614',
+      fechaInicio: '10/04/2018',
+      fechaFin: ' 10/05/2018',
+    },
+    {
+      NombrePromo: 'Promoción A',
+      servicio: 'Corte cabello largo',
+      descripcion: 'Estes es una promocion  de Corte de Cabello',
+      type: 'ejecucion',
+      icon: true,
+      iconName: 'alarm',
+      codigo: '#16445-6560',
+      fechaInicio: '10/04/2018',
+      fechaFin: ' 10/05/2018'
+
+    },
+    {NombrePromo: 'Promoción A',
+    servicio: 'Corte cabello largo',
+    descripcion: 'Estes es una promocion  de Corte de Cabello',
+    type: 'ejecucion',
+    icon: true,
+    iconName: 'alarm',
+    codigo: '#16445-6560',
+    fechaInicio: '10/04/2018',
+    fechaFin: ' 10/05/2018'
+
+  },
   ];
-*/
+
 
   constructor() {
     }
@@ -63,3 +98,5 @@ export class ListadoPromocionComponent implements OnInit {
   }
 
 }
+
+

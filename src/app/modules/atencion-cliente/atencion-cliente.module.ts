@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,6 +14,7 @@ import { DudasComponent } from './dudas/dudas.component';
     CommonModule,
     AtencionClienteRoutingModule,
     MaterialDesignModule,
+    FormsModule
   ],
   declarations: [ReclamosComponent, SugerenciasComponent, OpinionesComponent, DudasComponent]
 })

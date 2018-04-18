@@ -18,7 +18,6 @@ export class ListaServiciosComponent implements OnInit {
     {value: 'todos', viewValue: 'todos'}
   ];
 
-
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -60,6 +59,9 @@ export class CrearServicioComponent implements OnInit {
     {value: 'maquillale', viewValue: 'maquillaje'},
     
   ];
+  
+  insumoSeleccionados = [];
+  insumo = ['Silicón', 'Agua Oxigenada', 'Acondicionador', 'Keratina', 'ganchos negros', 'polvo compacto', 'labial'];
   visible: boolean = true;
   selectable: boolean = true;
   removable: boolean = true;
@@ -112,10 +114,13 @@ export class EditarServicioComponent implements OnInit {
  //selec Editar servicio
   filtroSelec = '';
   filtro = [
-    {value: 'peluqueria', viewValue: 'peluqueria'},
-    {value: 'maquillale', viewValue: 'maquillaje'},
+    {value: 'peluqueria', viewValue: 'Peluqueria'},
+    {value: 'maquillale', viewValue: 'Maquillaje'},
     
   ];
+  
+  insumoSeleccionados = [];
+  insumo = ['Silicón', 'Agua Oxigenada', 'Acondicionador', 'Keratina', 'ganchos negros', 'polvo compacto', 'labial'];
   visible: boolean = true;
   selectable: boolean = true;
   removable: boolean = true;

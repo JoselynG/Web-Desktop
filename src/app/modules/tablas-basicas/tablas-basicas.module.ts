@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AdminSistemaRoutingModule } from './admin-sistema-routing.module';
-import { EditarTipoServicioComponent, CrearTipoServicioComponent, ParametrosComponent } from './parametros/parametros.component';
+import { TablasBasicasRoutingModule } from './tablas-basicas-routing.module';
 import { FormsModule } from '@angular/forms';
 import { MaterialDesignModule } from '../../material-design/material-design.module';
+import { EditarTipoServicioComponent, CrearTipoServicioComponent, ParametrosComponent } from './parametros/parametros.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    AdminSistemaRoutingModule,
+    TablasBasicasRoutingModule,
     MaterialDesignModule,
     FormsModule
   ],
+  
   entryComponents:[
     CrearTipoServicioComponent,
     EditarTipoServicioComponent
   ],
+  
   declarations: [ParametrosComponent,  CrearTipoServicioComponent, EditarTipoServicioComponent]
 })
-export class AdminSistemaModule { }
+export class TablasBasicasModule { }
