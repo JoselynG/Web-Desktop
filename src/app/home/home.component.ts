@@ -111,14 +111,14 @@ export class HomeComponent implements OnInit {
         
         {
           type: 'alone',
-          link: '/asd',
+          link: '/galeria',
           label: 'Galería',
           icon: false,
         },        
         
         {
           type: 'alone',
-          link: '/asd',
+          link: '/empresa',
           label: 'Empresa',
           icon: false,
         },        

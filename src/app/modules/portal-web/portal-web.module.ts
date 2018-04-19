@@ -7,6 +7,9 @@ import { DisenioComponent } from './disenio/disenio.component';
 import { ImagenesComponent } from './disenio/imagenes/imagenes.component';
 import { ColoresComponent } from './disenio/colores/colores.component';
 import { TipografiaComponent } from './disenio/tipografia/tipografia.component';
+import { EmpresaComponent } from './empresa/empresa.component';
+import { LandingComponent } from './landing/landing.component';
+import { GaleriaComponent } from './galeria/galeria.component';
 
 @NgModule({
   imports: [
@@ -16,8 +19,8 @@ import { TipografiaComponent } from './disenio/tipografia/tipografia.component';
     MaterialDesignModule
   ],
   entryComponents:[
-    DisenioComponent
+    DisenioComponent,EmpresaComponent
   ],
-  declarations: [DisenioComponent, ImagenesComponent, ColoresComponent, TipografiaComponent]
+  declarations: [DisenioComponent, ImagenesComponent, ColoresComponent, TipografiaComponent, EmpresaComponent, LandingComponent, GaleriaComponent]
 })
 export class PortalWebModule { }
