@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ServiciosModule } from './modules/servicios/servicios.module';
 import { PromocionModule } from './modules/promocion/promocion.module';
+import { ClientesModule } from "./modules/clientes/clientes.module";
+import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.module';
 import { ReportesModule } from './modules/reportes/reportes.module';
 
@@ -46,6 +48,9 @@ import { ReportesModule } from './modules/reportes/reportes.module';
     FormsModule,
     AgendaModule,
     ServiciosModule,
+    PromocionModule,
+    ClientesModule,
+    PortalWebModule,
     TablasBasicasModule,
     PromocionModule,
     ReportesModule
