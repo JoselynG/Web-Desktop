@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./clientes-frecuentes.component.scss']
 })
 export class ClientesFrecuentesComponent implements OnInit {
-  misDatos = {
+  filtroSelec = 'semana';
+  filtro = [
+    {value: 'semana', viewValue: 'Esta semana'},
+    {value: 'mes', viewValue: 'Último mes'},
+  ];
+  misDatosSem = {
     type: 'doughnut',
     data: {
         labels: ["Mujeres", "Hombre"],
@@ -26,7 +31,29 @@ export class ClientesFrecuentesComponent implements OnInit {
         }]
     },
   }
+  misDatosMes = {
+    type: 'doughnut',
+    data: {
+        labels: ["Mujeres", "Hombre"],
+        datasets: [{
+            data: [80, 20],
+            backgroundColor: [
+              'rgba(255, 21, 205, 0.5)',
+              'rgba(255, 180, 239, 0.5)',
+              
+            ],
+            borderColor: [
+                'rgba(254,58,239,1)',
+                'rgba(255, 180, 239, 1)',
+              
+            ],
+            borderWidth: 1
+        }]
+    },
+  }
 
+
+  
   constructor() { }
 
   ngOnInit() {

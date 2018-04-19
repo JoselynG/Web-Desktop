@@ -204,50 +204,16 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/sdsc',
-          label: 'Solicitudes',
+          link: '/reportesEstructurados',
+          label: 'Estructurados',
           icon: false,
         },
         {
           type: 'alone',
-          link: '/sdcdc',
-          label: 'Citas',
+          link: '/reportesEstadísticos',
+          label: 'Estadísticos',
           icon: false,          
         },
-        {
-          type: 'alone',
-          link: '/sdc',
-          label: 'Clientes',
-          icon: false,          
-        },
-        {
-          type: 'alone',
-          link: '/dcdc',
-          label: 'Servicios',
-          icon: false,          
-        },
-        
-        {
-          type: 'alone',
-          link: '/dcdc',
-          label: 'Incidencias',
-          icon: false,          
-        },
-        
-        {
-          type: 'alone',
-          link: '/dcdc',
-          label: 'Reclamos',
-          icon: false,          
-        },
-        
-        {
-          type: 'alone',
-          link: '/dcdc',
-          label: 'Calificaciones',
-          icon: false,          
-        }
-
       ]
     
     },   

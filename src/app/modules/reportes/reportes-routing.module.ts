@@ -1,22 +1,43 @@
-import { ClientesFrecuentesComponent } from './clientes-frecuentes/clientes-frecuentes.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PruebaComponent } from './prueba/prueba.component';
-import { ServiciosAtendidosComponent } from './servicios-atendidos/servicios-atendidos.component';
+import { ReportesComponent } from './reportes.component';
+import { EstadisticosComponent } from './estadisticos/estadisticos.component';
+import { PruebaComponent } from './estadisticos/prueba/prueba.component';
+import { ServiciosAtendidosComponent } from './estadisticos/servicios-atendidos/servicios-atendidos.component';
+import { ClientesFrecuentesComponent } from './estadisticos/clientes-frecuentes/clientes-frecuentes.component';
+import { SuscripcionComponent } from './estadisticos/suscripcion/suscripcion.component';
+import { EstructuradosComponent } from './estructurados/estructurados.component';
 
 const routes: Routes = [
   {
-    path: "prueba",
-    component: PruebaComponent
+    path: 'reportesEstadísticos',
+    component: EstadisticosComponent,
+    children: [
+      {
+        path: "prueba",
+        component: PruebaComponent
+      },
+      {
+        path: "serviciosAtendidos",
+        component: ServiciosAtendidosComponent
+      },
+      {
+        path: "clientesFrecuentes",
+        component: ClientesFrecuentesComponent
+      },
+      
+      {
+        path: "suscripciones",
+        component: SuscripcionComponent
+      }
+    ]
   },
   {
-    path: "serviciosAtendidos",
-    component: ServiciosAtendidosComponent
+    path: 'reportesEstructurados',
+    component: EstructuradosComponent,
+    children: []
   },
-  {
-    path: "clientesFrecuentes",
-    component: ClientesFrecuentesComponent
-  }
+  
 ];
 
 @NgModule({
