@@ -1,24 +1,19 @@
-<div>
-  <h4>Sube las imagenes de tu logo y favicon</h4>
-  <mat-card style="display: flex; flex-direction: column;">
-    
-    Logo
-    <mat-card class="example-card">
-      <img mat-card-image src="/assets/img/favic.png" alt="favicon">
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-
-    Favicon
-    <mat-card class="example-card">
-      <img mat-card-image src="/assets/img/favic.png" alt="favicon">
-      <mat-card-actions>
-        <button mat-button><mat-icon>backup</mat-icon> Reemplazar</button>
-        <button mat-button><mat-icon>delete</mat-icon></button>
-      </mat-card-actions>
-    </mat-card>
-
-  </mat-card>
-</div>
+    <div style="width:100%; display: flex; justify-content: center;">
+        <div class="card1">
+            <b>Logo</b>
+            <img #logo id="logO" src="/assets/img/logo.png" alt="logo" width="600" height="250">
+          <div>
+              <input #fileButton1 id="fileInput1" style="display: none;" type='file' (change)="cambiarImagen($event,logo.id)">
+              <button mat-button (click)="fileButton1.click()"><mat-icon>backup</mat-icon> Reemplazar</button>
+              <button mat-button><mat-icon>delete</mat-icon></button>
+          </div>
+      </div>
+    </div>  
+    <br><br><br>
+        <div class="card2">
+            <b>Favicon</b>
+            <img #favIcon id="favIcono" src="/assets/img/favic.png" alt="favicon" width="150" height="150"> <br/>
+            <input #fileButton2 id="fileInput2" style="display: none;" type='file' (change)="cambiarImagen($event,favIcon.id)">
+            <button mat-button (click)="fileButton2.click()"><mat-icon>backup</mat-icon> Reemplazar</button>
+            <button mat-button><mat-icon>delete</mat-icon></button>
+        </div>

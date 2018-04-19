@@ -17,12 +17,9 @@ import { FormsModule } from '@angular/forms';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ServiciosModule } from './modules/servicios/servicios.module';
 import { PromocionModule } from './modules/promocion/promocion.module';
-<<<<<<< HEAD
 import { ClientesModule } from "./modules/clientes/clientes.module";
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
-=======
 import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.module';
->>>>>>> 842d4be333b5930b06c10bb0f25ebfb3b3bd2919
 
 
 
@@ -48,15 +45,11 @@ import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.mod
     FormsModule,
     AgendaModule,
     ServiciosModule,
-<<<<<<< HEAD
-    AdminSistemaModule,
     PromocionModule,
     ClientesModule,
-    PortalWebModule
-=======
+    PortalWebModule,
     TablasBasicasModule,
     PromocionModule
->>>>>>> 842d4be333b5930b06c10bb0f25ebfb3b3bd2919
   ],
   providers: [],
   

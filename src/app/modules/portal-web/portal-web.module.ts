@@ -5,6 +5,8 @@ import { MaterialDesignModule } from '../../material-design/material-design.modu
 import { PortalWebRoutingModule } from './portal-web-routing.module';
 import { DisenioComponent } from './disenio/disenio.component';
 import { ImagenesComponent } from './disenio/imagenes/imagenes.component';
+import { ColoresComponent } from './disenio/colores/colores.component';
+import { TipografiaComponent } from './disenio/tipografia/tipografia.component';
 
 @NgModule({
   imports: [
@@ -16,6 +18,6 @@ import { ImagenesComponent } from './disenio/imagenes/imagenes.component';
   entryComponents:[
     DisenioComponent
   ],
-  declarations: [DisenioComponent, ImagenesComponent]
+  declarations: [DisenioComponent, ImagenesComponent, ColoresComponent, TipografiaComponent]
 })
 export class PortalWebModule { }
