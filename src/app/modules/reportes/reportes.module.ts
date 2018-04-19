@@ -11,6 +11,7 @@ import { ServiciosAtendidosComponent } from './estadisticos/servicios-atendidos/
 import { ClientesFrecuentesComponent } from './estadisticos/clientes-frecuentes/clientes-frecuentes.component';
 import { SuscripcionComponent } from './estadisticos/suscripcion/suscripcion.component';
 import { EstructuradosComponent } from './estructurados/estructurados.component';
+import { ReclamosComponent } from './estadisticos/reclamos/reclamos.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { EstructuradosComponent } from './estructurados/estructurados.component'
     FormsModule,
     MaterialDesignModule
   ],
-  declarations: [PruebaComponent, GraficasDirective, ServiciosAtendidosComponent, ClientesFrecuentesComponent, ReportesComponent, EstadisticosComponent, SuscripcionComponent, EstructuradosComponent]
+  declarations: [PruebaComponent, GraficasDirective, ServiciosAtendidosComponent, ClientesFrecuentesComponent, ReportesComponent, EstadisticosComponent, SuscripcionComponent, EstructuradosComponent, ReclamosComponent]
 })
 export class ReportesModule { }

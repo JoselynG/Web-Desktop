@@ -7,6 +7,7 @@ import { ServiciosAtendidosComponent } from './estadisticos/servicios-atendidos/
 import { ClientesFrecuentesComponent } from './estadisticos/clientes-frecuentes/clientes-frecuentes.component';
 import { SuscripcionComponent } from './estadisticos/suscripcion/suscripcion.component';
 import { EstructuradosComponent } from './estructurados/estructurados.component';
+import { ReclamosComponent } from './estadisticos/reclamos/reclamos.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: "suscripciones",
         component: SuscripcionComponent
+      },
+      {
+        path: "reclamos",
+        component: ReclamosComponent
       }
     ]
   },
