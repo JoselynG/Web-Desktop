@@ -1,3 +1,4 @@
+import { GraficosDirective } from './test/graficos.directive';
 
 import { AgendaModule } from './modules/agenda/agenda.module';
 import { NavListComponent } from './home/nav-list/nav-list.component';
@@ -20,6 +21,7 @@ import { PromocionModule } from './modules/promocion/promocion.module';
 import { ClientesModule } from "./modules/clientes/clientes.module";
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.module';
+import { ReportesModule } from './modules/reportes/reportes.module';
 
 
 
@@ -32,6 +34,7 @@ import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.mod
     NavListComponent,
     ToolbarComponent,
     TestComponent,
+    GraficosDirective
     
   ],
   imports: [
@@ -49,7 +52,8 @@ import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.mod
     ClientesModule,
     PortalWebModule,
     TablasBasicasModule,
-    PromocionModule
+    PromocionModule,
+    ReportesModule
   ],
   providers: [],
   
