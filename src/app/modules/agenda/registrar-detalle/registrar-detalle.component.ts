@@ -51,8 +51,8 @@ export class RegistrarDetalleComponent implements OnInit {
     }
   }
 
-  remove(fruit: any): void {
-    let index = this.insumos.indexOf(fruit);
+  remove(insumo: any): void {
+    let index = this.insumos.indexOf(insumo);
 
     if (index >= 0) {
       this.insumos.splice(index, 1);
