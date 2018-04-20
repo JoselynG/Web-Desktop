@@ -25,12 +25,9 @@
     <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="Empleados a cargo" value="Jon Connington" disabled>
     </mat-form-field>
+    <mat-slide-toggle>Enviar notificación de cancelación del cliente</mat-slide-toggle>
     <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Código de descuento" value="82746-2392" disabled>
-    </mat-form-field>
-    <mat-slide-toggle>Enviar respuesta de cancelación del cliente</mat-slide-toggle>
-    <mat-form-field class="example-full-width inputs">
-        <textarea matInput placeholder="Respuesta al cliente" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
+        <textarea matInput placeholder="Descripción de la cancelación de la cita" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
     </mat-form-field>
     <mat-checkbox>Confirmo que quiero cancelar esta cita</mat-checkbox><br>
     <button mat-raised-button color="accent" routerLink="/timeline" class="btn-gray btn">Cancelar cita</button>

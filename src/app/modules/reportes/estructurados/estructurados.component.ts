@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class EstructuradosComponent implements OnInit {
   filtroSelec = 'servicio';
+  
   filtro = [
     {value: 'servicio', viewValue: 'Servicios'},
     {value: 'solicitud', viewValue: 'Solicitudes'},
@@ -17,14 +18,7 @@ export class EstructuradosComponent implements OnInit {
     {value: 'incidenciasS', viewValue: 'Incidencias Servicios'},
     {value: 'comentarios', viewValue: 'Comentarios'},
   ];
-  displayedColumns = ['cliente', 'telefono', 'correo', 'direccion', 'menu'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
+  
 
   constructor() { }
 
@@ -33,15 +27,3 @@ export class EstructuradosComponent implements OnInit {
 
 }
 
-export interface Element {
-  cliente: string;
-  correo: string;
-  telefono: string;
-  direccion: string;
-}
-
-const ELEMENT_DATA: Element[] = [
-  {cliente: 'Andrea Gonzalez', telefono: "041252664654", correo: "correo@uity", direccion: 'Hospjgsb jhgds gdj'},
-  {cliente: 'Paul Guedez', telefono: "041252664654", correo: "correo@uity", direccion: 'Hospjgsb jhgds gdj'},
-  {cliente: 'Juan Lopez', telefono: "041252664654", correo: "correo@uity", direccion: 'Hospjgsb jhgds gdj'},
-];

@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ServiciosAtendidosComponent implements OnInit {
   filtroSelec = 'mas';
   filtro = [
-    {value: 'mas', viewValue: 'Servicios más atendidos'},
-    {value: 'menos', viewValue: 'Servicios menos atendidos'},
+    {value: 'mas', viewValue: 'Servicios más solicitados'},
+    {value: 'menos', viewValue: 'Servicios menos solicitados'},
   ];
   empleadoSelec = '';
   empleados = [

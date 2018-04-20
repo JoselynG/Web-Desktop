@@ -1,5 +1,6 @@
 <div class="ctn">
-    <div class="search">
+    <h1>Seleccione el reporte que desea observar</h1>
+    <div class="search-entidad">
         <div class="selectEntidad">
             <mat-form-field class="valor">
                 <mat-select [(ngModel)]="filtroSelec" placeholder="Frecuencia" class="letra">
@@ -8,64 +9,26 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field *ngIf="filtroSelec != ''">
+                <input matInput [matDatepicker]="picker" placeholder="Seleccione una fecha de inicio">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
         </div>
+
     </div>
-    <div class="tabla">
-        <mat-table #table [dataSource]="dataSource">
-            <!-- Cliente Column -->
-            <ng-container matColumnDef="cliente">
-                <mat-header-cell style="padding:5px;" *matHeaderCellDef>
-                    <h3>Cliente</h3>
-                </mat-header-cell>
-                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.cliente}} </mat-cell>
-            </ng-container>
+    <div *ngIf="filtroSelec == 'servicio'">
+        <app-reporte-servicio></app-reporte-servicio>
+    </div>
+    <div *ngIf="filtroSelec == 'comentarios'">
+        <app-reporte-comentarios></app-reporte-comentarios>
+    </div>
 
-            <!-- Telefono column -->
-            <ng-container matColumnDef="telefono">
-                <mat-header-cell style="padding:5px;" *matHeaderCellDef>
-                    <h3>Teléfono</h3>
-                </mat-header-cell>
-                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.telefono}} </mat-cell>
-            </ng-container>
+    <div *ngIf="filtroSelec == 'reclamos'">
+        <app-reporte-reclamos></app-reporte-reclamos>
+    </div>
 
-            <!-- Correo Column -->
-            <ng-container matColumnDef="correo">
-                <mat-header-cell style="padding:5px;" *matHeaderCellDef>
-                    <h3>Correo</h3>
-                </mat-header-cell>
-                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.correo}} </mat-cell>
-            </ng-container>
-
-            <!-- Direccion Column -->
-            <ng-container matColumnDef="direccion">
-                <mat-header-cell style="padding:5px;" *matHeaderCellDef>
-                    <h3>Direccion</h3>
-                </mat-header-cell>
-                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.direccion}} </mat-cell>
-            </ng-container>
-
-            <!-- menu Column -->
-            <ng-container matColumnDef="menu">
-                <mat-header-cell *matHeaderCellDef>
-
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row" style="display:flex; justify-content:flex-end;">
-                    <button mat-icon-button [matMenuTriggerFor]="menu" style="margin-right:-15px;">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item routerLink="detallecliente">
-                  <mat-icon>visibility</mat-icon> Ver Cliente<!--account_circle-->
-                </button>
-                        <button mat-menu-item>
-                  <mat-icon>delete</mat-icon> Eliminar<!--view_list-->
-                </button>
-                    </mat-menu>
-                </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+    <div *ngIf="filtroSelec == 'solicitud'">
+        <app-reporte-solicitudes></app-reporte-solicitudes>
     </div>
 </div>

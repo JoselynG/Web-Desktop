@@ -37,14 +37,14 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/inicio',
+          link: '/empresa',
           label: 'Maestros',
           icon: false,
           iconName: 'add_shopping_cart',
         },
         {
           type: 'alone',
-          link: '/parametros',
+          link: '/categorias',
           label: 'Categorías',
           icon: false
         },
