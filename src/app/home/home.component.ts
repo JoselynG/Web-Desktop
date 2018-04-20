@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
         },        
         {
           type: 'alone',
-          link: '/',
+          link: '/basedatos',
           label: 'Base de datos',
           icon: false,
         },        
@@ -104,7 +104,7 @@ export class HomeComponent implements OnInit {
         },
         {
           type: 'alone',
-          link: '/asd',
+          link: '/landing',
           label: 'Landing',
           icon: false,
         },        

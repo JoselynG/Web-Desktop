@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DisenioComponent } from './disenio/disenio.component';
 import { EmpresaComponent } from './empresa/empresa.component';
 import { GaleriaComponent } from './galeria/galeria.component';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'galeria',
     component: GaleriaComponent
+  },
+  {
+    path: 'landing',
+    component: LandingComponent
   },
   {
     path: 'empresa',

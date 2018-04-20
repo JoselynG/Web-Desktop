@@ -22,6 +22,7 @@ import { ClientesModule } from "./modules/clientes/clientes.module";
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.module';
 import { ReportesModule } from './modules/reportes/reportes.module';
+import { AdministracionModule } from './modules/administracion/administracion.module';
 
 
 
@@ -53,7 +54,8 @@ import { ReportesModule } from './modules/reportes/reportes.module';
     PortalWebModule,
     TablasBasicasModule,
     PromocionModule,
-    ReportesModule
+    ReportesModule,
+    AdministracionModule
   ],
   providers: [],
   
