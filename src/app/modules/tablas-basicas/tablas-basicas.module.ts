@@ -4,7 +4,12 @@ import { CommonModule } from '@angular/common';
 import { TablasBasicasRoutingModule } from './tablas-basicas-routing.module';
 import { FormsModule } from '@angular/forms';
 import { MaterialDesignModule } from '../../material-design/material-design.module';
-import { EditarTipoServicioComponent, CrearTipoServicioComponent, ParametrosComponent } from './parametros/parametros.component';
+import {  AgregarTipoParametroComponent, AgregarParametroComponent, AgregarValorParametroComponent,
+  ParametrosComponent } from './parametros/parametros.component';
+import { CategoriasComponent, EditarTipoReclamoComponent } from './categorias/categorias.component';
+import { EmpresaComponent } from './empresa/empresa.component';
+
+
 
 @NgModule({
   imports: [
@@ -13,12 +18,15 @@ import { EditarTipoServicioComponent, CrearTipoServicioComponent, ParametrosComp
     MaterialDesignModule,
     FormsModule
   ],
-  
-  entryComponents:[
-    CrearTipoServicioComponent,
-    EditarTipoServicioComponent
+  entryComponents:[     
+    ParametrosComponent ,
+    AgregarValorParametroComponent,
+    CategoriasComponent,
+    EditarTipoReclamoComponent,
+    EmpresaComponent
   ],
   
-  declarations: [ParametrosComponent,  CrearTipoServicioComponent, EditarTipoServicioComponent]
+  declarations: [ AgregarTipoParametroComponent, AgregarParametroComponent,
+    ParametrosComponent , AgregarValorParametroComponent, CategoriasComponent,  EditarTipoReclamoComponent, EmpresaComponent]
 })
 export class TablasBasicasModule { }

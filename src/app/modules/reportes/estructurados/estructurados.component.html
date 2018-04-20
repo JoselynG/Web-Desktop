@@ -1,0 +1,34 @@
+<div class="ctn">
+    <h1>Seleccione el reporte que desea observar</h1>
+    <div class="search-entidad">
+        <div class="selectEntidad">
+            <mat-form-field class="valor">
+                <mat-select [(ngModel)]="filtroSelec" placeholder="Frecuencia" class="letra">
+                    <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                        {{ filtro.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="filtroSelec != ''">
+                <input matInput [matDatepicker]="picker" placeholder="Seleccione una fecha de inicio">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+    </div>
+    <div *ngIf="filtroSelec == 'servicio'">
+        <app-reporte-servicio></app-reporte-servicio>
+    </div>
+    <div *ngIf="filtroSelec == 'comentarios'">
+        <app-reporte-comentarios></app-reporte-comentarios>
+    </div>
+
+    <div *ngIf="filtroSelec == 'reclamos'">
+        <app-reporte-reclamos></app-reporte-reclamos>
+    </div>
+
+    <div *ngIf="filtroSelec == 'solicitud'">
+        <app-reporte-solicitudes></app-reporte-solicitudes>
+    </div>
+</div>

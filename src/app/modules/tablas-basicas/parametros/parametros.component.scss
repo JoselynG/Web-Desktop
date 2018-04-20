@@ -1,4 +1,57 @@
 /*boton, buscar y el selec*/
+.tabla{
+    position: relative;
+    margin-left: 50px;
+    margin-top: 261px; 
+    height: 4000px;
+    width: 430px;
+    left: 430px;
+    bottom:610px;
+  }
+.Titulo{
+    height: 21px;	
+    width: 420px;	
+    color: #6C798F;	
+    font-family: Roboto;	
+    font-size: 19px;	
+    font-weight: bold;	
+    line-height: 34px;
+    position: relative;
+    left: 62px;
+    top: 30px;
+
+
+}
+  .configurarDes {	
+    height: 350px;	width: 400px;	
+    color: #6C798F;	
+    font-family: Roboto;	
+    font-size: 20px;	
+    font-weight: 500;	
+    position: relative;
+    margin-top: 50px;
+    right: 300px;
+    left: 50px;
+    
+  }
+  .boton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    left: 0px;
+    .btn2 {
+        margin-left: 60px;
+    }
+ 
+  .letra {		
+    color: #6C798F;	font-family: Roboto;	
+    font-size: 14px;	font-weight: 500;	
+    line-height: 19px;
+  }
+
+
 
 .ctn {
     .search {
@@ -35,14 +88,7 @@
                     font-weight: bold;
                 }
             }
-            .boton {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-end;
-                .btn2 {
-                    margin-left: 60px;
-                }
+           
             }
         }
     }

@@ -1,47 +1,82 @@
-<mat-tab-group>
-    <mat-tab label="Tipo de Servicio">
 
-        <!-- el buscar -->
-        <div class="ctn">
-            <div class="search">
-                <div class="input-search ">
-                    <mat-icon>search</mat-icon>
-                    <mat-form-field class="full-width inputs">
-                        <input matInput placeholder="Buscar por servicio" autocomplete="off" type="search">
-                    </mat-form-field>
-                </div>
-
-                <!-- el boton -->
-                <div class="boton">
-                    <button mat-raised-button color="accent" (click)="openDialog()" class="btn">Nuevo tipo de servicio</button>
-                </div>
-            </div>
-            <div class="carta">
-                <mat-card class="matc">
-                    <mat-card-header>
-                        <div class="fila1">
-                            <div class="nombre">
-                                <h5>Peluquería</h5>
+        <div class="Titulo">
+<h4> Registra los Párametros para el Perfil de Clientes:</h4>
+       </div>
+<div class="configurarDes" >  
+                    <mat-accordion>
+  
+                        <mat-expansion-panel *ngFor="let dato of datos" (opened)="panelOpenState = true">
+                             <mat-expansion-panel-header>
+                                 <mat-panel-title class="title">
+                                    {{dato.nombreTP}}
+                                 </mat-panel-title> 
+                               
+                             </mat-expansion-panel-header>
+                            
+                            <mat-divider></mat-divider>
+                            <div class="garantia">
+                                <br>
+                                
+                                <dl>
+                                    <div *ngFor="let Tpa of dato.Parametros">
+                                     <div class="letra">
+                                <mat-checkbox> {{Tpa.nombre}}</mat-checkbox>
+                                             
+                                
+                                      
+                                    </div>
+                                       <br>
+                                    </div>
+                                </dl>
+                                <div class="boton">
+                                        
+                    <button mat-raised-button color="accent" (click)="openDialogParametro()" class="btn ">Agregar Parámetro</button>
+                              </div>  
                             </div>
+                        
+                        </mat-expansion-panel>
+                        <br>
+                        <div class="boton">
+                            <br>
+                                <button mat-raised-button color="accent" (click)="openDialogTipoParametro()" class="btn">Nuevo Tipo de Parametro</button>
+                            </div>
+                    </mat-accordion>
+                </div>
+
+                <div class="tabla">
+                    <mat-accordion >
+    
+                        <mat-expansion-panel >
+                             <mat-expansion-panel-header >
+                                 
+                                <mat-panel-title class="title">
+                                  Tipo (Emulción Epicutanea):
+                                 </mat-panel-title>
+                    
+                             </mat-expansion-panel-header >
+                            <div *ngFor="let Val of valores">
+                               
+                                <br>
+                                   {{Val.valor}}
+                                   <br>
+                                   <br>
+                                   
+                
+                                   <div class="letra2">
+                                   {{Val.descrip}}
+                                   </div>
+                                <mat-divider></mat-divider>
+                              
+                            </div>
+                            <br>
                             <div class="boton">
-                                <button mat-icon-button class="btn2">
-                                <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
-                              </button>
-                                <button mat-raised-button color="accent" (click)="openDialogEditar()" class="btn-carta ">Editar</button>
-                            </div>
-                        </div>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div class="fila2">
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat delectus facilis earum, adipisci quisquam ipsa veritatis repudiandae architecto, sequi, officia soluta nemo. Libero fuga deserunt itaque commodi, temporibus provident vero.
-                            </p>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-        </div>
+                        
+                            <button mat-raised-button color="accent" (click)="openDialogValorParametro()" class="btn">Nuevo Valor Parámetro</button>
+                                </div>
+                        </mat-expansion-panel>
+                        
+                    </mat-accordion>
+                </div>
 
-    </mat-tab>
-    <mat-tab label="Tab 2">Content 2</mat-tab>
-</mat-tab-group>
+            
+    

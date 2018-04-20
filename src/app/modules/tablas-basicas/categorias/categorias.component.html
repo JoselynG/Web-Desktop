@@ -1,0 +1,36 @@
+<mat-tab-group>
+    <mat-tab label="Tipo Reclamo">
+            <div class="botonA">
+                    <button mat-raised-button color="accent" routerLink="/difundir">Agregar Nuevo</button>
+                    </div>
+            <div class="ctn" style="position: relative;"> 
+        <div class="citas" *ngFor="let TReclamo of detalles">
+      
+                    <mat-card class="detalle">
+                      <mat-card-content>
+                      <div class="name">
+                                      <span class="bold">{{TReclamo.nombre}}</span>
+                                      <br>
+                      </div>
+                                              <p> {{TReclamo.descripcion}}</p>
+                                              <p> Registrado EL:{{TReclamo.fechaC}}</p><br>
+                                              <div class="botonEdi">
+                                              <button mat-raised-button color="accent"(click)="openDialogEditar()" >Editar</button>
+                                              </div>
+                     <div class="botones">
+                                    
+                     </div>
+                      </mat-card-content>
+                         
+                                
+                   </mat-card>
+                       
+             </div>
+          </div>
+      </mat-tab>
+
+
+
+
+    <mat-tab label="Tipo Comentario">Content 2</mat-tab>
+  </mat-tab-group>
