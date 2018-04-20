@@ -1,3 +1,5 @@
+import { CrearServiciosComponent } from './nuevo-servicio/crear-servicios/crear-servicios.component';
+import { NuevoServicioComponent } from './nuevo-servicio/nuevo-servicio.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,6 +8,7 @@ import { ListaServiciosComponent, CrearServicioComponent, EditarServicioComponen
 import { MaterialDesignModule } from '../../material-design/material-design.module';
 import { ListaInsumosComponent } from './lista-insumos/lista-insumos.component';
 import { FormsModule } from '@angular/forms';
+import { ParametroComponent } from './nuevo-servicio/parametro/parametro.component';
 
 @NgModule({
   imports: [
@@ -18,6 +21,6 @@ import { FormsModule } from '@angular/forms';
     CrearServicioComponent,
     EditarServicioComponent
   ],
-  declarations: [ListaServiciosComponent, CrearServicioComponent, ListaInsumosComponent, EditarServicioComponent]
+  declarations: [ListaServiciosComponent, CrearServicioComponent, ListaInsumosComponent, EditarServicioComponent, NuevoServicioComponent, CrearServiciosComponent, ParametroComponent]
 })
 export class ServiciosModule { }

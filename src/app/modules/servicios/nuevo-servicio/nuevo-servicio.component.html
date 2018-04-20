@@ -1,0 +1,19 @@
+<div class="heading-panel">
+    <!--Controla el contenido que se despliega en cada tab-->
+    <mat-tab-group #grupoTabs>
+        <mat-tab label="Servicio">
+            <!--++++++-->
+            <app-crear-servicios></app-crear-servicios>
+            <!--++++++-->
+        </mat-tab>
+
+        <mat-tab label="Parámetro">
+            <!--++++++-->
+            <!--Si se selecciona este tab, se muestra el perfil, a traves de la variable de control "verTabPerfil"-->
+            <app-parametro></app-parametro>
+            <!--++++++-->
+        </mat-tab>
+    </mat-tab-group>
+
+
+</div>

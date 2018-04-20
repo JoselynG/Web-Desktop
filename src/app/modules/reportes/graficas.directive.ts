@@ -26,6 +26,12 @@ export class GraficasDirective {
     }else if(this.tipo == 'doughnut'){
       this.charDoughnutInit(this.datos);
     }
+<<<<<<< HEAD
+=======
+  else if(this.tipo == 'pie'){
+    this.charPieInit(this.datos);
+  }
+>>>>>>> 93b56efe66c816c126c00334cc69ee1ce4761dbc
   }
 
   charBarInit(datos){
@@ -41,4 +47,10 @@ export class GraficasDirective {
   charDoughnutInit(datos){
     this.chart = new Chart(this.ctx, datos);
   }
+<<<<<<< HEAD
+=======
+  charPieInit(datos){
+    this.chart = new Chart(this.ctx, datos);
+  }
+>>>>>>> 93b56efe66c816c126c00334cc69ee1ce4761dbc
 }

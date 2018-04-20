@@ -53,8 +53,10 @@
                 <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Empleados que realizaron los servicios" value="Jon Connington, Septa Lemore" disabled>
                 </mat-form-field>
-                <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Código de descuento" value="82746-2392" disabled>
+                <mat-form-field class="inputs">
+                    <input matInput [matDatepicker]="picker" placeholder="Fecha de finalización de garantía">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
                     <textarea matInput placeholder="Comentarios" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>

@@ -59,6 +59,11 @@ export class CitasComponent implements OnInit {
 
   ngOnInit() {
   }
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+  //  this.dataSource.filter = filterValue;
+  }
   openDialog(){
     const dialogRef = this.dialog.open(CancelarCitaComponent, {
       height: '600px',

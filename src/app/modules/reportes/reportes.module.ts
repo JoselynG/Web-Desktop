@@ -1,19 +1,29 @@
+import { MaterialDesignModule } from './../../material-design/material-design.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ReportesRoutingModule } from './reportes-routing.module';
-import { PruebaComponent } from './prueba/prueba.component';
 import { GraficasDirective } from './graficas.directive';
-import { ServiciosAtendidosComponent } from './servicios-atendidos/servicios-atendidos.component';
-import { ClientesFrecuentesComponent } from './clientes-frecuentes/clientes-frecuentes.component';
+import { ReportesComponent } from './reportes.component';
+import { EstadisticosComponent } from './estadisticos/estadisticos.component';
+import { PruebaComponent } from './estadisticos/prueba/prueba.component';
+import { ServiciosAtendidosComponent } from './estadisticos/servicios-atendidos/servicios-atendidos.component';
+import { ClientesFrecuentesComponent } from './estadisticos/clientes-frecuentes/clientes-frecuentes.component';
+import { SuscripcionComponent } from './estadisticos/suscripcion/suscripcion.component';
+import { EstructuradosComponent } from './estructurados/estructurados.component';
+import { ReclamosComponent } from './estadisticos/reclamos/reclamos.component';
+import { ReporteServicioComponent } from './estructurados/reporte-servicio/reporte-servicio.component';
+import { ReporteComentariosComponent } from './estructurados/reporte-comentarios/reporte-comentarios.component';
+import { ReporteReclamosComponent } from './estructurados/reporte-reclamos/reporte-reclamos.component';
+import { ReporteSolicitudesComponent } from './estructurados/reporte-solicitudes/reporte-solicitudes.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReportesRoutingModule,
-    FormsModule
+    FormsModule,
+    MaterialDesignModule
   ],
-  declarations: [PruebaComponent, GraficasDirective, ServiciosAtendidosComponent, ClientesFrecuentesComponent]
+  declarations: [PruebaComponent, GraficasDirective, ServiciosAtendidosComponent, ClientesFrecuentesComponent, ReportesComponent, EstadisticosComponent, SuscripcionComponent, EstructuradosComponent, ReclamosComponent, ReporteServicioComponent, ReporteComentariosComponent, ReporteReclamosComponent, ReporteSolicitudesComponent]
 })
 export class ReportesModule { }
