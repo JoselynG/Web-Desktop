@@ -31,9 +31,6 @@ export class TestComponent implements OnInit {
                 'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
-<<<<<<< HEAD
-        }]
-=======
         },
         {
             label: '# of Votes1',
@@ -58,7 +55,6 @@ export class TestComponent implements OnInit {
             borderWidth: 1
         },
     ]
->>>>>>> 93b56efe66c816c126c00334cc69ee1ce4761dbc
     },
     options: {
         
