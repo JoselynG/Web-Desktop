@@ -65,13 +65,13 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/',
+          link: '/sistema',
           label: 'Sistema',
           icon: false,
         },        
         {
           type: 'alone',
-          link: '/',
+          link: '/seguridadfuncional',
           label: 'Seguridad funcional',
           icon: false,
         },        
