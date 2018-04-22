@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/empresa',
+          link: '/empresaEditar',
           label: 'Maestros',
           icon: false,
           iconName: 'add_shopping_cart',

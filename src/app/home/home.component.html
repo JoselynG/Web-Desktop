@@ -1,12 +1,11 @@
-<div class="inter" *ngIf="showInterfaz">
-    <app-toolbar></app-toolbar>
-    <div class="ctn">
-        <app-nav-list [listas]="listas" width="width"></app-nav-list>
-        <div class="content">
-            <router-outlet></router-outlet>
+<div class="inter" [ngClass]="{'login-wrapper': !showInterfaz}">
+    <app-toolbar *ngIf="showInterfaz"></app-toolbar>
+    <div [ngClass]="{'ctn': showInterfaz}">
+        <app-nav-list *ngIf="showInterfaz" [listas]="listas" width="width"></app-nav-list>
+        <div [ngClass]="{'content': showInterfaz}">
+            <div class="wrapper">
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </div>
-</div>
-<div class="login-wrapper" *ngIf="!showInterfaz">
-    <router-outlet></router-outlet>
 </div>

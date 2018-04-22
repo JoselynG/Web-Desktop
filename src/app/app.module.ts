@@ -53,7 +53,7 @@ import { ReportesModule } from './modules/reportes/reportes.module';
     PortalWebModule,
     TablasBasicasModule,
     PromocionModule,
-    ReportesModule
+    ReportesModule,
   ],
   providers: [],
   

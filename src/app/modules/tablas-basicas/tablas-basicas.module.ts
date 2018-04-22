@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialDesignModule } from '../../material-design/material-design.module';
 import {  AgregarTipoParametroComponent, AgregarParametroComponent, AgregarValorParametroComponent,
   ParametrosComponent } from './parametros/parametros.component';
-import { CategoriasComponent, EditarTipoReclamoComponent } from './categorias/categorias.component';
+import { CategoriasComponent, CrearTipoReclamoComponent , CrearTipoComentarioComponent} from './categorias/categorias.component';
 import { EmpresaComponent } from './empresa/empresa.component';
 
 
@@ -18,15 +18,20 @@ import { EmpresaComponent } from './empresa/empresa.component';
     MaterialDesignModule,
     FormsModule
   ],
-  entryComponents:[     
+  entryComponents:[
+     
+    AgregarTipoParametroComponent, 
+    AgregarParametroComponent,
     ParametrosComponent ,
     AgregarValorParametroComponent,
     CategoriasComponent,
-    EditarTipoReclamoComponent,
+    CrearTipoReclamoComponent,
+    CrearTipoComentarioComponent,
     EmpresaComponent
   ],
   
   declarations: [ AgregarTipoParametroComponent, AgregarParametroComponent,
-    ParametrosComponent , AgregarValorParametroComponent, CategoriasComponent,  EditarTipoReclamoComponent, EmpresaComponent]
+    ParametrosComponent , AgregarValorParametroComponent, CategoriasComponent,  CrearTipoReclamoComponent,
+    CrearTipoComentarioComponent, EmpresaComponent]
 })
 export class TablasBasicasModule { }

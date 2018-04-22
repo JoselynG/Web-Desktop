@@ -4,33 +4,40 @@
         <div class=t itulo>
             <p> Registro de Datos de la Empresa</p>
         </div>
+
         <mat-card class="detalle">
             <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Nombre" value=" Peluqueria C.A">
-            </mat-form-field><br>
-            <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Objetivo" value="EL objetivo general del la organizacion">
-            </mat-form-field><br>
-            <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Dirección" value="Calle 5 Jacinto Lara ">
-            </mat-form-field><br>
-            <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Hora Inicio" value="04:30">
-            </mat-form-field><br>
-            <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Hora Fin" value="10:00">
-            </mat-form-field><br>
-            <mat-form-field class="example-full-width inputs">
-                <input #elLogo type="file" style="display: none;">
-                <button class="btnSubir" (click)="elLogo.click()" mat-button color="accent">Subir Logo:</button>
-            </mat-form-field><br>
+                <input matInput placeholder="Nombre" value=" Peluqueria C.A" disabled>
+            </mat-form-field>
 
             <mat-form-field class="example-full-width inputs">
-                <input type="email" matInput placeholder="Correo " value="marna@gmail.com">
+                <input matInput placeholder="Objetivo" value="EL objetivo general del la organizacion" disabled>
+            </mat-form-field>
 
-            </mat-form-field><br>
+            <mat-form-field class="example-full-width inputs">
+                <input matInput placeholder="Dirección" value="Calle 5 Jacinto Lara " disabled>
+            </mat-form-field>
 
-            <button mat-raised-button color="accent" routerLink="/timeline" class="c-white btn">Registrar</button>
+            <mat-form-field class="example-full-width inputs" disabled>
+                <input matInput placeholder="Hora de apertura">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width inputs" disabled>
+                <input matInput placeholder="Hora de cierre">
+            </mat-form-field>
+            <mat-form-field class="example-full-width inputs">
+                <input type=email matInput placeholder="Logo">
+
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width inputs">
+                <input type=email matInput placeholder="Correo" value="marna@gmail.com" disabled>
+
+            </mat-form-field>
+
+            <button mat-raised-button color="accent" routerLink="/timeline">Editar</button>
         </mat-card>
 
     </div>
+</div>
