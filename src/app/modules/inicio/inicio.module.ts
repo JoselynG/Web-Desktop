@@ -16,7 +16,6 @@ import { ClFrecuentesComponent } from './dashboard-full/cl-frecuentes/cl-frecuen
     MaterialDesignModule,
     FormsModule,
     ReportesModule
-    
   ],
   declarations: [DashboardFullComponent, DashboardEmpleadoComponent, ClFrecuentesComponent]
 })

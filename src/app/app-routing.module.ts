@@ -7,13 +7,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
  {
-    path:'',
+    path: '',
     component: LoginComponent
-    //pathMatch: 'full',
-    //redirectTo: 'inicio'
   },
   {
-    path:'test',
+    path: 'test',
     component: TestComponent
   },
 ];

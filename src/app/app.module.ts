@@ -18,13 +18,13 @@ import { FormsModule } from '@angular/forms';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ServiciosModule } from './modules/servicios/servicios.module';
 import { PromocionModule } from './modules/promocion/promocion.module';
-import { ClientesModule } from "./modules/clientes/clientes.module";
+import { ClientesModule } from './modules/clientes/clientes.module';
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.module';
 import { ReportesModule } from './modules/reportes/reportes.module';
-
-
-
+import { AdministracionModule} from './modules/administracion/administracion.module';
+// Providers
+import { ConsejosService} from './service/consejos/consejos.service';
 
 @NgModule({
   declarations: [
@@ -34,8 +34,7 @@ import { ReportesModule } from './modules/reportes/reportes.module';
     NavListComponent,
     ToolbarComponent,
     TestComponent,
-    GraficosDirective
-    
+    GraficosDirective,
   ],
   imports: [
     BrowserModule,
@@ -54,9 +53,9 @@ import { ReportesModule } from './modules/reportes/reportes.module';
     TablasBasicasModule,
     PromocionModule,
     ReportesModule,
+    AdministracionModule
   ],
-  providers: [],
-  
+  providers: [ConsejosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

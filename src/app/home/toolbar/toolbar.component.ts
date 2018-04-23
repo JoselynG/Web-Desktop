@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-interface user{
+// tslint:disable-next-line:class-name
+interface user {
   fullName: string;
   email: string;
   imageUrl: string;
@@ -16,11 +17,11 @@ interface user{
 
 export class ToolbarComponent implements OnInit {
   userInfo: user = {
-    fullName: "Maynard J. Keenan",
-    email: "maynard@tool.com",
-    imageUrl: "/assets/img/perfil.jpg",
-    id: "1",
-  }
+    fullName: 'Maynard J. Keenan',
+    email: 'maynard@tool.com',
+    imageUrl: '/assets/img/perfil.jpg',
+    id: '1',
+  };
   constructor() { }
 
   ngOnInit() {

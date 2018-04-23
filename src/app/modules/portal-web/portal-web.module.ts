@@ -10,6 +10,10 @@ import { TipografiaComponent } from './disenio/tipografia/tipografia.component';
 import { EmpresaComponent } from './empresa/empresa.component';
 import { LandingComponent } from './landing/landing.component';
 import { GaleriaComponent } from './galeria/galeria.component';
+import { LandingPromocionesComponent } from './landing-promociones/landing-promociones.component';
+import { LandingEstilistasComponent } from './landing-estilistas/landing-estilistas.component';
+import { LandingConsejosComponent } from './landing-consejos/landing-consejos.component';
+import { LandingTwiterComponent } from './landing-twiter/landing-twiter.component';
 
 @NgModule({
   imports: [
@@ -18,9 +22,30 @@ import { GaleriaComponent } from './galeria/galeria.component';
     FormsModule,
     MaterialDesignModule
   ],
-  entryComponents:[
-    DisenioComponent,EmpresaComponent
+  entryComponents: [
+    DisenioComponent, EmpresaComponent,
+    DisenioComponent,
+    ImagenesComponent,
+    ColoresComponent,
+    TipografiaComponent,
+    EmpresaComponent,
+    LandingComponent,
+    GaleriaComponent,
+    LandingPromocionesComponent,
+    LandingEstilistasComponent,
+    LandingConsejosComponent,
+    LandingTwiterComponent
   ],
-  declarations: [DisenioComponent, ImagenesComponent, ColoresComponent, TipografiaComponent, EmpresaComponent, LandingComponent, GaleriaComponent]
+  declarations: [DisenioComponent,
+    ImagenesComponent,
+    ColoresComponent,
+    TipografiaComponent,
+    EmpresaComponent,
+    LandingComponent,
+    GaleriaComponent,
+    LandingPromocionesComponent,
+    LandingEstilistasComponent,
+    LandingConsejosComponent,
+    LandingTwiterComponent]
 })
 export class PortalWebModule { }
