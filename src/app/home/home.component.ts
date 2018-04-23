@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, NavigationStart } from '@angular/router';
-import "rxjs/add/operator/map";
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
 interface Lista {
@@ -19,8 +19,8 @@ interface Lista {
 })
 export class HomeComponent implements OnInit {
   showInterfaz = true;
-  width="255px";
-  listas: Lista[]= [
+  width = '255px';
+  listas: Lista[] = [
     {
       type: 'alone',
       link: '/dashboard',
@@ -68,22 +68,22 @@ export class HomeComponent implements OnInit {
           link: '/',
           label: 'Sistema',
           icon: false,
-        },        
+        },
         {
           type: 'alone',
           link: '/',
           label: 'Seguridad funcional',
           icon: false,
-        },        
+        },
         {
           type: 'alone',
           link: '/',
           label: 'Base de datos',
           icon: false,
-        },        
+        },
         {
           type: 'alone',
-          link: '/',
+          link: '/consejos',
           label: 'Consejos',
           icon: false,
         },
@@ -107,25 +107,21 @@ export class HomeComponent implements OnInit {
           link: '/asd',
           label: 'Landing',
           icon: false,
-        },        
-        
+        },
         {
           type: 'alone',
           link: '/galeria',
           label: 'Galería',
           icon: false,
-        },        
-        
+        },
         {
           type: 'alone',
           link: '/empresa',
           label: 'Empresa',
           icon: false,
-        },        
+        },
       ]
-    
     },
-    
     {
       type: 'group',
       label: 'Marketing',
@@ -144,9 +140,8 @@ export class HomeComponent implements OnInit {
           link: '/promociones',
           label: 'Promociones',
           icon: false,
-        },        
+        },
       ]
-    
     },
     {
       type: 'alone',
@@ -172,19 +167,19 @@ export class HomeComponent implements OnInit {
           type: 'alone',
           link: '/citas',
           label: 'Citas',
-          icon: false,          
+          icon: false,
         },
         {
           type: 'alone',
           link: '/ordenes',
           label: 'Órdenes de servicio',
-          icon: false,          
+          icon: false,
         },
         {
           type: 'alone',
           link: '/reclamosOrdenes',
           label: 'Reclamos',
-          icon: false,          
+          icon: false,
         }
       ]
     },
@@ -212,22 +207,19 @@ export class HomeComponent implements OnInit {
           type: 'alone',
           link: '/reportesEstadísticos',
           label: 'Estadísticos',
-          icon: false,          
+          icon: false,
         },
       ]
-    
-    },   
-    
+    },
   ];
-  constructor(private route: ActivatedRoute, private router: Router) { 
+  constructor(private route: ActivatedRoute, private router: Router) {
     router.events.filter(event => event instanceof NavigationStart)
         .map(url => url['url'])
         .subscribe(v => {
-           this.showInterfaz = (v == "/" || v == "" ) ? false : true;
+           this.showInterfaz = (v === '/' || v === '' ) ? false : true;
         });
   }
 
   ngOnInit() {
-    
   }
 }
