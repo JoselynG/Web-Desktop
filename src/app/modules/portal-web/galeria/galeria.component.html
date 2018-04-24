@@ -1,0 +1,64 @@
+<div style="padding: 30px 30px 30px 60px; max-width: 800px;">
+    <h4 style="opacity: 0.5;">Configura la galeria de tu portal web</h4>
+    <br>
+    <mat-card style="padding: 50px 120px;">
+      
+      <form class="clase1">
+          <mat-form-field>
+              <input matInput placeholder="Titulo de la seccion" value="Galeria de imagenes">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <textarea #subtitulo style="resize: none;"
+              maxlength="500"
+              matInput placeholder="Subtitulo de la seccion" value="mhsjh  asfbwefw grg rge r gegerg r bge ger g we gwg w e gwg   g ew g er geg we grgr  ggrg  rg erg"></textarea>
+              <mat-hint align="end">{{subtitulo.value.length}} / 500</mat-hint>
+            </mat-form-field>
+      </form>
+      <br><br>
+      <input #fileButton2 id="fileInput2" style="display: none;" type='file'> <!--(change)="cambiarImagen($event,favIcon.id)"-->
+            <button mat-button (click)="fileButton2.click()"><mat-icon>backup</mat-icon> Subir imagenes</button>
+      <!--<div *ngFor="let item of items">-->
+          <div style="display:flex; flex-wrap: wrap;">
+              <div class="gallery">
+                <img src="/assets/img/perfil.jpg" alt="galeria" width="200" height="200">
+                <div class="div-btn">
+                    <input id="fileInput2" style="display: none;" type='file'>
+                  <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()"
+                  style="background-color: ghostwhite; color: grey;">
+                    <mat-icon>backup</mat-icon> REEMPLAZAR</button><br>
+                <span style="cursor: pointer; color: gray;">QUITAR IMAGEN</span></div>
+              </div>
+
+              <div class="gallery">
+                  <img src="/assets/img/perfil.jpg" alt="galeria" width="200" height="200">
+                  <div class="div-btn">
+                      <input id="fileInput2" style="display: none;" type='file'>
+                    <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()"
+                    style="background-color: ghostwhite; color: grey;">
+                      <mat-icon>backup</mat-icon> REEMPLAZAR</button><br>
+                  <span style="cursor: pointer; color: gray;">QUITAR IMAGEN</span></div>
+                </div>
+
+                <div class="gallery">
+                    <img src="/assets/img/perfil.jpg" alt="galeria" width="200" height="200">
+                    <div class="div-btn">
+                        <input id="fileInput2" style="display: none;" type='file'>
+                      <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()"
+                      style="background-color: ghostwhite; color: grey;">
+                        <mat-icon>backup</mat-icon> REEMPLAZAR</button><br>
+                    <span style="cursor: pointer; color: gray;">QUITAR IMAGEN</span></div>
+                  </div>
+                  
+                  <div class="gallery">
+                      <img src="/assets/img/perfil.jpg" alt="galeria" width="200" height="200">
+                      <div class="div-btn">
+                          <input id="fileInput2" style="display: none;" type='file'>
+                        <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()"
+                        style="background-color: ghostwhite; color: grey;">
+                          <mat-icon>backup</mat-icon> REEMPLAZAR</button><br>
+                      <span style="cursor: pointer; color: gray;">QUITAR IMAGEN</span></div>
+                    </div>
+          </div>
+    </mat-card>
+  </div>

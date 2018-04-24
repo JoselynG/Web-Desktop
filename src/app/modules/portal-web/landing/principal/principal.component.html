@@ -1,0 +1,25 @@
+<form class="clase1">
+          <mat-form-field>
+              <input matInput placeholder="Titulo de la seccion" value="¿Buscas un salon de belleza profesional?">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <textarea #subtitulo style="resize: none;"
+              maxlength="500"
+              matInput placeholder="Subtitulo de la seccion" value="Mystique provee un rango amplio de servicio de belleza en peluqueria y maquillaje. Forma parte de nuestra comunidad y recibe tips personalizados en nuestra app, asi como tambien la oportunidad de agendar y gestionar tus citas."></textarea>
+              <mat-hint align="end">{{subtitulo.value.length}} / 300</mat-hint>
+            </mat-form-field>
+      </form>
+      <br><br>
+
+
+      <div style="width:100%; display: flex; justify-content: center;">
+        <div class="card1">
+            <img #imag id="imaG" src="/assets/img/mujerrosas.png" alt="logo" width="600" height="250">
+          <div>
+              <input #fileButton id="fileInput" style="display: none;" type='file' (change)="cambiarImagen($event,imag.id)">
+              <button mat-button (click)="fileButton.click()"><mat-icon>backup</mat-icon> Reemplazar</button>
+              <button mat-button><mat-icon>delete</mat-icon></button>
+          </div>
+      </div>
+    </div>  

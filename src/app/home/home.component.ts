@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
         },
         {
           type: 'alone',
-          link: '/timeline',
+          link: '/',
           label: 'Parámetros',
           icon: false
         },
@@ -65,19 +65,19 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/',
+          link: '/sistema',
           label: 'Sistema',
           icon: false,
         },
         {
           type: 'alone',
-          link: '/',
+          link: '/seguridadfuncional',
           label: 'Seguridad funcional',
           icon: false,
         },
         {
           type: 'alone',
-          link: '/',
+          link: '/basedatos',
           label: 'Base de datos',
           icon: false,
         },
@@ -104,7 +104,7 @@ export class HomeComponent implements OnInit {
         },
         {
           type: 'alone',
-          link: '/asd',
+          link: '/landing',
           label: 'Landing',
           icon: false,
         },
