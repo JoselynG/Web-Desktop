@@ -1,82 +1,40 @@
+<div class="Titulo">
+    <h4> Registra los Parámetros para el Perfil de Clientes:</h4>
+</div>
+<div class="configurarDes">
+    <app-caracteristicas></app-caracteristicas>
+</div>
+<div class="tabla">
+    <app-valor-parametro></app-valor-parametro>
+    <!--<mat-accordion>
 
-        <div class="Titulo">
-<h4> Registra los Párametros para el Perfil de Clientes:</h4>
-       </div>
-<div class="configurarDes" >  
-                    <mat-accordion>
-  
-                        <mat-expansion-panel *ngFor="let dato of datos" (opened)="panelOpenState = true">
-                             <mat-expansion-panel-header>
-                                 <mat-panel-title class="title">
-                                    {{dato.nombreTP}}
-                                 </mat-panel-title> 
-                               
-                             </mat-expansion-panel-header>
-                            
-                            <mat-divider></mat-divider>
-                            <div class="garantia">
-                                <br>
-                                
-                                <dl>
-                                    <div *ngFor="let Tpa of dato.Parametros">
-                                     <div class="letra">
-                                <mat-checkbox> {{Tpa.nombre}}</mat-checkbox>
-                                             
-                                
-                                      
-                                    </div>
-                                       <br>
-                                    </div>
-                                </dl>
-                                <div class="boton">
-                                        
-                    <button mat-raised-button color="accent" (click)="openDialogParametro()" class="btn ">Agregar Parámetro</button>
-                              </div>  
-                            </div>
-                        
-                        </mat-expansion-panel>
-                        <br>
-                        <div class="boton">
-                            <br>
-                                <button mat-raised-button color="accent" (click)="openDialogTipoParametro()" class="btn">Nuevo Tipo de Parametro</button>
-                            </div>
-                    </mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+
+                <mat-panel-title class="title">
+                    Tipo (Emulsión Epicutanea):
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <div *ngFor="let Val of valores">
+
+                <br> {{Val.valor}}
+                <br>
+                <br>
+
+
+                <div class="letra2">
+                    {{Val.descrip}}
                 </div>
+                <mat-divider></mat-divider>
 
-                <div class="tabla">
-                    <mat-accordion >
-    
-                        <mat-expansion-panel >
-                             <mat-expansion-panel-header >
-                                 
-                                <mat-panel-title class="title">
-                                  Tipo (Emulción Epicutanea):
-                                 </mat-panel-title>
-                    
-                             </mat-expansion-panel-header >
-                            <div *ngFor="let Val of valores">
-                               
-                                <br>
-                                   {{Val.valor}}
-                                   <br>
-                                   <br>
-                                   
-                
-                                   <div class="letra2">
-                                   {{Val.descrip}}
-                                   </div>
-                                <mat-divider></mat-divider>
-                              
-                            </div>
-                            <br>
-                            <div class="boton">
-                        
-                            <button mat-raised-button color="accent" (click)="openDialogValorParametro()" class="btn">Nuevo Valor Parámetro</button>
-                                </div>
-                        </mat-expansion-panel>
-                        
-                    </mat-accordion>
-                </div>
+            </div>
+            <br>
+            <div class="boton">
 
-            
-    
+                <button mat-raised-button color="accent" (click)="openDialogValorParametro()" class="btn">Nuevo Valor Parámetro</button>
+            </div>
+        </mat-expansion-panel>
+
+    </mat-accordion>-->
+</div>

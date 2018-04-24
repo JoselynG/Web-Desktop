@@ -24,8 +24,11 @@ export class RegistrarDetalleComponent implements OnInit {
   selectable: boolean = true;
   removable: boolean = true;
   addOnBlur: boolean = true;
-  insumoSeleccionados = [];
-  insumo = ['Silicón', 'Agua Oxigenada', 'Acondicionador', 'Keratina', 'ganchos negros', 'polvo compacto', 'labial'];
+  servicioPSeleccionados = ['Corte de cabello', 'Aplicación de tinte', 'Secado'];
+  serviciosP = ['Corte de cabello', 'Aplicación de tinte', 'Secado'];
+  
+  servicioMSeleccionados = ['Maquillaje de día'];
+  serviciosM = ['Maquillaje de día'];
   // Enter, comma
   separatorKeysCodes = [ENTER, COMMA];
 
@@ -51,11 +54,11 @@ export class RegistrarDetalleComponent implements OnInit {
     }
   }
 
-  remove(insumo: any): void {
-    let index = this.insumos.indexOf(insumo);
+  remove(servicios: any): void {
+    let index = this.serviciosP.indexOf(servicios);
 
     if (index >= 0) {
-      this.insumos.splice(index, 1);
+      this.serviciosP.splice(index, 1);
     }
   }
   ngOnInit() {

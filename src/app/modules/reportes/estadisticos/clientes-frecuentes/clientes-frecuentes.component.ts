@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientesFrecuentesComponent implements OnInit {
   filtroSelec = 'semana';
+  tipoGraphSelec = 'doughnut';
   filtro = [
     {value: 'semana', viewValue: 'Esta semana'},
     {value: 'mes', viewValue: 'Último mes'},
   ];
-  misDatosSem = {
+  tipoGraph = [
+    {value: 'doughnut', viewValue: 'Dona'},
+    {value: 'pie', viewValue: 'Torta'},
+  ];
+  misDatosD = {
     type: 'doughnut',
     data: {
         labels: ["Mujeres", "Hombre"],
@@ -31,8 +36,28 @@ export class ClientesFrecuentesComponent implements OnInit {
         }]
     },
   }
+  misDatosP = {
+    type: 'pie',
+    data: {
+        labels: ["Mujeres", "Hombre"],
+        datasets: [{
+            data: [70, 30],
+            backgroundColor: [
+              'rgba(255, 21, 205, 0.5)',
+              'rgba(255, 180, 239, 0.5)',
+              
+            ],
+            borderColor: [
+                'rgba(254,58,239,1)',
+                'rgba(255, 180, 239, 1)',
+              
+            ],
+            borderWidth: 1
+        }]
+    },
+  }
   misDatosMes = {
-    type: 'doughnut',
+    type: 'pie',
     data: {
         labels: ["Mujeres", "Hombre"],
         datasets: [{

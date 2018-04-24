@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { InicioRoutingModule } from './inicio-routing.module';
 import { DashboardFullComponent } from './dashboard-full/dashboard-full.component';
 import { FormsModule } from '@angular/forms';
-import { DashboardEmpleadoComponent } from './dashboard-empleado/dashboard-empleado.component';
+import { DashboardEmpleadoComponent, CancelarComponent } from './dashboard-empleado/dashboard-empleado.component';
 import { ReportesModule } from '../reportes/reportes.module';
 import { ClFrecuentesComponent } from './dashboard-full/cl-frecuentes/cl-frecuentes.component';
 
@@ -16,7 +16,11 @@ import { ClFrecuentesComponent } from './dashboard-full/cl-frecuentes/cl-frecuen
     MaterialDesignModule,
     FormsModule,
     ReportesModule
+    
   ],
-  declarations: [DashboardFullComponent, DashboardEmpleadoComponent, ClFrecuentesComponent]
+  entryComponents:[
+    CancelarComponent
+  ],
+  declarations: [DashboardFullComponent, DashboardEmpleadoComponent, ClFrecuentesComponent, CancelarComponent]
 })
 export class InicioModule { }

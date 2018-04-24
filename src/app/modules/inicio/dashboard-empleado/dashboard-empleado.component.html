@@ -1,3 +1,35 @@
-<p>
-  dashboard-empleado works!
-</p>
+<div class="ctn">
+    <h1>¡Bienvenido!</h1>
+    <h4>Para el día de hoy tienes 3 citas por atender</h4>
+    <div class="citas" *ngFor="let detalle of detalles">
+        <mat-card class="detalle">
+            <div class="hora">
+                <h4>{{detalle.fecha}}</h4>
+                <h4>9:18 am</h4>
+            </div>
+            <div class="contenido">
+                <div class="client">
+                    <div class="img-radius">
+                        <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
+                    </div>
+                    <div class="name">
+                        <span class="bold">{{detalle.clientName}}</span><span> tiene una cita para:</span>
+                    </div>
+                </div>
+                <div class="det">
+                    <h4>Servicios: {{detalle.servicios}}</h4>
+                    <h4>Empleado: {{detalle.empleado}}</h4>
+                </div>
+                <div class="btn">
+                    <button mat-button class="prim" routerLink="/registrarDetalle">REGISTRAR SERVICIO</button>
+                    <button mat-button class="sec" (click)="openDialog()">REGISTRAR INCIDENCIA</button>
+                </div>
+            </div>
+            <div class="codigo">
+                <mat-icon *ngIf="detalle.icon">{{detalle.iconName}}</mat-icon>
+                <h4>{{detalle.codigo}}</h4>
+            </div>
+        </mat-card>
+
+    </div>
+</div>
