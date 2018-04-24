@@ -17,7 +17,6 @@ import { AtencionClienteModule } from './modules/atencion-cliente/atencion-clien
 import { FormsModule } from '@angular/forms';
 import { InicioModule } from './modules/inicio/inicio.module';
 import { ClientesModule } from './modules/clientes/clientes.module';
-import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.module';
 import { ReportesModule } from './modules/reportes/reportes.module';
 import { AdministracionModule} from './modules/administracion/administracion.module';
@@ -51,7 +50,6 @@ import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.mod
     AgendaModule,
     AtencionClienteModule,   
     MarketingModule,
-    PortalWebModule,
     AdministracionModule,
     ReportesModule,
     NotificacionesModule,
