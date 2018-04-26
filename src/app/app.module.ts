@@ -23,6 +23,7 @@ import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.module';
 import { ReportesModule } from './modules/reportes/reportes.module';
 import { PerfilModule } from './modules/perfil/perfil.module';
+import { AdministracionModule } from './modules/administracion/administracion.module';
 
 
 
@@ -54,7 +55,8 @@ import { PerfilModule } from './modules/perfil/perfil.module';
     TablasBasicasModule,
     PromocionModule,
     ReportesModule,
-    PerfilModule
+    PerfilModule,
+    AdministracionModule
   ],
   providers: [],
   

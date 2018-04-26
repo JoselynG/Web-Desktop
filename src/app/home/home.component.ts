@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
         },        
         {
           type: 'alone',
-          link: '/',
+          link: '/base-datos',
           label: 'Base de datos',
           icon: false,
         },        
@@ -189,6 +189,7 @@ export class HomeComponent implements OnInit {
         }
       ]
     },
+    
     {
       type: 'alone',
       label: 'Atención al cliente',

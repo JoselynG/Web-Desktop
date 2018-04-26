@@ -1,6 +1,6 @@
 <div class="ctn">
     <h1>Seleccione el reporte que desea observar</h1>
-    <div class="search-entidad">
+    
         <div class="selectEntidad">
             <mat-form-field class="valor">
                 <mat-select [(ngModel)]="filtroSelec" placeholder="Frecuencia" class="letra">
@@ -14,7 +14,7 @@
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-        </div>
+      
 
     </div>
     <div *ngIf="filtroSelec == 'servicio'">
