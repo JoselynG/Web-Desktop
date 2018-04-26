@@ -1,13 +1,31 @@
-.auditoria{
+.reclamo {
     margin: 30px 60px 0px 60px;
     display: flex;
     flex-direction: column;
-    .search {
+} 
+
+.search-entidad {
+    margin-left: 30px;
+    margin-top: 15px;
+    .selectEntidad {
+        width: 100px;
+        margin-top: 15px;
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 40px;
-        margin-left: 150px;
+        .valor {
+            margin: 10px 20px 10px 20px;
+            .letra {
+                font-size: 14px;
+                color: #6C798F;
+            }
+        }
     }
 }
+
+h1 {
+    font-size: 24px;
+    color: #6C798F;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+

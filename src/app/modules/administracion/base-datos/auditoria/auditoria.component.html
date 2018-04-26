@@ -1,13 +1,47 @@
 <div class="auditoria" mat-grid-list cols="3" rowHeight="60px">
  
-    <div class="search">
-    <div class="input-search mat-elevation-z1">
-        <mat-icon>search</mat-icon>
-        <mat-form-field class="full-width inputs">
-            <input matInput placeholder="Buscar registros por operación" autocomplete="off" type="search">
-        </mat-form-field>
+  
+
+    <div class="ctn">
+        <h1>Auditoria de la Base de Datos</h1>
+        <div class="search-entidad">
+            <div class="selectEntidad">
+                <mat-form-field class="valor">
+                    <mat-select [(ngModel)]="filtroSelec" placeholder="Operacion realizada en la Base de Datos" class="letra">
+                        <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                            {{ filtro.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="valor" *ngIf="filtroSelec != ''">
+                    <input matInput [matDatepicker]="picker" placeholder="Desde">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="valor" *ngIf="filtroSelec != ''">
+                    <input matInput [matDatepicker]="picker" placeholder="Hasta">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+    
+        </div>
+        <div *ngIf="filtroSelec == 'insert'">
+            
+        </div>
+        <div *ngIf="filtroSelec == 'update'">
+            
+        </div>
+    
+        <div *ngIf="filtroSelec == 'delete'">
+            
+        </div>
+    
     </div>
-    </div>
+
+
+
 
 
 <div class="example-container mat-elevation-z8">
