@@ -62,7 +62,7 @@ export class ReclamosOrdenComponent implements OnInit {
   }
   openDialog(){
     const dialogRef = this.dialog.open( DarRepuestaComponent, {
-      height: '290px',
+      height: '300px',
       width: '400px'
     });
   

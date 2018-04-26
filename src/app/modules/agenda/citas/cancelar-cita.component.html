@@ -1,31 +1,21 @@
 <div class="ctn">
     <!--<mat-card class="cancelar">!-->
-    <h4>Cancelar cita</h4>
+    <h4>Registrar incidencia</h4>
     <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="Orden de servicio" value="#1234-567" disabled>
     </mat-form-field>
     <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="Cliente" value="Illyrio Mopatis" disabled>
     </mat-form-field>
-    <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Fecha" value="02 Mar 2018" disabled>
-    </mat-form-field>
-    <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Hora de inicio" value="03:30 PM" disabled>
-    </mat-form-field>
-    <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Hora de finalización" value="04:30" disabled>
-    </mat-form-field>
-    <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Servicios de peluquería" value="Desrizado, Peinado con tenacilla, Secado" disabled>
-    </mat-form-field>
-    <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Servicios de maquillaje" value="Maquillaje completo" disabled>
-    </mat-form-field>
-    <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Empleados a cargo" value="Jon Connington" disabled>
-    </mat-form-field>
-    <mat-slide-toggle>Enviar notificación de cancelación del cliente</mat-slide-toggle>
+    <div class="select">
+        <mat-form-field class="valor inputs">
+            <mat-select placeholder="Seleccione el servicio que tuvo la incidencia">
+                <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                    {{ filtro.viewValue }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
     <mat-form-field class="example-full-width inputs">
         <textarea matInput placeholder="Descripción de la cancelación de la cita" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
     </mat-form-field>

@@ -92,7 +92,14 @@ export class CitasComponent implements OnInit {
   templateUrl: './cancelar-cita.component.html',
   styleUrls: ['./cancelar-cita.component.scss']
 })
-export class CancelarCitaComponent  {}
+export class CancelarCitaComponent  {
+  filtro = [
+    {value: 'empleado', viewValue: 'Empleado'},
+    {value: 'cliente', viewValue: 'Cliente'},
+    {value: 'servicio', viewValue: 'Servicio'},
+    
+  ];
+}
 
 @Component({
   selector: 'app-incidencia-cita',

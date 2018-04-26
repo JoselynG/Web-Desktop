@@ -10,6 +10,8 @@ import { OrdenesComponent } from './ordenes/ordenes.component';
 import { ReclamosOrdenComponent, DarRepuestaComponent } from './reclamos-orden/reclamos-orden.component';
 import { FormsModule } from '@angular/forms';
 import { RegistrarDetalleComponent, IncidenciaServicioComponent } from './registrar-detalle/registrar-detalle.component';
+import { InsumosUtilizadosComponent, AgregarInsumoComponent } from './registrar-detalle/insumos-utilizados/insumos-utilizados.component';
+
 
 @NgModule({
   imports: [
@@ -23,8 +25,22 @@ import { RegistrarDetalleComponent, IncidenciaServicioComponent } from './regist
     IncidenciaCitaComponent,
     IncidenciaServicioComponent,
     ResponderSolicitudComponent,
-    DarRepuestaComponent
+    DarRepuestaComponent,
+    AgregarInsumoComponent
   ],
-  declarations: [SolicitudComponent, CitasComponent, OrdenesComponent, ReclamosOrdenComponent, CancelarCitaComponent, IncidenciaCitaComponent, RegistrarDetalleComponent, IncidenciaServicioComponent, ResponderSolicitudComponent,DarRepuestaComponent]
+  declarations: [
+    SolicitudComponent,
+    CitasComponent,
+    OrdenesComponent,
+    ReclamosOrdenComponent,
+    CancelarCitaComponent,
+    IncidenciaCitaComponent,
+    RegistrarDetalleComponent,
+    IncidenciaServicioComponent,
+    ResponderSolicitudComponent,
+    DarRepuestaComponent,
+    InsumosUtilizadosComponent,
+    AgregarInsumoComponent,
+  ]
 })
 export class AgendaModule { }

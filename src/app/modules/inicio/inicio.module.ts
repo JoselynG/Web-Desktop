@@ -11,6 +11,7 @@ import { ClFrecuentesComponent } from './dashboard-full/cl-frecuentes/cl-frecuen
 import { CitasRecibidasComponent } from './dashboard-full/citas-recibidas/citas-recibidas.component';
 import { ServiciosAtendidosComponent } from './dashboard-full/servicios-atendidos/servicios-atendidos.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -30,7 +31,6 @@ import { ServiciosAtendidosComponent } from './dashboard-full/servicios-atendido
     CancelarComponent,
     CitasRecibidasComponent,
     ServiciosAtendidosComponent,
-    
   ]
 })
 export class InicioModule { }

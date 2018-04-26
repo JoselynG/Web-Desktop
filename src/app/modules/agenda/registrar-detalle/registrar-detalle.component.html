@@ -73,18 +73,24 @@
                 <button mat-raised-button color="accent" routerLink="/timeline" class="c-white btn">Registrar</button>
             </mat-card>
         </div>
-        <div class="incidencias">
-            <h4>Incidencias</h4>
-            <mat-card class="lista-incidencia">
-                <h5>Planchado de cabello</h5><br>
-                <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam dolorum aut, nobis rem in commodi illo rerum aperiam facilis explicabo deserunt provident dignissimos blanditiis tempora voluptates recusandae, nemo nam natus?</mat-card-content>
-            </mat-card>
-            <mat-card class="lista-incidencia">
-                <h5>Baños de color</h5><br>
-                <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</mat-card-content>
-            </mat-card>
-            <div class="">
-                <button mat-button class="btn" (click)="openDialog()">AGREGAR INCIDENCIA</button>
+        <div class="right">
+            <div class="incidencias">
+                <h4>Incidencias</h4>
+                <mat-card class="lista-incidencia">
+                    <h5>Planchado de cabello</h5><br>
+                    <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam dolorum aut, nobis rem in commodi illo rerum aperiam facilis explicabo deserunt provident dignissimos blanditiis tempora voluptates recusandae, nemo nam natus?</mat-card-content>
+                </mat-card>
+                <mat-card class="lista-incidencia">
+                    <h5>Baños de color</h5><br>
+                    <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</mat-card-content>
+                </mat-card>
+                <div class="">
+                    <button mat-button class="btn" (click)="openDialog()">AGREGAR INCIDENCIA</button>
+                </div>
+            </div>
+            <div class="insumos">
+                <h4>Insumos</h4>
+                <app-insumos-utilizados></app-insumos-utilizados>
             </div>
         </div>
     </div>
