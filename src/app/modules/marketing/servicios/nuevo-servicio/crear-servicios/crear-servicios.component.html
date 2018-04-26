@@ -5,7 +5,7 @@
     </div>
 
 <div class="ctn">
- <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+ 
   <!--  <mat-card class="card">!-->
   <h3 class="title">
       Nuevo Servicio
@@ -23,10 +23,10 @@
   <!--  <texto>!-->
       
   <mat-form-field class="example-full-width inputs">
-      <textarea matInput placeholder="Nombre del servicio" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
+      <textarea matInput placeholder="Nombre del servicio" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Maquillaje de contorno </textarea>
   </mat-form-field>
   <mat-form-field class="example-full-width inputs">
-      <input matInput placeholder="descripcion del servicio" value="trenzado">
+      <input matInput placeholder="descripcion del servicio" value="para la iluminacion del rostro">
   </mat-form-field>
   <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="garantia del servicio" value="tres dias ">
@@ -58,23 +58,27 @@
           <input placeholder="Insumos" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
       </mat-chip-list>
       </mat-form-field>
-       <!--  <imagen>!-->
-      <mat-form-field class="example-full-width inputs">   
-      <input matInput  placeholder="Imagen:"  > 
-      </mat-form-field>
-  
+      
   <!--</mat-card>!-->
   <!--  <boton>!-->
+        <!--  <botonde imagen>!-->
+                <div class="btn-fin">
+                        <div class="div-btn">
+                         <input id="fileInput2" style="display: none;" type='file'>
+                       <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()"
+                       style="background-color: ghostwhite; color: grey;">
+                         <mat-icon>backup</mat-icon>Subir imagen</button><br>
+                    </div>
+                 </div>
         <div class="btn-fin">
       
                 <div style="padding-top: 5px; width:95%; display:flex; justify-content: flex-end;">
                         <mat-action-row>
                                 <button mat-raised-button color="accent" (click)="nextStep()">Siguiente</button>
-                              </mat-action-row>
-                                
+                              </mat-action-row>     
                    </div>
           
             </div>
-        </mat-expansion-panel> 
+        
 </div>
  

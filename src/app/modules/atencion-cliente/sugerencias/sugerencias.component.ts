@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 interface Datos_reclamo{
 	nombre: string;
@@ -61,9 +62,36 @@ export class SugerenciasComponent implements OnInit {
   {value: 'opinion', viewValue: 'Opiniones'},
   {value: 'reclamo', viewValue: 'Reclamos'}
 ];
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
+
+  openDialog(){
+    const dialogRef = this.dialog.open( DarRepuestaComentarioComponent, {
+      height: '300px',
+      width: '400px'
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('mostrado');
+    });
+  }
+}
+
+@Component({
+  selector: 'app-dar-repuesta-comentario',
+  templateUrl: './dar-repuesta-comentario.component.html',
+  styleUrls: ['./dar-repuesta-comentario.component.scss']
+})
+export class DarRepuestaComentarioComponent {
+
+//selec pregunta
+filtroSelec = '';
+filtro = [
+  {value: 'positiva', viewValue: 'positiva'},
+  {value: 'negativa', viewValue: 'negativa'},
+  
+];
 
 }

@@ -1,6 +1,6 @@
+import { AuditoriaComponent } from './base-datos/auditoria/auditoria.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FormsModule } from '@angular/forms';
 import { AdministracionRoutingModule } from './administracion-routing.module';
 import { BaseDatosComponent } from './base-datos/base-datos.component';
@@ -21,9 +21,21 @@ import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
     FormsModule
   ],
   entryComponents:[//here in entry components goes components to be used in modal dialogs
-    NuevoRolComponent, NuevoUsuarioComponent
+    NuevoRolComponent,
+    NuevoUsuarioComponent,
+    
   ],
-  declarations: [BaseDatosComponent, SistemaComponent, SeguridadFuncionalComponent, AsignarFuncionesComponent, RolesComponent, NuevoRolComponent, NuevoUsuarioComponent,
-    ListConsejosComponent, CrearConsejoComponent]
+  declarations: [
+    BaseDatosComponent,
+    SistemaComponent,
+    SeguridadFuncionalComponent,
+    AsignarFuncionesComponent,
+    RolesComponent,
+    NuevoRolComponent,
+    NuevoUsuarioComponent,
+    ListConsejosComponent,
+    CrearConsejoComponent,
+    AuditoriaComponent
+  ]
 })
 export class AdministracionModule { }

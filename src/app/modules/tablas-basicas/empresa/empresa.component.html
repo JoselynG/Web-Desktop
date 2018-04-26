@@ -14,21 +14,29 @@
                     <input matInput placeholder="Rif: "  >
                 </mat-form-field>
                 
-                <mat-form-field  class="example-full-width inputs">
-                    <input type=email  matInput placeholder="Logo"  >
-                    
+                 <!--  <botonde imagen>!-->
+                    <div class="btn-fin">
+                           <div class="div-btn">
+                            <input id="fileInput2" style="display: none;" type='file'>
+                          <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()"
+                          style="background-color: ghostwhite; color: grey;">
+                            <mat-icon>backup</mat-icon>Subir logo</button><br>
+                       </div>
+                    </div>
+                <mat-form-field class="example-full-width inputs" disabled>
+                 <input matInput placeholder="Hora de inicio de jornada laboral "type="time" >
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width inputs" disabled>
-                 <input matInput placeholder="Hora Inicio de Trabajo " >
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width inputs" disabled>
-                    <input matInput placeholder="Hora Final de Trabajo"   >
+                    <input matInput placeholder="Hora finde de la jornada laboral" type="time"  >
                 </mat-form-field> <mat-divider></mat-divider><br><br>
                 <div class= titulo>
                 <p>Razon de Ser del Negocio:</p><br>
                  </div>
+                 
+             <mat-form-field class="textarea">
+                <textarea matInput placeholder="Descripciòn del negocion" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">peluqueria luque es un salon de belleza especializado en tratamiento de peluqueria y estetica, confìa en nuestros expertos</textarea>
+              </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Mision " value="la mision de la organizacíon" disabled >
                 </mat-form-field>
@@ -43,28 +51,26 @@
             </div>
             
                  
-            <mat-select id="seleccion"  placeholder="Seleccione Ciudad">
-                <mat-option >
-                Barquisimeto
-               </mat-option>
-               <mat-option >
-                 San Carlos
-               </mat-option>
-               <mat-option >
-                   Acarigua
-               </mat-option>
-               </mat-select>
-
              <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Estado:" >
              </mat-form-field>
-             
+             <!--  <selec>!-->
+        <div class="select">
+           <mat-form-field class="valor inputs">
+              <mat-select placeholder="Selecciona la ciudad ">
+                <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                {{ filtro.viewValue }}
+                  </mat-option>
+            </mat-select>
+            </mat-form-field>
+       </div>
+
              <mat-form-field class="textarea">
-                <textarea matInput placeholder="Descripción Exacta del Negocio" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi bbbbbbbbbbbb</textarea>
+                <textarea matInput placeholder="Direcciòn" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">urb los crepusculo</textarea>
               </mat-form-field>
             
                     <mat-form-field  class="example-full-width inputs">
-                    <input type=email  matInput placeholder="Correo" value="marna@gmail.com" disabled >
+                    <input type=email  matInput placeholder="Correo" value="luque@gmail.com" disabled >
                     
                     </mat-form-field>
                     <mat-form-field  class="example-full-width inputs">
@@ -72,7 +78,7 @@
                         
                         </mat-form-field>
                 
-                <button mat-raised-button color="accent" routerLink="/timeline">Editar</button>
+                <button mat-raised-button color="accent" routerLink="/timeline">Guardar</button>
             </mat-card>
             
         </div>
