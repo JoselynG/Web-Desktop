@@ -80,7 +80,16 @@ export class HomeComponent implements OnInit {
           link: '/basedatos',
           label: 'Base de datos',
           icon: false,
+          group:[
+            {
+              type: 'alone',
+              link: '/base-datos/auditoria',
+              label: 'auditoria',
+              icon: false,
+            }  
+          ]
         },
+
       ]
     },
     {
