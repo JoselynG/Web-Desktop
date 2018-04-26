@@ -14,17 +14,14 @@
       <mat-option value="0">
         Todos los usuarios
       </mat-option>
+      <mat-option value="-1">
+        Por Asignar
+      </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <div style="width: 100px; position: absolute;top:20px;right: 180px;">
-      <button mat-raised-button (click)="openModal()">
-        Importar usuarios
-      </button>
-  </div>
-
   <div class="button-row">
-    <button mat-raised-button routerLink="roles">
+    <button mat-raised-button routerLink="roles" color="accent">
       <mat-icon>supervisor_account</mat-icon> Roles
     </button>
 </div>

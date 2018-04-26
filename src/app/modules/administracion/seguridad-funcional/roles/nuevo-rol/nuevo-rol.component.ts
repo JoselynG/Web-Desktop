@@ -13,6 +13,29 @@ export class NuevoRolComponent implements OnInit {
   nombre:string;
   descripcion:string;
 
+    items = [
+    {descripcion: 'Maestros', estatus: 'true'},
+    {descripcion: 'Categorias', estatus: 'true'},
+    {descripcion: 'Parametros', estatus: 'true'},
+    {descripcion: 'Sistema', estatus: 'true'},
+    {descripcion: 'Seguridad Funcional', estatus: 'true'},
+    {descripcion: 'Base de Datos', estatus: 'true'},
+    {descripcion: 'Diseño', estatus: 'true'},
+    {descripcion: 'Landing', estatus: 'true'},
+    {descripcion: 'Galeria', estatus: 'true'},
+    {descripcion: 'Empresa', estatus: 'true'},
+    {descripcion: 'Servicios', estatus: 'true'},
+    {descripcion: 'Parametros', estatus: 'true'},
+    {descripcion: 'Consejos', estatus: 'true'},
+    {descripcion: 'Clientes', estatus: 'true'},
+    {descripcion: 'Solicitudes', estatus: 'true'},
+    {descripcion: 'Citas', estatus: 'true'},
+    {descripcion: 'Reclamos', estatus: 'true'},
+    {descripcion: 'Atencion al Cliente', estatus: 'true'},
+    {descripcion: 'Reportes Estructurados', estatus: 'true'},
+    {descripcion: 'Reportes Estadisticos', estatus: 'true'}
+  ];
+
   constructor(
     public dialogRef: MatDialogRef<NuevoRolComponent>//,for sending inf to the parent component
     /*@Inject(MAT_DIALOG_DATA) public data: any*/) { //for adquiring data from the parent component

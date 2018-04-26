@@ -23,8 +23,8 @@ export class RolesComponent implements OnInit {
 
   openDialog(): void {//opens the modal
     let dialogRef = this.dialog.open(NuevoRolComponent, {
-      width: '240px',//sets the width
-      height: '300px'
+      width: '800px',//sets the width
+      height: '500px'
      // data: { name: this.name, animal: this.animal }//send this class's attributes to the modal
     });
 
