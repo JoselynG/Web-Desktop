@@ -1,31 +1,54 @@
-<mat-grid-list style="margin-top:10px" cols="4" rowHeight="70px">
-    <mat-grid-tile colspan="2" rowspan="1">
-        <div class="example-header">
-            <form>
-                <div style="position:relative;">
-                    <input type="text" (keyup)="applyFilter($event.target.value)" placeholder="Buscar por Nombre">
-                    <mat-icon style="position:absolute; margin-left:140px;top:4px;opacity:0.5;" matSuffix>search</mat-icon>
-                </div>
-            </form>
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2" rowspan="1">
-        <div>
-            <button mat-raised-button color="accent" routerLink="/nuevoConsejo">Crear Nuevo</button>
-        </div>
-    </mat-grid-tile>
-</mat-grid-list>
-<mat-grid-list cols="4" rowHeight="500px">
-    <mat-grid-tile style="margin-top:-5px; margin-bottom:-100px" colspan="2" rowspan="1" *ngFor="let item of consejos">
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>{{item.nombre}}</mat-card-title>
-                <mat-card-subtitle>{{item.codigo}}</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image class="card-img" src="{{item.imagen}}">
-            <mat-card-content>
-                {{item.descripcion}}
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+<div class="ctn" style="position: relative;">
+  <div class="search">
+      <div class="input-search mat-elevation-z1">
+          <mat-icon>search</mat-icon>
+          <mat-form-field class="full-width inputs">
+              <input matInput placeholder="Buscar promociones por servicio" autocomplete="off" type="search">
+          </mat-form-field>
+
+      </div>
+
+      <div class="input-search mat-elevation-z1    ">
+          <mat-icon>date_range</mat-icon>
+          <mat-form-field class="valor">
+              <input matInput placeholder="Desde: 10/04/2018" autocomplete="off" type="search">
+          </mat-form-field>
+      </div>
+      <div class="input-search mat-elevation-z1    ">
+          <mat-icon>date_range</mat-icon>
+          <mat-form-field class="full-width inputs">
+              <input matInput placeholder="Hasta: 10/03/2018" autocomplete="off" type="search">
+          </mat-form-field>
+      </div>
+  </div>
+  <div class="btn">
+      <button mat-raised-button color="accent" routerLink="/crear-consejo">Crear Consejo</button>
+  </div>
+  <div class="citas" *ngFor="let c of consejos">
+
+      <mat-card class="detalle">
+          <mat-card-content>
+              <img mat-card-image src="{{c.imagen}}" alt="Photo of a Shiba Inu" class="img-perfil">
+              <div class="menu">
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon class="icon">more_vert</mat-icon>
+              </button>
+                  <mat-menu #menu="matMenu">
+                      <button mat-menu-item routerLink='/editar-consejo'>
+                  <span>Editar</span>
+                </button>
+                      <button mat-menu-item>
+                  <span>Eliminar</span>
+                </button>
+                  </mat-menu>
+              </div>
+              <div class="name">
+                  <span class="bold">{{c.titulo}}</span>
+                  <pre></pre>
+              </div>
+              <p>Codigo: {{c.ccodigo}}</p>
+              <p>Descripción: {{c.descripcion}}</p>
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>

@@ -34,7 +34,7 @@ const routes: Routes = [
     component: ListConsejosComponent,
   },
   {
-    path: 'nuevoConsejo',
+    path: 'crear-consejo',
     component: CrearConsejoComponent
   }
 ];
