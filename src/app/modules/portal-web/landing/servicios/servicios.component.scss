@@ -1,0 +1,60 @@
+.clase1{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+.pres{
+color: deeppink;
+size: 23px;
+font-family: Roboto;
+font-weight: bold;
+}
+.example-header {
+  position: relative;
+  min-height: 164px;
+  padding: 10px 5px 0;
+  .button-row {
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+      right: 10px;
+      top: 20px;
+  }
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 50%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+  margin: 15px;
+}
+
+.input[type=text] {
+  width: 165px;
+  height: 50px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  ;
+  padding: 12px 30px 12px 12px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+.input[type=text]:focus {
+  width: 380px;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.imagen {
+  background-size: cover;
+}

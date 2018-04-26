@@ -1,3 +1,37 @@
-<p>
-  servicios works!
-</p>
+<form class="clase1">
+    <mat-form-field>
+        <input matInput placeholder="Titulo de esta seccion" 
+        value="Servicios de nuestron salon de belleza">
+      </mat-form-field>
+      <br>
+      <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input matInput #message maxlength="150" placeholder="Otro mensaje">
+            <mat-hint align="end">{{message.value.length}} / 150</mat-hint>
+          </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="Peluqueria, Maquillaje">
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-grid-list cols="1" rowHeight="600px">
+      <mat-grid-tile colspan="1" rowspan="1" *ngFor="let item of servicios">
+          <mat-card class="example-card">
+              <mat-card-header>
+                  <mat-card-title><strong>{{item.nombre}}</strong></mat-card-title>
+              </mat-card-header>
+              <img mat-card-image src="{{item.imagen}}">
+              <mat-card-content>
+                  <p>{{item.description}}</p>
+                  <p>Una descripcion del servicio</p>
+                  <div class="pres">
+                    <pre><strong>Leer mas</strong></pre>
+                  </div>
+              </mat-card-content>
+          </mat-card>
+      </mat-grid-tile>
+  </mat-grid-list>
+</form>

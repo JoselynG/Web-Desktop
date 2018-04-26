@@ -92,14 +92,8 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/disenio',
-          label: 'Diseño',
-          icon: false,
-        },
-        {
-          type: 'alone',
           link: '/landing',
-          label: 'Landing',
+          label: 'Inicio del portal',
           icon: false,
         },
         {
