@@ -1,3 +1,11 @@
+<div class="example-header">
+    <form>
+        <div style="position:relative;">
+            <input type="text" class="busqueda" placeholder="Buscar por cliente">
+            <mat-icon style="position:absolute; margin-left:-30px;top:4px;opacity:0.5;" matSuffix>search</mat-icon>
+        </div>
+    </form>
+</div>
 <div class="ctn">
     <!--  <div class="example-header">
         <form>
@@ -7,7 +15,7 @@
             </div>
         </form>
     </div>-->
-    <div class="search">
+    <!--<div class="search">
         <div class="input-search mat-elevation-z1">
             <mat-icon>search</mat-icon>
             <mat-form-field class="full-width inputs">
@@ -15,7 +23,7 @@
             </mat-form-field>
         </div>
     </div>
-
+-->
     <div class="citas" *ngFor="let detalle of detalles">
         <mat-card class="detalle">
             <div class="hora">
