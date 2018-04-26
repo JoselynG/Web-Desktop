@@ -1,205 +1,248 @@
-<div class= titulo>
-    <p>  Registro de Categorias </p>
-    </div>
+<div class="titulo">
+    <p> Registro de Categorias </p>
+</div>
 
 <div class="registro">
-     <mat-accordion>
+    <div class="row">
+        <mat-form-field style="width: 200px;">
+            <mat-select placeholder="Selecciona categoría" value="0">
+                <mat-option *ngFor="let tipo of tipos" [value]="tipo">
+                    {{ tipo }}
+                </mat-option>
 
-<mat-expansion-panel  (opened)="panelOpenState = true">
-             <mat-expansion-panel-header>
-                 <mat-panel-title class="title">
-                   {{tipos[0]}}:
-                 </mat-panel-title> 
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <div class="garantia" style="margin-top: 25px;">
+            <br>
+            <dl>
+                <div *ngFor="let TReclamo of detalles">
+                    <div class="letra">
+                        <div> {{TReclamo.nombre}}</div>
+                        <br>
+                        <mat-divider></mat-divider>
+                        <br>
+                    </div>
+                    <br>
+                </div>
+            </dl>
+            <button mat-raised-button color="accent" (click)="openDialogCategoria(tipos[0])">Agregar</button>
+        </div>
+    </div>
+    <!-- <mat-accordion>
+
+        <mat-expansion-panel (opened)="panelOpenState = true">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title">
+                    {{tipos[0]}}:
+                </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-divider></mat-divider>
             <div class="garantia">
                 <br>
-                
+
                 <dl>
                     <div *ngFor="let TReclamo of detalles">
-                     <div class="letra">
-                    <div> {{TReclamo.nombre}}</div><br>
-                         <mat-divider></mat-divider><br>
-                     
-                    </div>
-                       <br>
+                        <div class="letra">
+                            <div> {{TReclamo.nombre}}</div>
+                            <br>
+                            <mat-divider></mat-divider>
+                            <br>
+
+                        </div>
+                        <br>
                     </div>
                 </dl>
-                <button mat-raised-button color="accent"  (click)="openDialogCategoria(tipos[0])">Agregar</button>
-                </div>
-           
-</mat-expansion-panel>
+                <button mat-raised-button color="accent" (click)="openDialogCategoria(tipos[0])">Agregar</button>
+            </div>
 
-        <mat-expansion-panel  (opened)="panelOpenState = true">
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true">
             <mat-expansion-panel-header>
                 <mat-panel-title class="title">
-                  {{tipos[1]}}
-                </mat-panel-title> 
-           </mat-expansion-panel-header>
-           <mat-divider></mat-divider>
-           <div class="garantia">
-               <br>
-               
-               <dl>
-                   <div *ngFor="let TRReclamo of tiporeclamos">
-                    <div class="letra">
-                     
-                        <div>  {{TRReclamo.nombre}}</div><br>
-                       <mat-divider></mat-divider><br>
-                    
-                   </div>
-                      <br>
-                   </div>
-               </dl>
-               <button mat-raised-button color="accent" (click)="openDialogCategoria(tipos[1])">Agregar</button>
-           </div>
-          
-</mat-expansion-panel>
+                    {{tipos[1]}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="garantia">
+                <br>
 
-<mat-expansion-panel  (opened)="panelOpenState = true">
-        <mat-expansion-panel-header>
-            <mat-panel-title class="title">
-                {{tipos[2]}}
-            </mat-panel-title> 
-       </mat-expansion-panel-header>
-       <mat-divider></mat-divider>
-       <div class="garantia">
-           <br>
-           
-           <dl>
-               <div *ngFor="let TComentario of comentarios">
-                <div class="letra">
-                    <div>  {{TComentario.nombre}}</div><br>
-                  <mat-divider></mat-divider><br>
-                 </div>
-                  <br>
-               </div>
-           </dl>
-           <button mat-raised-button color="accent" (click)="openDialogCategoria(tipos[2])">Agregar</button>
-       </div>
-      
-</mat-expansion-panel>
+                <dl>
+                    <div *ngFor="let TRReclamo of tiporeclamos">
+                        <div class="letra">
 
-<mat-expansion-panel  (opened)="panelOpenState = true">
-    <mat-expansion-panel-header>
-        <mat-panel-title class="title">
-            {{tipos[3]}}
-        </mat-panel-title> 
-   </mat-expansion-panel-header>
-   <mat-divider></mat-divider>
-   <div class="garantia">
-       <br>
-       
-       <dl>
-           <div *ngFor="let TRComentario of Tcomentarios">
-            <div class="letra">
-                <div> {{TRComentario.nombre}}</div><br>
-              <mat-divider></mat-divider><br>
-             </div>
-              <br>
-           </div>
-       </dl>
-       <button mat-raised-button color="accent" (click)="openDialogCategoria(tipos[3])">Agregar</button>
-       </div>
-  
-</mat-expansion-panel>
+                            <div> {{TRReclamo.nombre}}</div>
+                            <br>
+                            <mat-divider></mat-divider>
+                            <br>
+
+                        </div>
+                        <br>
+                    </div>
+                </dl>
+                <button mat-raised-button color="accent" (click)="openDialogCategoria(tipos[1])">Agregar</button>
+            </div>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title">
+                    {{tipos[2]}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="garantia">
+                <br>
+
+                <dl>
+                    <div *ngFor="let TComentario of comentarios">
+                        <div class="letra">
+                            <div> {{TComentario.nombre}}</div>
+                            <br>
+                            <mat-divider></mat-divider>
+                            <br>
+                        </div>
+                        <br>
+                    </div>
+                </dl>
+                <button mat-raised-button color="accent" (click)="openDialogCategoria(tipos[2])">Agregar</button>
+            </div>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title">
+                    {{tipos[3]}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="garantia">
+                <br>
+
+                <dl>
+                    <div *ngFor="let TRComentario of Tcomentarios">
+                        <div class="letra">
+                            <div> {{TRComentario.nombre}}</div>
+                            <br>
+                            <mat-divider></mat-divider>
+                            <br>
+                        </div>
+                        <br>
+                    </div>
+                </dl>
+                <button mat-raised-button color="accent" (click)="openDialogCategoria(tipos[3])">Agregar</button>
+            </div>
+
+        </mat-expansion-panel>
 
 
 
-  <mat-expansion-panel  (opened)="panelOpenState = true">
-    <mat-expansion-panel-header>
-        <mat-panel-title class="title">
-            {{tipos[4]}}
-        </mat-panel-title> 
-   </mat-expansion-panel-header>
-   <mat-divider></mat-divider>
-   <div class="garantia">
-       <br>
-       
-       <dl>
-           <div *ngFor="let RazonI of razones">
-            <div class="letra">
-                <div> {{RazonI.nombre}}</div><br>
-              <mat-divider></mat-divider><br>
-             </div>
-              <br>
-           </div>
-       </dl>
-       <button mat-raised-button color="accent"(click)="openDialogCategoria(tipos[4])" >Agregar</button>
-       </div>
-  </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title">
+                    {{tipos[4]}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="garantia">
+                <br>
 
-  
-  
+                <dl>
+                    <div *ngFor="let RazonI of razones">
+                        <div class="letra">
+                            <div> {{RazonI.nombre}}</div>
+                            <br>
+                            <mat-divider></mat-divider>
+                            <br>
+                        </div>
+                        <br>
+                    </div>
+                </dl>
+                <button mat-raised-button color="accent" (click)="openDialogCategoria(tipos[4])">Agregar</button>
+            </div>
+        </mat-expansion-panel>
 
-  <mat-expansion-panel  (opened)="panelOpenState = true">
-    <mat-expansion-panel-header>
-        <mat-panel-title class="title">
-         Tipos de Criterios Para Evaluar Orden de  Servicio:
-        </mat-panel-title> 
-   </mat-expansion-panel-header>
-   <mat-divider></mat-divider>
-   <div class="garantia">
-       <br>
-       
-       <dl>
-           <div *ngFor="let TCriterio of tcriterios">
-            <div class="letra">
-                <div> {{TCriterio.nombre}}</div><br>
-                <mat-divider></mat-divider><br>
-             </div>
-              <br>
-           </div>
-       </dl>
-       <button mat-raised-button color="accent" (click)="openDialogCategoria()">Agregar</button>
-       </div>
-  </mat-expansion-panel>
 
-  <mat-expansion-panel  (opened)="panelOpenState = true">
-    <mat-expansion-panel-header>
-        <mat-panel-title class="title">
-         Tipos de Repuestas a la Solicitudes de Servicios:
-        </mat-panel-title> 
-   </mat-expansion-panel-header>
-   <mat-divider></mat-divider>
-   <div class="garantia">
-       <br>
-       
-       <dl>
-           <div *ngFor="let TRSolicitud of TRsolicitudes">
-            <div class="letra">
-            <div>  {{TRSolicitud.nombre}}</div><br>
-            <mat-divider></mat-divider><br>
-             </div>
-              <br>
-           </div>
-       </dl>
-       <button mat-raised-button color="accent" (click)="openDialogCategoria()">Agregar</button>
-       </div>
-  </mat-expansion-panel>
 
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title class="title">
-     Categorias De Los Servicios a Brindar:
-    </mat-panel-title> 
-</mat-expansion-panel-header>
-<mat-divider></mat-divider>
-<div class="garantia">
-   <br>
-   
-   <dl>
-       <div *ngFor="let  CategoriaS of  categorias ">
-        <div class="letra">
-           <div>{{ CategoriaS.nombre}}</div><br>
-            <mat-divider></mat-divider><br>
-         </div>
-          <br>
-       </div>
-   </dl>
-   <button mat-raised-button color="accent" (click)="openDialogCategoria()">Agregar</button>
-   </div>
-</mat-expansion-panel>
 
- </mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title">
+                    Tipos de Criterios Para Evaluar Orden de Servicio:
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="garantia">
+                <br>
+
+                <dl>
+                    <div *ngFor="let TCriterio of tcriterios">
+                        <div class="letra">
+                            <div> {{TCriterio.nombre}}</div>
+                            <br>
+                            <mat-divider></mat-divider>
+                            <br>
+                        </div>
+                        <br>
+                    </div>
+                </dl>
+                <button mat-raised-button color="accent" (click)="openDialogCategoria()">Agregar</button>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title">
+                    Tipos de Repuestas a la Solicitudes de Servicios:
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="garantia">
+                <br>
+
+                <dl>
+                    <div *ngFor="let TRSolicitud of TRsolicitudes">
+                        <div class="letra">
+                            <div> {{TRSolicitud.nombre}}</div>
+                            <br>
+                            <mat-divider></mat-divider>
+                            <br>
+                        </div>
+                        <br>
+                    </div>
+                </dl>
+                <button mat-raised-button color="accent" (click)="openDialogCategoria()">Agregar</button>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title">
+                    Categorias De Los Servicios a Brindar:
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="garantia">
+                <br>
+
+                <dl>
+                    <div *ngFor="let  CategoriaS of  categorias ">
+                        <div class="letra">
+                            <div>{{ CategoriaS.nombre}}</div>
+                            <br>
+                            <mat-divider></mat-divider>
+                            <br>
+                        </div>
+                        <br>
+                    </div>
+                </dl>
+                <button mat-raised-button color="accent" (click)="openDialogCategoria()">Agregar</button>
+            </div>
+        </mat-expansion-panel>
+
+    </mat-accordion> -->
 </div>

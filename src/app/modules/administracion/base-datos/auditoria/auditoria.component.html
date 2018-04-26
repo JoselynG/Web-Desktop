@@ -1,35 +1,63 @@
+<div class="auditoria" mat-grid-list cols="3" rowHeight="60px">
+ 
+    <div class="search">
+    <div class="input-search mat-elevation-z1">
+        <mat-icon>search</mat-icon>
+        <mat-form-field class="full-width inputs">
+            <input matInput placeholder="Buscar registros por operación" autocomplete="off" type="search">
+        </mat-form-field>
+    </div>
+    </div>
+
+
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- Position Column -->
+    <!-- columna de posicion -->
     <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Nro. </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
     </ng-container>
 
-    <!-- Name Column -->
+
+    <!-- columna de operacion -->
+    <ng-container matColumnDef="fecha">
+      <mat-header-cell *matHeaderCellDef> Fecha de operacion </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.fecha}} </mat-cell>
+    </ng-container>
+
+
+    <!-- columna de operacion -->
     <ng-container matColumnDef="operacion">
       <mat-header-cell *matHeaderCellDef> Operacion </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.operacion}} </mat-cell>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- columna de tablas -->
     <ng-container matColumnDef="tabla">
       <mat-header-cell *matHeaderCellDef> Tabla </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.tabla}} </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+    <!-- columna del registro -->
+    <ng-container matColumnDef="registro">
+      <mat-header-cell *matHeaderCellDef> Id del registro </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.registro}} </mat-cell>
     </ng-container>
+
+    
+    <!-- columna de usuari -->
+    <ng-container matColumnDef="usuario">
+      <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.usuario}} </mat-cell>
+    </ng-container>
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </div>
-
+</div>
