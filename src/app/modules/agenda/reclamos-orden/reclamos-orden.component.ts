@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 interface Datos_reclamo{
 	nombre: string;
 	orden: string;
@@ -31,7 +32,7 @@ export class ReclamosOrdenComponent implements OnInit {
       descripcion:'El producto que se utilizo cuando me aplicaron tratamiento de keratina, me causó alergia, pido pronta atencion y me regresen mi dinero.',
       servicios: [
       {	nombre:'Tratamiento Keratina',
-        descripcion:'wuachu wuachu'
+        descripcion:'Debe fijarse de su corte antes de salir de la peluqueria'
        }
                     
     ],
@@ -54,12 +55,37 @@ export class ReclamosOrdenComponent implements OnInit {
 
 
  ];
- 
-
- 
-  constructor() { }
+  
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
+  openDialog(){
+    const dialogRef = this.dialog.open( DarRepuestaComponent, {
+      height: '290px',
+      width: '400px'
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('mostrado');
+    });
+  }
+}
+
+
+@Component({
+  selector: 'app-dar-repuesta',
+  templateUrl: './dar-repuesta.component.html',
+  styleUrls: ['./dar-repuesta.component.scss']
+})
+export class DarRepuestaComponent {
+
+//selec pregunta
+filtroSelec = '';
+filtro = [
+  {value: 'positiva', viewValue: 'positiva'},
+  {value: 'negativa', viewValue: 'negativa'},
+  
+];
 
 }

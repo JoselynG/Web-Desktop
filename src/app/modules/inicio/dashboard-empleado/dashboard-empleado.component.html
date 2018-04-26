@@ -1,6 +1,9 @@
 <div class="ctn">
-    <h1>¡Bienvenido!</h1>
-    <h4>Para el día de hoy tienes 3 citas por atender</h4>
+    <div class="welcome">
+        <h1>¡Bienvenido!</h1>
+        <h4>Para el día de hoy tienes 1 cita(s) por atender</h4>
+        <h5>¿Deseas ver tus otras citas? Accede a tu <a routerLink="/citas">agenda</a></h5>
+    </div>
     <div class="citas" *ngFor="let detalle of detalles">
         <mat-card class="detalle">
             <div class="hora">

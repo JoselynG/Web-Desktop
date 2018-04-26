@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
         },
         {
           type: 'alone',
-          link: '/',
+          link: '/parametros',
           label: 'Parámetros',
           icon: false
         },
@@ -79,12 +79,6 @@ export class HomeComponent implements OnInit {
           type: 'alone',
           link: '/basedatos',
           label: 'Base de datos',
-          icon: false,
-        },
-        {
-          type: 'alone',
-          link: '/consejos',
-          label: 'Consejos',
           icon: false,
         },
       ]
@@ -140,6 +134,12 @@ export class HomeComponent implements OnInit {
           link: '/promociones',
           label: 'Promociones',
           icon: false,
+        },        
+        {
+          type: 'alone',
+          link: '/consejos',
+          label: 'Consejos',
+          icon: false,
         },
       ]
     },
@@ -152,7 +152,7 @@ export class HomeComponent implements OnInit {
     },
     {
       type: 'group',
-      label: 'Agenda',
+      label: 'Órdenes de Servicios',
       icon: true,
       iconName: 'date_range',
       link: '/lista',
@@ -167,12 +167,6 @@ export class HomeComponent implements OnInit {
           type: 'alone',
           link: '/citas',
           label: 'Citas',
-          icon: false,
-        },
-        {
-          type: 'alone',
-          link: '/ordenes',
-          label: 'Órdenes de servicio',
           icon: false,
         },
         {
