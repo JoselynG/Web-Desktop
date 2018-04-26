@@ -3,32 +3,58 @@
     flex-direction: column;
     width: 100%;
   }
-  .detalle {
-    height: 230px;	width: 680px;	background-color: #FFFFFF;	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.14);
-    margin-left: 50px;
-    display: flex;
-    margin-top:30px;
-    margin-bottom: 10px;
-    left: 2009;
-    top: 4444;
-  }
-  .name {
-    font-size: 12px;
-    margin-left: 10px;
-    color: #344563;
-    .bold {
-        font-weight: bold;
-        font-family: Roboto;	font-size: 14px;	
-        line-height: 32px;
-        color: #344563;
-
-    }
-}
 .pres{
-
 color: deeppink;
 size: 23px;
 font-family: Roboto;
 font-weight: bold;
+}
+.example-header {
+  position: relative;
+  min-height: 164px;
+  padding: 10px 5px 0;
+  .button-row {
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+      right: 10px;
+      top: 20px;
+  }
+}
 
+.mat-form-field {
+  font-size: 14px;
+  width: 50%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+  margin: 15px;
+}
+
+.input[type=text] {
+  width: 165px;
+  height: 50px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  ;
+  padding: 12px 30px 12px 12px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+.input[type=text]:focus {
+  width: 380px;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.imagen {
+  background-size: cover;
 }

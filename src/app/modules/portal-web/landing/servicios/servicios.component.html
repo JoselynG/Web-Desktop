@@ -17,19 +17,19 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
       <mat-grid-list cols="1" rowHeight="600px">
-      <mat-grid-tile colspan="1" rowspan="1" *ngFor="let item of consejos; let i, i=index" (click)="retirar(i)">
+      <mat-grid-tile colspan="1" rowspan="1" *ngFor="let item of servicios">
           <mat-card class="example-card">
               <mat-card-header>
-                  <mat-card-title>{{item.nombre}}</mat-card-title>
-                  <mat-card-subtitle>{{item.codigo}}</mat-card-subtitle>
+                  <mat-card-title><strong>{{item.nombre}}</strong></mat-card-title>
               </mat-card-header>
               <img mat-card-image src="{{item.imagen}}">
               <mat-card-content>
-                  <p>
-                      {{item.description}}
-                  </p>
+                  <p>{{item.description}}</p>
+                  <p>Una descripcion del servicio</p>
+                  <div class="pres">
+                    <pre><strong>Leer mas</strong></pre>
+                  </div>
               </mat-card-content>
           </mat-card>
       </mat-grid-tile>
