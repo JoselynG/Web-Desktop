@@ -1,3 +1,21 @@
-<p>
-  servicios works!
-</p>
+<form class="clase1">
+    <mat-form-field>
+        <input matInput placeholder="Titulo de esta seccion" 
+        value="Servicios de nuestron salon de belleza">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Titulo de esta seccion" 
+        value="otras cosas">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="Peluqueria, Maquillaje">
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+
+</form>
