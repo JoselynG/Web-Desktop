@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
           icon: false,
           iconName: 'add_shopping_cart',
         },
+        
         {
           type: 'alone',
           link: '/categorias',
