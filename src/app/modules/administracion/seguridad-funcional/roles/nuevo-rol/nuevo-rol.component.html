@@ -5,14 +5,13 @@
     <mat-form-field>
         <input matInput [(ngModel)]="nombre" placeholder="Nombre del rol">
     </mat-form-field>
-
-    <mat-form-field>
-        <textarea #descrip matInput [(ngModel)]="descripcion" placeholder="Descripcion del rol"
-            maxlength="500"></textarea>
-        <mat-hint align="end">{{descrip.value.length}} / 500</mat-hint>
-    </mat-form-field>
  
 </mat-dialog-content>
+
+        <div *ngFor="let item of items">
+            <br>
+            <mat-checkbox [checked]="item.estatus">{{item.descripcion}}</mat-checkbox>
+        </div>
 
 <mat-dialog-actions>
     <button mat-button mat-dialog-close (click)="onNoClick()">Cancelar</button>

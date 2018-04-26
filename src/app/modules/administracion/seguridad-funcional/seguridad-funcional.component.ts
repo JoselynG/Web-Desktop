@@ -57,6 +57,7 @@ const ELEMENT_DATA: Element[] = [
   {usuario: 'Andrea Gonzalez', correo: "correo@uity",telefono: "041252664654", rol: 'Administrador'},
   {usuario: 'Paul Guedez', correo: "correo@uity",telefono: "041252664654", rol: 'Estilista'},
   {usuario: 'Juan Lopez', correo: "correo@uity",telefono: "041252664654", rol: 'Estilista'},
+  {usuario: 'Homero Simpson', correo: "homer@hotmail.com",telefono: "041252664654", rol: ''},
 ];
 
 
