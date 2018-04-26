@@ -1,0 +1,52 @@
+<div class="content">
+    <div class="ctn">
+        <div class="col1">
+            <mat-form-field class="valor inputs">
+                <mat-select name="resp" [(ngModel)]="valor" placeholder="Tipo de respuesta de la solicitud">
+                    <mat-option name="pp" *ngFor="let filtro of filtro" [value]="filtro.value">
+                        {{ filtro.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width inputs">
+                <input matInput placeholder="Nombre" value="">
+            </mat-form-field>
+            <mat-form-field class="inputs">
+                <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio de la promoción">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col2">
+            <mat-form-field class="valor inputs" *ngIf="valor == 'peluq'">
+                <mat-select name="resp" [(ngModel)]="servPSelec" placeholder="Servicios de peluquería">
+                    <mat-option name="pp" *ngFor="let filtro of servP" [value]="filtro.value">
+                        {{ filtro.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="valor inputs" *ngIf="valor == 'maq'">
+                <mat-select name="resp" [(ngModel)]="servMSelec" placeholder="Servicios de maquillaje">
+                    <mat-option name="pp" *ngFor="let filtro of servM" [value]="filtro.value">
+                        {{ filtro.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width inputs">
+                <input matInput placeholder="Descripción" value="">
+            </mat-form-field>
+
+
+            <mat-form-field class="inputs">
+                <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de finalización de la promoción">
+                <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEnd></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="div-btn">
+        <input id="fileInput2" style="display: none;" type='file'>
+        <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: grey;">
+        <mat-icon>backup</mat-icon> SUBIR IMAGEN</button><br>
+    </div>
+</div>

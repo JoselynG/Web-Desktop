@@ -1,0 +1,41 @@
+<div class="ctn">
+    <mat-horizontal-stepper #stepper="matHorizontalStepper">
+        <mat-step>
+
+            <ng-template matStepLabel>Datos de la promoción</ng-template>
+            <app-primer-paso></app-primer-paso>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+
+        </mat-step>
+        <mat-step>
+
+            <ng-template matStepLabel>Datos básicos para la difusión</ng-template>
+            <app-segundo-paso></app-segundo-paso>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+
+        </mat-step>
+        <mat-step>
+
+            <ng-template matStepLabel>Características para la difusión</ng-template>
+            <app-tercer-paso></app-tercer-paso>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Gustos y preferencias para la difusión</ng-template>
+            <app-cuarto-paso></app-cuarto-paso>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

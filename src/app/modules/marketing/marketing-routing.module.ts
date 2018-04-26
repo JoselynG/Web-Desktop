@@ -1,3 +1,4 @@
+import { ConfigPromocionComponent } from './promocion/config-promocion/config-promocion.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListaServiciosComponent } from './servicios/lista-servicios/lista-servicios.component';
@@ -18,12 +19,15 @@ const routes: Routes = [
     path: 'promociones',
     component:ListadoPromocionComponent,
   },
-
   {
     path:'difundir',
     component:DifundirPromocionComponent, 
-
-  }
+  },
+  
+  {
+    path:'config',
+    component: ConfigPromocionComponent, 
+  },
 ];
 
 @NgModule({
