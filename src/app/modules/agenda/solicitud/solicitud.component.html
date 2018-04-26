@@ -6,7 +6,7 @@
                 <input matInput placeholder="Buscar cita o servicio prestado por código" autocomplete="off" type="search">
             </mat-form-field>
         </div>
-        <div class="select mat-elevation-z1">
+        <!-- <div class="select mat-elevation-z1">
             <mat-form-field class="valor">
                 <mat-select placeholder="Empleados" [(ngModel)]="empleadosSeleccionados" multiple>
                     <mat-select-trigger>
@@ -18,9 +18,8 @@
                     <mat-option color="accent" *ngFor="let empleado of empleados" [value]="empleado">{{empleado}}</mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
+        </div>-->
     </div>
-
     <div class="citas" *ngFor="let detalle of detalles">
         <mat-card class="detalle">
             <div class="contenido">

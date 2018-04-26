@@ -36,7 +36,7 @@ export class ClientesFrecuentesComponent implements OnInit {
         }]
     },
   }
-  misDatosP = {
+  misDatosSem = {
     type: 'pie',
     data: {
         labels: ["Mujeres", "Hombre"],

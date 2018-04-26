@@ -1,6 +1,5 @@
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { GraficosDirective } from './test/graficos.directive';
-
 import { AgendaModule } from './modules/agenda/agenda.module';
 import { NavListComponent } from './home/nav-list/nav-list.component';
 import { SharedModule } from './shared/shared.module';
