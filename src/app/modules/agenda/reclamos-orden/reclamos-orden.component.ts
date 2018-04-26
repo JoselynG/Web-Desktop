@@ -6,15 +6,12 @@ interface Datos_reclamo{
 	fecha: string;
 	tipoR: string;
 	descripcion: string;
-	servicios: servicio[];
+	
 	fechaV:string;
 
 }
 
-interface servicio{
-    nombre: string;
-    descripcion: string;
-}
+
 
 @Component({
   selector: 'app-reclamos-orden',
@@ -30,12 +27,7 @@ export class ReclamosOrdenComponent implements OnInit {
       fecha: '10 abril 2018',
       tipoR: 'producto',
       descripcion:'El producto que se utilizo cuando me aplicaron tratamiento de keratina, me causó alergia, pido pronta atencion y me regresen mi dinero.',
-      servicios: [
-      {	nombre:'Tratamiento Keratina',
-        descripcion:'Debe fijarse de su corte antes de salir de la peluqueria'
-       }
-                    
-    ],
+    
     fechaV: '20 abril 2018'
     },
 
@@ -45,11 +37,7 @@ export class ReclamosOrdenComponent implements OnInit {
         fecha: '11 abril 2018',
         tipoR: 'servicio',
         descripcion:' Me hicieron mal el corte, me di cuenta al irme de la peluqueria',
-        servicios: [
-          {	nombre:'Corte de Cabello',
-            descripcion:'Debe fijarse de su corte antes de salir de la peluqueria'
-          }                    
-        ],
+        
         fechaV: '20 abril 2018'
     }
 

@@ -5,6 +5,7 @@
     </div>
 
 <div class="ctn">
+ <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
   <!--  <mat-card class="card">!-->
   <h3 class="title">
       Nuevo Servicio
@@ -63,12 +64,17 @@
       </mat-form-field>
   
   <!--</mat-card>!-->
-</div>
-<!--  <boton>!-->
-    <div class="btn-fin">
+  <!--  <boton>!-->
+        <div class="btn-fin">
       
-        <div style="padding-top: 5px; width:95%; display:flex; justify-content: flex-end;">
-              <button mat-raised-button color="accent"routerLink="/dato" class="c-white btn">Siguiente</button>
-           </div>
-  
-    </div>
+                <div style="padding-top: 5px; width:95%; display:flex; justify-content: flex-end;">
+                        <mat-action-row>
+                                <button mat-raised-button color="accent" (click)="nextStep()">Siguiente</button>
+                              </mat-action-row>
+                                
+                   </div>
+          
+            </div>
+        </mat-expansion-panel> 
+</div>
+ 

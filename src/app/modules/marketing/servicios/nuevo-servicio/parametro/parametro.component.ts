@@ -64,7 +64,19 @@ valoresParametro: IValorParametro[]=[
 ];
 
 datos_a_mostrar: IParametroValorParametro[]=[];
+step = 0;
 
+setStep(index: number) {
+  this.step = index;
+}
+
+nextStep() {
+  this.step++;
+}
+
+prevStep() {
+  this.step--;
+}
 
   constructor() { }
 

@@ -1,10 +1,7 @@
-<div class="boton">
-  <span class="span1" matTooltip="crearServicio"><button mat-raised-button routerLink="/crearServicio"><mat-icon>keyboard_backspace</mat-icon> paso 1</button></span>
-  <div class="separador"></div>
-   
-</div>
+
 
 <div class="ctn-perfil">
+<mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true"><br><br><br>
 <mat-accordion class="div-acordeon">
     <!--..........................................................................................-->
     <mat-expansion-panel *ngFor="let tipo_param of listaTipoParam; index as tp"
@@ -50,17 +47,15 @@
                 </div>
             </mat-card-content>
         </mat-card>
-        <div style="padding-top: 5px; width:95%; display:flex; justify-content: flex-end;">
-        <button mat-raised-button color="accent" (click)="siguiente()">Siguiente</button>
-        </div>
+        
     </div>
-</div>
 </div>
 <!--  <boton>!-->
-    <div class="btn-fin">
-      
-        <div style="padding-top: 5px; width:95%; display:flex; justify-content: flex-end;">
-              <button mat-raised-button color="accent"routerLink="/dato" class="c-white btn">Siguiente</button>
-           </div>
-  
-    </div>
+        <div class="btn-fin">
+                <mat-action-row>
+                        <button mat-button color="accent" (click)="prevStep()">Anterior</button>
+                        <button mat-raised-button color="accent" (click)="nextStep()">Siguiente</button>
+                      </mat-action-row></div>
+                    </mat-expansion-panel>
+           
+</div>

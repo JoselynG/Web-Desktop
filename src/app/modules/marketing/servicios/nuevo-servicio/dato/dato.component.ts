@@ -33,7 +33,19 @@ valoresParametro: IValorParametro[]=[
 ];
 
 datos_a_mostrar: IParametroValorParametro[]=[];
+step = 0;
 
+setStep(index: number) {
+  this.step = index;
+}
+
+nextStep() {
+  this.step++;
+}
+
+prevStep() {
+  this.step--;
+}
   constructor() { }
   ngOnInit() { /*Aca se inicializa la lista de valores parametro*/
     this.parametros.forEach(elem=> {let longi=0;let arra:IValorParametro[]=[];this.valoresParametro.forEach(element => {if(element.id_parametro==elem.id){longi=arra.push(element);}});longi=this.datos_a_mostrar.push({nombre_parametro:elem,valores_parametro:arra});});
