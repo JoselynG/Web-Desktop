@@ -32,7 +32,7 @@
 
                 <mat-form-field class="demo-chip-list inputs">
                     <mat-chip-list #chipList>
-                        <mat-chip *ngFor="let ins of servicioPSeleccionados" [selectable]="selectable" [removable]="removable" (remove)="remove(ins)">
+                        <mat-chip *ngFor="let ins of servicioPSeleccionados" [selectable]="selectable" [removable]="removable">
                             {{ins}}
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
@@ -56,7 +56,7 @@
 
                 <mat-form-field class="demo-chip-list inputs">
                     <mat-chip-list #chipList>
-                        <mat-chip *ngFor="let ins of servicioMSeleccionados" [selectable]="selectable" [removable]="removable" (remove)="remove(ins)">
+                        <mat-chip *ngFor="let ins of servicioMSeleccionados" [selectable]="selectable">
                             {{ins}}
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
@@ -66,29 +66,31 @@
                 <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Empleado que realizó el servicio de maquillaje" value="Jon Connington" disabled>
                 </mat-form-field>
-                <mat-form-field class="inputs">
-                    <input matInput [matDatepicker]="picker" placeholder="Fecha de finalización de garantía">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field class="example-full-width inputs">
+
+                <!--  <mat-form-field class="example-full-width inputs">
                     <textarea matInput placeholder="Comentarios" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
-                </mat-form-field>
+                </mat-form-field>-->
                 <button mat-raised-button color="accent" routerLink="/timeline" class="c-white btn">Registrar</button>
             </mat-card>
         </div>
-        <div class="incidencias">
-            <h4>Incidencias</h4>
-            <mat-card class="lista-incidencia">
-                <h5>Planchado de cabello</h5><br>
-                <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam dolorum aut, nobis rem in commodi illo rerum aperiam facilis explicabo deserunt provident dignissimos blanditiis tempora voluptates recusandae, nemo nam natus?</mat-card-content>
-            </mat-card>
-            <mat-card class="lista-incidencia">
-                <h5>Baños de color</h5><br>
-                <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</mat-card-content>
-            </mat-card>
-            <div class="">
-                <button mat-button class="btn" (click)="openDialog()">AGREGAR INCIDENCIA</button>
+        <div class="right">
+            <div class="incidencias">
+                <h4>Incidencias</h4>
+                <mat-card class="lista-incidencia">
+                    <h5>Planchado de cabello</h5><br>
+                    <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam dolorum aut, nobis rem in commodi illo rerum aperiam facilis explicabo deserunt provident dignissimos blanditiis tempora voluptates recusandae, nemo nam natus?</mat-card-content>
+                </mat-card>
+                <mat-card class="lista-incidencia">
+                    <h5>Baños de color</h5><br>
+                    <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</mat-card-content>
+                </mat-card>
+                <div class="">
+                    <button mat-button class="btn" (click)="openDialog()">AGREGAR INCIDENCIA</button>
+                </div>
+            </div>
+            <div class="insumos">
+                <h4>Insumos</h4>
+                <app-insumos-utilizados></app-insumos-utilizados>
             </div>
         </div>
     </div>

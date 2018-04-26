@@ -1,59 +1,96 @@
-.btnSubir {
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 19px;
-    margin-top: 15px;
-}
+.btnObje{
 
-.icono {
     position: relative;
-    left: 350px;
+    left: 360px;
+    padding-bottom: 20px;
 }
 
-.c-whitebtn1 {
-    color: #FD0087;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 19px;
-    margin-top: 15px;
+
+.textarea
+
+
+{
+    width: 560px;
+    height: 50px;
+
 }
+
+
+
+.btnSubir{
+
+
+font-size: 14px;
+font-weight: bold;
+line-height: 19px;
+margin-top: 15px;
+
+}
+
+
+.icono{
+
+  position: relative;
+  left: 350px;
+  
+}
+
+.c-whitebtn1{
+                color: #FD0087;
+                font-size: 14px;
+                font-weight: bold;
+                line-height: 19px;
+                margin-top: 15px;
+
+
+    }
 
 .titulo {
-    font-size: 16px;
-    font-weight: bold;
-    color: #344563;
-    line-height: 30px;
-}
-
-.ctn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 30px;
-    .registro {
-        margin-left: 100px;
-        margin-right: 10px;
-        left: 50px;
-        .detalle {
-            margin-top: 30px;
-            margin-left: 60px;
-            margin-right: 100px;
-            width: 550px;
-            height: 630px;
-            .inputs {
-                margin: 5px 0px;
-                width: 470px;
-            }
-            input:disabled {
-                color: black;
-            }
-        }
-        .btn {
-            color: #FD0087;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
-            line-height: 19px;
-            margin-top: 15px;
+            color:  black;;
+            line-height: 30px;
+
         }
+
+
+    .ctn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 30px;
+        
+        .registro {
+            margin-left: 100px;
+            margin-right:25px;
+            
+            
+            left: 50px ;
+            .detalle {
+                margin-top: 30px;
+                margin-left: 60px;
+                margin-right: 100px;
+                width: 600px;
+                height: 1125px;
+
+                .inputs {
+                    margin: 5px 0px;
+                    width: 470px;
+                    
+                }
+                input:disabled {
+                    color: black;
+                }
+            }
+        
+        
+            .btn {
+                color: #FD0087;
+                font-size: 14px;
+                font-weight: bold;
+                line-height: 19px;
+                margin-top: 15px;
+            }
+        
     }
 }

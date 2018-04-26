@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParametroComponent implements OnInit {
   listaTipoParam: ITipoParametro[]=[
-    {id:1,nombre:"Cabello",descripcion:"el cabello",fecha_creacion:"2018-03-02",estatus:"activo"},
+    {id:1,nombre:"cabello",descripcion:"cabello",fecha_creacion:"2018-03-02",estatus:"activo"},
     {id:2,nombre:"Piel",descripcion:"la piel",fecha_creacion:"2018-03-03",estatus:"activo"},
     {id:3,nombre:"Ojos",descripcion:"los ojos",fecha_creacion:"2018-03-04",estatus:"activo"}
 ];
 parametros: IParametro[]=[
-  {id:1,id_tipo_parametro:1,//Cabello
-  nombre:"Longitud",descripcion:"la longitud",fecha_creacion:"2018-02-02",estatus:"activo"},
+  {id:1,id_tipo_parametro:1,//cabello
+  nombre:"longitud",descripcion:"longitud",fecha_creacion:"2018-02-02",estatus:"activo"},
   {id:2,id_tipo_parametro:1,//Cabello
   nombre:"Tipo (emulsion epicutanea)",descripcion:"la emulsion",fecha_creacion:"2018-02-02",estatus:"activo"},
   {id:3,id_tipo_parametro:2,//Piel
@@ -64,6 +64,7 @@ valoresParametro: IValorParametro[]=[
 ];
 
 datos_a_mostrar: IParametroValorParametro[]=[];
+
 
   constructor() { }
 
@@ -137,3 +138,6 @@ interface IParametroValorParametro{
   nombre_parametro: IParametro;
   valores_parametro: IValorParametro[];
 }
+
+
+

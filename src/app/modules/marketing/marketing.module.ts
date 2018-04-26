@@ -1,3 +1,4 @@
+import { DatoComponent } from './servicios/nuevo-servicio/dato/dato.component';
 import { ListadoPromocionComponent } from './promocion/listado-promocion/listado-promocion.component';
 import { MaterialDesignModule } from './../../material-design/material-design.module';
 import { FormsModule } from '@angular/forms';
@@ -24,7 +25,8 @@ import { DifundirPromocionComponent } from './promocion/difundir-promocion/difun
     CrearServiciosComponent,
     ParametroComponent,
     DifundirPromocionComponent,
-    ListadoPromocionComponent
+    ListadoPromocionComponent,
+    DatoComponent
   ]
 })
 export class MarketingModule { }

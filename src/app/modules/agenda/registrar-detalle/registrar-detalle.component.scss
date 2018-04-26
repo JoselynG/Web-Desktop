@@ -32,20 +32,34 @@
                 }
             }
         }
-        .incidencias {
-            .lista-incidencia {
-                width: 270px;
-                margin-top: 25px;
-                .content {
-                    color: #A5ADBA;
+        .right {
+            display: flex;
+            flex-direction: column;
+            .incidencias {
+                .lista-incidencia {
+                    width: 270px;
+                    margin-top: 25px;
+                    .content {
+                        color: #A5ADBA;
+                    }
+                }
+                .btn {
+                    color: #FD0087;
+                    font-size: 14px;
+                    font-weight: bold;
+                    line-height: 19px;
+                    margin-top: 15px;
                 }
             }
-            .btn {
-                color: #FD0087;
-                font-size: 14px;
-                font-weight: bold;
-                line-height: 19px;
-                margin-top: 15px;
+            .insumos {
+                margin-top: 20px;
+                h4 {
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #344563;
+                    line-height: 19px;
+                    margin-bottom: 15px;
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
+import { PerfilModule } from './modules/perfil/perfil.module';
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { GraficosDirective } from './test/graficos.directive';
-
 import { AgendaModule } from './modules/agenda/agenda.module';
 import { NavListComponent } from './home/nav-list/nav-list.component';
 import { SharedModule } from './shared/shared.module';
@@ -55,7 +55,8 @@ import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.mod
     ReportesModule,
     NotificacionesModule,
     PerfilUsuarioModule,
-    PortalWebModule
+    PortalWebModule,
+    PerfilModule
   ],
   providers: [ConsejosService],
   bootstrap: [AppComponent]

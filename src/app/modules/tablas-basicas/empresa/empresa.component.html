@@ -1,43 +1,79 @@
 <div class="ctn">
+       
+ <div class="registro">
+               <div class= titulo>
+            <p>  Registro de Datos del Negocio</p>
+            </div>
+             
+            <mat-card class="detalle">
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Nombre"   >
+                </mat-form-field>
 
-    <div class="registro">
-        <div class=t itulo>
-            <p> Registro de Datos de la Empresa</p>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Rif: "  >
+                </mat-form-field>
+                
+                <mat-form-field  class="example-full-width inputs">
+                    <input type=email  matInput placeholder="Logo"  >
+                    
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width inputs" disabled>
+                 <input matInput placeholder="Hora Inicio de Trabajo " >
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width inputs" disabled>
+                    <input matInput placeholder="Hora Final de Trabajo"   >
+                </mat-form-field> <mat-divider></mat-divider><br><br>
+                <div class= titulo>
+                <p>Razon de Ser del Negocio:</p><br>
+                 </div>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Mision " value="la mision de la organizacíon" disabled >
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Visión " value="la visión de la organizacíon" disabled >
+                </mat-form-field >
+                <div class ="btnObje">
+                <button mat-raised-button color="accent" (clik)="openDialogO()" >AgregarObjetivos </button>
+            </div><mat-divider></mat-divider><br><br>
+                <div class= titulo>
+                <p> Datos de Contacto:</p><br>
+            </div>
+            
+                 
+            <mat-select id="seleccion"  placeholder="Seleccione Ciudad">
+                <mat-option >
+                Barquisimeto
+               </mat-option>
+               <mat-option >
+                 San Carlos
+               </mat-option>
+               <mat-option >
+                   Acarigua
+               </mat-option>
+               </mat-select>
+
+             <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Estado:" >
+             </mat-form-field>
+             
+             <mat-form-field class="textarea">
+                <textarea matInput placeholder="Descripción Exacta del Negocio" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi bbbbbbbbbbbb</textarea>
+              </mat-form-field>
+            
+                    <mat-form-field  class="example-full-width inputs">
+                    <input type=email  matInput placeholder="Correo" value="marna@gmail.com" disabled >
+                    
+                    </mat-form-field>
+                    <mat-form-field  class="example-full-width inputs">
+                        <input type=email  matInput placeholder="Telefono" value="0251" disabled >
+                        
+                        </mat-form-field>
+                
+                <button mat-raised-button color="accent" routerLink="/timeline">Editar</button>
+            </mat-card>
+            
         </div>
-
-        <mat-card class="detalle">
-            <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Nombre" value=" Peluqueria C.A" disabled>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Objetivo" value="EL objetivo general del la organizacion" disabled>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Dirección" value="Calle 5 Jacinto Lara " disabled>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width inputs" disabled>
-                <input matInput placeholder="Hora de apertura">
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width inputs" disabled>
-                <input matInput placeholder="Hora de cierre">
-            </mat-form-field>
-            <mat-form-field class="example-full-width inputs">
-                <input type=email matInput placeholder="Logo">
-
-            </mat-form-field>
-
-
-            <mat-form-field class="example-full-width inputs">
-                <input type=email matInput placeholder="Correo" value="marna@gmail.com" disabled>
-
-            </mat-form-field>
-
-            <button mat-raised-button color="accent" routerLink="/timeline">Editar</button>
-        </mat-card>
-
-    </div>
-</div>
+        </div>
