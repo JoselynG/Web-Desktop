@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 interface TipoParametro {
 nombreTP: string;
 Parametros: Tpa[];
@@ -18,9 +19,12 @@ nombre: string;
   templateUrl: './difundir-promocion.component.html',
   styleUrls: ['./difundir-promocion.component.scss']
 })
+
+
+
 export class DifundirPromocionComponent implements OnInit {
  panelOpenState = false;
-
+ 
  datos: TipoParametro[] = [
 {           nombreTP: 'Cabello',
 
@@ -73,7 +77,19 @@ valores: Val[] = [
   valor: 'Maltratado', descrip: ' También llamada manto hidrolipídico, es una mezcla de sebo, sudor y células muertas que recubre la piel.'
 }
 ];
+step = 0;
 
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
 
   constructor() { }
 
