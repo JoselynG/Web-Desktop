@@ -30,70 +30,84 @@
       <!--++++++-->
     </mat-tab>
 
-    <mat-tab label="Promociones">
-        <!--++++++-->
-        <div style="padding: 30px 30px 30px 60px; ">
-            <h4 style="opacity: 0.5;">Selecciona las promociones que quieres mostrar</h4>
-            <br>
-            <!--<div *ngIf="grupoTabs.selectedIndex==2">-->
-            <mat-card style="padding: 50px 120px;">
-             
-            </mat-card>
-          <!--</div>-->
-        </div>
-        <!--++++++-->
-      </mat-tab>
+        <mat-tab label="Servicios">
+            <!--++++++-->
+            <div style="padding: 30px 30px 30px 60px; ">
+                <h4 style="opacity: 0.5;">Selecciona la cantidad de tipos de servicios prestados</h4>
+                <br>
+                <!--<div *ngIf="grupoTabs.selectedIndex==1">-->
+                <mat-card style="padding: 50px 120px;">
+                    <app-estilistas></app-estilistas>
+                </mat-card>
+                <!--</div>-->
+            </div>
+            <!--++++++-->
+        </mat-tab>
 
-      <mat-tab label="Reseñas">
-        <!--++++++-->
-        <div style="padding: 30px 30px 30px 60px; ">
-            <h4 style="opacity: 0.5;">Selecciona las reseñas que quieres mostrar</h4>
-            <br>
-            <!--<div *ngIf="grupoTabs.selectedIndex==2">-->
-            <mat-card style="padding: 50px 120px;">
-           
-            </mat-card>
-          <!--</div>-->
-        </div>
-        <!--++++++-->
-      </mat-tab>
+        <mat-tab label="Promociones">
+            <!--++++++-->
+            <div style="padding: 30px 30px 30px 60px; ">
+                <h4 style="opacity: 0.5;">Selecciona las promociones que quieres mostrar</h4>
+                <br>
+                <!--<div *ngIf="grupoTabs.selectedIndex==2">-->
+                <mat-card style="padding: 50px 120px;">
 
-      <mat-tab label="Estilistas">
-        <!--++++++-->
-        <div style="padding: 30px 30px 30px 60px; ">
-            <h4 style="opacity: 0.5;">Selecciona los estilistas que quieres mostrar</h4>
-            <br>
-            <!--<div *ngIf="grupoTabs.selectedIndex==2">-->
-            <mat-card style="padding: 50px 120px;">
-               
-            </mat-card>
-          <!--</div>-->
-        </div>
-        <!--++++++-->
-      </mat-tab>
+                </mat-card>
+                <!--</div>-->
+            </div>
+            <!--++++++-->
+        </mat-tab>
 
-      <mat-tab label="Twitter">
-        <!--++++++-->
-        <div style="padding: 30px 30px 30px 60px; ">
-            <h4 style="opacity: 0.5;">Configura tu timeline de twitter</h4>
-            <br>
-            <!--<div *ngIf="grupoTabs.selectedIndex==2">-->
-            <mat-card style="padding: 50px 120px;">
-                
-            </mat-card>
-          <!--</div>-->
-        </div>
-        <!--++++++-->
-      </mat-tab>
-  </mat-tab-group>
-  
-  <!--Posiciona los botones a la parte superior derecha de la pantalla-->
-  <div class="button-row">
-      <button mat-raised-button>
+        <mat-tab label="Reseñas">
+            <!--++++++-->
+            <div style="padding: 30px 30px 30px 60px; ">
+                <h4 style="opacity: 0.5;">Selecciona las reseñas que quieres mostrar</h4>
+                <br>
+                <!--<div *ngIf="grupoTabs.selectedIndex==2">-->
+                <mat-card style="padding: 50px 120px;">
+
+                </mat-card>
+                <!--</div>-->
+            </div>
+            <!--++++++-->
+        </mat-tab>
+
+        <mat-tab label="Estilistas">
+            <!--++++++-->
+            <div style="padding: 30px 30px 30px 60px; ">
+                <h4 style="opacity: 0.5;">Selecciona los estilistas que quieres mostrar</h4>
+                <br>
+                <!--<div *ngIf="grupoTabs.selectedIndex==2">-->
+                <mat-card style="padding: 50px 120px;">
+
+                </mat-card>
+                <!--</div>-->
+            </div>
+            <!--++++++-->
+        </mat-tab>
+
+        <mat-tab label="Twitter">
+            <!--++++++-->
+            <div style="padding: 30px 30px 30px 60px; ">
+                <h4 style="opacity: 0.5;">Configura tu timeline de twitter</h4>
+                <br>
+                <!--<div *ngIf="grupoTabs.selectedIndex==2">-->
+                <mat-card style="padding: 50px 120px;">
+
+                </mat-card>
+                <!--</div>-->
+            </div>
+            <!--++++++-->
+        </mat-tab>
+    </mat-tab-group>
+
+    <!--Posiciona los botones a la parte superior derecha de la pantalla-->
+    <div class="button-row">
+        <button mat-raised-button>
         <mat-icon>save</mat-icon> Guardar
       </button>
-      <button mat-raised-button>
+        <button mat-raised-button>
         <mat-icon>visibility</mat-icon> Previsualizar
       </button>
-  </div>
-  </div>
+    </div>
+</div>

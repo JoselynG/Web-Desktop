@@ -3,3 +3,32 @@
     flex-direction: column;
     width: 100%;
   }
+  .detalle {
+    height: 230px;	width: 680px;	background-color: #FFFFFF;	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.14);
+    margin-left: 50px;
+    display: flex;
+    margin-top:30px;
+    margin-bottom: 10px;
+    left: 2009;
+    top: 4444;
+  }
+  .name {
+    font-size: 12px;
+    margin-left: 10px;
+    color: #344563;
+    .bold {
+        font-weight: bold;
+        font-family: Roboto;	font-size: 14px;	
+        line-height: 32px;
+        color: #344563;
+
+    }
+}
+.pres{
+
+color: deeppink;
+size: 23px;
+font-family: Roboto;
+font-weight: bold;
+
+}

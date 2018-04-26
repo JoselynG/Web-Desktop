@@ -4,10 +4,11 @@
         value="Servicios de nuestron salon de belleza">
       </mat-form-field>
       <br>
-      <mat-form-field>
-        <input matInput placeholder="Titulo de esta seccion" 
-        value="otras cosas">
-      </mat-form-field>
+      <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input matInput #message maxlength="150" placeholder="Otro mensaje">
+            <mat-hint align="end">{{message.value.length}} / 150</mat-hint>
+          </mat-form-field>
       <br>
       <mat-form-field>
         <mat-select placeholder="Peluqueria, Maquillaje">
@@ -16,6 +17,21 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      
-
+      <br>
+      <mat-grid-list cols="1" rowHeight="600px">
+      <mat-grid-tile colspan="1" rowspan="1" *ngFor="let item of consejos; let i, i=index" (click)="retirar(i)">
+          <mat-card class="example-card">
+              <mat-card-header>
+                  <mat-card-title>{{item.nombre}}</mat-card-title>
+                  <mat-card-subtitle>{{item.codigo}}</mat-card-subtitle>
+              </mat-card-header>
+              <img mat-card-image src="{{item.imagen}}">
+              <mat-card-content>
+                  <p>
+                      {{item.description}}
+                  </p>
+              </mat-card-content>
+          </mat-card>
+      </mat-grid-tile>
+  </mat-grid-list>
 </form>
