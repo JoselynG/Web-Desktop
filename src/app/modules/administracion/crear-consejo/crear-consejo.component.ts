@@ -6,10 +6,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crear-consejo.component.scss']
 })
 export class CrearConsejoComponent implements OnInit {
-
-  constructor() { }
+categorias: any ;
+  constructor() {
+    this.categorias = [
+      {nombre: 'Peluqueria'},
+      {nombre: 'Maquillaje'},
+      {nombre: 'Todas'}
+    ];
+   }
 
   ngOnInit() {
+  }
+  cambiarImagen(event, id) { // se llama cada vez que ocurre el evento change del file input
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); //
+      // tslint:disable-next-line:no-shadowed-variable
+      reader.onload = (event: any) => { //
+      document.getElementById(id).setAttribute('src', event.target.result);
+      };
+    }
   }
 
 }

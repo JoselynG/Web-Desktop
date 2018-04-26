@@ -11,20 +11,20 @@ export class ListConsejosComponent implements OnInit {
   constructor()  {
     this.consejos = [
     {
-      titulo: 'Exfoliacion',
+      nombre: 'Exfoliacion',
       imagen: 'assets/img/exfoliante.png',
       descripcion: 'Estas exfoliaciones son excelentes para tu rostro',
       codigo: '#16445-6560',
     },
     {
-      titulo: 'Masaje Capilar',
+      nombre: 'Masaje Capilar',
       imagen: 'assets/img/masajecapilar.jpg',
       descripcion: 'Un masaje capilar que te permitira sentirte relajada y sin problemas',
       codigo: '#16445-6560',
     },
     {
-      titulo: 'Promoción A',
-      imagen: 'assets/img/rutinas.png',
+      nombre: 'Promoción A',
+      imagen: 'assets/img/exfoliante.png',
       descripcion: 'Estas rutinas de beleza te ayudaran a mejorar tu dia a dia',
       codigo: '#16445-6560',
     },
@@ -33,6 +33,7 @@ export class ListConsejosComponent implements OnInit {
 
   ngOnInit() {
   }
+
  /* cargarConsejos() {
     this.consejosService.getConsejos().suscribe(
       (data => {
