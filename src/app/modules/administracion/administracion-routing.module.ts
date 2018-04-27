@@ -7,6 +7,7 @@ import { AsignarFuncionesComponent } from './seguridad-funcional/asignar-funcion
 import { RolesComponent } from './seguridad-funcional/roles/roles.component';
 import { ListConsejosComponent } from './list-consejos/list-consejos.component';
 import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
+import { PasosComponent } from './pasos/pasos.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'nuevoConsejo',
     component: CrearConsejoComponent
+  },
+  {
+    path: 'nuevoConsejo/Pasos',
+    component: PasosComponent
   }
 ];
 

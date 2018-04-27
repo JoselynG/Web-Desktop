@@ -15,6 +15,7 @@ import { RolesComponent } from './seguridad-funcional/roles/roles.component';
 import { NuevoRolComponent } from './seguridad-funcional/roles/nuevo-rol/nuevo-rol.component';
 import { ListConsejosComponent } from './list-consejos/list-consejos.component';
 import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
+import { PasosComponent } from './pasos/pasos.component';
 import { DepuracionesComponent } from './base-datos/depuraciones/depuraciones.component';
 import { HistoricosComponent } from './base-datos/historicos/historicos.component';
 import { RespaldoComponent } from './base-datos/respaldo/respaldo.component';
@@ -27,10 +28,8 @@ import { ImportarComponent } from './base-datos/importar/importar.component';
     MaterialDesignModule,
     FormsModule
   ],
-  entryComponents:[//here in entry components goes components to be used in modal dialogs
-    NuevoRolComponent,
-    NuevoUsuarioComponent,
-    
+  entryComponents: [
+    NuevoRolComponent, NuevoUsuarioComponent
   ],
   declarations: [
     BaseDatosComponent,
