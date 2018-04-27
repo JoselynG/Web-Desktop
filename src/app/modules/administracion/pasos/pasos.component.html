@@ -1,31 +1,74 @@
 <div style="margin-top:30px">
-    <mat-grid-list cols="1" rowHeight="20px" >
+    <mat-grid-list style="margin-top:20px" cols="2" rowHeight="40px" style="margin-right:130px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button mat-raised-button routerLink="/consejos">Cancelar</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="1" rowHeight="20px" style="margin-bottom:20px;margin-top:20px" >
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <h3>Seleccione las caracteristicas de los clientes para dirigir sus consejos</h3>
         </mat-grid-tile>
       </mat-grid-list>
-        <mat-grid-list cols="1" rowHeight="300px"  >
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+       <!-- <mat-grid-list cols="1" rowHeight="600px" style="margin-top:-10px" >
+        <mat-grid-tile [colspan]="1" [rowspan]="1">-->
             <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
                 <mat-step label="Datos Básicos" >
                   <mat-accordion>
                       <mat-expansion-panel *ngFor="let item of listaTipoParametro" (click)="cargarParametro(item.id_dato)">
-                          <mat-expansion-panel-header>
+                          <mat-expansion-panel-header *ngIf="item.tipo_dato == 'basico'">
                             <mat-panel-title>
                              {{item.nombre}}
                             </mat-panel-title>
                           </mat-expansion-panel-header>
-                         <!-- <section class="example-section" *ngFor="let para of listaParametros" >
+                          <section class="example-section" *ngFor="let para of listaParametro" >
                               <p class="example-margin" >{{para.nombre}}</p>
-                              <mat-checkbox class="example-margin"></mat-checkbox>
-                          </section>-->
+                              <mat-checkbox class="example-margin" (onChange)="guardarDatoBAsico(para)"></mat-checkbox>
+                          </section>
                         </mat-expansion-panel>
                   </mat-accordion>
+                  <div text-right style="margin-top:20px">
+                      <button mat-raised-button matStepperNext color="accent">Siguiente</button>
+                    </div>
                 </mat-step>
                 <mat-step label="Caracteristicas">
-                  Content 2
+                  <mat-accordion>
+                    <mat-expansion-panel *ngFor="let item of listaTipoParametro" (click)="cargarParametro(item.id_dato)">
+                        <mat-expansion-panel-header *ngIf="item.tipo_dato == 'caracteristica'">
+                          <mat-panel-title>
+                           {{item.nombre}}
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <section class="example-section" *ngFor="let para of listaParametro" >
+                            <p class="example-margin" >{{para.nombre}}</p>
+                            <mat-checkbox class="example-margin" (click)="guardarAtributo(para)"></mat-checkbox>
+                        </section>
+                      </mat-expansion-panel>
+                </mat-accordion>
+                <div text-right style="margin-top:20px">
+                    <button mat-raised-button matStepperNext color="accent">Suguiente</button>
+                  </div>
+                </mat-step>
+                <mat-step label="Valores de las caracteristicas selecionadas">
+                  <mat-accordion>
+                    <mat-expansion-panel *ngFor="let item of consejo" (click)="cargarValorParametro(item.id_parametro)">
+                        <mat-expansion-panel-header >
+                          <mat-panel-title>
+                           {{item.nombre}}
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <section class="example-section" *ngFor="let para of listaValor" >
+                            <p class="example-margin" >{{para.nombre}}</p>
+                            <p class="example-margin" >{{para.description}}</p>
+                            <mat-checkbox class="example-margin" (click)="guardarDatoBasico(para)"></mat-checkbox>
+                        </section>
+                      </mat-expansion-panel>
+                      
+                </mat-accordion>
+                <div text-right style="margin-top:20px">
+                    <button mat-raised-button  color="accent" (click)="Guardar()">Guardar</button>
+                  </div>
                 </mat-step>
               </mat-horizontal-stepper>
-            </mat-grid-tile>
-    </mat-grid-list>
+           <!-- </mat-grid-tile>
+    </mat-grid-list>-->
   </div>
