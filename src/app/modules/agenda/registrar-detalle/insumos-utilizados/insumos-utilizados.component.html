@@ -5,15 +5,15 @@
 
     <div class="insumos" *ngFor="let insumos1 of insumos1">
         <div class="left">
-            <h4>{{insumos1.nombre}} </h4>
+            <h6>{{insumos1.nombre}} </h6>
         </div>
         <div class="right">
             <div class="input">
                 <mat-form-field class="nn">
-                    <input matInput type="number">
+                    <input matInput type="number" value="3">
                 </mat-form-field>
             </div>
-            <h4>{{insumos1.unidad}} </h4>
+            <h6>{{insumos1.unidad}} </h6>
         </div>
     </div>
     <mat-divider></mat-divider>
@@ -22,15 +22,15 @@
     </div>
     <div class="insumos" *ngFor="let insumos1 of insumos2">
         <div class="left">
-            <h4>{{insumos1.nombre2}} </h4>
+            <h6>{{insumos1.nombre2}} </h6>
         </div>
         <div class="right">
             <div class="input">
                 <mat-form-field class="nn">
-                    <input matInput type="number">
+                    <input matInput type="number" value="3">
                 </mat-form-field>
             </div>
-            <h4>{{insumos1.unidad2}} </h4>
+            <h6>{{insumos1.unidad2}} </h6>
         </div>
     </div>
     <mat-divider></mat-divider>
@@ -39,36 +39,36 @@
     </div>
     <div class="insumos" *ngFor="let insumos1 of insumos3">
         <div class="left">
-            <h4>{{insumos1.nombre3}} </h4>
+            <h6>{{insumos1.nombre3}} </h6>
         </div>
         <div class="right">
             <div class="input">
                 <mat-form-field class="nn">
-                    <input matInput type="number">
+                    <input matInput type="number" value="3">
                 </mat-form-field>
             </div>
-            <h4>{{insumos1.unidad3}} </h4>
+            <h6>{{insumos1.unidad3}} </h6>
         </div>
     </div>
-
+    <mat-divider></mat-divider>
     <div class="title">
         <h5>Otros</h5>
     </div>
     <div class="insumos" *ngFor="let insumos1 of otros1">
         <div class="left">
-            <h4>{{insumos1.nombre4}} </h4>
+            <h6>{{insumos1.nombre4}} </h6>
         </div>
         <div class="right">
             <div class="input">
                 <mat-form-field class="nn">
-                    <input matInput type="number">
+                    <input matInput type="number" value="3">
                 </mat-form-field>
             </div>
-            <h4>{{insumos1.unidad4}} </h4>
+            <h6>{{insumos1.unidad4}} </h6>
         </div>
     </div>
 
 </mat-card>
 <div class="">
-    <button mat-button class="btn" (click)="openDialog()">AGREGAR INSUMOS</button>
+    <button mat-button class="btn" (click)="openDialog()">AGREGAR INSUMOS ADICIONALES</button>
 </div>

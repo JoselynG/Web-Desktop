@@ -9,7 +9,7 @@
     </mat-form-field>
     <div class="select">
         <mat-form-field class="valor inputs">
-            <mat-select placeholder="Seleccione el servicio que tuvo la incidencia">
+            <mat-select placeholder="Seleccione el tipo de incidencia">
                 <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
                     {{ filtro.viewValue }}
                 </mat-option>
@@ -20,6 +20,6 @@
         <textarea matInput placeholder="Descripción de la cancelación de la cita" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
     </mat-form-field>
     <mat-checkbox>Confirmo que quiero cancelar esta cita</mat-checkbox><br>
-    <button mat-raised-button color="accent" routerLink="/timeline" class="btn-gray btn">Cancelar cita</button>
+    <button mat-raised-button color="accent" routerLink="/timeline" class="btn">Cancelar cita</button>
     <!-- </mat-card>!-->
 </div>

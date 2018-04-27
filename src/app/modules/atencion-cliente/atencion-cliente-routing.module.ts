@@ -6,19 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import {ReclamosComponent} from './reclamos/reclamos.component';
 
 const routes: Routes = [
-
- {
-    path:'reclamos',
-    component: ReclamosComponent
-  },
-  {
-    path:'dudas',
-    component: DudasComponent
-  },
-  {
-    path:'opiniones',
-    component: OpinionesComponent
-  },
   {
     path:'atencionCliente',
     component: SugerenciasComponent

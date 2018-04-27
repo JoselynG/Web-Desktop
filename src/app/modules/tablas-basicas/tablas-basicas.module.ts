@@ -8,6 +8,8 @@ import {  AgregarTipoParametroComponent, AgregarParametroComponent, AgregarValor
   ParametrosComponent } from './parametros/parametros.component';
 import { CategoriasComponent, CrearCategoriaComponent} from './categorias/categorias.component';
 import { EmpresaComponent } from './empresa/empresa.component';
+import { DatosNegocioComponent, CrearObjetivosComponent } from './empresa/datos-negocio/datos-negocio.component';
+import { LogoNegocioComponent } from './empresa/logo-negocio/logo-negocio.component';
 
 
 
@@ -26,11 +28,13 @@ import { EmpresaComponent } from './empresa/empresa.component';
     AgregarValorParametroComponent,
     CategoriasComponent,
     CrearCategoriaComponent,
-    EmpresaComponent
+    EmpresaComponent,
+    CrearObjetivosComponent
   ],
   
   declarations: [ AgregarTipoParametroComponent, AgregarParametroComponent,
     ParametrosComponent , AgregarValorParametroComponent, CategoriasComponent, CrearCategoriaComponent, 
-    EmpresaComponent]
+    EmpresaComponent, DatosNegocioComponent, LogoNegocioComponent,
+    CrearObjetivosComponent]
 })
 export class TablasBasicasModule { }

@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servicios.component.scss']
 })
 export class ServiciosComponent implements OnInit {
-
-  constructor() { }
+  servicios: any;
+  constructor() {
+      this.servicios = [
+      {
+        nombre: 'Peluqueria',
+        imagen: 'assets/img/hair.jpg',
+        descripcion: 'tal cosa',
+      },
+      {
+        nombre: 'Maquillaje',
+        imagen: 'assets/img/makeup.jpg',
+        descripcion: 'tal cosa',
+      },
+    ];
+  }
 
   ngOnInit() {
   }
-
-}
+   }

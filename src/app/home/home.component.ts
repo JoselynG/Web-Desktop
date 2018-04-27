@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
         {
           type: 'alone',
           link: '/empresaEditar',
-          label: 'Maestros',
+          label: 'Negocio',
           icon: false,
           iconName: 'add_shopping_cart',
         },
@@ -92,14 +92,8 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/disenio',
-          label: 'Diseño',
-          icon: false,
-        },
-        {
-          type: 'alone',
           link: '/landing',
-          label: 'Landing',
+          label: 'Inicio del portal',
           icon: false,
         },
         {
@@ -112,6 +106,13 @@ export class HomeComponent implements OnInit {
           type: 'alone',
           link: '/empresa',
           label: 'Empresa',
+          icon: false,
+        },
+        
+        {
+          type: 'alone',
+          link: '/suscripción',
+          label: 'Suscripción',
           icon: false,
         },
       ]

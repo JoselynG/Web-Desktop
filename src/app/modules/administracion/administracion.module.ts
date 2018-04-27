@@ -1,6 +1,9 @@
+import { HistoricoServicioComponent } from './base-datos/historicos/historico-servicio/historico-servicio.component';
+import { HistoricoReclamoComponent } from './base-datos/historicos/historico-reclamo/historico-reclamo.component';
+import { HistoricoPromocionComponent } from './base-datos/historicos/historico-promocion/historico-promocion.component';
+import { AuditoriaComponent } from './base-datos/auditoria/auditoria.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FormsModule } from '@angular/forms';
 import { AdministracionRoutingModule } from './administracion-routing.module';
 import { BaseDatosComponent } from './base-datos/base-datos.component';
@@ -13,6 +16,10 @@ import { NuevoRolComponent } from './seguridad-funcional/roles/nuevo-rol/nuevo-r
 import { ListConsejosComponent } from './list-consejos/list-consejos.component';
 import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
 import { PasosComponent } from './pasos/pasos.component';
+import { DepuracionesComponent } from './base-datos/depuraciones/depuraciones.component';
+import { HistoricosComponent } from './base-datos/historicos/historicos.component';
+import { RespaldoComponent } from './base-datos/respaldo/respaldo.component';
+import { ImportarComponent } from './base-datos/importar/importar.component';
 
 @NgModule({
   imports: [
@@ -24,9 +31,24 @@ import { PasosComponent } from './pasos/pasos.component';
   entryComponents: [
     NuevoRolComponent, NuevoUsuarioComponent
   ],
-  declarations: [BaseDatosComponent, SistemaComponent,
-    SeguridadFuncionalComponent, AsignarFuncionesComponent,
-    RolesComponent, NuevoRolComponent, NuevoUsuarioComponent,
-    ListConsejosComponent, CrearConsejoComponent, PasosComponent]
+  declarations: [
+    BaseDatosComponent,
+    SistemaComponent,
+    SeguridadFuncionalComponent,
+    AsignarFuncionesComponent,
+    RolesComponent,
+    NuevoRolComponent,
+    NuevoUsuarioComponent,
+    ListConsejosComponent,
+    CrearConsejoComponent,
+    AuditoriaComponent,
+    DepuracionesComponent,
+    HistoricosComponent,
+    RespaldoComponent,
+    HistoricoPromocionComponent,
+    HistoricoReclamoComponent,
+    HistoricoServicioComponent,
+    ImportarComponent
+  ]
 })
 export class AdministracionModule { }

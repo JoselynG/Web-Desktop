@@ -57,8 +57,8 @@ otros1: otros[] = [
   constructor(public dialog: MatDialog) { }
   openDialog(){
     const dialogRef = this.dialog.open(AgregarInsumoComponent, {
-      height: '400px',
-      width: '500px'
+      height: '320px',
+      width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -76,5 +76,14 @@ otros1: otros[] = [
   styleUrls: ['./agregar-insumo.component.scss']
 })
 export class AgregarInsumoComponent {
+  valor = "";
+  filtro = [
+    {value: "sombra", viewValue: 'Sombra de ojos '},
+    {value: "gel", viewValue: 'Gelatina'},
+    {value: "rim", viewValue: 'Rimel'},
+    {value: "deco", viewValue: 'Decolorante'},
+    {value: "guantes", viewValue: 'Guantes'},
+    
+  ];
   
 }

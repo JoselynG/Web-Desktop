@@ -10,6 +10,11 @@ import { MarketingRoutingModule } from './marketing-routing.module';
 import { CrearServiciosComponent } from './servicios/nuevo-servicio/crear-servicios/crear-servicios.component';
 import { ParametroComponent } from './servicios/nuevo-servicio/parametro/parametro.component';
 import { DifundirPromocionComponent } from './promocion/difundir-promocion/difundir-promocion.component';
+import { ConfigPromocionComponent } from './promocion/config-promocion/config-promocion.component';
+import { PrimerPasoComponent } from './promocion/config-promocion/primer-paso/primer-paso.component';
+import { SegundoPasoComponent } from './promocion/config-promocion/segundo-paso/segundo-paso.component';
+import { TercerPasoComponent } from './promocion/config-promocion/tercer-paso/tercer-paso.component';
+import { CuartoPasoComponent } from './promocion/config-promocion/cuarto-paso/cuarto-paso.component';
 
 
 @NgModule({
@@ -26,7 +31,12 @@ import { DifundirPromocionComponent } from './promocion/difundir-promocion/difun
     ParametroComponent,
     DifundirPromocionComponent,
     ListadoPromocionComponent,
-    DatoComponent
+    DatoComponent,
+    ConfigPromocionComponent,
+    PrimerPasoComponent,
+    SegundoPasoComponent,
+    TercerPasoComponent,
+    CuartoPasoComponent
   ]
 })
 export class MarketingModule { }

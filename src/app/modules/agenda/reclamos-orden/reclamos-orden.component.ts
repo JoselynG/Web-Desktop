@@ -50,8 +50,8 @@ export class ReclamosOrdenComponent implements OnInit {
   }
   openDialog(){
     const dialogRef = this.dialog.open( DarRepuestaComponent, {
-      height: '300px',
-      width: '400px'
+      height: '320px',
+      width: '420px'
     });
   
     dialogRef.afterClosed().subscribe(result => {

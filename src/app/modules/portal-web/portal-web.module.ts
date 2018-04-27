@@ -20,6 +20,7 @@ import { LandingPromocionesComponent } from './landing-promociones/landing-promo
 import { LandingEstilistasComponent } from './landing-estilistas/landing-estilistas.component';
 import { LandingConsejosComponent } from './landing-consejos/landing-consejos.component';
 import { LandingTwiterComponent } from './landing-twiter/landing-twiter.component';
+import { DatosSuscripcionComponent } from './datos-suscripcion/datos-suscripcion.component';
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import { LandingTwiterComponent } from './landing-twiter/landing-twiter.componen
     LandingPromocionesComponent,
     LandingEstilistasComponent,
     LandingConsejosComponent,
-    LandingTwiterComponent]
+    LandingTwiterComponent,
+    DatosSuscripcionComponent]
 })
 export class PortalWebModule { }

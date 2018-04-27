@@ -1,0 +1,78 @@
+<div class="ctn">
+
+    <div class="registro">
+
+
+        <mat-card class="detalle">
+            <mat-form-field class="example-full-width inputs">
+                <input matInput placeholder="Nombre">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width inputs">
+                <input matInput placeholder="RIF: ">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width inputs">
+                <input matInput placeholder="Hora de inicio de la jornada laboral " type="time">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width inputs">
+                <input matInput placeholder="Hora final de la jornada laboral" type="time">
+            </mat-form-field>
+            <mat-divider></mat-divider><br><br>
+            <div>
+                <p>Razón de Ser del Negocio:</p><br>
+            </div>
+
+            <mat-form-field class="textarea">
+                <textarea matInput placeholder="Descripción del negocio" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">Peluquería Luque es un salón de belleza especializado en tratamiento de peluquería y estética, confía en nuestros expertos</textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width inputs">
+                <input matInput placeholder="Misión ">
+            </mat-form-field>
+            <mat-form-field class="example-full-width inputs">
+                <input matInput placeholder="Visión">
+            </mat-form-field>
+            <div class="btnObje">
+                <button mat-raised-button color="accent" (click)="openDialog()">Agregar Objetivos </button>
+            </div>
+            <mat-divider></mat-divider><br><br>
+            <div>
+                <p> Datos de Contacto:</p><br>
+            </div>
+            <mat-form-field class="valor inputs">
+                <mat-select placeholder="Seleccione el estado ">
+                    <mat-option *ngFor="let filtro of estado" [value]="filtro.value">
+                        {{ filtro.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!--  <selec>!-->
+            <div class="select">
+                <mat-form-field class="valor inputs">
+                    <mat-select placeholder="Selecciona la ciudad ">
+                        <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                            {{ filtro.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field class="textarea">
+                <textarea matInput placeholder="Dirección" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">Urb. Los Crepúsculos</textarea>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width inputs">
+                <input type="email" matInput placeholder="Correo" value="luque@gmail.com">
+
+            </mat-form-field>
+            <mat-form-field class="example-full-width inputs">
+                <input type="text" matInput placeholder="Teléfono" value="0251">
+
+            </mat-form-field>
+
+            <button mat-raised-button color="accent">Guardar</button>
+        </mat-card>
+
+    </div>
+</div>

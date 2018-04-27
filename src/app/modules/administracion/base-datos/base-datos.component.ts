@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-base-datos',
@@ -8,15 +7,9 @@ import {MatSnackBar} from '@angular/material';
 })
 export class BaseDatosComponent implements OnInit {
 
-  constructor(public snackBar: MatSnackBar) {}
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  openSnackBar() {
-    this.snackBar.open("Datos cargados exitosamente!","", {
-      duration: 3000,
-    });
   }
 
 }

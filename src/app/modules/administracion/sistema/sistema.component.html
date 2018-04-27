@@ -1,19 +1,16 @@
 <div style="padding: 30px 30px 30px 60px; ">
-  <h4 style="opacity: 0.5;">Opciones de configuraciòn del sistema</h4>
-  <br>
-  <!--<div *ngIf="grupoTabs.selectedIndex==1">-->
-  <mat-card style="padding: 50px 120px;">
-    <div *ngFor="let item of items">
-      <br>
-      <div style="display: flex;">
-          <span>Mostrar {{item.nombre}}</span>
-          <span style="flex: 1 1 auto;"></span>
-          <mat-slide-toggle [checked]="item.status"></mat-slide-toggle>
-      </div>
-    </div>
-  </mat-card>
-<!--</div>-->
+    <h4 style="opacity: 0.5;">Opciones de configuración del sistema</h4>
+    <br>
+    <!--<div *ngIf="grupoTabs.selectedIndex==1">-->
+    <mat-card style="padding: 50px 120px;">
+        <div *ngFor="let item of items">
+            <br>
+            <div style="display: flex;">
+                <span>{{item.nombre}}</span>
+                <span style="flex: 1 1 auto;"></span>
+                <mat-slide-toggle [checked]="item.status"></mat-slide-toggle>
+            </div>
+        </div>
+    </mat-card>
+    <!--</div>-->
 </div>
-
-
-
