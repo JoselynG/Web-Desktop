@@ -1,0 +1,31 @@
+<div style="margin-top:30px">
+    <mat-grid-list cols="1" rowHeight="20px" >
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <h3>Seleccione las caracteristicas de los clientes para dirigir sus consejos</h3>
+        </mat-grid-tile>
+      </mat-grid-list>
+        <mat-grid-list cols="1" rowHeight="300px"  >
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+                <mat-step label="Datos Básicos" >
+                  <mat-accordion>
+                      <mat-expansion-panel *ngFor="let item of listaTipoParametro" (click)="cargarParametro(item.id_dato)">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                             {{item.nombre}}
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                         <!-- <section class="example-section" *ngFor="let para of listaParametros" >
+                              <p class="example-margin" >{{para.nombre}}</p>
+                              <mat-checkbox class="example-margin"></mat-checkbox>
+                          </section>-->
+                        </mat-expansion-panel>
+                  </mat-accordion>
+                </mat-step>
+                <mat-step label="Caracteristicas">
+                  Content 2
+                </mat-step>
+              </mat-horizontal-stepper>
+            </mat-grid-tile>
+    </mat-grid-list>
+  </div>

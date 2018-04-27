@@ -22,7 +22,7 @@ import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.mod
 import { ReportesModule } from './modules/reportes/reportes.module';
 import { AdministracionModule} from './modules/administracion/administracion.module';
 // Providers
-import { ConsejosService} from './service/consejos/consejos.service';
+import { ConsejosService} from './provider/consejos/consejos.service';
 import { MarketingModule } from './modules/marketing/marketing.module';
 import { NotificacionesModule } from './modules/notificaciones/notificaciones.module';
 import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.module';

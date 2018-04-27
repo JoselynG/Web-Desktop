@@ -12,6 +12,7 @@ import { RolesComponent } from './seguridad-funcional/roles/roles.component';
 import { NuevoRolComponent } from './seguridad-funcional/roles/nuevo-rol/nuevo-rol.component';
 import { ListConsejosComponent } from './list-consejos/list-consejos.component';
 import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
+import { PasosComponent } from './pasos/pasos.component';
 
 @NgModule({
   imports: [
@@ -20,10 +21,12 @@ import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
     MaterialDesignModule,
     FormsModule
   ],
-  entryComponents:[//here in entry components goes components to be used in modal dialogs
+  entryComponents: [
     NuevoRolComponent, NuevoUsuarioComponent
   ],
-  declarations: [BaseDatosComponent, SistemaComponent, SeguridadFuncionalComponent, AsignarFuncionesComponent, RolesComponent, NuevoRolComponent, NuevoUsuarioComponent,
-    ListConsejosComponent, CrearConsejoComponent]
+  declarations: [BaseDatosComponent, SistemaComponent,
+    SeguridadFuncionalComponent, AsignarFuncionesComponent,
+    RolesComponent, NuevoRolComponent, NuevoUsuarioComponent,
+    ListConsejosComponent, CrearConsejoComponent, PasosComponent]
 })
 export class AdministracionModule { }

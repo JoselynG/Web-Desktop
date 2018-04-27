@@ -7,12 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearConsejoComponent implements OnInit {
 categorias: any ;
+enabled: Boolean = false;
+verBasico: Boolean = true;
   constructor() {
     this.categorias = [
       {nombre: 'Peluqueria'},
       {nombre: 'Maquillaje'},
       {nombre: 'Todas'}
     ];
+   }
+   pasos() {
+    this.verBasico = false;
+     this.enabled = true;
    }
 
   ngOnInit() {

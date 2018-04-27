@@ -134,7 +134,7 @@ export class HomeComponent implements OnInit {
           link: '/promociones',
           label: 'Promociones',
           icon: false,
-        },        
+        },
         {
           type: 'alone',
           link: '/consejos',

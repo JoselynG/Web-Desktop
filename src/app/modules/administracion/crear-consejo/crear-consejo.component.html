@@ -1,9 +1,10 @@
-<mat-grid-list style="margin-top:20px" cols="2" rowHeight="40px">
+<div style="margin-top:30px" *ngIf="verBasico">
+<mat-grid-list style="margin-top:200px" cols="2" rowHeight="40px" style="margin-right:130px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
         <button mat-raised-button>Volver</button>
     </mat-grid-tile>
 </mat-grid-list>
-<mat-grid-list style="margin-top:5px" cols="1" rowHeight="500px">
+<mat-grid-list style="margin-top:-3px" cols="1" rowHeight="500px">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
         <div class="example-container">
             <mat-card>
@@ -38,9 +39,11 @@
         </div>
     </mat-grid-tile>
 </mat-grid-list>
-<mat-grid-list cols="12" rowHeight="40px">
+<mat-grid-list cols="12" rowHeight="40px" style="margin-left:300px">
     <mat-grid-tile [colspan]="6" [rowspan]="1"></mat-grid-tile>
     <mat-grid-tile [colspan]="6" [rowspan]="1">
-        <button mat-raised-button color="accent">Continuar</button>
+        <button mat-raised-button color="accent" routerLink="/nuevoConsejo/Pasos">Continuar</button>
     </mat-grid-tile>
 </mat-grid-list>
+</div>
+    
