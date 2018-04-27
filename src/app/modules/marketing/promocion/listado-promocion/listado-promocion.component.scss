@@ -33,6 +33,10 @@
     margin-top: 30px;
     border-radius: 2px;
     flex-wrap: wrap;
+    .pruebas {
+        display: flex;
+        flex-direction: row;
+    }
     .btn {
         position: absolute;
         right: -80px;
@@ -197,7 +201,8 @@ input[type=text]:focus {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: -80px;
     .select {
         background-color: white;
