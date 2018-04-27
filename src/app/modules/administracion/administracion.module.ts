@@ -21,6 +21,7 @@ import { HistoricosComponent } from './base-datos/historicos/historicos.componen
 import { RespaldoComponent } from './base-datos/respaldo/respaldo.component';
 import { ImportarComponent } from './base-datos/importar/importar.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -48,7 +49,8 @@ import { ImportarComponent } from './base-datos/importar/importar.component';
     HistoricoPromocionComponent,
     HistoricoReclamoComponent,
     HistoricoServicioComponent,
-    ImportarComponent
+    ImportarComponent,
+    PasosComponent
   ]
 })
 export class AdministracionModule { }

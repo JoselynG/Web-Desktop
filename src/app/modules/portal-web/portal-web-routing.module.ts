@@ -23,7 +23,6 @@ const routes: Routes = [
     path: 'empresa',
     component: EmpresaComponent
   },
-  
   {
     path: 'suscripción',
     component: DatosSuscripcionComponent
