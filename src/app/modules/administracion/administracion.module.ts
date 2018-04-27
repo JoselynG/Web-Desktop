@@ -48,7 +48,8 @@ import { ImportarComponent } from './base-datos/importar/importar.component';
     HistoricoPromocionComponent,
     HistoricoReclamoComponent,
     HistoricoServicioComponent,
-    ImportarComponent
+    ImportarComponent,
+    PasosComponent
   ]
 })
 export class AdministracionModule { }
