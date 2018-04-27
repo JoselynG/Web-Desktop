@@ -4,6 +4,7 @@ import { DisenioComponent } from './disenio/disenio.component';
 import { EmpresaComponent } from './empresa/empresa.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { LandingComponent } from './landing/landing.component';
+import { DatosSuscripcionComponent } from './datos-suscripcion/datos-suscripcion.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,12 @@ const routes: Routes = [
   {
     path: 'empresa',
     component: EmpresaComponent
-  }
+  },
+  
+  {
+    path: 'suscripción',
+    component: DatosSuscripcionComponent
+  },
 ];
 
 @NgModule({

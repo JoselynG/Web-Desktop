@@ -111,7 +111,7 @@ export class HomeComponent implements OnInit {
         
         {
           type: 'alone',
-          link: '/empresa',
+          link: '/suscripción',
           label: 'Suscripción',
           icon: false,
         },

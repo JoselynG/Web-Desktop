@@ -27,8 +27,8 @@ estado = [
   }
   openDialog() {
     const dialogRef = this.dialog.open(CrearObjetivosComponent, {
-      height: '350px',
-      width: '450px'
+      height: '300px',
+      width: '300px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('mostrado');
@@ -48,7 +48,12 @@ estado = [
 
 export class  CrearObjetivosComponent implements OnInit {
 
-
+  filtro = [
+    {value: 'gral', viewValue: 'General'},
+    {value: 'esp', viewValue: 'Específicos'},
+    
+    
+  ];
 constructor() { }
 
   ngOnInit() {}

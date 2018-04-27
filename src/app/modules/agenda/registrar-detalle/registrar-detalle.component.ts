@@ -12,7 +12,7 @@ export class RegistrarDetalleComponent implements OnInit {
 
   openDialog(){
     const dialogRef = this.dialog.open(IncidenciaServicioComponent, {
-      height: '400px',
+      height: '350px',
       width: '500px'
     });
 

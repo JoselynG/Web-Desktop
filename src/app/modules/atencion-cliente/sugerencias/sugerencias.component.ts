@@ -69,7 +69,7 @@ export class SugerenciasComponent implements OnInit {
 
   openDialog(){
     const dialogRef = this.dialog.open( DarRepuestaComentarioComponent, {
-      height: '300px',
+      height: '320px',
       width: '400px'
     });
   

@@ -8,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class SistemaComponent implements OnInit {
 
   items=[
-    {nombre:"Twitter",status:true},
-    {nombre:"Notificaciones",status:true},
-    {nombre:"Consejo",status:true},
-    {nombre:"Servicio",status:true},
-    {nombre:"Correo",status:true}
+    {nombre:"Mostrar twitter",status:true},
+    {nombre:"Mostrar notificaciones",status:true},
+    {nombre:"Mostrar consejos",status:true},
+    {nombre:"Mostrar servicios",status:true},
+    {nombre:"Enviar correos elctrónicos",status:true}
       
   ];
 

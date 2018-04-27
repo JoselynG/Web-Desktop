@@ -12,9 +12,9 @@ export class RolesComponent implements OnInit {
   animal: string;
   name: string;*/
   roles=[
-    {nombre:'Administrador', descripcion:'Tiene el mayor acceso a la configuracion del sistema, acceso exclusivo a los diferentes modulos.'},
-    {nombre:'Estilista', descripcion:'Tiene acceso a ciertos modulos del sistema.'},
-    {nombre:'Recepcionista', descripcion:'Tiene acceso a ciertos modulos del sistema concernienetes a los clientes.'}
+    {nombre:'Administrador', descripcion:'Tiene el mayor acceso a la configuración del sistema, acceso exclusivo a los diferentes módulos.'},
+    {nombre:'Estilista', descripcion:'Tiene acceso a ciertos módulos del sistema.'},
+    {nombre:'Recepcionista', descripcion:'Tiene acceso a ciertos módulos del sistema concernienetes a los clientes.'}
   ];
 
   constructor(public dialog: MatDialog) {}//for having access to a modal
@@ -23,7 +23,7 @@ export class RolesComponent implements OnInit {
 
   openDialog(): void {//opens the modal
     let dialogRef = this.dialog.open(NuevoRolComponent, {
-      width: '800px',//sets the width
+      width: '400px',//sets the width
       height: '500px'
      // data: { name: this.name, animal: this.animal }//send this class's attributes to the modal
     });

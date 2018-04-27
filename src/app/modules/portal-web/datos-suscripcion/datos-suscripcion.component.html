@@ -1,0 +1,33 @@
+<div class="top">
+
+    <h3 class="title">Seleccione los aspectos que se deben seleccionar en la suscripción</h3>
+    <mat-form-field class="valor">
+        <mat-select [(ngModel)]="filtroSelec" placeholder="Seleccione el tipo de aspecto" class="letra">
+            <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                {{ filtro.viewValue }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<mat-card>
+    <div *ngIf="filtroSelec == 'datos'">
+        <h3>Datos básicos</h3>
+        <mat-checkbox *ngFor="let item of datos">{{item.viewValue}}</mat-checkbox>
+    </div>
+
+    <div *ngIf="filtroSelec == 'caracteristicas'">
+        <h3>Características</h3>
+        <mat-checkbox *ngFor="let item of caracteristicas">{{item.viewValue}}</mat-checkbox>
+    </div>
+
+    <div *ngIf="filtroSelec == 'gustos'">
+        <h3>Gustos y preferencias</h3>
+        <mat-checkbox *ngFor="let item of gustos">{{item.viewValue}}</mat-checkbox>
+    </div>
+
+    <div *ngIf="filtroSelec == 'todos'">
+        <h3>Todos los aspectos</h3>
+        <mat-checkbox *ngFor="let item of todos">{{item.viewValue}}</mat-checkbox>
+    </div>
+    <button mat-raised-button mat-dialog-close color="accent">Guardar</button>
+</mat-card>
