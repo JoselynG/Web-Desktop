@@ -1,31 +1,55 @@
-.reclamo {
+.auditoria {
     margin: 30px 60px 0px 60px;
     display: flex;
     flex-direction: column;
-} 
-
-.search-entidad {
-    margin-left: 30px;
-    margin-top: 15px;
-    .selectEntidad {
-        width: 100px;
-        margin-top: 15px;
+    .search {
         display: flex;
         flex-direction: row;
-        .valor {
-            margin: 10px 20px 10px 20px;
-            .letra {
-                font-size: 14px;
-                color: #6C798F;
-            }
-        }
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+        margin-left: 150px;
     }
 }
 
-h1 {
-    font-size: 24px;
-    color: #6C798F;
-    margin-top: 20px;
-    margin-left: 30px;
+input[type=text] {
+    width: 160px;
+    height: 30px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    ;
+    padding: 12px 30px 12px 12px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
 }
 
+input[type=text]:focus {
+    width: 30%;
+}
+
+.example-header {
+    min-height: 64px;
+    padding: 30px 15px 0;
+    margin-left: 200px;
+}
+
+.busqueda {
+    width: 160px;
+    height: 30px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    ;
+    padding: 12px 30px 12px 12px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.busqueda:focus {
+    width: 30%;
+}

@@ -7,21 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuditoriaComponent implements OnInit {
 
-  filtroSelec = 'operacion';
-  
-  filtro = [
-    {value: 'insert', viewValue: 'Insert'},
-    {value: 'update', viewValue: 'Update'},
-    {value: 'delete', viewValue: 'Delete'},
-  ];
-
-
-
   constructor() { }
 
   ngOnInit() {
   }
-  displayedColumns = [ 'position','fecha', 'position', 'operacion', 'tabla', 'registro','usuario'];
+  displayedColumns = ['fecha', 'position', 'operacion', 'tabla', 'registro','usuario'];
   dataSource = ELEMENT_DATA;
 
 

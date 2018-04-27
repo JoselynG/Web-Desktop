@@ -18,6 +18,7 @@ import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
 import { DepuracionesComponent } from './base-datos/depuraciones/depuraciones.component';
 import { HistoricosComponent } from './base-datos/historicos/historicos.component';
 import { RespaldoComponent } from './base-datos/respaldo/respaldo.component';
+import { ImportarComponent } from './base-datos/importar/importar.component';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { RespaldoComponent } from './base-datos/respaldo/respaldo.component';
     RespaldoComponent,
     HistoricoPromocionComponent,
     HistoricoReclamoComponent,
-    HistoricoServicioComponent
+    HistoricoServicioComponent,
+    ImportarComponent
   ]
 })
 export class AdministracionModule { }
