@@ -1,85 +1,18 @@
-<div class="ctn">
-       
- <div class="registro">
-               <div class= titulo>
-            <p>  Registro de Datos del Negocio</p>
+<div class="heading-panel">
+    <mat-tab-group>
+        <mat-tab label="Datos del Negocio">
+            <app-datos-negocio></app-datos-negocio>
+        </mat-tab>
+        <mat-tab label="Logo del negocio">
+            <div style="padding: 30px 30px 30px 60px; ">
+                <h4 style="opacity: 0.5;">Sube las imagenes de tu logo y favicon</h4>
+                <br>
+                <!--<div *ngIf="grupoTabs.selectedIndex==0">-->
+                <mat-card style="padding: 50px 120px;">
+                    <app-logo-negocio></app-logo-negocio>
+                </mat-card>
+                <!--</div>-->
             </div>
-             
-            <mat-card class="detalle">
-                <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Nombre"   >
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Rif: "  >
-                </mat-form-field>
-                
-                 <!--  <botonde imagen>!-->
-                    <div class="btn-fin">
-                           <div class="div-btn">
-                            <input id="fileInput2" style="display: none;" type='file'>
-                          <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()"
-                          style="background-color: ghostwhite; color: grey;">
-                            <mat-icon>backup</mat-icon>Subir logo</button><br>
-                       </div>
-                    </div>
-                <mat-form-field class="example-full-width inputs" disabled>
-                 <input matInput placeholder="Hora de inicio de jornada laboral "type="time" >
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width inputs" disabled>
-                    <input matInput placeholder="Hora finde de la jornada laboral" type="time"  >
-                </mat-form-field> <mat-divider></mat-divider><br><br>
-                <div class= titulo>
-                <p>Razon de Ser del Negocio:</p><br>
-                 </div>
-                 
-             <mat-form-field class="textarea">
-                <textarea matInput placeholder="Descripciòn del negocion" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">peluqueria luque es un salon de belleza especializado en tratamiento de peluqueria y estetica, confìa en nuestros expertos</textarea>
-              </mat-form-field>
-                <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Mision " value="la mision de la organizacíon" disabled >
-                </mat-form-field>
-                <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Visión " value="la visión de la organizacíon" disabled >
-                </mat-form-field >
-                <div class ="btnObje">
-                <button mat-raised-button color="accent" (clik)="openDialogO()" >AgregarObjetivos </button>
-            </div><mat-divider></mat-divider><br><br>
-                <div class= titulo>
-                <p> Datos de Contacto:</p><br>
-            </div>
-            
-                 
-             <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Estado:" >
-             </mat-form-field>
-             <!--  <selec>!-->
-        <div class="select">
-           <mat-form-field class="valor inputs">
-              <mat-select placeholder="Selecciona la ciudad ">
-                <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
-                {{ filtro.viewValue }}
-                  </mat-option>
-            </mat-select>
-            </mat-form-field>
-       </div>
-
-             <mat-form-field class="textarea">
-                <textarea matInput placeholder="Direcciòn" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">urb los crepusculo</textarea>
-              </mat-form-field>
-            
-                    <mat-form-field  class="example-full-width inputs">
-                    <input type=email  matInput placeholder="Correo" value="luque@gmail.com" disabled >
-                    
-                    </mat-form-field>
-                    <mat-form-field  class="example-full-width inputs">
-                        <input type=email  matInput placeholder="Telefono" value="0251" disabled >
-                        
-                        </mat-form-field>
-                
-                <button mat-raised-button color="accent" routerLink="/timeline">Guardar</button>
-            </mat-card>
-            
-        </div>
-        </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

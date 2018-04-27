@@ -11,7 +11,7 @@ export class AuditoriaComponent implements OnInit {
 
   ngOnInit() {
   }
-  displayedColumns = ['fecha', 'position', 'operacion', 'tabla', 'registro','usuario'];
+  displayedColumns = ['position', 'fecha', 'operacion', 'tabla', 'registro','usuario'];
   dataSource = ELEMENT_DATA;
 
 
