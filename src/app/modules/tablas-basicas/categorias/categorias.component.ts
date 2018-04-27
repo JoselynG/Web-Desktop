@@ -72,7 +72,7 @@ interface Unidad {
   styleUrls: ['./categorias.component.scss']
 })
 export class CategoriasComponent implements OnInit {
-  detalles: TReclamo[] = [
+  Tipodereclamos: TReclamo[] = [
     {
       Codigo: '001',
       nombre: 'Reclamo de La Orden ',
@@ -85,10 +85,10 @@ export class CategoriasComponent implements OnInit {
       fechaC: '10/04/2018',
       estatus: 'A'
     }];
-  tiporeclamos: TRReclamo[] = [
+  Tipoderespuestasareclamos: TRReclamo[] = [
     {
       Codigo: '001',
-      nombre: 'Positivaa',
+      nombre: 'Positiva',
       fechaC: '10/04/2018',
       estatus: 'A'
     },
@@ -100,7 +100,7 @@ export class CategoriasComponent implements OnInit {
     }];
 
 
-  comentarios: TComentario[] = [
+  Tipodecomentarios: TComentario[] = [
     {
       Codigo: '001',
       nombre: 'Sugerencia',
@@ -117,7 +117,7 @@ export class CategoriasComponent implements OnInit {
   ];
 
 
-  Tcomentarios: TRComentario[] = [
+  Tipoderepuestasacomentarios: TRComentario[] = [
     {
       Codigo: '001',
       nombre: 'Positiva',
@@ -133,7 +133,7 @@ export class CategoriasComponent implements OnInit {
 
   ];
 
-  razones: RazonI[] = [
+  Razonesdeincidencias: RazonI[] = [
     {
       Codigo: '001',
       nombre: 'Tipo razon de Incidencia A',
@@ -146,7 +146,7 @@ export class CategoriasComponent implements OnInit {
       fechaC: '10/04/2018',
       estatus: 'A'
     }];
-  tcriterios: TCriterio[] = [
+  Tiposdecriteriosparaevaluarordendeservicio: TCriterio[] = [
     {
       Codigo: '001',
       nombre: 'Infraestructura',
@@ -160,7 +160,7 @@ export class CategoriasComponent implements OnInit {
       estatus: 'A'
     }];
 
-  TRpresupuestos: TRPresupuesto[] = [
+  Tipoderespuestaapresupuesto: TRPresupuesto[] = [
     {
       Codigo: '001',
       nombre: 'Positiva',
@@ -174,7 +174,7 @@ export class CategoriasComponent implements OnInit {
       estatus: 'A'
     }];
 
-  TRsolicitudes: TRSolicitud[] = [
+    Tiposderepuestasalasolicitudesdeservicios: TRSolicitud[] = [
     {
       Codigo: '001',
       nombre: 'Falta de Insumos',
@@ -190,7 +190,7 @@ export class CategoriasComponent implements OnInit {
 
 
 
-  categorias: CategoriaS[] = [
+  Categoriasdelosserviciosabrindar: CategoriaS[] = [
     {
       Codigo: '001',
       nombre: 'Peluqueria',
@@ -204,16 +204,41 @@ export class CategoriasComponent implements OnInit {
       estatus: 'A'
     }];
 
+  optionToLoadList: any;
+  showList: Boolean = false;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
-  tipos = ['Tipo de Reclamos', 'Tipo de Respuestas a Reclamos', '  Tipo de Comentarios', 'Tipo de Repuestas a Comentarios', ' Razones de Incidencias', 'Tipos de Criterios Para Evaluar Orden de Servicio', 'Tipos de Repuestas a la Solicitudes de Servicios', 'Categorias De Los Servicios a Brindar']
+  chargeList(tipo) {
+
+    if (tipo == this.tipos[0]) {
+      this.optionToLoadList = this.Tipodereclamos;
+    } else if (tipo == this.tipos[1]) {
+      this.optionToLoadList = this.Tipoderespuestasareclamos;
+    } else if (tipo == this.tipos[2]) {
+      this.optionToLoadList = this.Tipodecomentarios;
+    } else if (tipo == this.tipos[3]) {
+      this.optionToLoadList = this.Tipoderepuestasacomentarios;
+    } else if (tipo == this.tipos[4]) {
+      this.optionToLoadList = this.Razonesdeincidencias;
+    } else if (tipo == this.tipos[5]) {
+      this.optionToLoadList = this.Tiposdecriteriosparaevaluarordendeservicio;
+    } else if (tipo == this.tipos[6]) {
+      this.optionToLoadList = this.Tiposderepuestasalasolicitudesdeservicios;
+    } else if (tipo == this.tipos[7]) {
+      this.optionToLoadList = this.Categoriasdelosserviciosabrindar;
+    } else if (tipo == this.tipos[8]) {
+      this.optionToLoadList = this.Tipoderespuestaapresupuesto;
+    }
+    this.showList = true;
+  }
+
+  tipos = ['Tipo de reclamos', 'Tipo de respuestas a reclamos', 'Tipo de comentarios', 'Tipo de repuestas a comentarios', 'Razones de incidencias', 'Tipos de criterios para evaluar orden de servicio', 'Tipos de repuestas a la solicitudes de servicios', 'Categorias de los servicios a brindar', 'Tipo de respuesta a presupuesto']
 
   openDialogCategoria(tipoX): void {
-
     const dialogRef = this.dialog.open(CrearCategoriaComponent, {
       height: '300px',
       width: '300px',
@@ -249,6 +274,7 @@ export class CrearCategoriaComponent implements OnInit {
   }
 
   yesOK() {
+   
     this.dialogRef.close();
   }
 

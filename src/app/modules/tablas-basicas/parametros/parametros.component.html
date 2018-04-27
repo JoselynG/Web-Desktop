@@ -1,82 +1,231 @@
-
-        <div class="Titulo">
-<h4> Registra las Características  para el Perfil de Los Clientes:</h4>
-       </div>
-<div class="configurarDes" >  
-                    <mat-accordion>
-  
-                        <mat-expansion-panel *ngFor="let dato of datos" (opened)="panelOpenState = true">
-                             <mat-expansion-panel-header>
-                                 <mat-panel-title class="title">
-                                    {{dato.nombreTP}}
-                                 </mat-panel-title> 
-                               
-                             </mat-expansion-panel-header>
-                            
-                            <mat-divider></mat-divider>
-                            <div class="garantia">
-                                <br>
-                                
-                                <dl>
-                                    <div *ngFor="let Tpa of dato.Parametros">
-                                     <div class="letra">
-                                <mat-checkbox> {{Tpa.nombre}}</mat-checkbox>
-                                             
-                                
-                                      
+<div class="heading-panel">
+    <!--Controla el contenido que se despliega en cada tab-->
+    <mat-tab-group #grupoTabs (change)="cleanLists()">
+        <!--(click)="verificarTab(grupoTabs)" (keydown)="verificarTab(grupoTabs)"-->
+        <mat-tab label="Aspectos a considerar" (click)="cleanLists()">
+            <!--++++++-->
+            <div style="padding: 30px 30px 30px 60px; ">
+                <h4 style="opacity: 0.5;">Configura los aspectos a considerar en los clientes</h4>
+                <br>
+                <!--<div *ngIf="grupoTabs.selectedIndex==0">-->
+                <mat-card style="padding: 50px 120px;">
+                    <div class="row">
+                        <div class="garantia" style="margin-top: 25px;">
+                            <dl>
+                                <mat-grid-list cols="12" rowHeight="40px">
+                                    <mat-grid-tile [colspan]="6" [rowspan]="1">
+                                        <h3> Nombre </h3>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                                        <h3>Peluquería</h3>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                                        <h3> Maquillaje </h3>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <div *ngFor="let dato of datos">
+                                    <div class="letra" style="margin-top:20px;">
+                                        <mat-grid-list cols="12" rowHeight="40px">
+                                            <mat-grid-tile [colspan]="6" [rowspan]="1"> {{dato.nombreTP}}</mat-grid-tile>
+                                            <mat-grid-tile [colspan]="3" [rowspan]="1">
+                                                <mat-checkbox [checked]="true" [disabled]="true"></mat-checkbox>
+                                            </mat-grid-tile>
+                                            <mat-grid-tile [colspan]="3" [rowspan]="1">
+                                                <mat-checkbox [disabled]="true"></mat-checkbox>
+                                            </mat-grid-tile>
+                                        </mat-grid-list>
                                     </div>
-                                       <br>
-                                    </div>
-                                </dl>
-                                <div class="boton">
-                                        
-                    <button mat-raised-button color="accent" (click)="openDialogParametro()" class="btn ">Agregar Caraterística</button>
-                              </div>  
-                            </div>
-                        
-                        </mat-expansion-panel>
-                        <br>
-                        <div class="boton">
-                            <br>
+                                </div>
+                            </dl>
+                            <div style="margin-top: 25px;">
                                 <button mat-raised-button color="accent" (click)="openDialogTipoParametro()" class="btn">Nuevo Aspecto</button>
                             </div>
-                    </mat-accordion>
-                </div>
+                        </div>
+                    </div>
+                </mat-card>
+                <!--</div>-->
+            </div>
+            <!--++++++-->
+        </mat-tab>
 
-                <div class="tabla">
-                    <mat-accordion >
-    
-                        <mat-expansion-panel >
-                             <mat-expansion-panel-header >
-                                 
-                                <mat-panel-title id="hola" class="title">
-                                 Cabello -Tipo (Emulción Epicutanea):
-                                 </mat-panel-title>
-                    
-                             </mat-expansion-panel-header >
-                            <div *ngFor="let Val of valores">
-                               
-                                <br>
-                                   {{Val.valor}}
-                                   <br>
-                                   <br>
-                                   
-                
-                                   <div class="letra2">
-                                   {{Val.descrip}}
-                                   </div>
-                                <mat-divider></mat-divider>
-                              
+        <mat-tab label="Características" (click)="cleanLists()">
+            <!--++++++-->
+            <div style="padding: 30px 30px 30px 60px; ">
+                <h4 style="opacity: 0.5;">Configura las características de los aspectos a considerar en los clientes</h4>
+                <br>
+                <!--<div *ngIf="grupoTabs.selectedIndex==1">-->
+                <mat-card style="padding: 50px 120px;">
+                    <div class="row">
+                        <div class="garantia" style="margin-top: 25px;">
+                            <div class="row">
+                                <mat-form-field style="width: 200px;">
+                                    <mat-select placeholder="Seleccione característica" value="0">
+                                        <mat-option *ngFor="let dato of datos" [value]="dato" (click)="cargarListaCaracteristica(dato.nombreTP)">
+                                            {{dato.nombreTP}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
                             </div>
-                            <br>
-                            <div class="boton">
-                        
-                            <button mat-raised-button color="accent" (click)="openDialogValorParametro()" class="btn">Nuevo Valor </button>
+                            <ng-container *ngIf="showCaracteristica">
+                                <dl>
+                                    <h3 style="margin-top:10px;"> Nombre </h3>
+                                    <div *ngFor="let Tpa of caracteristicaLoad">
+                                        <div class="letra" style="margin-top:30px;">
+                                            {{Tpa}}
+                                        </div>
+                                    </div>
+                                </dl>
+                                <div style="margin-top: 25px;">
+                                    <button mat-raised-button color="accent" (click)="openDialogParametro()" class="btn">Nueva característica</button>
                                 </div>
-                        </mat-expansion-panel>
-                        
-                    </mat-accordion>
-                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </mat-card>
+                <!--</div>-->
+            </div>
+            <!--++++++-->
+        </mat-tab>
 
-            
-    
+        <mat-tab label="Valores de la características" (click)="cleanLists()">
+            <!--++++++-->
+            <div style="padding: 30px 30px 30px 60px; ">
+                <h4 style="opacity: 0.5;">Configura los valores de las características de los aspectos a considerar en los clientes</h4>
+                <br>
+                <!--<div *ngIf="grupoTabs.selectedIndex==2">-->
+                <mat-card style="padding: 50px 120px;">
+                    <div class="row">
+                        <div class="garantia" style="margin-top: 25px;">
+                            <div class="row">
+                                <mat-form-field style="width: 200px;">
+                                    <mat-select placeholder="Selecciona categoría" value="0">
+                                        <mat-option *ngFor="let dato of parametrosSelect" [value]="dato" (click)="cargarListaValores(dato)">
+                                            {{dato}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <ng-container *ngIf="showValores">
+                                <dl>
+                                    <mat-grid-list cols="12" rowHeight="40px">
+                                        <mat-grid-tile [colspan]="6" [rowspan]="1">
+                                            <h3> Nombre </h3>
+                                        </mat-grid-tile>
+                                        <mat-grid-tile [colspan]="6" [rowspan]="1">
+                                            <h3>Descripción</h3>
+                                        </mat-grid-tile>
+                                    </mat-grid-list>
+                                    <div *ngFor="let Tpa of valoresToLoad">
+                                        <div class="letra" style="margin-top:20px;">
+                                            <mat-grid-list cols="12" rowHeight="40px">
+                                                <mat-grid-tile [colspan]="6" [rowspan]="1"> {{Tpa.nombre}}</mat-grid-tile>
+                                                <mat-grid-tile [colspan]="6" [rowspan]="1">
+                                                        {{Tpa.descripcion}}
+                                                </mat-grid-tile>
+                                            </mat-grid-list>
+                                        </div>
+                                    </div>
+                                </dl>
+                                <div style="margin-top: 25px;">
+                                    <button mat-raised-button color="accent" (click)="openDialogValorParametro()" class="btn">Nuevo valor</button>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </mat-card>
+                <!--</div>-->
+            </div>
+            <!--++++++-->
+        </mat-tab>
+    </mat-tab-group>
+
+    <!--Posiciona los botones a la parte superior derecha de la pantalla-->
+    <!-- <div class="button-row">
+        <button mat-raised-button>
+            <mat-icon>save</mat-icon> Guardar
+        </button>
+        <button mat-raised-button>
+            <mat-icon>visibility</mat-icon> Previsualizar
+        </button>
+    </div> -->
+</div>
+
+
+
+<!-- <div class="Titulo">
+    <h4> Registra las Características para el Perfil de Los Clientes:</h4>
+</div>
+<div class="configurarDes">
+    <mat-accordion>
+
+        <mat-expansion-panel *ngFor="let dato of datos" (opened)="panelOpenState = true">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title">
+                    {{dato.nombreTP}}
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <mat-divider></mat-divider>
+            <div class="garantia">
+                <br>
+
+                <dl>
+                    <div *ngFor="let Tpa of dato.Parametros">
+                        <div class="letra">
+                            <mat-checkbox> {{Tpa.nombre}}</mat-checkbox>
+
+
+
+                        </div>
+                        <br>
+                    </div>
+                </dl>
+                <div class="boton">
+
+                    <button mat-raised-button color="accent" (click)="openDialogParametro()" class="btn ">Agregar Caraterística</button>
+                </div>
+            </div>
+
+        </mat-expansion-panel>
+        <br>
+        <div class="boton">
+            <br>
+            <button mat-raised-button color="accent" (click)="openDialogTipoParametro()" class="btn">Nuevo Aspecto</button>
+        </div>
+    </mat-accordion>
+</div>
+
+<div class="tabla">
+    <mat-accordion>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+
+                <mat-panel-title id="hola" class="title">
+                    Cabello -Tipo (Emulción Epicutanea):
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <div *ngFor="let Val of valores">
+
+                <br> {{Val.valor}}
+                <br>
+                <br>
+
+
+                <div class="letra2">
+                    {{Val.descrip}}
+                </div>
+                <mat-divider></mat-divider>
+
+            </div>
+            <br>
+            <div class="boton">
+
+                <button mat-raised-button color="accent" (click)="openDialogValorParametro()" class="btn">Nuevo Valor </button>
+            </div>
+        </mat-expansion-panel>
+
+    </mat-accordion>
+</div> -->
