@@ -7,28 +7,60 @@
                 <button mat-raised-button color="accent" matStepperNext>Siguiente</button>
             </div>
         </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Datos básicos para la difusión</ng-template>
-            <app-segundo-paso></app-segundo-paso>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+        <mat-step label="Datos Básicos">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let item of listaTipoParametro" (click)="cargarParametro(item.id_dato)">
+                    <mat-expansion-panel-header *ngIf="item.tipo_dato == 'basico'">
+                        <mat-panel-title>
+                            {{item.nombre}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="example-section" *ngFor="let para of listaParametro">
+                        <p class="example-margin">{{para.nombre}}</p>
+                        <mat-checkbox class="example-margin" (onChange)="guardarDatoBAsico(para)"></mat-checkbox>
+                    </section>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <div text-right style="margin-top:20px">
+                <button mat-raised-button matStepperNext color="accent">Siguiente</button>
             </div>
         </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Características para la difusión</ng-template>
-            <app-tercer-paso></app-tercer-paso>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+        <mat-step label="Caracteristicas">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let item of listaTipoParametro" (click)="cargarParametro(item.id_dato)">
+                    <mat-expansion-panel-header *ngIf="item.tipo_dato == 'caracteristica'">
+                        <mat-panel-title>
+                            {{item.nombre}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="example-section" *ngFor="let para of listaParametro">
+                        <p class="example-margin">{{para.nombre}}</p>
+                        <mat-checkbox class="example-margin" (click)="guardarAtributo(para)"></mat-checkbox>
+                    </section>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <div text-right style="margin-top:20px">
+                <button mat-raised-button matStepperNext color="accent">Suguiente</button>
             </div>
         </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Gustos y preferencias para la difusión</ng-template>
-            <app-cuarto-paso></app-cuarto-paso>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
+        <mat-step label="Valores de las caracteristicas selecionadas">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let item of consejo" (click)="cargarValorParametro(item.id_parametro)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{item.nombre}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="example-section" *ngFor="let para of listaValor">
+                        <p class="example-margin">{{para.nombre}}</p>
+                        <p class="example-margin">{{para.description}}</p>
+                        <mat-checkbox class="example-margin" (click)="guardarDatoBasico(para)"></mat-checkbox>
+                    </section>
+                </mat-expansion-panel>
+
+            </mat-accordion>
+            <div text-right style="margin-top:20px">
+                <button mat-raised-button color="accent" (click)="Guardar()">Guardar</button>
             </div>
         </mat-step>
     </mat-horizontal-stepper>
