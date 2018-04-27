@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialDesignModule } from '../../material-design/material-design.module';
 import { PortalWebRoutingModule } from './portal-web-routing.module';
 import { DisenioComponent } from './disenio/disenio.component';
@@ -27,7 +27,8 @@ import { DatosSuscripcionComponent } from './datos-suscripcion/datos-suscripcion
     CommonModule,
     PortalWebRoutingModule,
     FormsModule,
-    MaterialDesignModule
+    MaterialDesignModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     DisenioComponent, EmpresaComponent,

@@ -1,3 +1,44 @@
-<p>
-  estilistas works!
-</p>
+
+<form class="clase1">
+
+  <mat-form-field>
+      <input matInput placeholder="Titulo de la seccion" value="Estilistas de nuestro salon de belleza">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <textarea #subtitulo style="resize: none;"
+      maxlength="150"
+      matInput placeholder="Subtitulo de la seccion" value="Conoce nuestros estilistas especializados en el área de estética y belleza, destacados en su labor y comprometidos en brindar el mejor servicio."></textarea>
+      <mat-hint align="end">{{subtitulo.value.length}} / 150</mat-hint>
+    </mat-form-field>
+
+<mat-form-field>
+  <mat-select placeholder="Seleccionar usuarios (máximo 5)" [formControl]="usuarios" multiple>
+    <mat-select-trigger>
+      {{usuarios.value ? usuarios.value[0].nombre+" "+usuarios.value[0].apellido : ''}}
+      <span *ngIf="usuarios.value?.length > 1">, {{usuarios.value[1].nombre+" "+usuarios.value[1].apellido}}</span>
+      <span *ngIf="usuarios.value?.length > 2">, {{usuarios.value[2].nombre+" "+usuarios.value[2].apellido}}
+      </span>
+      <span *ngIf="usuarios.value?.length > 3" class="seleccion-adicional">
+        (+ {{ ((usuarios.value.length - 3)==1) ? 'otro':('otros '+(usuarios.value.length - 3)) }})
+      </span>
+    </mat-select-trigger>
+    <mat-option *ngFor="let usuario of lista_usuarios" [value]="usuario">{{usuario.nombre+" "+usuario.apellido}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+</form>
+
+
+<mat-divider *ngIf="usuarios.value"></mat-divider>
+<div *ngIf="usuarios.value">
+    <mat-card class="card-est" *ngFor="let usu of usuarios.value">
+        <img src="/assets/img/perfil.jpg" alt="imagen" width="30%" height="100%">
+        <div style=" padding:5px 20px; width: 60%; height: auto;">
+            <b>{{usu.nombre+" "+usu.apellido}}</b><br><br>
+            <p style="text-justify: auto;">
+              {{usu.descripcion}}
+            </p>
+        </div>
+        </mat-card>
+</div>
