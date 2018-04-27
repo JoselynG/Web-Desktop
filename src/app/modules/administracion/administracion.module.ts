@@ -1,3 +1,6 @@
+import { HistoricoServicioComponent } from './base-datos/historicos/historico-servicio/historico-servicio.component';
+import { HistoricoReclamoComponent } from './base-datos/historicos/historico-reclamo/historico-reclamo.component';
+import { HistoricoPromocionComponent } from './base-datos/historicos/historico-promocion/historico-promocion.component';
 import { AuditoriaComponent } from './base-datos/auditoria/auditoria.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +15,9 @@ import { RolesComponent } from './seguridad-funcional/roles/roles.component';
 import { NuevoRolComponent } from './seguridad-funcional/roles/nuevo-rol/nuevo-rol.component';
 import { ListConsejosComponent } from './list-consejos/list-consejos.component';
 import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
+import { DepuracionesComponent } from './base-datos/depuraciones/depuraciones.component';
+import { HistoricosComponent } from './base-datos/historicos/historicos.component';
+import { RespaldoComponent } from './base-datos/respaldo/respaldo.component';
 
 @NgModule({
   imports: [
@@ -35,7 +41,13 @@ import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
     NuevoUsuarioComponent,
     ListConsejosComponent,
     CrearConsejoComponent,
-    AuditoriaComponent
+    AuditoriaComponent,
+    DepuracionesComponent,
+    HistoricosComponent,
+    RespaldoComponent,
+    HistoricoPromocionComponent,
+    HistoricoReclamoComponent,
+    HistoricoServicioComponent
   ]
 })
 export class AdministracionModule { }
