@@ -75,3 +75,4 @@ prevStep() {
         j++;  } }
     return this.listaParametro ; }
 
+  }
