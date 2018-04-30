@@ -50,7 +50,7 @@
                         #{{dato.orden}}
                     </mat-panel-description>
                     <mat-panel-description class="date">
-                        {{dato.fecha}}
+                        {{dato.fecha | date:'d MMMM, y'}}
                     </mat-panel-description>
                     <mat-panel-description class="type">
                         {{dato.tipoR}}
@@ -73,7 +73,8 @@
                     </dl>
                     <div class="gar">
                         <span>Fecha de vencimiento de garantia: </span>
-                        <span class="venc">{{dato.fechaV}}</span>
+                        <span class="venc" [style.color]="((hoy | date) > (dato.fechaV | date)) ? 'red':'green'">
+                            {{dato.fechaV | date:'dd/MM/yyyy'}}</span>
                     </div>
                 </div>
                 <button mat-raised-button color="accent" (click)="openDialog()" class="btn">Dar Respuesta</button>

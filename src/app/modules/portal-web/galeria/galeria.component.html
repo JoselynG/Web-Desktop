@@ -5,53 +5,40 @@
 
         <form class="clase1">
             <mat-form-field>
-                <input matInput placeholder="Título de la sección" value="Galeria de imagenes">
+                <input matInput placeholder="Título de la sección" [value]="titulo_seccion.titulo">
             </mat-form-field>
             <br>
             <mat-form-field>
-                <textarea #subtitulo style="resize: none;" maxlength="500" matInput placeholder="Subtítulo de la sección"></textarea>
+                <textarea #subtitulo style="resize: none;" maxlength="500" matInput placeholder="Subtítulo de la sección">{{titulo_seccion.descripcion}}</textarea>
                 <mat-hint align="end">{{subtitulo.value.length}} / 500</mat-hint>
             </mat-form-field>
         </form>
         <br><br>
-        <input #fileButton2 id="fileInput2" style="display: none;" type='file'>
-        <!--(change)="cambiarImagen($event,favIcon.id)"-->
-        <button mat-button (click)="fileButton2.click()"><mat-icon>backup</mat-icon> Subir imagenes</button>
-        <!--<div *ngFor="let item of items">-->
+        <div><!--BOTON DE SUBIR IMAGEN-->
+            <input #fileButton2 id="fileInput2" style="display: none;" type='file' (change)="formu.style='visibility: visible;'">
+            <button mat-button (click)="fileButton2.click()"><mat-icon>backup</mat-icon> Subir imagen</button>
+            <div #formu style="display: none;"><!--FORMULARIO PARA AÑADIR TITULO Y DESCRIPCION A LAS IMAGENES-->
+                <form>
+                    <mat-form-field>
+                        <input #tituloI matInput placeholder="Título de la imagen">
+                    </mat-form-field><br>
+                    <mat-form-field>
+                        <textarea #descripcionI style="resize: none;" maxlength="300" matInput placeholder="Descripción de la imagen"></textarea>
+                        <mat-hint align="end">{{descripcionI.value.length}} / 300</mat-hint>
+                    </mat-form-field>
+                </form>
+                <button mat-raised-button color="accent"
+                    (click)="agregarImagen(fileButton2.files, tituloI.value, descripcionI.value); formu.style='display: none;'"><mat-icon>add</mat-icon> Agregar</button>
+            </div>
+        </div>
+
         <div style="display:flex; flex-wrap: wrap;">
-            <div class="gallery">
-                <img src="/assets/img/perfil.jpg" alt="galeria" width="200" height="200">
+            <div class="gallery" *ngFor="let imagN of imagenes" title="{{imagN.titulo+': '+imagN.descripcion}}">
+                <img src="{{imagN.imagen}}" alt="galeria" width="200" height="200">
                 <div class="div-btn">
                     <input id="fileInput2" style="display: none;" type='file'>
                     <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: grey;">
                     <mat-icon>backup</mat-icon> REEMPLAZAR</button><br>
-                    <span style="cursor: pointer; color: gray;">QUITAR IMAGEN</span></div>
-            </div>
-
-            <div class="gallery">
-                <img src="/assets/img/perfil.jpg" alt="galeria" width="200" height="200">
-                <div class="div-btn">
-                    <input id="fileInput2" style="display: none;" type='file'>
-                    <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: grey;">
-                      <mat-icon>backup</mat-icon> REEMPLAZAR</button><br>
-                    <span style="cursor: pointer; color: gray;">QUITAR IMAGEN</span></div>
-            </div>
-
-            <div class="gallery">
-                <img src="/assets/img/perfil.jpg" alt="galeria" width="200" height="200">
-                <div class="div-btn">
-                    <input id="fileInput2" style="display: none;" type='file'>
-                    <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: grey;">
-                        <mat-icon>backup</mat-icon> REEMPLAZAR</button><br>
-                    <span style="cursor: pointer; color: gray;">QUITAR IMAGEN</span></div>
-            </div>
-
-            <div class="gallery">
-                <img src="/assets/img/perfil.jpg" alt="galeria" width="200" height="200">
-                <div class="div-btn">
-                    <input id="fileInput2" style="display: none;" type='file'>
-                    <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: grey;">
-                          <mat-icon>backup</mat-icon> REEMPLAZAR</button><br>
                     <span style="cursor: pointer; color: gray;">QUITAR IMAGEN</span></div>
             </div>
         </div>
