@@ -1,76 +1,42 @@
-div {
-
-    .boton {
-        margin-top: 25px;
-        margin-left: 70px;
-
+.div-inicial{
+    padding: 15px 15px 15px 30px; min-width: 260px;
+    @media screen and (max-width:859px){
+        max-width: 275px;
+        margin-left:20%;
     }
-    
-    .mat-card-container {
-        margin: auto;
-        max-width: 400px;
-        
-        margin-top: 30px;
 
-        .img-radius {
-            text-align: center;
-            mat-icon{
-                opacity: 0.75;
-                margin-left: auto;
-                margin-right: auto;
-                font-size: 150px;
-            }
-            
-           /*height: 100px;
-            width: 100px;
-           border-radius: 50%;*/
-        }
+    .div-dentro{
+         min-width: 180px; width: 40%;
+    }
 
-        /*.this-matcard-div{
-            max-width: 60px; 
-            
-            display: flex;
-            flex-direction: row;
-
-            button{
-                
-                font-size: xx-small;
-            }
-        }*/
-        
-
+    mat-card-content{
         .this-matcardcontent-div{
             display: flex;
-
+            flex-wrap: wrap;
             mat-form-field{
-                width:50%; padding:3px; margin-top: 15px;
+                width: 48%;
+                @media screen and (max-width:859px){
+                    width: 94%;
+                }
             }
         }
-
-        * {
-            width: 100%;
-          }
-
         .mat-f-f{
-            padding:3px; margin-top: 15px;
+            width: 98%;
         }
-
         .div-radio-button{
-            margin-top: 15px;
-
-            sup{
-                color: gray; font-size: 11px; padding-left: 3px;
-            }
-
-            .div-radio-group {
-                display: inline-flex;
-                flex-direction: column;
-            
-                .div-r-button {
-                    margin: 5px;
-                  }
-              }
+            display: flex; flex-direction: column;
         }
-      }
+    }
+}
+
+
+
+.opaque{
+    color: black;
+    opacity: 0.5;
+}
+.active{
+    color: deeppink;
+    opacity: 1.0;
 }
 

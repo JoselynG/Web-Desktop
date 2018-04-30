@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClientesRoutingModule } from './clientes-routing.module';
-import { ClientesComponent, ClientePerfilComponent, ClientePrincipalComponent } from "./clientes.component";
+import { ClientesComponent, ClientePrincipalComponent } from "./clientes.component";
 import { FormsModule } from '@angular/forms';
 import { MaterialDesignModule } from '../../material-design/material-design.module';
 import { ListadoClientesComponent } from './listado-clientes/listado-clientes.component';
@@ -16,10 +16,9 @@ import { ListadoClientesComponent } from './listado-clientes/listado-clientes.co
     FormsModule
   ],
   entryComponents:[
-    ClientePerfilComponent,
     ClientePrincipalComponent,
     ListadoClientesComponent
   ],
-  declarations: [ClientesComponent,  ClientePerfilComponent, ClientePrincipalComponent, ListadoClientesComponent]
+  declarations: [ClientesComponent, ClientePrincipalComponent, ListadoClientesComponent]
 })
 export class ClientesModule { }

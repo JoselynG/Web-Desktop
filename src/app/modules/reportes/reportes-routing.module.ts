@@ -1,3 +1,5 @@
+import { ReporteIncidenciaOrdenComponent } from './estructurados/reporte-incidencia-orden/reporte-incidencia-orden.component';
+import { ReporteIncidenciaServicioComponent } from './estructurados/reporte-incidencia-servicio/reporte-incidencia-servicio.component';
 import { ReporteServicioComponent } from './estructurados/reporte-servicio/reporte-servicio.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,6 +14,7 @@ import { ReclamosComponent } from './estadisticos/reclamos/reclamos.component';
 import { ReporteComentariosComponent } from './estructurados/reporte-comentarios/reporte-comentarios.component';
 import { ReporteReclamosComponent } from './estructurados/reporte-reclamos/reporte-reclamos.component';
 import { ReporteSolicitudesComponent } from './estructurados/reporte-solicitudes/reporte-solicitudes.component';
+import { ReporteClientesComponent } from './estructurados/reporte-clientes/reporte-clientes.component';
 
 const routes: Routes = [
   {
@@ -19,7 +22,7 @@ const routes: Routes = [
     component: EstadisticosComponent,
     children: [
       {
-        path: "prueba",
+        path: "citasPrestadas",
         component: PruebaComponent
       },
       {
@@ -38,7 +41,7 @@ const routes: Routes = [
       {
         path: "reclamos",
         component: ReclamosComponent
-      }
+      },
     ]
   },
   {
@@ -60,6 +63,21 @@ const routes: Routes = [
       {
         path: 'reporteSolicitudes',
         component: ReporteSolicitudesComponent
+      },
+      
+      {
+        path: "repClientes",
+        component: ReporteClientesComponent
+      },
+      
+      {
+        path: "repIncServ",
+        component: ReporteIncidenciaServicioComponent
+      },
+      
+      {
+        path: "repIncOrden",
+        component: ReporteIncidenciaOrdenComponent
       },
     ]
   },

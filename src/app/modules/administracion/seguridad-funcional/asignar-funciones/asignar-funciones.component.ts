@@ -25,9 +25,26 @@ export class AsignarFuncionesComponent implements OnInit {
     {descripcion: 'Registrar informacion de empresa', estatus: 'true'},
     {descripcion: 'Consultar reportes', estatus: 'true'}
   ];
+
+  roles=[
+    {value:'1', viewValue:'Administrador'},
+    {value:'2', viewValue:'Estilista'},
+    {value:'3', viewValue:'Recepcionista'}
+  ];
+
+  dato=['telefono',true];
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  isChecked(){
+    if(this.dato[1]){
+      this.dato[1]=false;}
+    else{
+      this.dato[1]=true;}
+  }
+    
 
 }

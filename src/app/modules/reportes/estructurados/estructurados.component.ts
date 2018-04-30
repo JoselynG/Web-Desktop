@@ -13,7 +13,7 @@ export class EstructuradosComponent implements OnInit {
     {value: 'servicio', viewValue: 'Servicios'},
     {value: 'solicitud', viewValue: 'Solicitudes'},
     {value: 'reclamos', viewValue: 'Reclamos'},
-    {value: 'Clientes', viewValue: 'Clientes'},
+    {value: 'clientes', viewValue: 'Clientes'},
     {value: 'incidenciasO', viewValue: 'Incidencias Orden'},
     {value: 'incidenciasS', viewValue: 'Incidencias Servicios'},
     {value: 'comentarios', viewValue: 'Comentarios'},

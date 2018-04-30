@@ -28,12 +28,13 @@
                 line-height: 21px;
                 color: #6C798F;
             }
+
+            }
         }
     }
-}
 
-/deep/ .mat-menu-content {
-    padding-top: 0 !important;
+ .mat-menu-content {
+    padding-top: 0 ;
 }
 
 .button-info {
@@ -41,6 +42,7 @@
     padding-left: 5px;
     padding-right: 10px;
 }
+
 
 .wrapper-info {
     display: flex;
@@ -68,6 +70,23 @@
             font-size: 15px;
             line-height: 21px;
         }
+    }
+}
+
+.name {
+    font-size: 14px;
+    align-content: center;
+    color: #6C798F;
+    margin-left: 5px;
+    .bold {
+        font-weight: bold;
+        font-family: Roboto;	
+        font-size: 14px;	
+        line-height: 32px;
+        color: #6C798F;
+        margin-left: 5px;
+        
+
     }
 }
 

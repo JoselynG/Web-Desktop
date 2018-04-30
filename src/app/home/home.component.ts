@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, NavigationStart } from '@angular/router';
-import "rxjs/add/operator/map";
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
 interface Lista {
@@ -19,8 +19,8 @@ interface Lista {
 })
 export class HomeComponent implements OnInit {
   showInterfaz = true;
-  width="255px";
-  listas: Lista[]= [
+  width = '255px';
+  listas: Lista[] = [
     {
       type: 'alone',
       link: '/dashboard',
@@ -37,8 +37,8 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/empresa',
-          label: 'Maestros',
+          link: '/empresaEditar',
+          label: 'Negocio',
           icon: false,
           iconName: 'add_shopping_cart',
         },
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
         },
         {
           type: 'alone',
-          link: '/timeline',
+          link: '/parametros',
           label: 'Parámetros',
           icon: false
         },
@@ -68,23 +68,17 @@ export class HomeComponent implements OnInit {
           link: '/sistema',
           label: 'Sistema',
           icon: false,
-        },        
+        },
         {
           type: 'alone',
           link: '/seguridadfuncional',
           label: 'Seguridad funcional',
           icon: false,
-        },        
+        },
         {
           type: 'alone',
           link: '/basedatos',
           label: 'Base de datos',
-          icon: false,
-        },        
-        {
-          type: 'alone',
-          link: '/',
-          label: 'Consejos',
           icon: false,
         },
       ]
@@ -98,34 +92,31 @@ export class HomeComponent implements OnInit {
       group: [
         {
           type: 'alone',
-          link: '/disenio',
-          label: 'Diseño',
+          link: '/landing',
+          label: 'Inicio del portal',
           icon: false,
         },
-        {
-          type: 'alone',
-          link: '/landing',
-          label: 'Landing',
-          icon: false,
-        },        
-        
         {
           type: 'alone',
           link: '/galeria',
           label: 'Galería',
           icon: false,
-        },        
-        
+        },
         {
           type: 'alone',
           link: '/empresa',
           label: 'Empresa',
           icon: false,
-        },        
+        },
+        
+        {
+          type: 'alone',
+          link: '/suscripción',
+          label: 'Suscripción',
+          icon: false,
+        },
       ]
-    
     },
-    
     {
       type: 'group',
       label: 'Marketing',
@@ -144,9 +135,14 @@ export class HomeComponent implements OnInit {
           link: '/promociones',
           label: 'Promociones',
           icon: false,
-        },        
+        },
+        {
+          type: 'alone',
+          link: '/consejos',
+          label: 'Consejos',
+          icon: false,
+        },
       ]
-    
     },
     {
       type: 'alone',
@@ -157,7 +153,7 @@ export class HomeComponent implements OnInit {
     },
     {
       type: 'group',
-      label: 'Agenda',
+      label: 'Órdenes de Servicios',
       icon: true,
       iconName: 'date_range',
       link: '/lista',
@@ -172,19 +168,13 @@ export class HomeComponent implements OnInit {
           type: 'alone',
           link: '/citas',
           label: 'Citas',
-          icon: false,          
-        },
-        {
-          type: 'alone',
-          link: '/ordenes',
-          label: 'Órdenes de servicio',
-          icon: false,          
+          icon: false,
         },
         {
           type: 'alone',
           link: '/reclamosOrdenes',
           label: 'Reclamos',
-          icon: false,          
+          icon: false,
         }
       ]
     },
@@ -212,22 +202,19 @@ export class HomeComponent implements OnInit {
           type: 'alone',
           link: '/reportesEstadísticos',
           label: 'Estadísticos',
-          icon: false,          
+          icon: false,
         },
       ]
-    
-    },   
-    
+    },
   ];
-  constructor(private route: ActivatedRoute, private router: Router) { 
+  constructor(private route: ActivatedRoute, private router: Router) {
     router.events.filter(event => event instanceof NavigationStart)
         .map(url => url['url'])
         .subscribe(v => {
-           this.showInterfaz = (v == "/" || v == "" ) ? false : true;
+           this.showInterfaz = (v === '/' || v === '' ) ? false : true;
         });
   }
 
   ngOnInit() {
-    
   }
 }

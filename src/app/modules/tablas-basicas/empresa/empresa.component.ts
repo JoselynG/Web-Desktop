@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-empresa',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./empresa.component.scss']
 })
 export class EmpresaComponent implements OnInit {
-
-  constructor() { }
+//selec crear servicio
+filtroSelec = '';
+filtro = [
+  {value: 'Barquisimeto', viewValue: 'Barquisimeto'},
+  {value: 'Merida', viewValue: 'Merida'},
+  {value: 'trujillo', viewValue: 'trujillo'},
+  
+];
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
 }
+
+
+

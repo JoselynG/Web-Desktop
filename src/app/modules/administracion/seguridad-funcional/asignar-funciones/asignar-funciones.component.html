@@ -1,38 +1,30 @@
 <div class="boton">
-  <span class="span1" matTooltip="Listado"><button mat-raised-button routerLink="../"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
-  </div>
+    <span class="span1" matTooltip="Listado"><button mat-raised-button routerLink="../"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
+</div>
 <div style="padding: 30px 30px 30px 60px; max-width: 800px;">
-  <h4 style="opacity: 0.5;">Asignar funcioes a {{estedeaca.value}}</h4>
-  <br>
-  <mat-card style="padding: 50px 120px;">
-    
-    <form class="clase1">
-        <mat-form-field>
-            <input #estedeaca matInput placeholder="Nombre" value="Corina Smith">
-          </mat-form-field>
-          <br>
-          <mat-form-field>
-            <input matInput type="date" placeholder="Registrado desde" value="2018-02-02">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-select placeholder="Rol">
-              <mat-option *ngFor="let rol of roles" [value]="rol.value">
-                {{ rol.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-    </form>
+    <h4 style="opacity: 0.5; margin-left: 100px;">Asignar funciones a {{estedeaca.value}}</h4>
     <br>
-    <div style="display: flex;">
-      <span>Mostrar telefono</span>
-      <span style="flex: 1 1 auto;"></span>
-      <mat-slide-toggle checked></mat-slide-toggle>
-  </div>
-    <div *ngFor="let item of items">
-      <br>
-        <mat-checkbox [checked]="item.estatus">{{item.descripcion}}</mat-checkbox>
-    </div>
-    <br>
-    <button mat-raised-button color="accent">Guardar</button>
-  </mat-card>
+    <mat-card style="margin-left: 100px;">
+
+        <form class="clase1">
+            <mat-form-field>
+                <input #estedeaca matInput placeholder="Correo" value="Corina_Smith@gmail.com">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput type="password" placeholder="Contraseña" value="12345">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Rol" value="2">
+                    <mat-option *ngFor="let rol of roles" [value]="rol.value">
+                        {{ rol.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+        <br>
+
+        <br>
+        <button mat-raised-button color="accent">Guardar</button>
+    </mat-card>
 </div>

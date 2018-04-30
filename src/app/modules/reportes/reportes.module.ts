@@ -16,6 +16,9 @@ import { ReporteServicioComponent } from './estructurados/reporte-servicio/repor
 import { ReporteComentariosComponent } from './estructurados/reporte-comentarios/reporte-comentarios.component';
 import { ReporteReclamosComponent } from './estructurados/reporte-reclamos/reporte-reclamos.component';
 import { ReporteSolicitudesComponent } from './estructurados/reporte-solicitudes/reporte-solicitudes.component';
+import { ReporteClientesComponent } from './estructurados/reporte-clientes/reporte-clientes.component';
+import { ReporteIncidenciaOrdenComponent } from './estructurados/reporte-incidencia-orden/reporte-incidencia-orden.component';
+import { ReporteIncidenciaServicioComponent } from './estructurados/reporte-incidencia-servicio/reporte-incidencia-servicio.component';
 
 @NgModule({
   imports: [
@@ -24,6 +27,23 @@ import { ReporteSolicitudesComponent } from './estructurados/reporte-solicitudes
     FormsModule,
     MaterialDesignModule
   ],
-  declarations: [PruebaComponent, GraficasDirective, ServiciosAtendidosComponent, ClientesFrecuentesComponent, ReportesComponent, EstadisticosComponent, SuscripcionComponent, EstructuradosComponent, ReclamosComponent, ReporteServicioComponent, ReporteComentariosComponent, ReporteReclamosComponent, ReporteSolicitudesComponent]
+  declarations: [
+    PruebaComponent,
+    GraficasDirective,
+    ServiciosAtendidosComponent,
+    ClientesFrecuentesComponent,
+    ReportesComponent,
+    EstadisticosComponent,
+    SuscripcionComponent,
+    EstructuradosComponent,
+    ReclamosComponent,
+    ReporteServicioComponent,
+    ReporteComentariosComponent,
+    ReporteReclamosComponent,
+    ReporteSolicitudesComponent,
+    ReporteClientesComponent,
+    ReporteIncidenciaOrdenComponent,
+    ReporteIncidenciaServicioComponent
+  ]
 })
 export class ReportesModule { }

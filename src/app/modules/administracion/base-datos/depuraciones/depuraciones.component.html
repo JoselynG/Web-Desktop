@@ -1,0 +1,40 @@
+<mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Dede la fecha">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field> &nbsp;&nbsp;&nbsp;
+<mat-form-field>
+    <input matInput [matDatepicker]="pickerEnd" placeholder="Hasta la fecha">
+    <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+    <mat-datepicker #pickerEnd></mat-datepicker>
+</mat-form-field>
+<br>
+<div class="tabla">
+    <mat-accordion isdisabled>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header enabled>
+
+                <mat-panel-title class="title">
+                    <h3>Registros </h3>
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <div *ngFor="let Val of valores">
+                <br>
+                <br>
+                <mat-checkbox>
+                    {{Val.valor}}
+                    <br>
+                </mat-checkbox>
+                <br>
+                <mat-divider></mat-divider>
+
+            </div>
+
+            <br>
+            <button mat-raised-button color="accent" class="c-white btn">Depurar</button>
+        </mat-expansion-panel>
+
+    </mat-accordion>

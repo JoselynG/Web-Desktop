@@ -17,7 +17,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'empresa',
+    path: 'empresaEditar',
     component: EmpresaComponent
   }
 ];

@@ -4,6 +4,10 @@ import { BaseDatosComponent } from './base-datos/base-datos.component';
 import { SistemaComponent } from './sistema/sistema.component';
 import { SeguridadFuncionalComponent } from './seguridad-funcional/seguridad-funcional.component';
 import { AsignarFuncionesComponent } from './seguridad-funcional/asignar-funciones/asignar-funciones.component';
+import { RolesComponent } from './seguridad-funcional/roles/roles.component';
+import { ListConsejosComponent } from './list-consejos/list-consejos.component';
+import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
+import { PasosComponent } from './pasos/pasos.component';
 
 const routes: Routes = [
   {
@@ -22,6 +26,22 @@ const routes: Routes = [
     path: 'seguridadfuncional/asignarfunciones',
     component: AsignarFuncionesComponent
   },
+  {
+    path: 'seguridadfuncional/roles',
+    component: RolesComponent
+  },
+  {
+    path: 'consejos',
+    component: ListConsejosComponent,
+  },
+  {
+    path: 'nuevoConsejo',
+    component: CrearConsejoComponent
+  },
+  {
+    path: 'nuevoConsejo/Pasos',
+    component: PasosComponent
+  }
 ];
 
 @NgModule({

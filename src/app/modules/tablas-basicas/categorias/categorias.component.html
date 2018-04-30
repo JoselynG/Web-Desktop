@@ -1,36 +1,31 @@
-<mat-tab-group>
-    <mat-tab label="Tipo Reclamo">
-            <div class="botonA">
-                    <button mat-raised-button color="accent" routerLink="/difundir">Agregar Nuevo</button>
-                    </div>
-            <div class="ctn" style="position: relative;"> 
-        <div class="citas" *ngFor="let TReclamo of detalles">
-      
-                    <mat-card class="detalle">
-                      <mat-card-content>
-                      <div class="name">
-                                      <span class="bold">{{TReclamo.nombre}}</span>
-                                      <br>
-                      </div>
-                                              <p> {{TReclamo.descripcion}}</p>
-                                              <p> Registrado EL:{{TReclamo.fechaC}}</p><br>
-                                              <div class="botonEdi">
-                                              <button mat-raised-button color="accent"(click)="openDialogEditar()" >Editar</button>
-                                              </div>
-                     <div class="botones">
-                                    
-                     </div>
-                      </mat-card-content>
-                         
-                                
-                   </mat-card>
-                       
-             </div>
-          </div>
-      </mat-tab>
-
-
-
-
-    <mat-tab label="Tipo Comentario">Content 2</mat-tab>
-  </mat-tab-group>
+<div class="titulo">
+    <p> Registro de Categorías </p>
+</div>
+<div class="registro">
+    <div class="row">
+        <mat-form-field style="width: 500px;">
+            <mat-select placeholder="Selecciona categoría" value="0">
+                <mat-option *ngFor="let tipo of tipos" [value]="tipo" (click)="chargeList(tipo)">
+                    {{ tipo }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <ng-container *ngIf="showList">
+        <mat-card>
+            <div class="row">
+                <div class="garantia" style="margin-top: 25px;">
+                    <dl>
+                        <div *ngFor="let item of optionToLoadList">
+                            <div class="letra" style="margin-top:20px;">
+                                <div> {{item.nombre}}</div>
+                                <mat-divider></mat-divider>
+                            </div>
+                        </div>
+                    </dl>
+                    <button style="margin-top: 20px;" mat-raised-button color="accent" (click)="openDialogCategoria(tipo)">Agregar</button>
+                </div>
+            </div>
+        </mat-card>
+    </ng-container>
+</div>
