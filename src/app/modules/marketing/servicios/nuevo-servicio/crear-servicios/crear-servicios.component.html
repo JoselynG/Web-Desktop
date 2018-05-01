@@ -15,7 +15,7 @@
         <div class="select">
             <mat-form-field class="valor inputs">
                 <mat-select placeholder="Seleccione La categoria del Servicio ">
-                    <mat-option *ngFor="let filtro of filtro" [value]="filtro.value" (click)="cargarTipoServisios(filtro.value)" >
+                    <mat-option *ngFor="let filtro of filtro" [value]="filtro.value" (click)="cargarTipoServisios(filtro.value)">
                         {{ filtro.viewValue }}
                     </mat-option>
                 </mat-select>
@@ -24,7 +24,7 @@
         <div class="select">
             <mat-form-field class="valor inputs">
                 <mat-select placeholder="Seleccione El Tipo de Servicio ">
-                    <mat-option *ngFor="let filtro of listaParametro " [value]="filtro.nombre"  >
+                    <mat-option *ngFor="let filtro of listaTipoServicios " [value]="filtro.nombre">
                         {{ filtro.nombre }}
                     </mat-option>
                 </mat-select>
@@ -37,13 +37,17 @@
             <textarea matInput placeholder="Nombre del servicio" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Maquillaje de contorno </textarea>
         </mat-form-field>
         <mat-form-field class="example-full-width inputs">
-            <input matInput placeholder="descripcion del servicio" value="para la iluminacion del rostro">
+            <input matInput placeholder="Descripción del servicio" value="para la iluminacion del rostro">
         </mat-form-field>
         <mat-form-field class="example-full-width inputs">
-            <input matInput placeholder="garantia del servicio" value="tres dias ">
+            <input matInput placeholder="Garantía del servicio (días)" type="number">
+        </mat-form-field>
+        <mat-form-field class="example-full-width inputs">
+            <input matInput placeholder="Precio" type="number">
         </mat-form-field>
 
-        
+
+
         <mat-form-field class="valor inputs">
             <mat-select placeholder="Insumos utilizados" [(ngModel)]="insumoSeleccionados" multiple>
                 <mat-select-trigger>
@@ -58,11 +62,11 @@
 
         <mat-form-field class="demo-chip-list inputs">
             <mat-chip-list #chipList>
-                <mat-chip *ngFor="let insumo of insumos" [selectable]="selectable" [removable]="removable" (remove)="remove(insumo)">
+                <mat-chip *ngFor="let insumo of insumos" [selectable]="selectable" [removable]="removable">
                     {{insumo.name}}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <mat-chip *ngFor="let ins of insumoSeleccionados" [selectable]="selectable" [removable]="removable" (remove)="remove(ins)">
+                <mat-chip *ngFor="let ins of insumoSeleccionados" [selectable]="selectable" [removable]="removable">
                     {{ins}}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>

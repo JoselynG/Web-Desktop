@@ -1,3 +1,4 @@
+import { NegocioService } from './../../../provider/negocio/negocio.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
@@ -8,6 +9,7 @@ import { MatDialog } from '@angular/material';
 })
 export class EmpresaComponent implements OnInit {
 //selec crear servicio
+
 filtroSelec = '';
 filtro = [
   {value: 'Barquisimeto', viewValue: 'Barquisimeto'},
@@ -15,11 +17,15 @@ filtro = [
   {value: 'trujillo', viewValue: 'trujillo'},
   
 ];
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+ 
+  ) { }
 
   ngOnInit() {
+    
   }
-
+  
 }
 
 

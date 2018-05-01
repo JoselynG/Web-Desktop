@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ENTER } from '@angular/cdk/keycodes';
 import { COMMA } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material';
 
 @Component({
   selector: 'app-crear-servicios',
@@ -74,5 +75,27 @@ prevStep() {
         this.listaParametro[j] = this.listaTipoServicios[i];
         j++;  } }
     return this.listaParametro ; }
+        
+  add(event: MatChipInputEvent): void {
+    let input = event.input;
+    let value = event.value;
 
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.insumos.push({ name: value.trim() });
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(servicios: any): void {
+    let index = this.insumos.indexOf(servicios);
+
+    if (index >= 0) {
+      this.insumos.splice(index, 1);
+    }
+  }
   }

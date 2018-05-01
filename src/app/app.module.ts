@@ -1,3 +1,4 @@
+import { UserService } from './provider/user/user.service';
 import { PerfilModule } from './modules/perfil/perfil.module';
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { GraficosDirective } from './test/graficos.directive';
@@ -26,6 +27,9 @@ import { ConsejosService} from './provider/consejos/consejos.service';
 import { MarketingModule } from './modules/marketing/marketing.module';
 import { NotificacionesModule } from './modules/notificaciones/notificaciones.module';
 import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.module';
+import { AuthService } from './provider/auth/auth.service';
+//import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -56,9 +60,11 @@ import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.mod
     NotificacionesModule,
     PerfilUsuarioModule,
     PortalWebModule,
-    PerfilModule
+    PerfilModule,
+    HttpClientModule
+    
   ],
-  providers: [ConsejosService],
+  providers: [ConsejosService, AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
