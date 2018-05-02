@@ -26,6 +26,10 @@ import { ConsejosService} from './provider/consejos/consejos.service';
 import { MarketingModule } from './modules/marketing/marketing.module';
 import { NotificacionesModule } from './modules/notificaciones/notificaciones.module';
 import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.module';
+import { ClientesService } from './provider/clientes/clientes.service';
+import { HttpClientModule } from '@angular/common/http';
+import { UsuariosService } from './provider/usuarios/usuarios.service';
+import { EmpleadosService } from './provider/empleados/empleados.service';
 
 @NgModule({
   declarations: [
@@ -56,9 +60,10 @@ import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.mod
     NotificacionesModule,
     PerfilUsuarioModule,
     PortalWebModule,
-    PerfilModule
+    PerfilModule,
+    HttpClientModule
   ],
-  providers: [ConsejosService],
+  providers: [ConsejosService, ClientesService, UsuariosService, EmpleadosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
