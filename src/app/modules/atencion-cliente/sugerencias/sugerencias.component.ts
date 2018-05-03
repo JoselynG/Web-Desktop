@@ -89,8 +89,8 @@ export class DarRepuestaComentarioComponent {
 //selec pregunta
 filtroSelec = '';
 filtro = [
-  {value: 'positiva', viewValue: 'Procede'},
-  {value: 'negativa', viewValue: 'No procede'},
+  {value: 'positiva', viewValue: 'positiva'},
+  {value: 'negativa', viewValue: 'negativa'},
   
 ];
 
