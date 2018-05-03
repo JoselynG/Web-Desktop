@@ -1,0 +1,40 @@
+<div class="boton btnrole">
+    <span class="span1" matTooltip="Listado"><button mat-raised-button routerLink="../"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
+</div>
+<div class="boton btnrole">
+    <span class="span1" matTooltip="Listado"><button class="right" mat-raised-button color="accent" title="Nuevo rol"
+    (click)="openDialog()"><mat-icon>add</mat-icon> Agregar Rol</button></span>
+</div>
+
+<h4>
+  Roles de tus usuarios en tu negocio
+</h4>
+<div class="container">
+
+  <mat-card style="width: 400px;" *ngFor="let rol of roles">
+    <div style="display: flex;">
+      <strong style="flex: 1;">{{rol.nombre}}</strong>
+      <button mat-raised-button style="flex: 0;">Editar</button>
+    </div><br>
+    <p>{{rol.descripcion}}</p>
+  </mat-card>
+
+</div>
+
+
+
+<!--EXAMPLE OF A MODAL DIALOG********************************************
+  <ol>
+    <li>
+      <mat-form-field>
+        <input matInput [(ngModel)]="name" placeholder="What's your name?">
+      </mat-form-field>
+    </li>
+    <li>
+      <button mat-raised-button (click)="openDialog()">Pick one</button>
+    </li>
+    <li *ngIf="animal">
+      You chose: <i>{{animal}}</i>
+    </li>
+  </ol>
+  *********************************************************************-->

@@ -1,0 +1,25 @@
+<div class="ctn">
+    <!--<mat-card class="cancelar">!-->
+    <h4>Registrar incidencia</h4>
+    <mat-form-field class="example-full-width inputs">
+        <input matInput placeholder="Orden de servicio" value="#1234-567" disabled>
+    </mat-form-field>
+    <mat-form-field class="example-full-width inputs">
+        <input matInput placeholder="Cliente" value="Illyrio Mopatis" disabled>
+    </mat-form-field>
+    <div class="select">
+        <mat-form-field class="valor inputs">
+            <mat-select placeholder="Seleccione el tipo de incidencia">
+                <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                    {{ filtro.viewValue }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <mat-form-field class="example-full-width inputs">
+        <textarea matInput placeholder="Descripción de la cancelación de la cita" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
+    </mat-form-field>
+    <mat-checkbox>Confirmo que quiero cancelar esta cita</mat-checkbox><br>
+    <button mat-raised-button color="accent" routerLink="/timeline" class="btn">Cancelar cita</button>
+    <!-- </mat-card>!-->
+</div>

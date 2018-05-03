@@ -1,0 +1,44 @@
+
+<form class="clase1">
+
+  <mat-form-field>
+      <input matInput placeholder="Titulo de la seccion" value="Estilistas de nuestro salon de belleza">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <textarea #subtitulo style="resize: none;"
+      maxlength="150"
+      matInput placeholder="Subtitulo de la seccion" value="Conoce nuestros estilistas especializados en el área de estética y belleza, destacados en su labor y comprometidos en brindar el mejor servicio."></textarea>
+      <mat-hint align="end">{{subtitulo.value.length}} / 150</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Selecciona al menos un usuario (máximo 5)" [formControl]="usuarios" multiple>
+        <mat-select-trigger>
+          {{usuarios.value ? retornarUsuario(usuarios.value[0]) : ''}}
+          <span *ngIf="usuarios.value?.length > 1">, {{retornarUsuario(usuarios.value[1])}}</span>
+          <span *ngIf="usuarios.value?.length > 2">, {{retornarUsuario(usuarios.value[2])}}</span>
+          <span *ngIf="usuarios.value?.length > 3" class="seleccion-adicional">
+            (+ {{ ((usuarios.value.length - 3)==1) ? 'otro':('otros '+(usuarios.value.length - 3)) }})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let usuario of lista_usuarios; index as i" [value]="i">{{usuario.nombre+" "+usuario.apellido}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    </form>
+    <br>
+    
+    
+    <div *ngIf="usuarios.value">
+        <mat-divider></mat-divider><br>
+        <mat-card class="card-est" *ngFor="let usu of usuarios.value">
+            <img src="/assets/img/perfil.jpg" alt="imagen" width="30%" height="100%">
+            <div style=" padding:5px 20px; width: 60%;">
+                <b>{{lista_usuarios[usu].nombre+" "+lista_usuarios[usu].apellido}}</b><br><br>
+                <p style="text-align: justify;">
+                  {{lista_usuarios[usu].descripcion}}
+                </p>
+            </div>
+            </mat-card>
+    </div>

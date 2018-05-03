@@ -1,0 +1,26 @@
+<div style="padding: 30px 30px 30px 60px; max-width: 800px;">
+    <h4 style="opacity: 0.5;">Configura la información a mostrar de tu negocio</h4>
+    <br>
+    <mat-card style="padding: 50px 120px;">
+
+        <form class="clase1">
+            <mat-form-field>
+                <input matInput placeholder="Título de la sección" value="Acerca de nosotros">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <textarea #subtitulo style="resize: none;" maxlength="500" matInput placeholder="Subtítulo de la sección"></textarea>
+                <mat-hint align="end">{{subtitulo.value.length}} / 500</mat-hint>
+            </mat-form-field>
+        </form>
+        <br>
+        <div *ngFor="let item of items">
+            <br>
+            <div style="display: flex;">
+                <span>Mostrar {{item.nombre}}</span>
+                <span style="flex: 1 1 auto;"></span>
+                <mat-slide-toggle [checked]="item.status"></mat-slide-toggle>
+            </div>
+        </div>
+    </mat-card>
+</div>

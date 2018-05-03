@@ -1,0 +1,97 @@
+<div class="content">
+    <div class="boton">
+        <span matTooltip="Citas"><button mat-raised-button routerLink="/citas"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
+    </div>
+    <div class="ctn">
+        <div class="registro">
+            <h4>Registro de servicio prestado</h4>
+            <mat-card class="detalle">
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Cliente" value="Illyrio Mopatis" disabled>
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Fecha" value="02 Mar 2018" disabled>
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Hora de inicio" value="03:30 PM" disabled>
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Hora de finalización" value="04:30" disabled>
+                </mat-form-field>
+                <mat-form-field class="valor inputs">
+                    <mat-select placeholder="Servicios de peluquería " [(ngModel)]="servicioPSeleccionados" multiple>
+                        <mat-select-trigger>
+                            {{servicioPSeleccionados ? servicioPSeleccionados[0] : ''}}
+                            <span *ngIf="servicioPSeleccionados.length > 1">
+                                        (+{{servicioPSeleccionados.length - 1}} otros)
+                                    </span>
+                        </mat-select-trigger>
+                        <mat-option color="accent" *ngFor="let serv of serviciosP" [value]="serv">{{serv}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="demo-chip-list inputs">
+                    <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let ins of servicioPSeleccionados" [selectable]="selectable" [removable]="removable">
+                            {{ins}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Servicios de peluquería prestados" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" disabled/>
+                    </mat-chip-list>
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Empleado que realizó el servicio de peluquería" value="Septa Lemore" disabled>
+                </mat-form-field>
+                <mat-form-field class="valor inputs">
+                    <mat-select placeholder="Servicios de maquillaje " [(ngModel)]="servicioMSeleccionados" multiple>
+                        <mat-select-trigger>
+                            {{servicioMSeleccionados ? servicioMSeleccionados[0] : ''}}
+                            <span *ngIf="servicioMSeleccionados.length > 1">
+                                        (+{{servicioMSeleccionados.length - 1}} otros)
+                                    </span>
+                        </mat-select-trigger>
+                        <mat-option color="accent" *ngFor="let serv of serviciosM" [value]="serv">{{serv}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="demo-chip-list inputs">
+                    <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let ins of servicioMSeleccionados" [selectable]="selectable">
+                            {{ins}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Servicios de peluquería prestados" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" disabled/>
+                    </mat-chip-list>
+                </mat-form-field>
+                <mat-form-field class="example-full-width inputs">
+                    <input matInput placeholder="Empleado que realizó el servicio de maquillaje" value="Jon Connington" disabled>
+                </mat-form-field>
+
+                <!--  <mat-form-field class="example-full-width inputs">
+                    <textarea matInput placeholder="Comentarios" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
+                </mat-form-field>-->
+                <button mat-raised-button color="accent" routerLink="/timeline" class="c-white btn">Registrar</button>
+            </mat-card>
+        </div>
+        <div class="right">
+            <div class="incidencias">
+                <h4>Incidencias</h4>
+                <mat-card class="lista-incidencia">
+                    <h5>Planchado de cabello</h5><br>
+                    <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam dolorum aut, nobis rem in commodi illo rerum aperiam facilis explicabo deserunt provident dignissimos blanditiis tempora voluptates recusandae, nemo nam natus?</mat-card-content>
+                </mat-card>
+                <!--  <mat-card class="lista-incidencia">
+                    <h5>Baños de color</h5><br>
+                    <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</mat-card-content>
+                </mat-card>-->
+                <div class="">
+                    <button mat-button class="btn" (click)="openDialog()">AGREGAR INCIDENCIA</button>
+                </div>
+            </div>
+            <div class="insumos">
+                <h4>Insumos</h4>
+                <app-insumos-utilizados></app-insumos-utilizados>
+            </div>
+        </div>
+    </div>
+</div>

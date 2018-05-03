@@ -1,0 +1,43 @@
+<div style="margin-top: 30px">
+        <mat-grid-list cols="1" rowHeight="260px">
+            <mat-grid-tile colspan="1" rowspan="1">
+                <mat-card style="width: 520px;height: 250px;">
+                    <div>
+                        <mat-form-field style="width: 400px; margin-left: 40px;">
+                            <input matInput placeholder="Titulo de esta seccion" value="Consejos de nuestro salon de belleza">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field style="width: 400px; margin-left: 40px;">
+                            <input matInput #message maxlength="150" placeholder="Otro mensaje">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field style="width: 400px; margin-left: 40px;">
+                            <mat-select placeholder="Exfoliacion, Rutinas">
+                                <mat-option>Masaje capilar con arnica</mat-option>
+                                <mat-option>Tips de maquillaje en agua</mat-option>
+                                <mat-option>Tips para masajes nocturnos</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <mat-grid-list cols="1" rowHeight="400px">
+        <mat-grid-tile colspan="1" rowspan="1" *ngFor="let item of servicios">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title><strong>{{item.nombre}}</strong></mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="{{item.imagen}}">
+                <mat-card-content>
+                    <p>{{item.description}}</p>
+                    <div class="pres">
+                        <pre><strong>Leer más</strong></pre>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
