@@ -17,6 +17,7 @@ ide: any
     correo: String;
     contrasenia: String;
   }
+  login: boolean;
   imageUrl = "/assets/img/login.png";
   iHeight = "50%";
 
@@ -32,6 +33,7 @@ ide: any
       correo: '',
       contrasenia: ''
     }
+    this.login = false;
   }
 
   ngOnInit() {
@@ -46,8 +48,10 @@ ide: any
         this.usuario.setUser(res['data'].id);
         //redireccionar
         this.router.navigate(['dashboard']);
+        this.login = false;
       }),(error)=>{
-        console.log('incorrecto');
+        console.log(error);
+        this.login = true;
       }
     )
   }
