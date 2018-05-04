@@ -1,3 +1,4 @@
+import { ServiciosService } from './provider/servicios/servicios.service';
 import { PerfilModule } from './modules/perfil/perfil.module';
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { GraficosDirective } from './test/graficos.directive';
@@ -26,10 +27,15 @@ import { ConsejosService} from './provider/consejos/consejos.service';
 import { MarketingModule } from './modules/marketing/marketing.module';
 import { NotificacionesModule } from './modules/notificaciones/notificaciones.module';
 import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.module';
+import { PromocionesService } from './provider/promocion/promociones.service';
+import { CategoriasServicioService } from './provider/categorias-servicio/categorias-servicio.service';
 import { ClientesService } from './provider/clientes/clientes.service';
-import { HttpClientModule } from '@angular/common/http';
 import { UsuariosService } from './provider/usuarios/usuarios.service';
 import { EmpleadosService } from './provider/empleados/empleados.service';
+import { AuthService } from './provider/auth/auth.service';
+//import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './provider/user/user.service';
 import { RolesService } from './provider/roles/roles.service';
 
 @NgModule({
@@ -64,8 +70,22 @@ import { RolesService } from './provider/roles/roles.service';
     PerfilModule,
     HttpClientModule
   ],
-  providers: [ConsejosService, ClientesService, UsuariosService, EmpleadosService,
-  RolesService],
+  
+  
+  providers: [
+    ConsejosService,
+    ClientesService,
+    UsuariosService,
+    EmpleadosService,
+    AuthService,
+    UserService,
+    PromocionesService,
+    CategoriasServicioService,
+    ServiciosService,
+    RolesService
+  ],
+    
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

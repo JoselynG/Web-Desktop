@@ -2,9 +2,9 @@
     <div class="ctn">
         <div class="col1">
             <mat-form-field class="valor inputs">
-                <mat-select name="resp" [(ngModel)]="valor" placeholder="Tipo de respuesta de la solicitud">
-                    <mat-option name="pp" *ngFor="let filtro of filtro" [value]="filtro.value">
-                        {{ filtro.viewValue }}
+                <mat-select name="resp" [(ngModel)]="valor" placeholder="Categoria de Servicios">
+                    <mat-option name="pp" *ngFor="let filtro of pro " [value]="filtro.nombre">
+                        {{ filtro.nombre }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

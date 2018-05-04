@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {ConsejosService } from '../../../provider/consejos/consejos.service';
 @Component({
   selector: 'app-crear-consejo',
   templateUrl: './crear-consejo.component.html',
@@ -9,7 +9,9 @@ export class CrearConsejoComponent implements OnInit {
 categorias: any ;
 enabled: Boolean = false;
 verBasico: Boolean = true;
-  constructor() {
+consejo: {id: string, titulo: string, descripcion: string, autor: string, imagen: string , estatus: string, fec: Date };
+
+  constructor(public crear_consejo_ser: ConsejosService) {
     this.categorias = [
       {nombre: 'Peluqueria'},
       {nombre: 'Maquillaje'},
@@ -33,5 +35,18 @@ verBasico: Boolean = true;
       };
     }
   }
+
+crearConsejo() {
+this.crear_consejo_ser.setServicio(this.consejo).subscribe((data) => {
+console.log(data);
+
+
+},
+(error) => {console.log(error) }
+);
+
+}
+
+
 
 }

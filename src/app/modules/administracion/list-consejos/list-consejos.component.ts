@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConsejosService } from '../../../provider/consejos/consejos.service';
 
 @Component({
   selector: 'app-list-consejos',
@@ -7,41 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListConsejosComponent implements OnInit {
 
-  consejos: any;
-  constructor()  {
-    this.consejos = [
-    {
-      nombre: 'Exfoliacion',
-      imagen: 'assets/img/exfoliante.png',
-      descripcion: 'Estas exfoliaciones son excelentes para tu rostro',
-      codigo: '#16445-6560',
-    },
-    {
-      nombre: 'Masaje Capilar',
-      imagen: 'assets/img/masajecapilar.jpg',
-      descripcion: 'Un masaje capilar que te permitira sentirte relajada y sin problemas',
-      codigo: '#16445-6560',
-    },
-    {
-      nombre: 'Promoción A',
-      imagen: 'assets/img/exfoliante.png',
-      descripcion: 'Estas rutinas de beleza te ayudaran a mejorar tu dia a dia',
-      codigo: '#16445-6560',
-    },
-  ];
+  pro: any;
+  constructor(public servi_servicio: ConsejosService )  {
+    this.getServicios();
 }
 
   ngOnInit() {
+    this.getServicios();
   }
 
- /* cargarConsejos() {
-    this.consejosService.getConsejos().suscribe(
-      (data => {
-        this.consejos = data;
-      }),
-      (error => {
+  getServicios() {
+    this.servi_servicio.getServicios().subscribe((resp) => {
+      this.pro = resp['data'];
+      console.log(this.pro);
+    }, (error) => {
         console.log(error);
-      })
-    );
-  }*/
+      }); }
+
+
+
+
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// tslint:disable-next-line:import-spacing
+import {PromocionesService } from  '../../../../provider/promocion/promociones.service';
 
 interface Detalle {
   NombrePromo: string;
@@ -18,84 +20,44 @@ interface Detalle {
   styleUrls: ['./listado-promocion.component.scss']
 })
 export class ListadoPromocionComponent implements OnInit {
-
-  detalles: Detalle [] = [
-    {
-      NombrePromo: 'Promoción A',
-      servicio: 'Corte cabello largo',
-      descripcion: 'Estes es una promocion  de Corte de Cabello',
-      type: 'ejecucion',
-      icon: true,
-      iconName: 'alarm',
-      codigo: '#16445-6560',
-      fechaInicio: '10/04/2018',
-      fechaFin: ' 10/05/2018'
-
-    },
-    {
-      NombrePromo: 'Promoción B',
-      servicio: 'Baño de color, Marcados',
-      descripcion: 'Este es otra promocón para el servicio de Baño de Color.',
-      type: 'ejecucion',
-      icon: true,
-      iconName: 'check_circle',
-      codigo: '#88554-1614',
-      fechaInicio: '10/04/2018',
-      fechaFin: ' 10/05/2018',
-    },
-    {
-      NombrePromo: 'Promoción C',
-      servicio: 'Marcados, Recogidos',
-      descripcion: 'Estes es otra promoción para el servicio de Marcados.',
-      type: 'ejecucion',
-      icon: false,
-      codigo: '#94900-2457',
-      fechaInicio: '10/04/2018',
-      fechaFin: ' 10/05/2018'
-    },
-
-    {
-      NombrePromo: 'Promoción B',
-      servicio: 'Baño de color, Marcados',
-      descripcion: 'Este es otra promocón para el servicio de Baño de Color.',
-      type: 'ejecucion',
-      icon: true,
-      iconName: 'check_circle',
-      codigo: '#88554-1614',
-      fechaInicio: '10/04/2018',
-      fechaFin: ' 10/05/2018',
-    },
-    {
-      NombrePromo: 'Promoción A',
-      servicio: 'Corte cabello largo',
-      descripcion: 'Estes es una promocion  de Corte de Cabello',
-      type: 'ejecucion',
-      icon: true,
-      iconName: 'alarm',
-      codigo: '#16445-6560',
-      fechaInicio: '10/04/2018',
-      fechaFin: ' 10/05/2018'
-
-    },
-    {NombrePromo: 'Promoción A',
-    servicio: 'Corte cabello largo',
-    descripcion: 'Estes es una promocion  de Corte de Cabello',
-    type: 'ejecucion',
-    icon: true,
-    iconName: 'alarm',
-    codigo: '#16445-6560',
-    fechaInicio: '10/04/2018',
-    fechaFin: ' 10/05/2018'
-
-  },
-  ];
+  promociones: Array<{
+     id: string,
+     id_servicio: string,
+     nombre: string,
+     descripcion: string,
+     porcentaje_descuento: number,
+     precio_promocion: number,
+     imagen: string,
+     fecha_inicio: string,
+     fecha_fin: string,
+     fecha_creacion: string
+     }>;
+     pro: any;
+ 
 
 
-  constructor() {
+  constructor(public promo_servicio: PromocionesService ) {
+    this.getPromociones();
+    console.log(this.promociones);
     }
 
   ngOnInit() {
+    this.getPromociones();
   }
+
+
+getPromociones() {
+this.promo_servicio.getPromociones().subscribe((resp) => {
+  this.pro = resp['data'];
+  console.log(this.pro);
+}, (error) => {
+    console.log(error);
+  });
+
+
+}
+
+
 
 }
 
