@@ -9,7 +9,7 @@ export class DatoComponent implements OnInit {
 
 
   listaTipoParam: ITipoParametro[]=[
-    {id:1,nombre:"Datos básicos",fecha_creacion:"2018-03-02",estatus:"activo"},
+    {id:1,nombre:"Datos basico",fecha_creacion:"2018-03-02",estatus:"activo"},
     
     
 ];
@@ -21,7 +21,7 @@ parametros: IParametro[]=[
 
 valoresParametro: IValorParametro[]=[
   {id:1,id_parametro:1,//tipo (emulsion epicutanea)
-   nombre:"Mujer",descripcion:" femenino",
+   nombre:"Mujer",descripcion:" feneminino",
    fecha_creacion:"2018-02-02",estatus:"activo"},
   {id:2,id_parametro:1,//tipo (emulsion epicutanea)
   nombre:"Hombre",descripcion:"sexo hombre",

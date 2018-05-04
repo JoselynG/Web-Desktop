@@ -1,3 +1,4 @@
+import { ServiciosService } from './provider/servicios/servicios.service';
 import { PerfilModule } from './modules/perfil/perfil.module';
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { GraficosDirective } from './test/graficos.directive';
@@ -78,7 +79,8 @@ import { UserService } from './provider/user/user.service';
     AuthService,
     UserService,
     PromocionesService,
-    CategoriasServicioService
+    CategoriasServicioService,
+    ServiciosService
   ],
     
   
