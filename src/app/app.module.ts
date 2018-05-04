@@ -30,6 +30,7 @@ import { ClientesService } from './provider/clientes/clientes.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuariosService } from './provider/usuarios/usuarios.service';
 import { EmpleadosService } from './provider/empleados/empleados.service';
+import { RolesService } from './provider/roles/roles.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { EmpleadosService } from './provider/empleados/empleados.service';
     PerfilModule,
     HttpClientModule
   ],
-  providers: [ConsejosService, ClientesService, UsuariosService, EmpleadosService],
+  providers: [ConsejosService, ClientesService, UsuariosService, EmpleadosService,
+  RolesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
