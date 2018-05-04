@@ -27,9 +27,14 @@ import { MarketingModule } from './modules/marketing/marketing.module';
 import { NotificacionesModule } from './modules/notificaciones/notificaciones.module';
 import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.module';
 import { PromocionesService } from './provider/promocion/promociones.service';
-import { HttpClient } from 'selenium-webdriver/http';
-import { HttpClientModule } from '@angular/common/http';
 import { CategoriasServicioService } from './provider/categorias-servicio/categorias-servicio.service';
+import { ClientesService } from './provider/clientes/clientes.service';
+import { UsuariosService } from './provider/usuarios/usuarios.service';
+import { EmpleadosService } from './provider/empleados/empleados.service';
+import { AuthService } from './provider/auth/auth.service';
+//import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './provider/user/user.service';
 
 @NgModule({
   declarations: [
@@ -63,8 +68,20 @@ import { CategoriasServicioService } from './provider/categorias-servicio/catego
     PerfilModule,
     HttpClientModule
   ],
-  providers: [ConsejosService, PromocionesService, CategoriasServicioService],
-  bootstrap: [AppComponent],
-
+  
+  
+  providers: [
+    ConsejosService,
+    ClientesService,
+    UsuariosService,
+    EmpleadosService,
+    AuthService,
+    UserService,
+    PromocionesService,
+    CategoriasServicioService
+  ],
+    
+  
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

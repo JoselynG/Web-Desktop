@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import { NegocioService } from './../../../provider/negocio/negocio.service';
+>>>>>>> master
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
@@ -15,11 +19,23 @@ filtro = [
   {value: 'trujillo', viewValue: 'trujillo'},
   
 ];
+<<<<<<< HEAD
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
+=======
+  constructor(
+    public dialog: MatDialog,
+ 
+  ) { }
+
+  ngOnInit() {
+    
+  }
+  
+>>>>>>> master
 }
 
 
