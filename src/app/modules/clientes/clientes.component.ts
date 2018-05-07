@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { getLocaleDateFormat } from '@angular/common';
 import { forEach } from '@angular/router/src/utils/collection';
+import { ActivatedRoute, ParamMap} from '@angular/router';
+import { ClientesService } from '../../provider/clientes/clientes.service';
+import { UsuariosService } from '../../provider/usuarios/usuarios.service';
 
 //Los atributos que estan con un signo de interrogacion so opcionales para este prototipo
 //mas, sin embargo, son requeridos al modelo en la estructura funcional (Cuando esta se realice)
@@ -36,11 +39,16 @@ export class ClientesComponent implements OnInit {
 })
 export class ClientePrincipalComponent implements OnInit {
   //date = new FormControl(moment());
-  cliente: IClienteUsuario={
-    cliente:{nombre:"Daenerys", apellido:"Targaryen",
-    telefono:"02008554544", fecha_nacimiento: "1987-04-11"},
-    usuario:{correo:"la.mil.titulos@gmail.com"}
-  }
+  cliID:number;
+  cliente:any;usuario:any;
+  infoCliente:{
+    id:number;
+    nombre:string;
+    apellido:string;
+    telefono:string;
+    fecha_nacimiento:Date;
+    correo:string;
+  };
 
   listaTipoParam: ITipoParametro[]=[
     {id:1,nombre:"Cabello",descripcion:"el cabello",fecha_creacion:"2018-03-02",estatus:"inactivo",
@@ -124,10 +132,49 @@ export class ClientePrincipalComponent implements OnInit {
     
 ];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, public servicio_cliente: ClientesService,
+  public servicio_usuario: UsuariosService) { }
   ngOnInit() {
+    ///
+    this.infoCliente={
+      id:0,
+      nombre:'',
+      apellido:'',
+      telefono:'',
+      fecha_nacimiento:new Date(),
+      correo:''
+    };
+    ///
     this.listaTipoParam[0].estatus="activo";
-      this.listaTipoParam[0].parametros[0].estatus="activo";
+    this.listaTipoParam[0].parametros[0].estatus="activo";
+    this.getClienteInfo();
+  }
+
+  getClienteInfo(){
+    ///
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      let id = parseInt(params.get('id'));
+      this.cliID = id;
+    });
+    ///
+    this.servicio_cliente.getCliente(this.cliID).subscribe(
+      (data)=>
+      {
+        this.cliente=data['data'];
+        this.servicio_usuario.getUsuario(this.cliente.id_usuario).subscribe(
+          (data2)=>
+          {
+            this.usuario=data2['data'];
+            this.infoCliente={id:this.cliID,nombre:this.cliente.nombre,apellido:this.cliente.apellido,telefono:this.cliente.telefono,fecha_nacimiento:this.cliente.fecha_nacimiento, correo:this.usuario.correo};
+            console.log(this.infoCliente)
+          },(error)=>{
+            console.log(error);
+          }
+      );
+      },(error)=>{
+        console.log(error);
+      }
+  );
   }
 
 obtenerGenero():string{
@@ -187,13 +234,13 @@ obtenerGenero():string{
 //Interfaces
 /* DEL CLIENTE */
 interface ICliente {
-  id_cliente?: number;
+  id: number;
   nombre: string;
   apellido: string;
   cedula?: string;
   telefono: string;
   direccion?: string;
-  fecha_nacimiento: string;//DATE
+  fecha_nacimiento: Date;//DATE
   fecha_creacion?: string;//DATE
   estatus?: string;
 }

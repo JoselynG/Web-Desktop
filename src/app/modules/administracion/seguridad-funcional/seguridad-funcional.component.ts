@@ -47,37 +47,38 @@ export class SeguridadFuncionalComponent implements OnInit {
           (data2)=>{
             this.clientesArr=data2['data'];
             console.log(this.empleadosArr);
-            console.log(this.clientesArr);
-          }, (error)=>{
-            console.log(error);
-          }
-        );
-        ///----------------->
-        this.servicio_usuario.getUsuarios().subscribe(//SERVICIO DE USUARIOS QUE RETORNA JSON DE TABLA USUARIO
-          (data3)=>{
-            this.usuariosArr=data3['data'];
-            ///////////////////
-            this.empleadosArr.forEach(empl => {
-              for (let j = 0; j < this.usuariosArr.length; j++) {//RECORRE LA LISTA DE empleados 
-                if(empl.id_usuario==this.usuariosArr[j].id){//SI EL empleado EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
-                  this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:this.usuariosArr[j].correo,
-                  telefono:empl.telefono, rol:this.nombreRol(this.usuariosArr[j].id_rol)});
-                  break;
-                }
+            ///----------------->
+            this.servicio_usuario.getUsuarios().subscribe(//SERVICIO DE USUARIOS QUE RETORNA JSON DE TABLA USUARIO
+              (data3)=>{
+                this.usuariosArr=data3['data'];
+                console.log(this.clientesArr);
+                console.log(this.usuariosArr);
+                ///////////////////
+                this.empleadosArr.forEach(empl => {
+                  for (let j = 0; j < this.usuariosArr.length; j++) {//RECORRE LA LISTA DE empleados 
+                    if(empl.id_usuario==this.usuariosArr[j].id){//SI EL empleado EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
+                      this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:this.usuariosArr[j].correo,
+                      telefono:empl.telefono, rol:this.nombreRol(this.usuariosArr[j].id_rol)});
+                      break;
+                    }
+                  }
+                });
+                this.clientesArr.forEach(cli => {
+                  for (let i = 0; i < this.usuariosArr.length; i++) {//RECORRE LA LISTA DE clientes 
+                    if(cli.id_usuario==this.usuariosArr[i].id){//SI EL cliente EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
+                      this.lista_usuarios.push({usuario:(cli.nombre+" "+cli.apellido), correo:this.usuariosArr[i].correo,
+                      telefono:cli.telefono, rol:this.nombreRol(this.usuariosArr[i].id_rol)});
+                      break;
+                    }
+                  }
+                });
+                this.dataSource=new MatTableDataSource(this.lista_usuarios);//le mandamos los datos a la tabla
+                console.log(this.lista_usuarios);
+                ///////////////////
+              }, (error)=>{
+                console.log(error);
               }
-            });
-            this.clientesArr.forEach(cli => {
-              for (let i = 0; i < this.usuariosArr.length; i++) {//RECORRE LA LISTA DE clientes 
-                if(cli.id_usuario==this.usuariosArr[i].id){//SI EL cliente EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
-                  this.lista_usuarios.push({usuario:(cli.nombre+" "+cli.apellido), correo:this.usuariosArr[i].correo,
-                  telefono:cli.telefono, rol:this.nombreRol(this.usuariosArr[i].id_rol)});
-                  break;
-                }
-              }
-            });
-            this.dataSource=new MatTableDataSource(this.lista_usuarios);//le mandamos los datos a la tabla
-            console.log(this.lista_usuarios);
-            ///////////////////
+            );
           }, (error)=>{
             console.log(error);
           }

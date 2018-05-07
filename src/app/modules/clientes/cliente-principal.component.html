@@ -1,7 +1,7 @@
 <div class="div-inicial">
     <mat-card style="display:flex; flex-wrap:wrap;">
         <div class="div-dentro">
-            <h4>Información del cliente</h4>
+            <h4>Información del cliente {{infoCliente.id}}</h4>
             <div style="height: 150px;opacity: 0.75;text-align: center;">
                 <mat-icon [style.color]="(obtenerGenero()=='f')?'#fd0087':'#0065ff'" style="font-size: 150px;margin-left: -125px;">account_circle</mat-icon>
             </div>
@@ -10,17 +10,17 @@
         <mat-card-content style="min-width: 180px; width: 60%;">
             <div class="this-matcardcontent-div">
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" [value]="cliente.cliente.nombre">
+                    <input matInput placeholder="Nombre" [value]="infoCliente.nombre">
                 </mat-form-field>
                 <div style="width:10px;"></div>
                 <mat-form-field>
-                    <input matInput placeholder="Apellido" [value]="cliente.cliente.apellido">
+                    <input matInput placeholder="Apellido" [value]="infoCliente.apellido">
                 </mat-form-field>
             </div>
 
 
             <mat-form-field class="mat-f-f">
-                <input type="email" matInput placeholder="Correo" [value]="cliente.usuario.correo">
+                <input type="email" matInput placeholder="Correo" [value]="infoCliente.correo">
             </mat-form-field>
 
 
@@ -33,11 +33,11 @@
             <br>
             <br><br>
             <mat-form-field class="mat-f-f">
-                <input type="date" matInput placeholder="Fecha de nacimiento" [value]="cliente.cliente.fecha_nacimiento">
+                <input type="datetime" matInput placeholder="Fecha de nacimiento" [value]="infoCliente.fecha_nacimiento | date:'dd-MM-yyyy'">
             </mat-form-field>
 
             <mat-form-field class="mat-f-f">
-                <input type="tel" matInput placeholder="Telefono" [value]="cliente.cliente.telefono">
+                <input type="tel" matInput placeholder="Telefono" [value]="infoCliente.telefono">
             </mat-form-field>
         </mat-card-content>
     </mat-card>
