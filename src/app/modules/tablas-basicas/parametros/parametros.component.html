@@ -23,15 +23,15 @@
                                         <h3> Maquillaje </h3>
                                     </mat-grid-tile>
                                 </mat-grid-list>
-                                <div *ngFor="let dato of datos">
+                                <div *ngFor="let dato of listadoTipoParametros">
                                     <div class="letra" style="margin-top:20px;">
                                         <mat-grid-list cols="12" rowHeight="40px">
-                                            <mat-grid-tile [colspan]="6" [rowspan]="1"> {{dato.nombreTP}}</mat-grid-tile>
+                                            <mat-grid-tile [colspan]="6" [rowspan]="1"> {{dato.nombre}}</mat-grid-tile>
                                             <mat-grid-tile [colspan]="3" [rowspan]="1">
-                                                <mat-checkbox [checked]="true" [disabled]="true"></mat-checkbox>
+                                                <mat-checkbox [checked]="dato.id_categoria_servicio == 1" [disabled]="true"></mat-checkbox>
                                             </mat-grid-tile>
                                             <mat-grid-tile [colspan]="3" [rowspan]="1">
-                                                <mat-checkbox [disabled]="true"></mat-checkbox>
+                                                <mat-checkbox [checked]="dato.id_categoria_servicio == 2" [disabled]="true"></mat-checkbox>
                                             </mat-grid-tile>
                                         </mat-grid-list>
                                     </div>
@@ -60,8 +60,8 @@
                             <div class="row">
                                 <mat-form-field style="width: 200px;">
                                     <mat-select placeholder="Seleccione característica" value="0">
-                                        <mat-option *ngFor="let dato of datos" [value]="dato" (click)="cargarListaCaracteristica(dato.nombreTP)">
-                                            {{dato.nombreTP}}
+                                        <mat-option *ngFor="let dato of listadoTipoParametros" [value]="dato" (click)="cargarListaCaracteristica(dato.id)">
+                                            {{dato.nombre}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -69,9 +69,9 @@
                             <ng-container *ngIf="showCaracteristica">
                                 <dl>
                                     <h3 style="margin-top:10px;"> Nombre </h3>
-                                    <div *ngFor="let Tpa of caracteristicaLoad">
+                                    <div *ngFor="let Tpa of parametrosAListar">
                                         <div class="letra" style="margin-top:30px;">
-                                            {{Tpa}}
+                                            {{Tpa.nombre}}
                                         </div>
                                     </div>
                                 </dl>
@@ -98,7 +98,7 @@
                         <div class="garantia" style="margin-top: 25px;">
                             <div class="row">
                                 <mat-form-field style="width: 200px;">
-                                    <mat-select placeholder="Selecciona categoría" value="0">
+                                    <mat-select placeholder="Selecciona categoría" value="0" (click)="configurarValoresParametro();">
                                         <mat-option *ngFor="let dato of parametrosSelect" [value]="dato" (click)="cargarListaValores(dato)">
                                             {{dato}}
                                         </mat-option>
@@ -115,8 +115,8 @@
                                             <h3>Descripción</h3>
                                         </mat-grid-tile>
                                     </mat-grid-list>
-                                    <div *ngFor="let Tpa of valoresToLoad">
-                                        <div class="letra" style="margin-top:20px;">
+                                    <div *ngFor="let Tpa of listadoValorParametro">
+                                        <div *ngIf="Tpa.id_parametro == valorAMostrar" class="letra" style="margin-top:20px;">
                                             <mat-grid-list cols="12" rowHeight="40px">
                                                 <mat-grid-tile [colspan]="6" [rowspan]="1"> {{Tpa.nombre}}</mat-grid-tile>
                                                 <mat-grid-tile [colspan]="6" [rowspan]="1">

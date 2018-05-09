@@ -1,8 +1,16 @@
 <div class="ctn">
     <h3 class="title">
-        Crear Nueva Categoría: {{tipo_reclamo}}
+        Crear Nueva Categoría Dependiente:
     </h3>
-
+    <div class="row">
+        <mat-form-field>
+            <mat-select placeholder="Selecciona categoría" value="0">
+                <mat-option *ngFor="let tipo of tipo_reclamo" [value]="tipo">
+                    {{ tipo.nombre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
     <!--  <texto>!-->
     <mat-form-field style="margin-top: 20px;" class="example-full-width inputs">
         <input matInput placeholder="Nombre">
