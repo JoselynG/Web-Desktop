@@ -10,6 +10,7 @@ import { CategoriasComponent, CrearCategoriaComponent} from './categorias/catego
 import { EmpresaComponent } from './empresa/empresa.component';
 import { DatosNegocioComponent, CrearObjetivosComponent } from './empresa/datos-negocio/datos-negocio.component';
 import { LogoNegocioComponent } from './empresa/logo-negocio/logo-negocio.component';
+import { NegocioService } from '../../provider/negocio/negocio.service';
 
 
 
@@ -31,6 +32,7 @@ import { LogoNegocioComponent } from './empresa/logo-negocio/logo-negocio.compon
     EmpresaComponent,
     CrearObjetivosComponent
   ],
+  providers: [NegocioService],
   
   declarations: [ AgregarTipoParametroComponent, AgregarParametroComponent,
     ParametrosComponent , AgregarValorParametroComponent, CategoriasComponent, CrearCategoriaComponent, 

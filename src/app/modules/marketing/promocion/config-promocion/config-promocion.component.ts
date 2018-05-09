@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-
+import {ValoresParametrosService} from '../../../../provider/valores-parametros/valores-parametros.service';
+import {ParametrosService} from '../../../../provider/parametros/parametros.service';
+import {TiposParametrosService} from '../../../../provider/tipos-parametros/tipos-parametros.service';
 @Component({
   selector: 'app-config-promocion',
   templateUrl: './config-promocion.component.html',
@@ -12,56 +14,40 @@ export class ConfigPromocionComponent implements OnInit {
   [x: string]: any;
   consejo: Array<{}> = [];
   datoBasico: Array<{}> = [];
-  listaParametro: Array<{}> = [];
+  listaParametro: Array<{ }> ;
   listaValor: Array<{}> = [];
   tipoparametro: any;
-    listaTipoParametro: Array<{id_dato: string, nombre: string, status: string, tipo_dato: string }>;
+  
+  listaTipoParametro: any;
+  listaParametros: any ;
+  listavalorparametro: any;
+  
+  constructor(public dialog: MatDialog, public parametroServ: ParametrosService, public tipo_para_serv: TiposParametrosService,
+    public valor_para_ser: ValoresParametrosService) {
+  
 
-  listaParametros: Array<{id_dato: string, id_parametro: string, nombre: string, tipo: string}>;
-
-  listavalorparametro: Array<{id_valor: string, id_parametro: string, nombre: string, descripcion: string}>;
-  constructor(public dialog: MatDialog) {
-    this.listaTipoParametro = [
-      {id_dato: '1', nombre: 'Sexo', status: 'a', tipo_dato: 'basico'},
-      {id_dato: '2', nombre: 'Rango de edad', status: 'a', tipo_dato: 'basico'},
-      {id_dato: '3', nombre: 'Numero de hijos', status: 'a', tipo_dato: 'basico'},
-      {id_dato: '4', nombre: 'Rostro', status: 'a', tipo_dato: 'caracteristica'},
-      {id_dato: '5', nombre: 'Cabello', status: 'a', tipo_dato: 'caracteristica'},
-      {id_dato: '6', nombre: 'Ojos', status: 'a', tipo_dato: 'caracteristica'},
-    ];
-
-    this.listaParametros = [
-      {id_parametro: '1', id_dato: '1', nombre: 'Hombre', tipo: 'basico'},
-      {id_parametro: '2', id_dato: '1', nombre: 'Mujer', tipo: 'basico'},
-      {id_parametro: '3', id_dato: '2', nombre: 'Joven', tipo: 'basico'},
-      {id_parametro: '4', id_dato: '2', nombre: 'Adulto Mayor', tipo: 'basico'},
-      {id_parametro: '5', id_dato: '4', nombre: 'Tipo de rostro', tipo: 'basico'},
-      {id_parametro: '6', id_dato: '5', nombre: 'Tipo de cabello', tipo: 'basico'},
-
-    ];
-
-    this.listavalorparametro = [
-      {id_valor: '1', id_parametro: '5', nombre: 'Largo', descripcion: 'El rostro es estirado'},
-      {id_valor: '2', id_parametro: '5', nombre: 'Redondo', descripcion: 'El redondeado'},
-      {id_valor: '3', id_parametro: '6', nombre: 'Ondulado', descripcion: 'su cabello presenta ondas'},
-      {id_valor: '4', id_parametro: '6', nombre: 'Crespo', descripcion: 'es un cabello dificil de manejar'},
-    ];
-  }
+    }
 
   ngOnInit() {
-
+    this.getTipoParametros();
+    this.getValorParametros();
+    this.getParametros();
+   
       }
+
   cargarParametro(id) {
     let j = 0;
-    this.listaParametro = [];
+   this.listaParametro = [];
     for (let i = 0; i < this.listaParametros.length; i++) {
-      if (this.listaParametros[i].id_dato === id) {
+      if (this.listaParametros[i].id_tipo_parametro === id) {
         this.listaParametro[j] = this.listaParametros[i];
         console.log(id);
         j++;
-        console.log(this.listaParametro);
+       // console.log(this.listaParametro);
       }
+      
     }
+    return this.listaParametro;
   }
   cargarValorParametro(id) {
     let j = 0;
@@ -80,7 +66,41 @@ export class ConfigPromocionComponent implements OnInit {
   }
   guardarDatoBasico(data) {
     this.datoBasico.push(data);
+    console.log(this.datoBasico);
   }
   Guardar() {
   }
+
+//Metodos para Cargar datos
+
+getParametros() {
+  this.parametroServ.getParametros().subscribe((resp) => {
+    this.listaParametros = resp['data'];
+   // console.log(this.listaParametros);
+  }, (error) => {
+      console.log(error);
+    });
+
+
+}
+
+getTipoParametros() {
+  this.tipo_para_serv.getTipoParametros().subscribe((resp) => {
+    this.listaTipoParametro = resp['data'];
+   // console.log(this.listaTipoParametro );
+  }, (error) => {
+      console.log(error);
+    });
+}
+
+
+getValorParametros() {
+  this.valor_para_ser.getValoresParametros().subscribe((resp) => {
+    this.listavalorparametro = resp['data'];
+    console.log(this.listavalorparametro);
+  }, (error) => {
+      console.log(error);
+    });
+}
+
 }

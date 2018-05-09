@@ -1,3 +1,4 @@
+import { NegocioService } from './../../../provider/negocio/negocio.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
@@ -13,13 +14,17 @@ filtro = [
   {value: 'Barquisimeto', viewValue: 'Barquisimeto'},
   {value: 'Merida', viewValue: 'Merida'},
   {value: 'trujillo', viewValue: 'trujillo'},
-  
+
 ];
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+ 
+  ) { }
 
   ngOnInit() {
+    
   }
-
+  
 }
 
 

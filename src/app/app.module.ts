@@ -1,3 +1,4 @@
+import { ServiciosService } from './provider/servicios/servicios.service';
 import { PerfilModule } from './modules/perfil/perfil.module';
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
 import { GraficosDirective } from './test/graficos.directive';
@@ -27,9 +28,17 @@ import { MarketingModule } from './modules/marketing/marketing.module';
 import { NotificacionesModule } from './modules/notificaciones/notificaciones.module';
 import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.module';
 import { PromocionesService } from './provider/promocion/promociones.service';
-import { HttpClient } from 'selenium-webdriver/http';
-import { HttpClientModule } from '@angular/common/http';
 import { CategoriasServicioService } from './provider/categorias-servicio/categorias-servicio.service';
+import { ClientesService } from './provider/clientes/clientes.service';
+import { UsuariosService } from './provider/usuarios/usuarios.service';
+import { EmpleadosService } from './provider/empleados/empleados.service';
+import { AuthService } from './provider/auth/auth.service';
+//import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './provider/user/user.service';
+import { ValoresParametrosService } from './provider/valores-parametros/valores-parametros.service';
+import { ParametrosService } from './provider/parametros/parametros.service';
+import { TiposParametrosService } from './provider/tipos-parametros/tipos-parametros.service';
 
 @NgModule({
   declarations: [
@@ -63,8 +72,24 @@ import { CategoriasServicioService } from './provider/categorias-servicio/catego
     PerfilModule,
     HttpClientModule
   ],
-  providers: [ConsejosService, PromocionesService, CategoriasServicioService],
-  bootstrap: [AppComponent],
-
+  
+  
+  providers: [
+    ConsejosService,
+    ClientesService,
+    UsuariosService,
+    EmpleadosService,
+    AuthService,
+    UserService,
+    PromocionesService,
+    CategoriasServicioService,
+    ServiciosService,
+    ValoresParametrosService,
+    ParametrosService,
+    TiposParametrosService
+  ],
+    
+  
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

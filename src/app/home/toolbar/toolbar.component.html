@@ -18,7 +18,7 @@
                 </div>
             </button>
 
-            <mat-card-content>   
+            <mat-card-content>
                 <div class="name">
                     <span class="bold"> {{notiInfo.titulo}} </span>
                     <p class="name"> {{notiInfo.mensaje}} </p>
@@ -26,7 +26,7 @@
                 </div>
             </mat-card-content>
 
-            <mat-card-content>  
+            <mat-card-content>
                 <div class="name">
                     <span class="bold"> {{notificaInfo.ti}} </span>
                     <p class="name"> {{notificaInfo.msj}} </p>
@@ -55,6 +55,14 @@
             <button mat-menu-item>
                 <mat-icon>card_travel</mat-icon>
                 <span>Mi negocio</span>
+            </button>
+            <button mat-menu-item routerLink="/usuario-perfil">
+                <mat-icon>person</mat-icon>
+                <span>Mi perfil</span>
+            </button>
+            <button mat-menu-item (click)="cerrarSesion()">
+                <mat-icon>power_settings_new</mat-icon>
+                <span>Cerrar Sesión</span>
             </button>
         </mat-menu>
 

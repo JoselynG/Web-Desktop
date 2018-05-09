@@ -25,11 +25,11 @@
         </div>
     </div>
     <div class="carta">
-        <mat-card class="matc">
+        <mat-card class="matc" *ngFor="let item of pro">
             <mat-card-header>
                 <div class="fila1">
                     <div class="nombre">
-                        <h5>Maquillaje de contorno</h5>
+                    {{item.nombre}}
                     </div>
                     <div class="boton">
                         <button mat-icon-button class="btn2">
@@ -41,11 +41,14 @@
             </mat-card-header>
              <!-- la imagen -->
 
-             <img mat-card-image src="/assets/img/login.png" alt="Photo of a Shiba Inu">
+             <img mat-card-image src="http://localhost:3000/files/servicio/{{item.id}}.{{item.imagen}}" alt="Photo of a Shiba Inu">
             <mat-card-content>
                 <div class="fila2">
                     <p>
-                        Resaltar la iluminaciòn de rostro 
+                        {{item.descripcion}}
+                    </p>
+                    <p>
+                        {{item.precio}}
                     </p>
                 </div>
             </mat-card-content>
