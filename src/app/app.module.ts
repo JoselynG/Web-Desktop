@@ -1,3 +1,4 @@
+import { ServicioSolicitadoService } from './provider/servicio-solicitado/servicio-solicitado.service';
 import { ServiciosService } from './provider/servicios/servicios.service';
 import { PerfilModule } from './modules/perfil/perfil.module';
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
@@ -36,6 +37,7 @@ import { AuthService } from './provider/auth/auth.service';
 //import { HttpClient } from 'selenium-webdriver/http';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './provider/user/user.service';
+import { SolicitudService } from './provider/solicitud/solicitud.service';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { UserService } from './provider/user/user.service';
     UserService,
     PromocionesService,
     CategoriasServicioService,
-    ServiciosService
+    ServiciosService,
+    SolicitudService,
+    ServicioSolicitadoService
   ],
     
   
