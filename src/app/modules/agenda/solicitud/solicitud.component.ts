@@ -1,8 +1,10 @@
+import { VistaSolicitudService } from './../../../provider/vista-solicitud/vista-solicitud.service';
 import { ServicioSolicitadoService } from './../../../provider/servicio-solicitado/servicio-solicitado.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SolicitudService } from '../../../provider/solicitud/solicitud.service';
 import { ClientesService } from '../../../provider/clientes/clientes.service';
+import { EmpleadosService } from '../../../provider/empleados/empleados.service';
 interface Detalle{
   clientName: string;
   servicios: string;
@@ -21,17 +23,27 @@ interface Detalle{
   styleUrls: ['./solicitud.component.scss']
 })
 export class SolicitudComponent implements OnInit {
-  datosServSolic: any;
-  datosServSolicAux: any;
-  datosSolic: any;
-  datosCliente: any;
-  datosS:{
-    descripcion: string;
-    servicios: Array<{
-        descripcion: string;
-    }>
+  solicitud:{
+    id: number;
+    id_cliente: string;
+    id_promocion: string;
+    nombre: string;
+    apellido: string;
+    cantidad_servicios: number;
+    empleado_pelu: string;
+    empleado_maqui: string;
+    vista_servicio_solicitado: {
+      id: number;
+      id_servicio: number;
+      nombre: string;
+      tipo_servicio: string;
+    };
+    empleadoP_nombre: string;
+    empleadoM_nombre: string;
+    empleadoP_apellido: string;
+    empleadoM_apellido: string;
   }
-  
+  empleadoSelPelu: any;
   empleadosSeleccionados = [];
   empleados = ['Qohollo', 'Irri Handmaiden', 'Thoros', 'Maester'];
   detalles: Detalle []= [
@@ -65,13 +77,34 @@ export class SolicitudComponent implements OnInit {
   ];
   constructor(
     public dialog: MatDialog,
-    public solicitudServ: SolicitudService,
-    public servicioSolic: ServicioSolicitadoService,
-    public clientes: ClientesService
+    public solic: VistaSolicitudService,
+    public empleado: EmpleadosService
   ) { }
 
   ngOnInit() {
+    this.getSolicitud();
   }
+
+  getSolicitud(){
+    this.solic.getSolicitud().subscribe(
+      (data)=>{
+        this.solicitud =data['data'];
+      },(error) =>{
+        console.log(error);
+      }
+    )
+  }
+  getEmpleadoPelu(id){    
+    this.empleado.getEmpleadoEspecifico(id).subscribe(
+      (data)=>{
+        this.empleadoSelPelu =data['data'];
+      },(error) =>{
+        console.log(error);
+      }
+    )
+  }
+
+  
   openDialogResponder(){
     const dialogRef = this.dialog.open(ResponderSolicitudComponent, {
       height: '600px',

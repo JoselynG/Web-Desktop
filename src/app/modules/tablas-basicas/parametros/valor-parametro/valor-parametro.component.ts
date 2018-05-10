@@ -51,7 +51,7 @@ openDialogValorParametro() {
   styleUrls: ['./crear-valor-parametro.component.scss']
 })
 
-export class CrearValorParametroComponent implements OnInit {
+export class CrearValorParametroComponent{
   constructor() { }
 
   ngOnInit() {
