@@ -22,5 +22,8 @@ getClientes(){
 getCliente(id){
   return this.http.get(API_URL+this.url_listado_clientes+'/'+id);
 }
+putCliente(id,cliente){
+  return this.http.put(API_URL+this.url_listado_clientes+'/'+id, cliente);
+}
 
 }

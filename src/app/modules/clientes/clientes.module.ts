@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClientesRoutingModule } from './clientes-routing.module';
@@ -19,6 +19,7 @@ import { ListadoClientesComponent } from './listado-clientes/listado-clientes.co
     ClientePrincipalComponent,
     ListadoClientesComponent
   ],
-  declarations: [ClientesComponent, ClientePrincipalComponent, ListadoClientesComponent]
+  declarations: [ClientesComponent, ClientePrincipalComponent, ListadoClientesComponent],
+  providers: [ { provide: LOCALE_ID, useValue: 'es-Ve' } ]
 })
 export class ClientesModule { }

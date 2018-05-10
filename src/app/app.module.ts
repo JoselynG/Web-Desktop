@@ -37,6 +37,11 @@ import { AuthService } from './provider/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './provider/user/user.service';
 import { RolesService } from './provider/roles/roles.service';
+import { PerfilService } from './provider/perfil/perfil.service';
+import { TipoParametroService } from './provider/tipo-parametro/tipo-parametro.service';
+import { ParametroService } from './provider/parametro/parametro.service';
+import { ValorParametroService } from './provider/valor-parametro/valor-parametro.service';
+import { MensajeExitoComponent } from './mensajes/mensaje-exito/mensaje-exito.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +52,7 @@ import { RolesService } from './provider/roles/roles.service';
     ToolbarComponent,
     TestComponent,
     GraficosDirective,
+    MensajeExitoComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,9 +88,16 @@ import { RolesService } from './provider/roles/roles.service';
     PromocionesService,
     CategoriasServicioService,
     ServiciosService,
-    RolesService
+    RolesService,
+    PerfilService,
+    TipoParametroService,
+    ParametroService,
+    ValorParametroService,
   ],
     
+  entryComponents: [
+    MensajeExitoComponent,
+  ],
   
   bootstrap: [AppComponent]
 })
