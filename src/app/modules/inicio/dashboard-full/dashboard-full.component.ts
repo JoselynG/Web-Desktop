@@ -18,28 +18,28 @@ export class DashboardFullComponent implements OnInit {
   ];
   servicios: Servicio[] = [
     {
-      nombre: 'Secado de cabello',
+      nombre: 'María Pérez',
       hora: '8:00 AM'
     },
     {
-      nombre: 'Planchado de cabello',
+      nombre: 'Carla López',
       hora: '9:00 AM'
     },
     {
-      nombre: 'Mechas',
+      nombre: 'Mario Hernández',
       hora: '10:00 AM'
     },
     {
-      nombre: 'Desriz',
-      hora: '8:00 AM'
-    },
-    {
-      nombre: 'Trenzado',
-      hora: '8:00 AM'
-    },
-    {
-      nombre: 'Maquillaje de día',
+      nombre: 'Beatriz Peraza',
       hora: '11:00 AM'
+    },
+    {
+      nombre: 'Lucas Torres',
+      hora: '2:00 PM'
+    },
+    {
+      nombre: 'Lucia Castañeda',
+      hora: '5:00 PM'
     }
 
   ];

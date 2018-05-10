@@ -1,5 +1,8 @@
+import { ServicioSolicitadoService } from './../../../provider/servicio-solicitado/servicio-solicitado.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { SolicitudService } from '../../../provider/solicitud/solicitud.service';
+import { ClientesService } from '../../../provider/clientes/clientes.service';
 interface Detalle{
   clientName: string;
   servicios: string;
@@ -18,6 +21,17 @@ interface Detalle{
   styleUrls: ['./solicitud.component.scss']
 })
 export class SolicitudComponent implements OnInit {
+  datosServSolic: any;
+  datosServSolicAux: any;
+  datosSolic: any;
+  datosCliente: any;
+  datosS:{
+    descripcion: string;
+    servicios: Array<{
+        descripcion: string;
+    }>
+  }
+  
   empleadosSeleccionados = [];
   empleados = ['Qohollo', 'Irri Handmaiden', 'Thoros', 'Maester'];
   detalles: Detalle []= [
@@ -49,7 +63,12 @@ export class SolicitudComponent implements OnInit {
       codigo: '    #16445-6560',
     },
   ];
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    public solicitudServ: SolicitudService,
+    public servicioSolic: ServicioSolicitadoService,
+    public clientes: ClientesService
+  ) { }
 
   ngOnInit() {
   }

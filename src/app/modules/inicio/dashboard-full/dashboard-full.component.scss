@@ -22,6 +22,7 @@
                 width: 500px;
                 margin-left: 45px;
                 margin-top: 25px;
+                margin-bottom: 40px;
                 img {
                     height: 230px;
                 }
@@ -43,11 +44,10 @@
                     }
                 }
                 .citas {
-                    border-top: solid;
-                    border-top-color: #FD0087;
                     h5 {
-                        color: rgb(87, 92, 100) !important;
                         margin-top: 7px;
+                        margin: 10px;
+                        color: #6C798F;
                     }
                 }
             }
@@ -85,7 +85,7 @@
                 }
             }
             .row4 {
-                width: 100px;
+                //width: 100px;
                 color: #6C798F;
                 margin-left: 10px;
                 font-weight: 500;
@@ -129,6 +129,7 @@
             mat-card-content {
                 width: 280px;
                 height: 190px;
+                margin-bottom: 50px;
                 .for {
                     display: flex;
                     flex-direction: row;
@@ -151,7 +152,7 @@
                     line-height: 19px;
                     height: 30px;
                     margin-top: 10px;
-                    margin-left: 150px;
+                    margin-left: 160px;
                 }
             }
         }
