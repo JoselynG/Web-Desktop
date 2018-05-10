@@ -1,3 +1,4 @@
+import { ValorParametroComponent, CrearValorParametroComponent } from './parametros/valor-parametro/valor-parametro.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -12,7 +13,7 @@ import { DatosNegocioComponent, CrearObjetivosComponent } from './empresa/datos-
 import { LogoNegocioComponent } from './empresa/logo-negocio/logo-negocio.component';
 import { NegocioService } from '../../provider/negocio/negocio.service';
 import { CrearNuevoParametroComponent, CrearTipoParametroComponent, CaracteristicasComponent } from './parametros/caracteristicas/caracteristicas.component';
-import { CrearValorParametroComponent } from './parametros/valor-parametro/valor-parametro.component';
+
 
 
 

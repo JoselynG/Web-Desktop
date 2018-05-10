@@ -4,7 +4,8 @@ import { MatDialog } from '@angular/material';
 interface Val {
   valor: string;
   descrip: string;
-}
+};
+
 @Component({
   selector: 'app-valor-parametro',
   templateUrl: './valor-parametro.component.html',
@@ -38,7 +39,6 @@ openDialogValorParametro() {
     height: '350px',
     width: '350px'
   });
-
   dialogRef.afterClosed().subscribe(result => {
     console.log('mostrado');
   });
@@ -54,7 +54,6 @@ openDialogValorParametro() {
 export class CrearValorParametroComponent{
   constructor() { }
 
-  ngOnInit() {
-  }
+ngOnInit(){
 
-}
+}}
