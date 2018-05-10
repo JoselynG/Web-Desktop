@@ -9,7 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { MaterialDesignModule } from './material-design/material-design.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -22,9 +22,9 @@ import { InicioModule } from './modules/inicio/inicio.module';
 import { ClientesModule } from './modules/clientes/clientes.module';
 import { TablasBasicasModule } from './modules/tablas-basicas/tablas-basicas.module';
 import { ReportesModule } from './modules/reportes/reportes.module';
-import { AdministracionModule} from './modules/administracion/administracion.module';
+import { AdministracionModule } from './modules/administracion/administracion.module';
 // Providers
-import { ConsejosService} from './provider/consejos/consejos.service';
+import { ConsejosService } from './provider/consejos/consejos.service';
 import { MarketingModule } from './modules/marketing/marketing.module';
 import { NotificacionesModule } from './modules/notificaciones/notificaciones.module';
 import { PerfilUsuarioModule } from './modules/perfil-usuario/perfil-usuario.module';
@@ -38,6 +38,9 @@ import { AuthService } from './provider/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './provider/user/user.service';
 import { SolicitudService } from './provider/solicitud/solicitud.service';
+import { ParametroService } from './provider/parametro/parametro.service';
+import { TipoParametroService } from './provider/tipo-parametro/tipo-parametro.service';
+import { ValorParametroService } from './provider/valor-parametro/valor-parametro.service';
 
 @NgModule({
   declarations: [
@@ -71,8 +74,8 @@ import { SolicitudService } from './provider/solicitud/solicitud.service';
     PerfilModule,
     HttpClientModule
   ],
-  
-  
+
+
   providers: [
     ConsejosService,
     ClientesService,
@@ -84,10 +87,13 @@ import { SolicitudService } from './provider/solicitud/solicitud.service';
     CategoriasServicioService,
     ServiciosService,
     SolicitudService,
-    ServicioSolicitadoService
+    ServicioSolicitadoService,
+    ParametroService,
+    TipoParametroService,
+    ValorParametroService
   ],
-    
-  
+
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

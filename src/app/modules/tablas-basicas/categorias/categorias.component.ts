@@ -133,7 +133,7 @@ export class CategoriasComponent implements OnInit {
 
   ];
 
-  Razonesdeincidencias: RazonI[] = [
+  Razondeincidencia: RazonI[] = [
     {
       Codigo: '001',
       nombre: 'Tipo razon de Incidencia A',
@@ -142,7 +142,7 @@ export class CategoriasComponent implements OnInit {
     },
     {
       Codigo: '001',
-      nombre: 'Tipo  razon Incidencia  B',
+      nombre: 'Tipo razon Incidencia  B',
       fechaC: '10/04/2018',
       estatus: 'A'
     }];
@@ -204,9 +204,42 @@ export class CategoriasComponent implements OnInit {
       estatus: 'A'
     }];
 
+    Tipodeincidencia = [
+      {
+        Codigo: '001',
+        Codigo_dependencia: '001',
+        nombre: 'Tipo incidencia A',
+        fechaC: '10/04/2018',
+        estatus: 'A'
+      },
+      {
+        Codigo: '002',
+        Codigo_dependencia: '002',
+        nombre: 'Tipo incidencia B',
+        fechaC: '10/04/2018',
+        estatus: 'A'
+      }];
+
+      Tipodeservicio = [
+        {
+          Codigo: '001',
+          Codigo_dependencia: '001',
+          nombre: 'Tipo de servicio A',
+          fechaC: '10/04/2018',
+          estatus: 'A'
+        },
+        {
+          Codigo: '002',
+          Codigo_dependencia: '002',
+          nombre: 'Tipo de servicio B',
+          fechaC: '10/04/2018',
+          estatus: 'A'
+        }];
+
   optionToLoadList: any;
   showList: Boolean = false;
-
+  showListDependant: Boolean = false;
+  optionDependantToLoadList: any;
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -223,7 +256,7 @@ export class CategoriasComponent implements OnInit {
     } else if (tipo == this.tipos[3]) {
       this.optionToLoadList = this.Tipoderepuestasacomentarios;
     } else if (tipo == this.tipos[4]) {
-      this.optionToLoadList = this.Razonesdeincidencias;
+      this.optionToLoadList = this.Razondeincidencia;
     } else if (tipo == this.tipos[5]) {
       this.optionToLoadList = this.Tiposdecriteriosparaevaluarordendeservicio;
     } else if (tipo == this.tipos[6]) {
@@ -235,13 +268,20 @@ export class CategoriasComponent implements OnInit {
     }
     this.showList = true;
   }
-
-  tipos = ['Tipo de reclamos', 'Tipo de respuestas a reclamos', 'Tipo de comentarios', 'Tipo de repuestas a comentarios', 'Razones de incidencias', 'Tipos de criterios para evaluar orden de servicio', 'Tipos de repuestas a la solicitudes de servicios', 'Categorias de los servicios a brindar', 'Tipo de respuesta a presupuesto']
-
+  tipoSelected: any;
+  chargeListDependant(tipo) {
+    this.tipoSelected = tipo;
+    if (tipo == this.tiposDependientes[0]) {
+      this.optionDependantToLoadList = this.Tipodeincidencia;
+    } else if (tipo == this.tiposDependientes[1]) {
+      this.optionDependantToLoadList = this.Tipodeservicio;
+    }
+    this.showListDependant = true;
+  }
+  tipos = ['Tipo de reclamos', 'Tipo de respuestas a reclamos', 'Tipo de comentarios', 'Tipo de repuestas a comentarios', 'Razon de incidencia', 'Tipos de criterios para evaluar orden de servicio', 'Tipos de repuestas a la solicitudes de servicios', 'Categorias de los servicios a brindar', 'Tipo de respuesta a presupuesto']
+  tiposDependientes = ['Tipo de incidencia', 'Tipo de servicio'];
   openDialogCategoria(tipoX): void {
     const dialogRef = this.dialog.open(CrearCategoriaComponent, {
-      height: '300px',
-      width: '300px',
       data: { modal_tip_reclamo: tipoX }
     });
 
@@ -249,7 +289,24 @@ export class CategoriasComponent implements OnInit {
       console.log('Modal closed!');
     });
   }
+
+  selectDependant: any;
+openDialogCategoriaDependiente(tipoX): void {
+  if (this.tipoSelected == 'Tipo de incidencia') {
+    this.selectDependant = this.Tipodeincidencia;
+  } else {
+    this.selectDependant = this.Tipodeservicio;
+  }
+  const dialogRef = this.dialog.open(CrearCategoriaDependienteComponent, {
+    data: { modal_tip_reclamo: this.selectDependant }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('Modal closed!');
+  });
 }
+}
+
 
 @Component({
   selector: 'app-crear-tipo-categoria',
@@ -262,6 +319,34 @@ export class CrearCategoriaComponent implements OnInit {
   tipo_reclamo: string;
 
   constructor(public dialogRef: MatDialogRef<CrearCategoriaComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.tipo_reclamo = data.modal_tip_reclamo;
+  }
+
+  ngOnInit() {
+  }
+
+  notOK(): void {
+    this.dialogRef.close();
+  }
+
+  yesOK() {
+   
+    this.dialogRef.close();
+  }
+
+}
+
+@Component({
+  selector: 'app-crear-tipo-categoria-dependiente',
+  templateUrl: './crear-tipo-categoria-dependiente.component.html',
+  styleUrls: ['./crear-tipo-categoria-dependiente.component.scss']
+})
+export class CrearCategoriaDependienteComponent implements OnInit {
+
+  tipo_reclamo: string;
+
+  constructor(public dialogRef: MatDialogRef<CrearCategoriaDependienteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.tipo_reclamo = data.modal_tip_reclamo;
   }
