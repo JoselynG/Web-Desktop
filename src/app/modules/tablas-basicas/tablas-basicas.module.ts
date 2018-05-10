@@ -1,3 +1,4 @@
+import { ValorParametroComponent, CrearValorParametroComponent } from './parametros/valor-parametro/valor-parametro.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -31,13 +32,15 @@ import { NegocioService } from '../../provider/negocio/negocio.service';
     CrearCategoriaComponent,
     EmpresaComponent,
     CrearObjetivosComponent,  
-    CrearCategoriaDependienteComponent
+    CrearCategoriaDependienteComponent,
+    ValorParametroComponent,
+    CrearValorParametroComponent
   ],
   providers: [NegocioService],
   
   declarations: [ AgregarTipoParametroComponent, AgregarParametroComponent,
     ParametrosComponent , AgregarValorParametroComponent, CategoriasComponent, CrearCategoriaComponent, 
     EmpresaComponent, DatosNegocioComponent, LogoNegocioComponent,
-    CrearObjetivosComponent, CrearCategoriaDependienteComponent]
+    CrearObjetivosComponent, CrearCategoriaDependienteComponent,ValorParametroComponent,CrearValorParametroComponent]
 })
 export class TablasBasicasModule { }
