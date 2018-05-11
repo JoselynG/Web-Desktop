@@ -130,7 +130,7 @@ export class ParametrosComponent implements OnInit {
       data: { modal_id_tipo_parametro: this.parametroIdAPostear }
     });
     dialogRef.afterClosed().subscribe(result => {
-
+      this.getParametro();
     });
   }
   //Modal de Tipo Parametro
@@ -141,7 +141,7 @@ export class ParametrosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
+      this.getTipoParametro();
     });
   }
   //Modal de Valor Parametro
@@ -153,7 +153,7 @@ export class ParametrosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
+      this.getValorParametro();
     });
   }
 }
