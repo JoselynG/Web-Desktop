@@ -1,6 +1,7 @@
+import { RespuestaSolicitudService } from './../../../provider/respuesta-solicitud/respuesta-solicitud.service';
 
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { VistaSolicitudService } from './../../../provider/vista-solicitud/vista-solicitud.service';
 import { ServicioSolicitadoService } from './../../../provider/servicio-solicitado/servicio-solicitado.service';
 import { SolicitudService } from '../../../provider/solicitud/solicitud.service';
@@ -76,39 +77,9 @@ export class SolicitudComponent implements OnInit {
     fecha_creacion: string
     visible: boolean
   };
-  empleadoSelPelu: any;
-  empleadoSelMaq: any;
   empleadosSeleccionados = [];
   empleados = ['Qohollo', 'Irri Handmaiden', 'Thoros', 'Maester'];
-  detalles: Detalle []= [
-    {
-      clientName: "Dany Targaryen",
-      servicios: "Marcados, Recogidos",
-      empleado: "Petra Pérez",
-      type: 'solicitud',
-      icon: true,
-      iconName: 'av_timer',
-      codigo: '#94900-2457'     
-    },
-    {
-      clientName: "Varys the spyder",
-      servicios: "Baño de color, peinado con tenacillas",
-      empleado: "Irri Handmaiden",
-      type: 'solicitud',
-      icon: true,
-      iconName: 'av_timer',
-      codigo: '    #16445-6560',
-    },
-    {
-      clientName: "Varys the spyder",
-      servicios: "Baño de color, peinado con tenacillas",
-      empleado: "Irri Handmaiden",
-      type: 'solicitud',
-      icon: true,
-      iconName: 'av_timer',
-      codigo: '    #16445-6560',
-    },
-  ];
+  
   constructor(
     public dialog: MatDialog,
     public solic: VistaSolicitudService,
@@ -171,41 +142,29 @@ export class SolicitudComponent implements OnInit {
       (data)=>{
         this.solicitud =data['data'];        
         for(let i=0; i<this.solicitud.length; i++){
-          console.log(this.solicitud[i])
           if(this.solicitud[i].empleado_pelu != null){
             this.empleado.getEmpleadoEspecifico(this.solicitud[i].empleado_pelu).subscribe(
               (data)=>{
                 this.empleadoSelP =data['data'];
-                console.log(this.empleadoSelP)
                 this.solicitud[i].empleadoP_nombre = this.empleadoSelP.nombre;
                 //console.log(this.solicitud[i].empleadoP_nombre )
                 this.solicitud[i].empleadoP_apellido = this.empleadoSelP.apellido;    
-               console.log("es aqui")
-                console.log(this.solicitud)
               },(error) =>{
                 console.log(error);
               }
             );
-            /*console.log(this.empleadoSelPelu)
-            this.solicitud[i].empleadoP_nombre = this.empleadoSelPelu.nombre;
-            this.solicitud[i].empleadoP_apellido = this.empleadoSelPelu.apellido;*/
           }
           if(this.solicitud[i].empleado_maqui != null){
             this.empleado.getEmpleadoEspecifico(this.solicitud[i].empleado_maqui).subscribe(
               (data)=>{
                 this.empleadoSelM =data['data'];
-                console.log(this.empleadoSelM)
-        
                   this.solicitud[i].empleadoM_nombre = this.empleadoSelM.nombre;
                   this.solicitud[i].empleadoM_apellido = this.empleadoSelM.apellido; 
-                  console.log(this.solicitud)
               },(error) =>{
                 console.log(error);
               }
             );
-            /*this.getEmpleadoMaq(this.solicitud[i].empleado_maqui)
-            this.solicitud[i].empleadoM_nombre = this.empleadoSelMaq.nombre;
-            this.solicitud[i].empleadoM_apellido = this.empleadoSelMaq.apellido; */
+           
           }
         }
       },(error) =>{
@@ -214,30 +173,12 @@ export class SolicitudComponent implements OnInit {
     )
     
   }
-  getEmpleadoPelu(id){    
-    this.empleado.getEmpleadoEspecifico(id).subscribe(
-      (data)=>{
-        this.empleadoSelPelu =data['data'];
-        console.log(this.empleadoSelPelu)
-      },(error) =>{
-        console.log(error);
-      }
-    );
-  }
-  getEmpleadoMaq(id){    
-    this.empleado.getEmpleadoEspecifico(id).subscribe(
-      (data)=>{
-        this.empleadoSelMaq =data['data'];
-      },(error) =>{
-        console.log(error);
-      }
-    );
-  }
   
-  openDialogResponder(){
+  openDialogResponder(solicitud){
     const dialogRef = this.dialog.open(ResponderSolicitudComponent, {
       height: '600px',
-      width: '500px'
+      width: '500px',
+      data: {solic: solicitud}
     });
   
     dialogRef.afterClosed().subscribe(result => {
@@ -251,11 +192,72 @@ export class SolicitudComponent implements OnInit {
   styleUrls: ['./responder-solicitud.component.scss']
 })
 export class ResponderSolicitudComponent {
+  tipoRespSelec: number;
+  solicitud: any;
+  cliente: string;
+  servicios: string;
+  empleadoP: string;
+  empleadoM: string;
+  enviarResp: {
+    id_solicitud: number;
+    id_tipo_respuesta_solicitud: number;
+    descripcion: string;
+  }
+  constructor(public dialogRef: MatDialogRef<ResponderSolicitudComponent>,
+    public respuesta: RespuestaSolicitudService,
+    @Inject(MAT_DIALOG_DATA) public data: any){
+    this.tipoRespSelec = 1;
+    this.solicitud = data.solic;    
+    this.cliente = this.solicitud.nombre + ' ' + this.solicitud.apellido;
+    this.servicios = '';
+    this.servicios = this.solicitud.vista_servicio_solicitado.tipo_servicio + ' ' + this.solicitud.vista_servicio_solicitado.nombre
+    console.log(this.solicitud)
+    this.empleadoM = '';
+    this.empleadoP = '';
+    this.enviarResp = {
+      id_solicitud: this.solicitud.id,
+      id_tipo_respuesta_solicitud: null,
+      descripcion: ''
+    }
+    
+  }
   
-  //filtroControl = new FormControl('', [Validators.required]);
-  valor = false;
+  ngOnInit() {
+    //this.getServiciosSol();
+    this.getEmpleados() ;
+  }
+  getEmpleados(){
+    if(this.solicitud.empleado_pelu != null) {
+      this.empleadoP = this.solicitud.empleadoP_nombre + ' ' + this.solicitud.empleadoP_apellido
+    }
+    if(this.solicitud.empleado_maqui != null) {
+      this.empleadoM = this.solicitud.empleadoM_nombre + ' ' + this.solicitud.empleadoM_apellido
+    }
+  }
+    responder(){
+      this.respuesta.registrarRespSolic(this.enviarResp).subscribe(
+        (res=>{
+          console.log('hecho')
+          console.log(this.enviarResp)
+        }),(error)=>{
+          console.log(error);
+        }
+      )
+    }
+
+  getServiciosSol(){
+    console.log(this.solicitud.vista_servicio_solicitado.length)
+    for(let i=0; i<this.solicitud.vista_servicio_solicitado.length; i++){
+      this.servicios = this.solicitud.vista_servicio_solicitado.tipo_servicio + this.solicitud.vista_servicio_solicitado.nombre
+      if (i+1 < this.solicitud.vista_servicio_solicitado.length){
+        this.servicios = this.servicios + ', '
+      }
+      console.log(this.servicios)
+    }
+  }
+  //valor = false;
   filtro = [
-    {value: false, viewValue: 'Positiva'},
-    {value: true, viewValue: 'Negativa'},
+    {value: 1, viewValue: 'Positiva'},
+    {value: 2, viewValue: 'Negativa'},
   ];
 }

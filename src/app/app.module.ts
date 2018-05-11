@@ -42,6 +42,8 @@ import { UserService } from './provider/user/user.service';
 import { ParametroService } from './provider/parametro/parametro.service';
 import { TipoParametroService } from './provider/tipo-parametro/tipo-parametro.service';
 import { ValorParametroService } from './provider/valor-parametro/valor-parametro.service';
+import { TipoRespSolicitudService } from './provider/tipo-resp-solicitud/tipo-resp-solicitud.service';
+import { RespuestaSolicitudService } from './provider/respuesta-solicitud/respuesta-solicitud.service';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { ValorParametroService } from './provider/valor-parametro/valor-parametr
     ParametroService,
     TipoParametroService,
     ValorParametroService,
-    VistaSolicitudService
+    VistaSolicitudService,
+    TipoRespSolicitudService,
+    RespuestaSolicitudService
   ],
 
 
