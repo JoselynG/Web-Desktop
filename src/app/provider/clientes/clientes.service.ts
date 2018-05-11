@@ -19,8 +19,5 @@ export class ClientesService {
 getClientes(){
   return this.http.get(API_URL+this.url_listado_clientes);
 }
-getCliente(id){
-  return this.http.get(API_URL+this.url_listado_clientes+'/'+id);
-}
 
 }

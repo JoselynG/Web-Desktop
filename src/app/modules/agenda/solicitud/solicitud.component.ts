@@ -1,10 +1,12 @@
-import { VistaSolicitudService } from './../../../provider/vista-solicitud/vista-solicitud.service';
-import { ServicioSolicitadoService } from './../../../provider/servicio-solicitado/servicio-solicitado.service';
+
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { VistaSolicitudService } from './../../../provider/vista-solicitud/vista-solicitud.service';
+import { ServicioSolicitadoService } from './../../../provider/servicio-solicitado/servicio-solicitado.service';
 import { SolicitudService } from '../../../provider/solicitud/solicitud.service';
 import { ClientesService } from '../../../provider/clientes/clientes.service';
 import { EmpleadosService } from '../../../provider/empleados/empleados.service';
+
 interface Detalle{
   clientName: string;
   servicios: string;

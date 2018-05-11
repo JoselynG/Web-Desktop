@@ -14,5 +14,4 @@ export class NegocioService {
   updateNegocio(id, datos){
     return this.http.put(API_URL+this.url_negocio+id, datos);
   }
-  
 }

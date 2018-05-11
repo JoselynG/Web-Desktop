@@ -1,11 +1,11 @@
 <div class="ctn">
     <h3 class="title">
-        Crear Nueva Categoría: {{tipo_reclamo}}
+        Crear Nueva Categoría:
     </h3>
 
     <!--  <texto>!-->
-    <mat-form-field style="margin-top: 20px;" class="example-full-width inputs">
-        <input matInput placeholder="Nombre">
+    <mat-form-field style="margin-top: 20px;"  class="example-full-width inputs">
+        <input [(ngModel)]="name" matInput placeholder="Nombre">
     </mat-form-field>
     <br>
     <!--  <boton>!-->

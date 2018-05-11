@@ -1,326 +1,161 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { CategoriaService } from '../../../provider/categoria/categoria.service';
+import { CategoriaDependienteService } from '../../../provider/categoria/categoria-dependiente.service';
+import { CategoriasServicioService } from '../../../provider/categorias-servicio/categorias-servicio.service';
 
 
-interface TReclamo {
-  Codigo: string;
-  nombre: string;
-  fechaC: string;
-  estatus: string;
-}
-interface CategoriaS {
-  Codigo: string;
-  nombre: string;
-  fechaC: string;
-  estatus: string;
-}
-interface TRReclamo {
-  Codigo: string;
-  nombre: string;
-  fechaC: string;
-  estatus: string;
-}
-interface TComentario {
-  Codigo: string;
-  nombre: string;
-  fechaC: string;
-  estatus: string;
-}
-interface TRComentario {
-  Codigo: string;
-  nombre: string;
-  fechaC: string;
-  estatus: string;
-}
-
-interface TCriterio {
-  Codigo: string;
-  nombre: string;
-  fechaC: string;
-  estatus: string;
-}
-
-interface TRPresupuesto {
-  Codigo: string;
-  nombre: string;
-  fechaC: string;
-  estatus: string;
-}
-interface TRSolicitud {
-  Codigo: string;
-  nombre: string;
-  fechaC: string;
-  estatus: string;
-}
-
-interface RazonI {
-  Codigo: string;
-  nombre: string;
-  fechaC: string;
-  estatus: string;
-}
-
-interface Unidad {
-  Codigo: string;
-  nombre: string;
-  fechaC: string;
-  estatus: string;
-}
 @Component({
   selector: 'app-categorias',
   templateUrl: './categorias.component.html',
-  styleUrls: ['./categorias.component.scss']
+  styleUrls: ['./categorias.component.scss'],
+  providers: [CategoriaService, CategoriaDependienteService]
 })
 export class CategoriasComponent implements OnInit {
-  Tipodereclamos: TReclamo[] = [
-    {
-      Codigo: '001',
-      nombre: 'Reclamo de La Orden ',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    },
-    {
-      Codigo: '001',
-      nombre: 'Reclamo del Servicio',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    }];
-  Tipoderespuestasareclamos: TRReclamo[] = [
-    {
-      Codigo: '001',
-      nombre: 'Positiva',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    },
-    {
-      Codigo: '001',
-      nombre: 'Negativa',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    }];
-
-
-  Tipodecomentarios: TComentario[] = [
-    {
-      Codigo: '001',
-      nombre: 'Sugerencia',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    },
-    {
-      Codigo: '002',
-      nombre: 'Dudas',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    }
-
-  ];
-
-
-  Tipoderepuestasacomentarios: TRComentario[] = [
-    {
-      Codigo: '001',
-      nombre: 'Positiva',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    },
-    {
-      Codigo: '002',
-      nombre: 'Negativa',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    }
-
-  ];
-
-  Razondeincidencia: RazonI[] = [
-    {
-      Codigo: '001',
-      nombre: 'Tipo razon de Incidencia A',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    },
-    {
-      Codigo: '001',
-      nombre: 'Tipo razon Incidencia  B',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    }];
-  Tiposdecriteriosparaevaluarordendeservicio: TCriterio[] = [
-    {
-      Codigo: '001',
-      nombre: 'Infraestructura',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    },
-    {
-      Codigo: '001',
-      nombre: 'ATención',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    }];
-
-  Tipoderespuestaapresupuesto: TRPresupuesto[] = [
-    {
-      Codigo: '001',
-      nombre: 'Positiva',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    },
-    {
-      Codigo: '001',
-      nombre: 'Negativa',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    }];
-
-    Tiposderepuestasalasolicitudesdeservicios: TRSolicitud[] = [
-    {
-      Codigo: '001',
-      nombre: 'Falta de Insumos',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    },
-    {
-      Codigo: '001',
-      nombre: 'Disponibilidad de Empleados ',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    }];
-
-
-
-  Categoriasdelosserviciosabrindar: CategoriaS[] = [
-    {
-      Codigo: '001',
-      nombre: 'Peluqueria',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    },
-    {
-      Codigo: '001',
-      nombre: 'Maquillaje',
-      fechaC: '10/04/2018',
-      estatus: 'A'
-    }];
-
-    Tipodeincidencia = [
-      {
-        Codigo: '001',
-        Codigo_dependencia: '001',
-        nombre: 'Tipo incidencia A',
-        fechaC: '10/04/2018',
-        estatus: 'A'
-      },
-      {
-        Codigo: '002',
-        Codigo_dependencia: '002',
-        nombre: 'Tipo incidencia B',
-        fechaC: '10/04/2018',
-        estatus: 'A'
-      }];
-
-      Tipodeservicio = [
-        {
-          Codigo: '001',
-          Codigo_dependencia: '001',
-          nombre: 'Tipo de servicio A',
-          fechaC: '10/04/2018',
-          estatus: 'A'
-        },
-        {
-          Codigo: '002',
-          Codigo_dependencia: '002',
-          nombre: 'Tipo de servicio B',
-          fechaC: '10/04/2018',
-          estatus: 'A'
-        }];
 
   optionToLoadList: any;
   showList: Boolean = false;
   showListDependant: Boolean = false;
   optionDependantToLoadList: any;
-  constructor(public dialog: MatDialog) { }
-
+  constructor(public dialog: MatDialog, public categoriaService: CategoriaService, public categoriaDependienteService: CategoriaDependienteService, public categoriaServicioService: CategoriasServicioService) { }
+  categoriaServicio: any;
+  razonIncidencia: any;
   ngOnInit() {
+    this.getCategoriaServicio();
+    this.getRazonIncidencia();
   }
 
-  chargeList(tipo) {
+  getCategoria(categoriaABuscar) {
+    this.categoriaService.getCategoria(categoriaABuscar).subscribe(
+      (data) => {
+        this.optionToLoadList = data['data'];
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
 
+  getCategoriaServicio() {
+    this.categoriaServicioService.getCategorias().subscribe(
+      (data) => {
+        this.categoriaServicio = data['data'];
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
+
+  getRazonIncidencia() {
+    this.categoriaService.getCategoria("razon_incidencia").subscribe(
+      (data) => {
+        this.razonIncidencia = data['data'];
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
+
+  getCategoriaDependiente(categoriaABuscar) {
+    this.categoriaDependienteService.getCategoriaDependiente(categoriaABuscar).subscribe(
+      (data) => {
+        this.optionDependantToLoadList = data['data'];
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
+  tablaAPostear: any;
+  chargeList(tipo) {
     if (tipo == this.tipos[0]) {
-      this.optionToLoadList = this.Tipodereclamos;
+      this.tablaAPostear = "tipo_reclamo";
+      this.getCategoria("tipo_reclamo");
     } else if (tipo == this.tipos[1]) {
-      this.optionToLoadList = this.Tipoderespuestasareclamos;
+      this.tablaAPostear = "tipo_respuesta_reclamo";
+      this.getCategoria("tipo_respuesta_reclamo");
     } else if (tipo == this.tipos[2]) {
-      this.optionToLoadList = this.Tipodecomentarios;
+      this.tablaAPostear = "tipo_comentario";
+      this.getCategoria("tipo_comentario");
     } else if (tipo == this.tipos[3]) {
-      this.optionToLoadList = this.Tipoderepuestasacomentarios;
+      this.tablaAPostear = "tipo_respuesta_comentario";
+      this.getCategoria("tipo_respuesta_comentario");
     } else if (tipo == this.tipos[4]) {
-      this.optionToLoadList = this.Razondeincidencia;
+      this.tablaAPostear = "razon_incidencia";
+      this.getCategoria("razon_incidencia");
     } else if (tipo == this.tipos[5]) {
-      this.optionToLoadList = this.Tiposdecriteriosparaevaluarordendeservicio;
+      this.tablaAPostear = "criterio";
+      this.getCategoria("criterio");
     } else if (tipo == this.tipos[6]) {
-      this.optionToLoadList = this.Tiposderepuestasalasolicitudesdeservicios;
+      this.tablaAPostear = "tipo_respuesta_solicitud";
+      this.getCategoria("tipo_respuesta_solicitud");
     } else if (tipo == this.tipos[7]) {
-      this.optionToLoadList = this.Categoriasdelosserviciosabrindar;
+      this.tablaAPostear = "categoria_servicio";
+      this.getCategoria("categoria_servicio");
     } else if (tipo == this.tipos[8]) {
-      this.optionToLoadList = this.Tipoderespuestaapresupuesto;
+      this.tablaAPostear = "tipo_respuesta_presupuesto";
+      this.getCategoria("tipo_respuesta_presupuesto");
     }
     this.showList = true;
   }
   tipoSelected: any;
+  tablaAPostearDependiente: any;
+
+
   chargeListDependant(tipo) {
     this.tipoSelected = tipo;
     if (tipo == this.tiposDependientes[0]) {
-      this.optionDependantToLoadList = this.Tipodeincidencia;
+      this.tablaAPostearDependiente = "tipo_incidencia";
+      this.getCategoriaDependiente("tipo_incidencia");
     } else if (tipo == this.tiposDependientes[1]) {
-      this.optionDependantToLoadList = this.Tipodeservicio;
+      this.tablaAPostearDependiente = "tipo_servicio";
+      this.getCategoriaDependiente("tipo_servicio");
     }
     this.showListDependant = true;
   }
   tipos = ['Tipo de reclamos', 'Tipo de respuestas a reclamos', 'Tipo de comentarios', 'Tipo de repuestas a comentarios', 'Razon de incidencia', 'Tipos de criterios para evaluar orden de servicio', 'Tipos de repuestas a la solicitudes de servicios', 'Categorias de los servicios a brindar', 'Tipo de respuesta a presupuesto']
   tiposDependientes = ['Tipo de incidencia', 'Tipo de servicio'];
-  openDialogCategoria(tipoX): void {
+  openDialogCategoria(): void {
     const dialogRef = this.dialog.open(CrearCategoriaComponent, {
-      data: { modal_tip_reclamo: tipoX }
+      data: { modal_tabla: this.tablaAPostear }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Modal closed!');
+      this.getCategoria(this.tablaAPostear);
     });
   }
 
   selectDependant: any;
-openDialogCategoriaDependiente(tipoX): void {
-  if (this.tipoSelected == 'Tipo de incidencia') {
-    this.selectDependant = this.Tipodeincidencia;
-  } else {
-    this.selectDependant = this.Tipodeservicio;
-  }
-  const dialogRef = this.dialog.open(CrearCategoriaDependienteComponent, {
-    data: { modal_tip_reclamo: this.selectDependant }
-  });
+  openDialogCategoriaDependiente(tipoX): void {
+    if (this.tipoSelected == 'Tipo de incidencia') {
+      this.selectDependant = this.razonIncidencia;
+    } else {
+      this.selectDependant = this.categoriaServicio;
+    }
+    const dialogRef = this.dialog.open(CrearCategoriaDependienteComponent, {
+      data: { modal_tip_reclamo: this.selectDependant, modal_tabla: this.tablaAPostearDependiente }
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('Modal closed!');
-  });
-}
+    dialogRef.afterClosed().subscribe(result => {
+      this.getCategoriaDependiente(this.tablaAPostearDependiente);
+    });
+  }
 }
 
 
 @Component({
   selector: 'app-crear-tipo-categoria',
   templateUrl: './crear-tipo-categoria.component.html',
-  styleUrls: ['./crear-tipo-categoria.component.scss']
+  styleUrls: ['./crear-tipo-categoria.component.scss'],
+  providers: [CategoriaService]
 })
 
 export class CrearCategoriaComponent implements OnInit {
 
-  tipo_reclamo: string;
-
-  constructor(public dialogRef: MatDialogRef<CrearCategoriaComponent>,
+  tabla: String;
+  name: String;
+  constructor(public dialogRef: MatDialogRef<CrearCategoriaComponent>, public categoriaService: CategoriaService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.tipo_reclamo = data.modal_tip_reclamo;
+    this.tabla = data.modal_tabla;
+
   }
 
   ngOnInit() {
@@ -331,7 +166,8 @@ export class CrearCategoriaComponent implements OnInit {
   }
 
   yesOK() {
-   
+    let categoriaAPostear = { nombre: this.name };
+    this.categoriaService.postCategoria(this.tabla, categoriaAPostear).subscribe(data => { alert("Categoria creada exitosamente") }, Error => { alert("Lo sentimos, intente de nuevo más tarde.") });
     this.dialogRef.close();
   }
 
@@ -340,15 +176,19 @@ export class CrearCategoriaComponent implements OnInit {
 @Component({
   selector: 'app-crear-tipo-categoria-dependiente',
   templateUrl: './crear-tipo-categoria-dependiente.component.html',
-  styleUrls: ['./crear-tipo-categoria-dependiente.component.scss']
+  styleUrls: ['./crear-tipo-categoria-dependiente.component.scss'],
+  providers: [CategoriaDependienteService]
 })
 export class CrearCategoriaDependienteComponent implements OnInit {
-
+  nombre: String;
   tipo_reclamo: string;
+  idDependiente: String;
+  tabla: String;
 
-  constructor(public dialogRef: MatDialogRef<CrearCategoriaDependienteComponent>,
+  constructor(public dialogRef: MatDialogRef<CrearCategoriaDependienteComponent>, public categoriaDependienteService: CategoriaDependienteService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.tipo_reclamo = data.modal_tip_reclamo;
+    this.tabla = data.modal_tabla;
   }
 
   ngOnInit() {
@@ -359,7 +199,13 @@ export class CrearCategoriaDependienteComponent implements OnInit {
   }
 
   yesOK() {
-   
+    let categoriaAPostear;
+    if (this.tabla == "tipo_incidencia") {
+      categoriaAPostear = { nombre: this.nombre, id_razon_incidencia: this.idDependiente };
+    } else {
+      categoriaAPostear = { nombre: this.nombre, id_categoria_servicio: this.idDependiente }
+    }
+    this.categoriaDependienteService.postCategoriaDependiente(this.tabla, categoriaAPostear).subscribe(data => { alert("Categoria creada exitosamente") }, Error => { alert("Lo sentimos, intente de nuevo más tarde.") });
     this.dialogRef.close();
   }
 
