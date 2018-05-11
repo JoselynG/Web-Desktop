@@ -1,3 +1,6 @@
+import { TipoRepuestaReclamoService } from './provider/tipo-repuesta-reclamo/tipo-repuesta-reclamo.service';
+import { DescripcionNegocioService } from './provider/descripcion-negocio/descripcion-negocio.service';
+import { ContactoNegocioService } from './provider/contacto-negocio/contacto-negocio.service';
 
 import { VistaSolicitudService } from './provider/vista-solicitud/vista-solicitud.service';
 import { ServicioSolicitadoService } from './provider/servicio-solicitado/servicio-solicitado.service';
@@ -45,6 +48,9 @@ import { ValorParametroService } from './provider/valor-parametro/valor-parametr
 import { TipoRespSolicitudService } from './provider/tipo-resp-solicitud/tipo-resp-solicitud.service';
 import { RespuestaSolicitudService } from './provider/respuesta-solicitud/respuesta-solicitud.service';
 import { TipoIncidenciaService } from './provider/tipo-incidecia/tipo-incidencia.service';
+import { ObjetivoService } from './provider/objetivo/objetivo.service';
+import { ReclamoService } from './provider/reclamo/reclamo.service';
+import { RepuestaReclamoService } from './provider/repuesta-reclamo/repuesta-reclamo.service';
 
 @NgModule({
   declarations: [
@@ -96,7 +102,13 @@ import { TipoIncidenciaService } from './provider/tipo-incidecia/tipo-incidencia
     VistaSolicitudService,
     TipoRespSolicitudService,
     RespuestaSolicitudService,
-    TipoIncidenciaService
+    TipoIncidenciaService,
+    ContactoNegocioService,
+    DescripcionNegocioService,
+    ObjetivoService,
+    ReclamoService,
+    RepuestaReclamoService,
+    TipoRepuestaReclamoService
   ],
 
 
