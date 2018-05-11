@@ -44,6 +44,7 @@ import { TipoParametroService } from './provider/tipo-parametro/tipo-parametro.s
 import { ValorParametroService } from './provider/valor-parametro/valor-parametro.service';
 import { TipoRespSolicitudService } from './provider/tipo-resp-solicitud/tipo-resp-solicitud.service';
 import { RespuestaSolicitudService } from './provider/respuesta-solicitud/respuesta-solicitud.service';
+import { TipoIncidenciaService } from './provider/tipo-incidecia/tipo-incidencia.service';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { RespuestaSolicitudService } from './provider/respuesta-solicitud/respue
     ValorParametroService,
     VistaSolicitudService,
     TipoRespSolicitudService,
-    RespuestaSolicitudService
+    RespuestaSolicitudService,
+    TipoIncidenciaService
   ],
 
 
