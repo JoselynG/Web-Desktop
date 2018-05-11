@@ -4,16 +4,16 @@
     </h3>
     <div class="row">
         <mat-form-field>
-            <mat-select placeholder="Selecciona categoría" value="0">
-                <mat-option *ngFor="let tipo of tipo_reclamo" [value]="tipo">
+            <mat-select placeholder="Selecciona categoría" [(ngModel)]="idDependiente" value="0">
+                <mat-option *ngFor="let tipo of tipo_reclamo"  [value]="tipo.id">
                     {{ tipo.nombre }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
     </div>
     <!--  <texto>!-->
-    <mat-form-field style="margin-top: 20px;" class="example-full-width inputs">
-        <input matInput placeholder="Nombre">
+    <mat-form-field style="margin-top: 20px;"  class="example-full-width inputs">
+        <input [(ngModel)]="nombre" matInput placeholder="Nombre">
     </mat-form-field>
     <br>
     <!--  <boton>!-->

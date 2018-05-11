@@ -1,4 +1,3 @@
-import { ServicioSolicitadoService } from './provider/servicio-solicitado/servicio-solicitado.service';
 import { ServiciosService } from './provider/servicios/servicios.service';
 import { PerfilModule } from './modules/perfil/perfil.module';
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
@@ -37,7 +36,6 @@ import { AuthService } from './provider/auth/auth.service';
 //import { HttpClient } from 'selenium-webdriver/http';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './provider/user/user.service';
-import { SolicitudService } from './provider/solicitud/solicitud.service';
 import { ParametroService } from './provider/parametro/parametro.service';
 import { TipoParametroService } from './provider/tipo-parametro/tipo-parametro.service';
 import { ValorParametroService } from './provider/valor-parametro/valor-parametro.service';
@@ -86,8 +84,6 @@ import { ValorParametroService } from './provider/valor-parametro/valor-parametr
     PromocionesService,
     CategoriasServicioService,
     ServiciosService,
-    SolicitudService,
-    ServicioSolicitadoService,
     ParametroService,
     TipoParametroService,
     ValorParametroService

@@ -10,28 +10,11 @@
     <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="Empleado a cargo del servicio de peluquería" value="Jon Connington" disabled>
     </mat-form-field>
-
-    <mat-form-field class="valor">
-        <mat-select name="resp" [(ngModel)]="valor" placeholder="Empleado a cargo del servicio de peluquería">
-            <mat-option name="pp" *ngFor="let filtro of filtro" [value]="filtro.value">
-                {{ filtro.viewValue }}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
     <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="Servicios de maquillaje" value="Maquillaje completo" disabled>
     </mat-form-field>
     <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="Empleado a cargo del servicio de maquillaje" value="Jon Connington" disabled>
-    </mat-form-field>
-
-    <mat-form-field class="valor">
-        <mat-select name="resp" [(ngModel)]="valor" placeholder="Empleado a cargo del servicio de peluquería">
-            <mat-option name="pp" *ngFor="let filtro of filtro" [value]="filtro.value">
-                {{ filtro.viewValue }}
-            </mat-option>
-        </mat-select>
     </mat-form-field>
     <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="Presupuesto" value="8932827.00 Bs" disabled>
