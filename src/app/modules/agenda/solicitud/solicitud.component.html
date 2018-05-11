@@ -32,7 +32,11 @@
                 </div>
                 <div class="det">
                     <h4>Servicios: {{detalle.vista_servicio_solicitado.tipo_servicio}} </h4>
-                    <h4>Empleado: <span class="warn" *ngIf="detalle.empleado_pelu == null && detalle.empleado_maqui == null"> Sin seleccionar</span></h4>
+                    <h4>Empleado:
+                        <span class="warn" *ngIf="detalle.empleado_pelu == null && detalle.empleado_maqui == null"> Sin seleccionar</span>
+                        <span class="norm" *ngIf="detalle.empleado_pelu != null || detalle.empleado_maqui != null"> {{detalle.empleadoP_nombre}} {{detalle.empleadoP_apellido}}, {{detalle.empleadoM_nombre}} {{detalle.empleadoM_apellido}} </span>
+
+                    </h4>
                 </div>
                 <div class="btn" (click)="openDialogResponder()">
                     <button mat-button class="sec">DAR RESPUESTA</button>
