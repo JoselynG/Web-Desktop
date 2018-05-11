@@ -1,3 +1,6 @@
+
+import { VistaSolicitudService } from './provider/vista-solicitud/vista-solicitud.service';
+import { ServicioSolicitadoService } from './provider/servicio-solicitado/servicio-solicitado.service';
 import { ServiciosService } from './provider/servicios/servicios.service';
 import { PerfilModule } from './modules/perfil/perfil.module';
 import { PortalWebModule } from './modules/portal-web/portal-web.module';
@@ -86,7 +89,8 @@ import { ValorParametroService } from './provider/valor-parametro/valor-parametr
     ServiciosService,
     ParametroService,
     TipoParametroService,
-    ValorParametroService
+    ValorParametroService,
+    VistaSolicitudService
   ],
 
 

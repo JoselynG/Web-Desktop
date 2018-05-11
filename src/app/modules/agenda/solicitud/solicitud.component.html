@@ -22,7 +22,7 @@
             </mat-form-field>
         </div>-->
 
-    <div class="citas" *ngFor="let detalle of detalles">
+    <div class="citas" *ngFor="let detalle of solicitud">
         <mat-card class="detalle">
             <div class="contenido">
                 <div class="client">
@@ -30,12 +30,12 @@
                         <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
                     </div>
                     <div class="name">
-                        <span class="bold">{{detalle.clientName}}</span><span> hizo una solicitud para:</span>
+                        <span class="bold">{{detalle.nombre}} {{detalle.apellido}}</span><span> hizo una solicitud para:</span>
                     </div>
                 </div>
                 <div class="det">
-                    <h4>Servicios: {{detalle.servicios}}</h4>
-                    <h4>Empleado: {{detalle.empleado}}</h4>
+                    <h4>Servicios: {{detalle.vista_servicio_solicitado.tipo_servicio}} </h4>
+                    <h4>Empleado: <span class="warn" *ngIf="detalle.empleado_pelu == null && detalle.empleado_maqui == null"> Sin seleccionar</span></h4>
                 </div>
                 <div class="btn" (click)="openDialogResponder()">
                     <button mat-button class="sec">DAR RESPUESTA</button>

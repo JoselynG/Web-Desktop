@@ -191,7 +191,10 @@ export class AgregarTipoParametroComponent implements OnInit {
 export class AgregarParametroComponent implements OnInit {
   nombre: String;
   id_tipo_parametro: Number;
-  constructor(public dialogRef: MatDialogRef<AgregarParametroComponent>, public parametroComponent:ParametrosComponent, public parametroService: ParametroService, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(public dialogRef: MatDialogRef<AgregarParametroComponent>, 
+  //  public parametroComponent: ParametrosComponent, 
+    public parametroService: ParametroService,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     this.id_tipo_parametro = data.modal_id_tipo_parametro;
   }
 
@@ -202,8 +205,10 @@ export class AgregarParametroComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  crearParametro() {
-    let parametroAPostear = { nombre: this.nombre, id_tipo_parametro: this.id_tipo_parametro, estatus: 'A', subscripcion: false };
+ crearParametro() {
+    let parametroAPostear = 
+    { nombre: this.nombre, id_tipo_parametro: this.id_tipo_parametro, estatus: 'A', subscripcion: false };
+
     this.parametroService.postParametros(parametroAPostear).subscribe(data => { alert("Parametro creado exitosamente") }, Error => { alert("Lo sentimos, intente de nuevo más tarde.") });
     this.dialogRef.close();
   }

@@ -12,6 +12,8 @@ import { EmpresaComponent } from './empresa/empresa.component';
 import { DatosNegocioComponent, CrearObjetivosComponent } from './empresa/datos-negocio/datos-negocio.component';
 import { LogoNegocioComponent } from './empresa/logo-negocio/logo-negocio.component';
 import { NegocioService } from '../../provider/negocio/negocio.service';
+import { CrearNuevoParametroComponent, CrearTipoParametroComponent, CaracteristicasComponent } from './parametros/caracteristicas/caracteristicas.component';
+
 
 
 
@@ -33,7 +35,8 @@ import { NegocioService } from '../../provider/negocio/negocio.service';
     EmpresaComponent,
     CrearObjetivosComponent,  
     CrearCategoriaDependienteComponent,
-    ValorParametroComponent,
+    CrearNuevoParametroComponent,
+    CrearTipoParametroComponent,
     CrearValorParametroComponent
   ],
   providers: [NegocioService],
@@ -41,6 +44,11 @@ import { NegocioService } from '../../provider/negocio/negocio.service';
   declarations: [ AgregarTipoParametroComponent, AgregarParametroComponent,
     ParametrosComponent , AgregarValorParametroComponent, CategoriasComponent, CrearCategoriaComponent, 
     EmpresaComponent, DatosNegocioComponent, LogoNegocioComponent,
-    CrearObjetivosComponent, CrearCategoriaDependienteComponent,ValorParametroComponent,CrearValorParametroComponent]
+    CrearObjetivosComponent, CrearCategoriaDependienteComponent,
+    CrearNuevoParametroComponent,
+    CrearTipoParametroComponent,
+    CaracteristicasComponent,
+    CrearValorParametroComponent
+  ]
 })
 export class TablasBasicasModule { }
