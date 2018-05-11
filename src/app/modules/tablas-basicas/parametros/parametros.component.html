@@ -98,7 +98,7 @@
                         <div class="garantia" style="margin-top: 25px;">
                             <div class="row">
                                 <mat-form-field style="width: 200px;">
-                                    <mat-select placeholder="Selecciona categoría" value="0" (click)="configurarValoresParametro();">
+                                    <mat-select placeholder="Selecciona categoría" value="0" (click)="configurarValoresParametro()">
                                         <mat-option *ngFor="let dato of parametrosSelect" [value]="dato" (click)="cargarListaValores(dato)">
                                             {{dato}}
                                         </mat-option>
