@@ -19,4 +19,10 @@ export class TipoParametroService {
     return this.http.get(API_URL + this.listado_tipo_parametro);
 
   }
+
+  postTipoParametros(tipoParametro) {
+
+    return this.http.post(API_URL + 'agregar_tipo_parametro', tipoParametro);
+
+  }
 }

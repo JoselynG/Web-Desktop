@@ -4,6 +4,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ParametroService } from '../../../provider/parametro/parametro.service';
 import { TipoParametroService } from '../../../provider/tipo-parametro/tipo-parametro.service';
 import { ValorParametroService } from '../../../provider/valor-parametro/valor-parametro.service';
+import { CategoriasServicioService } from '../../../provider/categorias-servicio/categorias-servicio.service';
+import { CategoriaParametroService } from '../../../provider/categoria-parametro/categoria-parametro.service';
 
 interface TipoParametro {
   nombreTP: string;
@@ -36,7 +38,9 @@ export class ParametrosComponent implements OnInit {
   parametrosAListar = [] as any;
   listadoValorParametro: any[] = [];
   valorParametroAlistar = [] as any;
-  constructor(public dialog: MatDialog, public valorParametroService: ValorParametroService, public tipoParametroService: TipoParametroService, public ParametroService: ParametroService) {
+  categoriaServicio = [] as any;
+  categoriaParametro = [] as any;
+  constructor(public dialog: MatDialog, public categoriaParametroService: CategoriaParametroService, public categoriaServicioService: CategoriasServicioService, public valorParametroService: ValorParametroService, public tipoParametroService: TipoParametroService, public ParametroService: ParametroService) {
 
   }
 
@@ -75,6 +79,25 @@ export class ParametrosComponent implements OnInit {
     this.valorParametroService.getValorParametros().subscribe(
       (data) => {
         this.listadoValorParametro = data['data'];
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
+
+  getCategoriaServicio() {
+    this.categoriaServicioService.getCategorias().subscribe(
+      (data) => {
+        this.categoriaServicio = data['data'];
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
+  getCategoriaParametro() {
+    this.categoriaParametroService.getCategoriasParametros().subscribe(
+      (data) => {
+        this.categoriaParametro = data['data'];
       }, (error) => {
         console.log(error);
       }
@@ -121,6 +144,8 @@ export class ParametrosComponent implements OnInit {
     this.getTipoParametro();
     this.getParametro();
     this.getValorParametro();
+    this.getCategoriaServicio();
+    this.getCategoriaParametro();
   }
   //Modal de Parametro:
   openDialogParametro() {
@@ -137,10 +162,12 @@ export class ParametrosComponent implements OnInit {
   openDialogTipoParametro() {
     const dialogRef = this.dialog.open(AgregarTipoParametroComponent, {
       height: '350px',
-      width: '400px'
+      width: '400px',
+      data: { modal_categoryList: this.categoriaServicio }
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.getCategoriaParametro();
       this.getTipoParametro();
     });
   }
@@ -165,8 +192,12 @@ export class ParametrosComponent implements OnInit {
 })
 export class AgregarTipoParametroComponent implements OnInit {
   category = new FormControl();
-  categoryList = ['Peluquería', 'Maquillaje'];
-  constructor(public dialogRef: MatDialogRef<AgregarTipoParametroComponent>) {
+  categoryList: any;
+  nombre: String;
+  categoriaServicio: Number[];
+  constructor(public dialogRef: MatDialogRef<AgregarTipoParametroComponent>, public tipoParametroService: TipoParametroService,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.categoryList = data.modal_categoryList;
   }
 
   ngOnInit() {
@@ -177,7 +208,8 @@ export class AgregarTipoParametroComponent implements OnInit {
   }
 
   yesOK() {
-
+    let TipoParametroAPostear = { nombre: this.nombre, categoria_servicio: this.categoriaServicio };
+    this.tipoParametroService.postTipoParametros(TipoParametroAPostear).subscribe(data => { alert("Tipo parametro creado exitosamente") }, Error => { console.log(Error) });
     this.dialogRef.close();
   }
 
@@ -191,8 +223,7 @@ export class AgregarTipoParametroComponent implements OnInit {
 export class AgregarParametroComponent implements OnInit {
   nombre: String;
   id_tipo_parametro: Number;
-  constructor(public dialogRef: MatDialogRef<AgregarParametroComponent>, 
-  //  public parametroComponent: ParametrosComponent, 
+  constructor(public dialogRef: MatDialogRef<AgregarParametroComponent>,
     public parametroService: ParametroService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.id_tipo_parametro = data.modal_id_tipo_parametro;
@@ -205,9 +236,9 @@ export class AgregarParametroComponent implements OnInit {
     this.dialogRef.close();
   }
 
- crearParametro() {
-    let parametroAPostear = 
-    { nombre: this.nombre, id_tipo_parametro: this.id_tipo_parametro, estatus: 'A', subscripcion: false };
+  crearParametro() {
+    let parametroAPostear =
+      { nombre: this.nombre, id_tipo_parametro: this.id_tipo_parametro, estatus: 'A', subscripcion: false };
 
     this.parametroService.postParametros(parametroAPostear).subscribe(data => { alert("Parametro creado exitosamente") }, Error => { alert("Lo sentimos, intente de nuevo más tarde.") });
     this.dialogRef.close();
@@ -230,7 +261,7 @@ export class AgregarValorParametroComponent implements OnInit {
   nombre: String;
   id_parametro: Number;
   descripcion: String;
-  constructor(public dialogRef: MatDialogRef<AgregarValorParametroComponent>, public valorParametroService:ValorParametroService, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(public dialogRef: MatDialogRef<AgregarValorParametroComponent>, public valorParametroService: ValorParametroService, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.id_parametro = data.modal_id_parametro;
   }
 
@@ -241,7 +272,7 @@ export class AgregarValorParametroComponent implements OnInit {
   }
 
   crearValorParametro() {
-    let valorParametroAPostear = { nombre: this.nombre, id_parametro: this.id_parametro[0], estatus: 'A', descripcion: this.descripcion };
+    let valorParametroAPostear = { nombre: this.nombre, id_parametro: this.id_parametro[0], descripcion: this.descripcion };
     console.log(valorParametroAPostear);
     this.valorParametroService.postValorParametros(valorParametroAPostear).subscribe(data => { alert("Valor parametro creado exitosamente") }, Error => { alert("Lo sentimos, intente de nuevo más tarde.") });
     this.dialogRef.close();

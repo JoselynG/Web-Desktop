@@ -51,6 +51,7 @@ import { TipoIncidenciaService } from './provider/tipo-incidecia/tipo-incidencia
 import { ObjetivoService } from './provider/objetivo/objetivo.service';
 import { ReclamoService } from './provider/reclamo/reclamo.service';
 import { RepuestaReclamoService } from './provider/repuesta-reclamo/repuesta-reclamo.service';
+import { CategoriaParametroService } from './provider/categoria-parametro/categoria-parametro.service';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { RepuestaReclamoService } from './provider/repuesta-reclamo/repuesta-rec
     ObjetivoService,
     ReclamoService,
     RepuestaReclamoService,
-    TipoRepuestaReclamoService
+    TipoRepuestaReclamoService,
+    CategoriaParametroService
   ],
 
 

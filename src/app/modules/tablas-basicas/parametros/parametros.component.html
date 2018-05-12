@@ -28,10 +28,15 @@
                                         <mat-grid-list cols="12" rowHeight="40px">
                                             <mat-grid-tile [colspan]="6" [rowspan]="1"> {{dato.nombre}}</mat-grid-tile>
                                             <mat-grid-tile [colspan]="3" [rowspan]="1">
-                                                <mat-checkbox [checked]="dato.id_categoria_servicio == 1" [disabled]="true"></mat-checkbox>
+                                                <ng-container *ngFor="let categoria of categoriaParametro">
+                                                    <mat-checkbox *ngIf="categoria.id_tipo_parametro == dato.id && categoria.id_categoria_servicio == 1" [checked]="categoria.id_tipo_parametro == dato.id && categoria.id_categoria_servicio == 1"
+                                                        [disabled]="true"></mat-checkbox>
+                                                </ng-container>
                                             </mat-grid-tile>
                                             <mat-grid-tile [colspan]="3" [rowspan]="1">
-                                                <mat-checkbox [checked]="dato.id_categoria_servicio == 2" [disabled]="true"></mat-checkbox>
+                                                <ng-container *ngFor="let categoria of categoriaParametro">
+                                                    <mat-checkbox *ngIf="categoria.id_tipo_parametro == dato.id && categoria.id_categoria_servicio == 2" [checked]="categoria.id_tipo_parametro == dato.id && categoria.id_categoria_servicio == 2" [disabled]="true"></mat-checkbox>
+                                                </ng-container>
                                             </mat-grid-tile>
                                         </mat-grid-list>
                                     </div>
