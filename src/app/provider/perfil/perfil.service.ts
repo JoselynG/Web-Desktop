@@ -15,7 +15,6 @@ export class PerfilService {
     })
   };
 
-<<<<<<< HEAD
   perfil_tabla:any;
   perfil_cli_tabla:Array<any>=[];//GUARDA EL PERFIL FILTRADO POR EL CLIENTE ACTUAL
   constructor(public http:HttpClient) {
@@ -103,13 +102,6 @@ creacionPerfil(arrValSel,cliid){//REALIZA LOS CREATES
       console.log(error);
     }
   );
-=======
-  constructor(public http:HttpClient) {}
-
-
-getPerfil(){
-  return this.http.get(API_URL+this.url_perfil);
->>>>>>> 39bf86c2afdf252f370f8e341ee3b4e2e7e5ab53
 }
 
 }
