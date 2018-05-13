@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {CategoriasServicioService} from '../../../../../provider/categorias-servicio/categorias-servicio.service';
 @Component({
   selector: 'app-primer-paso',
   templateUrl: './primer-paso.component.html',
@@ -26,12 +26,25 @@ export class PrimerPasoComponent implements OnInit {
     {value: "maqNoche", viewValue: 'Maquillaje de Noche'},
     {value: "contorno", viewValue: 'Maquillaje de contorno'},
     
-  ]
+  ];
 
-  
-  constructor() { }
+  pro: any;
+  constructor(public categoria_servicio: CategoriasServicioService ) {
+    this.getPromociones();
+   }
 
   ngOnInit() {
+    this.getPromociones();
   }
+
+  getPromociones() {
+    this.categoria_servicio.getCategorias().subscribe((resp) => {
+      this.pro = resp['data'];
+      console.log(this.pro);
+    }, (error) => {
+        console.log(error);
+      });
+     }
+
 
 }

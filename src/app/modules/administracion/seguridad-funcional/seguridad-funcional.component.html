@@ -8,8 +8,8 @@
 
     <mat-form-field style="width: 200px; position: absolute;top:15px;right: 300px;">
         <mat-select placeholder="Selecciona por usuario" value="0">
-            <mat-option *ngFor="let user of usuarios" [value]="user.value">
-                {{ user.viewValue }}
+            <mat-option *ngFor="let rol of roles" [value]="rol.id">
+                {{ rol.nombre }}
             </mat-option>
             <mat-option value="0">
                 Todos los usuarios

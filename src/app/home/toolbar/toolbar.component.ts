@@ -1,4 +1,6 @@
+import { UserService } from './../../provider/user/user.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface user{
   fullName: string;
@@ -45,9 +47,17 @@ export class ToolbarComponent implements OnInit {
     msj: "Mirian Silva, solicitud nro-002",
   
   }
-  constructor() { }
+  constructor(
+    public router: Router,
+    public usuario: UserService
+  ) { }
 
   ngOnInit() {
+  }
+
+  cerrarSesion(){
+    this.usuario.logout()
+    this.router.navigate(['']);
   }
 
 }

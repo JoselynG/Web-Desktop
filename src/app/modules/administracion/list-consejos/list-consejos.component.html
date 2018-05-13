@@ -3,7 +3,7 @@
         <div class="example-header">
             <form>
                 <div style="position:relative;">
-                    <input type="text" (keyup)="applyFilter($event.target.value)" placeholder="Buscar por Nombre">
+                    <input type="text" placeholder="Buscar por Nombre">
                     <mat-icon style="position:absolute; margin-left:-30px;top:4px;opacity:0.5;" matSuffix>search</mat-icon>
                 </div>
             </form>
@@ -16,13 +16,13 @@
     </mat-grid-tile>
 </mat-grid-list>
 <mat-grid-list cols="4" rowHeight="500px">
-    <mat-grid-tile style="margin-top:-5px; margin-bottom:-100px" colspan="2" rowspan="1" *ngFor="let item of consejos">
+    <mat-grid-tile style="margin-top:-5px; margin-bottom:-100px" colspan="2" rowspan="1" *ngFor="let item of pro">
         <mat-card class="example-card">
             <mat-card-header>
-                <mat-card-title>{{item.nombre}}</mat-card-title>
-                <mat-card-subtitle>{{item.codigo}}</mat-card-subtitle>
+                <mat-card-title>{{item.titulo}}</mat-card-title>
+
             </mat-card-header>
-            <img mat-card-image class="card-img" src="{{item.imagen}}">
+            <img mat-card-image class="card-img" src="http://localhost:3000/files/consejo/{{item.id}}.{{item.imagen}}">
             <mat-card-content>
                 {{item.descripcion}}
             </mat-card-content>

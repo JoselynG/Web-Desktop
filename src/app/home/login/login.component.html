@@ -5,14 +5,16 @@
             <h3 class="title">
                 Iniciar sesión
             </h3>
+
             <mat-form-field class="full-width inputs">
-                <input matInput placeholder="Usuario" autocomplete="off">
+                <input id="user" type="email" name="user" class="form-control" required [(ngModel)]="creden.correo" matInput placeholder="Usuario" autocomplete="off">
             </mat-form-field>
             <mat-form-field class="full-width inputs">
-                <input matInput placeholder="Password" type="password" autocomplete="off">
+                <input id="password" name="password" class="form-control" required [(ngModel)]="creden.contrasenia" matInput placeholder="Password" type="password" autocomplete="off">
             </mat-form-field>
+            <span class="error" *ngIf="login">*Credenciales inválidas, por favor verifíquelas</span>
             <br>
-            <button mat-raised-button color="accent" routerLink="/dashboard" class="c-white btn">Iniciar sesión</button>
+            <button mat-raised-button color="accent" (click)="loginUser()" class="c-white btn">Iniciar sesión</button>
         </mat-card>
     </div>
 </app-background-image>

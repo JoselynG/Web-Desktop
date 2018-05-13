@@ -1,7 +1,7 @@
 <div class="example-header">
     <form>
         <div style="position:relative;">
-            <input type="text" class="busqueda" placeholder="Buscar por cliente">
+            <input type="text" class="busqueda" placeholder="Buscar por Servicio">
             <mat-icon style="position:absolute; margin-left:-30px;top:4px;opacity:0.5;" matSuffix>search</mat-icon>
         </div>
     </form>
@@ -13,7 +13,7 @@
     <div class="select mat-elevation-z1">
 
         <mat-form-field class="fecha">
-            <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio de la búsqueda">
+            <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio de la Promoción">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -21,7 +21,7 @@
     </div>
     <div class="select1 mat-elevation-z1">
         <mat-form-field class="fecha">
-            <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de fin de la búsqueda">
+            <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de fin de la Promoción">
             <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
             <mat-datepicker #pickerEnd></mat-datepicker>
         </mat-form-field>
@@ -31,12 +31,12 @@
 
 
 
-    <div class="citas" *ngFor="let detalle of detalles">
+    <div class="citas" *ngFor="let detalle of pro">
 
 
         <mat-card class="detalle">
             <mat-card-content>
-                <img mat-card-image src="/assets/img/perfil.jpg" alt="Photo of a Shiba Inu" class="img-perfil">
+                <img mat-card-image src="http://localhost:3000/files/promocion/{{detalle.id}}.{{detalle.imagen}}" alt="Photo of a Shiba Inu" class="img-perfil">
                 <div class="menu">
                     <button mat-icon-button [matMenuTriggerFor]="menu">
                   <mat-icon class="icon">more_vert</mat-icon>
@@ -53,16 +53,17 @@
                 </div>
 
                 <div class="name">
-                    <span class="bold">{{detalle.NombrePromo}}</span>
+                    <span class="bold">{{detalle.nombre}}</span>
                     <pre>                                                </pre>
                 </div>
-                <p>Servicio: {{detalle.servicio}}</p>
-                <p>Detalle:{{detalle.descripcion}}. </p>
-                <p>Desde: {{detalle.fechaInicio}}</p>
-                <p>Hasta: {{detalle.fechaFin}}</p>
+
+                <p>Detalle:{{detalle.descripcion}}. </p><br>
+                <p>Desde: {{detalle.fecha_inicio | date:'dd/MM/yyyy'}}</p><br>
+                <p>Hasta: {{detalle.fecha_fin | date:'dd/MM/yyyy'}}</p>
                 <pre>                    </pre>
                 <div class="pres">
-                    <pre>Depilación Láser           USD    $17    </pre>
+                    <pre>Porcentaje de Descuento {{detalle.porcentaje_descuento}}%</pre>
+                    <pre>Precio  :        {{detalle.precio_promocion}}    </pre>
 
                 </div>
             </mat-card-content>
