@@ -39,6 +39,8 @@ import { UserService } from './provider/user/user.service';
 import { ValoresParametrosService } from './provider/valores-parametros/valores-parametros.service';
 import { ParametrosService } from './provider/parametros/parametros.service';
 import { TiposParametrosService } from './provider/tipos-parametros/tipos-parametros.service';
+import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
+
 
 @NgModule({
   declarations: [
@@ -86,7 +88,9 @@ import { TiposParametrosService } from './provider/tipos-parametros/tipos-parame
     ServiciosService,
     ValoresParametrosService,
     ParametrosService,
-    TiposParametrosService
+    TiposParametrosService,
+    GestionPromocionService
+    
   ],
     
   
