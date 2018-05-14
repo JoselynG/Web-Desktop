@@ -22,4 +22,8 @@ getParametros(){
   return this.http.get(API_URL+this.url_param);
 }
 
+
+  postParametros(parametro) {
+    return this.http.post(API_URL + this.url_param, parametro)
+  }
 }

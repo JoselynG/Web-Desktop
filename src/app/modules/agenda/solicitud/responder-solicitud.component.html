@@ -2,25 +2,41 @@
     <!--<mat-card class="cancelar">!-->
     <h4>Responder solicitud</h4>
     <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Cliente" value="Illyrio Mopatis" disabled>
+        <input matInput placeholder="Cliente" [value]="cliente" disabled>
     </mat-form-field>
     <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Servicios de peluquería" value="Desrizado, Peinado con tenacilla, Secado" disabled>
+        <input matInput placeholder="Servicios de peluquería" [value]="servicios" disabled>
     </mat-form-field>
-    <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Empleado a cargo del servicio de peluquería" value="Jon Connington" disabled>
+    <mat-form-field class="example-full-width inputs" *ngIf="solicitud.empleado_pelu != null">
+        <input matInput placeholder="Empleado a cargo del servicio de peluquería" [value]="empleadoP" disabled>
+    </mat-form-field>
+    <!-- se muestra para seleccionar empleado de peluq sólo si el campo es nulo-->
+    <mat-form-field class="valor" *ngIf="solicitud.empleado_pelu == null">
+        <mat-select name="resp" [(ngModel)]="tipoRespSelec" placeholder="Empleado a cargo del servicio de peluquería">
+            <mat-option name="pp" *ngFor="let filtro of filtro" [value]="filtro.value">
+                {{ filtro.viewValue }}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
     <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="Servicios de maquillaje" value="Maquillaje completo" disabled>
     </mat-form-field>
-    <mat-form-field class="example-full-width inputs">
-        <input matInput placeholder="Empleado a cargo del servicio de maquillaje" value="Jon Connington" disabled>
+    <mat-form-field class="example-full-width inputs" *ngIf="solicitud.empleado_maqui != null">
+        <input matInput placeholder="Empleado a cargo del servicio de maquillaje" [value]="empleadoM" disabled>
+    </mat-form-field>
+    <!-- se muestra para seleccionar empleado de peluq sólo si el campo es nulo-->
+    <mat-form-field class="valor" *ngIf="solicitud.empleado_maqui == null">
+        <mat-select name="resp" [(ngModel)]="tipoRespSelec" placeholder="Empleado a cargo del servicio de maquillaje">
+            <mat-option name="pp" *ngFor="let filtro of filtro" [value]="filtro.value">
+                {{ filtro.viewValue }}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
     <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="Presupuesto" value="8932827.00 Bs" disabled>
     </mat-form-field>
     <mat-form-field class="valor">
-        <mat-select name="resp" [(ngModel)]="valor" placeholder="Tipo de respuesta de la solicitud">
+        <mat-select name="resp" [(ngModel)]="enviarResp.id_tipo_respuesta_solicitud" placeholder="Tipo de respuesta de la solicitud">
             <mat-option name="pp" *ngFor="let filtro of filtro" [value]="filtro.value">
                 {{ filtro.viewValue }}
             </mat-option>
@@ -28,9 +44,9 @@
     </mat-form-field>
 
     <mat-form-field class="example-full-width inputs">
-        <textarea matInput placeholder="Dar respuesta al cliente" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio exercitationem officiis sequi</textarea>
+        <textarea matInput placeholder="Dar respuesta al cliente" [(ngModel)]="enviarResp.descripcion" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
     </mat-form-field>
 
-    <button mat-raised-button color="accent" class="c-white btn">Dar respuesta</button>
+    <button mat-raised-button color="accent" (click)="responder()" class="c-white btn">Dar respuesta</button>
     <!-- </mat-card>!-->
 </div>
