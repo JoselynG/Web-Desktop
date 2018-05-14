@@ -19,5 +19,11 @@ export class UsuariosService {
   getUsuarios(){
     return this.http.get(API_URL+this.url_listado_usuarios);
   }
+  getUsuario(id){
+    return this.http.get(API_URL+this.url_listado_usuarios+'/'+id);
+  }
+  putUsuario(id,usuario){
+    return this.http.put(API_URL+this.url_listado_usuarios+'/'+id, usuario);
+  }
 
 }

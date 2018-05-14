@@ -39,7 +39,7 @@ ide: any
   ngOnInit() {
   }
   loginUser(){
-    console.log(this.creden);
+    
     this.auth.loguear(this.creden).subscribe(
       (res=>{
         localStorage.setItem('id_user',res['data'].id);           //guarda en caché el id del usuario y del token
