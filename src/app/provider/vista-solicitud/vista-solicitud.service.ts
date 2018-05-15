@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:3000/api/';
 @Injectable()
 export class VistaSolicitudService {
   solicitud: any;
-  url: String = 'vista_solicitudes/';
+  url: String = 'vista_solicitud/';
  
   constructor(public http: HttpClient) { }
  

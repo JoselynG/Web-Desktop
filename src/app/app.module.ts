@@ -1,3 +1,4 @@
+import { SolicitudService } from './provider/solicitud/solicitud.service';
 import { TipoRepuestaReclamoService } from './provider/tipo-repuesta-reclamo/tipo-repuesta-reclamo.service';
 import { DescripcionNegocioService } from './provider/descripcion-negocio/descripcion-negocio.service';
 import { ContactoNegocioService } from './provider/contacto-negocio/contacto-negocio.service';
@@ -51,6 +52,7 @@ import { TipoIncidenciaService } from './provider/tipo-incidecia/tipo-incidencia
 import { ObjetivoService } from './provider/objetivo/objetivo.service';
 import { ReclamoService } from './provider/reclamo/reclamo.service';
 import { RepuestaReclamoService } from './provider/repuesta-reclamo/repuesta-reclamo.service';
+import { EspecialidadService } from './provider/especialidad/especialidad.service';
 
 @NgModule({
   declarations: [
@@ -108,7 +110,9 @@ import { RepuestaReclamoService } from './provider/repuesta-reclamo/repuesta-rec
     ObjetivoService,
     ReclamoService,
     RepuestaReclamoService,
-    TipoRepuestaReclamoService
+    TipoRepuestaReclamoService,
+    EspecialidadService,
+    SolicitudService
   ],
 
 

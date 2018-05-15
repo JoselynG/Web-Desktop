@@ -4,7 +4,7 @@ const API_URL="http://localhost:3000/api/"
 
 @Injectable()
 export class TipoRespSolicitudService {
-  url: String = '/';
+  url: String = 'tipo_respuesta_solicitud/';
   constructor(public http: HttpClient) { }
   getTipoRespSolicitud(){
     return this.http.get(API_URL+this.url);

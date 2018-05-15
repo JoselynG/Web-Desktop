@@ -117,14 +117,6 @@ export class CancelarCitaComponent  {
     this.tipoInc.getTipoIncidencia().subscribe(
     (data)=>{
       this.incidencia = data['data']
-      console.log(this.incidencia.length)
-      for(let i=0; i<this.incidencia.length; i++)
-      {
-        console.log(i)
-        this.tipo[i].value = this.incidencia[i].id;
-        this.tipo[i].value = this.incidencia[i].descripcion;
-      }
-      console.log(this.tipo);
     },(error) => {
       console.log(error);
     }

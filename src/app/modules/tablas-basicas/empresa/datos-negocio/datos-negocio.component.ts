@@ -590,48 +590,39 @@ estado = [
     )
   }
   update(){
-    console.log('ahí voy');
+    
     this.negocio.updateNegocio(this.datosMostrar.id, this.datosModificar).subscribe(
       (data) => {
-        console.log(data);
-        console.log('lo hice :D');
+      
       },(error) =>{
         console.log(error);
       } 
     )
-    console.log('ahí voy');
+    
     this.descripc.updateNegocio(this.datosMostrarDesc.id, this.datosModificarDesc).subscribe(
       (data) => {
-        console.log(data);
-        console.log('lo hice :D');
       },(error) =>{
         console.log(error);
       } 
     )
 
-    console.log('ahí voy');
+    
     this.descripc.updateNegocio(this.datosMostrarMision.id, this.datosModificarMision).subscribe(
       (data) => {
-        console.log(data);
-        console.log('lo hice :D');
       },(error) =>{
         console.log(error);
       } 
     )
-    console.log('ahí voy');
+   
     this.descripc.updateNegocio(this.datosMostrarVision.id, this.datosModificarVision).subscribe(
       (data) => {
-        console.log(data);
-        console.log('lo hice :D');
       },(error) =>{
         console.log(error);
       } 
     )
-    console.log('ahí voy');
+    
     this.contac.updateNegocio(this.datosMostrarDirec.id, this.datosModificarDirec).subscribe(
       (data) => {
-        console.log(data);
-        console.log('lo hice :D');
       },(error) =>{
         console.log(error);
       } 
@@ -639,17 +630,13 @@ estado = [
     console.log('ahí voy');
     this.contac.updateNegocio(this.datosMostrarCorreo.id, this.datosModificarCorreo).subscribe(
       (data) => {
-        console.log(data);
-        console.log('lo hice :D');
       },(error) =>{
         console.log(error);
       } 
     )
     
     this.contac.updateNegocio(this.datosMostrarTelefonoc.id, this.datosModificarTelefono).subscribe(
-      (data) => {
-        console.log(data);
-     
+      (data) => {   
       },(error) =>{
         console.log(error);
       } 
@@ -657,9 +644,7 @@ estado = [
     
     //OBJETIVOS
     this.obj.updateNegocio(this.datosMostrarObjetivoG.id, this.datosModificarObjetivoGe).subscribe(
-      (data) => {
-        console.log(data);
-    
+      (data) => {    
       },(error) =>{
         console.log(error);
       } 
@@ -667,8 +652,7 @@ estado = [
     
     this.obj.updateNegocio(this.datosMostrarObjetivoE1.id, this.datosModificarObjetivoE1).subscribe(
       (data) => {
-        console.log(data);
-    
+            
       },(error) =>{
         console.log(error);
       } 
@@ -676,8 +660,7 @@ estado = [
     
     this.obj.updateNegocio(this.datosMostrarObjetivoE2.id, this.datosModificarObjetivoE2).subscribe(
       (data) => {
-        console.log(data);
-    
+            
       },(error) =>{
         console.log(error);
       } 
@@ -685,8 +668,7 @@ estado = [
     
     this.obj.updateNegocio(this.datosMostrarObjetivoE3.id, this.datosModificarObjetivoE3).subscribe(
       (data) => {
-        console.log(data);
-        
+                
       },(error) =>{
         console.log(error);
       } 

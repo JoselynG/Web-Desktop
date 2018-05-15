@@ -10,7 +10,7 @@
     <div class="select">
         <mat-form-field class="valor inputs">
             <mat-select placeholder="Seleccione el tipo de incidencia">
-                <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                <mat-option *ngFor="let filtro of incidencia" [value]="filtro.value">
                     {{ filtro.viewValue }}
                 </mat-option>
             </mat-select>

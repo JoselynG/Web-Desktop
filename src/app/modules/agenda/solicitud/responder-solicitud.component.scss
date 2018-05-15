@@ -25,5 +25,8 @@
     }
     input:disabled {
         color: black;
+        .servicios:tag {
+            font-size: 10px;
+        }
     }
 }

@@ -11,4 +11,7 @@ export class SolicitudService {
   getSolicitud(){
     return this.http.get(API_URL+this.url);
   }
+  updateSolicitud(id, datos){
+    return this.http.put(API_URL+this.url+id, datos);
+  }
 }

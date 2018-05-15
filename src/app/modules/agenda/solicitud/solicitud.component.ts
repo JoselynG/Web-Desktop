@@ -1,3 +1,4 @@
+import { TipoRespSolicitudService } from './../../../provider/tipo-resp-solicitud/tipo-resp-solicitud.service';
 import { EspecialidadService } from './../../../provider/especialidad/especialidad.service';
 import { RespuestaSolicitudService } from './../../../provider/respuesta-solicitud/respuesta-solicitud.service';
 
@@ -36,16 +37,18 @@ export class SolicitudComponent implements OnInit {
     cantidad_servicios: number;
     empleado_pelu: number;
     empleado_maqui: number;
-    vista_servicio_solicitado: Array <{
+    servicios_solicitados: Array <{
       id: number;
       id_servicio: number;
-      nombre: string;
+      solicitud: number;
+      nombre_servicio: string;
       tipo_servicio: string;
     }>;
     empleadoP_nombre: string;
     empleadoM_nombre: string;
     empleadoP_apellido: string;
     empleadoM_apellido: string;
+    estado: string;
   }>;
   empleadoSelP: {
     id: number;
@@ -95,11 +98,12 @@ export class SolicitudComponent implements OnInit {
       cantidad_servicios: 0,
       empleado_pelu: null,
       empleado_maqui: null,
-      vista_servicio_solicitado: [],
+      servicios_solicitados: [],
       empleadoP_nombre: '',
       empleadoM_nombre: '',
       empleadoP_apellido: '',
       empleadoM_apellido: '',
+      estado: ''
     }]
     this.empleadoSelP = {
       id: null,
@@ -196,7 +200,7 @@ export class ResponderSolicitudComponent {
   tipoRespSelec: number;
   solicitud: any;
   cliente: string;
-  servicios: string;
+  servicios: any;
   empleadoP: string;
   empleadoM: string;
   empleadosPelu: Array <{         //traer empleados de peluquería
@@ -215,8 +219,13 @@ export class ResponderSolicitudComponent {
     id_solicitud: number;
     id_tipo_respuesta_solicitud: number;
     descripcion: string;
+  };
+  actualizarSolic: {
+    estado: string;
+    empleado_pelu: number;
+    empleado_maqui: number;
   }
-  
+  tipoRespuestas: any;
   //valor = false;
   filtro = [
     {value: 1, viewValue: 'Positiva'},
@@ -225,52 +234,46 @@ export class ResponderSolicitudComponent {
   constructor(public dialogRef: MatDialogRef<ResponderSolicitudComponent>,
     public respuesta: RespuestaSolicitudService,
     public empleados: EmpleadosService,
+    public tipoResp: TipoRespSolicitudService,
     public especialidad: EspecialidadService,
+    public actSolic: SolicitudService,
     @Inject(MAT_DIALOG_DATA) public data: any){
     this.tipoRespSelec = 1;
-    this.solicitud = data.solic;    
+    this.solicitud = data.solic;   
+    console.log(this.solicitud) 
     this.cliente = this.solicitud.nombre + ' ' + this.solicitud.apellido;
-    this.servicios = '';
-    this.servicios = this.solicitud.vista_servicio_solicitado.tipo_servicio + ' ' + this.solicitud.vista_servicio_solicitado.nombre
-    console.log(this.solicitud)
+    this.servicios = [];
+    for(let i=0; i<this.solicitud.servicios_solicitados.length; i++){
+      this.servicios.push(this.solicitud.servicios_solicitados)
+    }
     this.empleadoM = '';
     this.empleadoP = '';
     this.enviarResp = {
       id_solicitud: this.solicitud.id,
       id_tipo_respuesta_solicitud: null,
       descripcion: ''
+    }    
+    this.actualizarSolic = {
+      estado: this.solicitud.estado,
+      empleado_pelu: this.solicitud.empleado_pelu,
+      empleado_maqui: this.solicitud.empleado_maqui,
     }
-    
   }
   
-  ngOnInit() {
-    //this.getServiciosSol();
+  ngOnInit() {    
     this.getEmpleados() ;
-    this.getEmpleadosPeluSelec();
+    this.getTipoResp();
   }
+  getTipoResp(){
+    this.tipoResp.getTipoRespSolicitud().subscribe(
+      (data)=>{
+        this.tipoRespuestas = data['data']
+        console.log(this.tipoRespuestas)
+      },(error)=>{
+        console.log(error)
+      }
 
-  getEmpleadosPeluSelec(){
-      this.empleados.getEmpleados().subscribe(
-        (data =>{
-          this.empleadosBD = data['data']
-          console.log(this.empleadosBD);
-          this.especialidad.getEspecialidad().subscribe(
-            (res=>{
-              this.especialidadEmpleado = res ['data'];
-              for (let i=0;i<this.especialidadEmpleado.length; i++){
-                if(this.especialidadEmpleado[i] === 1){
-                  this.empleadosPeluAux.push(this.especialidadEmpleado[i])
-                  console.log(this.empleadosPelu)
-                }else{
-                  this.empleadosMaquiAux.push(this.especialidadEmpleado[i])
-                  console.log(this.empleadosMaquiAux)
-                }
-              }
-
-            })
-          )
-        })
-      )
+    )
   }
   getEmpleados(){
     if(this.solicitud.empleado_pelu != null) {
@@ -282,10 +285,17 @@ export class ResponderSolicitudComponent {
   }
     responder(){
       this.respuesta.registrarRespSolic(this.enviarResp).subscribe(
-        (res=>{
+        (res)=>{
           console.log('hecho')
-          
-        }),(error)=>{
+          this.actualizarSolic.estado = "R"
+          this.actSolic.updateSolicitud(this.solicitud.id, this.actualizarSolic).subscribe(
+            (data) => {
+              console.log('hecho x 2')
+            },(error) =>{
+              console.log(error);
+            } 
+          )
+        },(error)=>{
           console.log(error);
         }
       )
