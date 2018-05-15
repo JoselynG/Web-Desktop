@@ -135,6 +135,7 @@ export class DatosNegocioComponent implements OnInit {
     id_sistema: number;
     fecha_creacion: string; 
   };
+  empresa: any;
   //datos
   datosModificarDesc: {
     id: number;
@@ -234,7 +235,7 @@ export class DatosNegocioComponent implements OnInit {
     estatus: string;
     fecha_creacion: string;  
   }
-  empresa: any;
+ 
   desc: any;
   contacto:any;
   objetivo: any;

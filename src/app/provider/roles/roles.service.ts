@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 const API_URL='http://localhost:3000/api/'
 
 @Injectable()
-export class UsuariosService {
+export class RolesService {
 
-  url_listado_usuarios='usuario';
+  url_roles='rol';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -16,14 +16,8 @@ export class UsuariosService {
 
   constructor(public http: HttpClient) { }
 
-  getUsuarios(){
-    return this.http.get(API_URL+this.url_listado_usuarios);
-  }
-  getUsuario(id){
-    return this.http.get(API_URL+this.url_listado_usuarios+'/'+id);
-  }
-  putUsuario(id,usuario){
-    return this.http.put(API_URL+this.url_listado_usuarios+'/'+id, usuario);
+  getRoles(){
+    return this.http.get(API_URL+this.url_roles);
   }
 
 }

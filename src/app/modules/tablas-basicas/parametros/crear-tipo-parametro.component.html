@@ -6,11 +6,11 @@
     <!--  <texto>!-->
     <div>
         <mat-form-field class="example-full-width inputs" style="width: 350px;">
-            <input matInput placeholder="Nombre del aspecto">
+            <input [(ngModel)]="nombre" matInput placeholder="Nombre del aspecto">
         </mat-form-field>
         <mat-form-field class="example-full-width inputs" style="width: 350px;">
-            <mat-select placeholder="Categoría del aspecto" multiple>
-                <mat-option *ngFor="let item of categoryList" [value]="item">{{item}}</mat-option>
+            <mat-select [(ngModel)]="categoriaServicio" placeholder="Categoría del aspecto" multiple>
+                <mat-option *ngFor="let item of categoryList" [value]="item.id">{{item.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
 

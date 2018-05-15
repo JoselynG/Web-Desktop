@@ -3,9 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 const API_URL = 'http://localhost:3000/api/';
 
 @Injectable()
-export class PromocionesService {
-url_listado_promociones = 'promocion';
-
+export class ValoresParametrosService {
+  url_listado_valores_parametros = 'valor_parametro';
   constructor(public http: HttpClient) { }
 
   private httpOptions = {
@@ -15,16 +14,9 @@ url_listado_promociones = 'promocion';
     })
   };
 
+  getValoresParametros() {
 
-getPromociones() {
-
-  return this.http.get(API_URL + this.url_listado_promociones);
-}
-
-addPromociones(promocion) {
-
-  return this.http.post(API_URL + this.url_listado_promociones, promocion );
-}
-
+    return this.http.get(API_URL + this.url_listado_valores_parametros);
+  }
 
 }

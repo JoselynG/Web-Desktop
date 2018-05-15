@@ -43,6 +43,14 @@ import { AuthService } from './provider/auth/auth.service';
 //import { HttpClient } from 'selenium-webdriver/http';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './provider/user/user.service';
+import { ValoresParametrosService } from './provider/valores-parametros/valores-parametros.service';
+import { ParametrosService } from './provider/parametros/parametros.service';
+import { TiposParametrosService } from './provider/tipos-parametros/tipos-parametros.service';
+import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
+
+import { RolesService } from './provider/roles/roles.service';
+import { PerfilService } from './provider/perfil/perfil.service';
+import { MensajeExitoComponent } from './mensajes/mensaje-exito/mensaje-exito.component';
 import { ParametroService } from './provider/parametro/parametro.service';
 import { TipoParametroService } from './provider/tipo-parametro/tipo-parametro.service';
 import { ValorParametroService } from './provider/valor-parametro/valor-parametro.service';
@@ -53,6 +61,7 @@ import { ObjetivoService } from './provider/objetivo/objetivo.service';
 import { ReclamoService } from './provider/reclamo/reclamo.service';
 import { RepuestaReclamoService } from './provider/repuesta-reclamo/repuesta-reclamo.service';
 import { EspecialidadService } from './provider/especialidad/especialidad.service';
+import { CategoriaParametroService } from './provider/categoria-parametro/categoria-parametro.service';
 
 @NgModule({
   declarations: [
@@ -63,6 +72,7 @@ import { EspecialidadService } from './provider/especialidad/especialidad.servic
     ToolbarComponent,
     TestComponent,
     GraficosDirective,
+    MensajeExitoComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +108,15 @@ import { EspecialidadService } from './provider/especialidad/especialidad.servic
     PromocionesService,
     CategoriasServicioService,
     ServiciosService,
+    ValoresParametrosService,
+    ParametrosService,
+    TiposParametrosService,
+    GestionPromocionService,  
+    RolesService,
+    PerfilService,
+    TipoParametroService,
+    ParametroService,
+    ValorParametroService,
     ParametroService,
     TipoParametroService,
     ValorParametroService,
@@ -112,8 +131,15 @@ import { EspecialidadService } from './provider/especialidad/especialidad.servic
     RepuestaReclamoService,
     TipoRepuestaReclamoService,
     EspecialidadService,
-    SolicitudService
+    SolicitudService,
+    CategoriaParametroService
+
   ],
+    
+  entryComponents: [
+    MensajeExitoComponent,
+  ],
+  
 
 
   bootstrap: [AppComponent]

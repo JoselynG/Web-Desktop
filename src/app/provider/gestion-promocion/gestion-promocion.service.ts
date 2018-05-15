@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const API_URL = 'http://localhost:3000/api/';
 
-@Injectable()
-export class PromocionesService {
-url_listado_promociones = 'promocion';
 
+@Injectable()
+export class GestionPromocionService {
+  url_gestion_promociones = 'agregar_promocion';
   constructor(public http: HttpClient) { }
 
   private httpOptions = {
@@ -16,15 +16,21 @@ url_listado_promociones = 'promocion';
   };
 
 
-getPromociones() {
 
-  return this.http.get(API_URL + this.url_listado_promociones);
-}
+  getPromociones() {
 
-addPromociones(promocion) {
+    return this.http.get(API_URL + this.url_gestion_promociones);
+  }
 
-  return this.http.post(API_URL + this.url_listado_promociones, promocion );
-}
+  addPromociones(promocion) {
+
+    return this.http.post(API_URL + this.url_gestion_promociones, promocion );
+  }
+
+
+
+
+
 
 
 }

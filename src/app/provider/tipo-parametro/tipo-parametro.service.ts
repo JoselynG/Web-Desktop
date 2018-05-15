@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-const API_URL = 'http://localhost:3000/api/'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+const API_URL='http://localhost:3000/api/'
+
 
 @Injectable()
 export class TipoParametroService {
-  listado_tipo_parametro = 'tipo_parametro'
-  constructor(public http: HttpClient) { }
+
+  url_tipoP='tipo_parametro';
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content -type': `application/json`,
-      'Authoryzacoion': `my-auth-token`
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
     })
   };
 
-  getTipoParametros() {
+  constructor(public http:HttpClient) {}
 
-    return this.http.get(API_URL + this.listado_tipo_parametro);
+
+getTipoParametros(){
+  return this.http.get(API_URL+this.url_tipoP);
+}
+
+  postTipoParametros(tipoParametro) {
+
+    return this.http.post(API_URL + 'agregar_tipo_parametro', tipoParametro);
 
   }
 }

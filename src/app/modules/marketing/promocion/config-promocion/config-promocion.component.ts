@@ -1,67 +1,89 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-
+import {ValoresParametrosService} from '../../../../provider/valores-parametros/valores-parametros.service';
+import {ParametrosService} from '../../../../provider/parametros/parametros.service';
+import {TiposParametrosService} from '../../../../provider/tipos-parametros/tipos-parametros.service';
+import { CategoriasServicioService } from '../../../../provider/categorias-servicio/categorias-servicio.service';
+import { ServiciosService } from '../../../../provider/servicios/servicios.service';
+import { GestionPromocionService } from '../../../../provider/gestion-promocion/gestion-promocion.service';
+import { variable } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-config-promocion',
   templateUrl: './config-promocion.component.html',
   styleUrls: ['./config-promocion.component.scss']
 })
 export class ConfigPromocionComponent implements OnInit {
-  
+  promocion: {
+    id_servicio: number;
+    nombre: String;
+    descripcion: String;
+    porcentaje_descuento: number;
+    precio_promocion: String;
+    imagen: string;
+    fecha_inicio: Date;
+    fecha_fin: Date;
+    estatus: String;
+    fecha_creacion: Date;
+    //valor_parametro: Array<{id_promocion: number , id_valor_parametro: number}>;
+    valor_parametro: number[];
+    };
+
   [x: string]: any;
-  consejo: Array<{}> = [];
-  datoBasico: Array<{}> = [];
-  listaParametro: Array<{}> = [];
+  consejo: Array<{id: number, nombre: string, id_tipo_parametro: number, fecha_creacion: Date }> = [];
+  datoBasico: Array<{id: number, nombre: string, id_tipo_parametro: number, fecha_creacion: Date }> = [];
+  listaParametro: Array<{ }> ;
   listaValor: Array<{}> = [];
   tipoparametro: any;
-    listaTipoParametro: Array<{id_dato: string, nombre: string, status: string, tipo_dato: string }>;
+  listaTipoParametro: any;
+  listaParametros: any ;
+  listavalorparametro: any;
+  //arreglo de Servicio y Categoria
+  pro: any;
+  servicio: any;
+  prueba: number;
+  constructor(public dialog: MatDialog, public parametroServ: ParametrosService, public tipo_para_serv: TiposParametrosService,
+    public valor_para_ser: ValoresParametrosService, public categoria_servicio: CategoriasServicioService, 
+    public servici: ServiciosService , public gestion: GestionPromocionService ) {
+  
 
-  listaParametros: Array<{id_dato: string, id_parametro: string, nombre: string, tipo: string}>;
-
-  listavalorparametro: Array<{id_valor: string, id_parametro: string, nombre: string, descripcion: string}>;
-  constructor(public dialog: MatDialog) {
-    this.listaTipoParametro = [
-      {id_dato: '1', nombre: 'Sexo', status: 'a', tipo_dato: 'basico'},
-      {id_dato: '2', nombre: 'Rango de edad', status: 'a', tipo_dato: 'basico'},
-      {id_dato: '3', nombre: 'Numero de hijos', status: 'a', tipo_dato: 'basico'},
-      {id_dato: '4', nombre: 'Rostro', status: 'a', tipo_dato: 'caracteristica'},
-      {id_dato: '5', nombre: 'Cabello', status: 'a', tipo_dato: 'caracteristica'},
-      {id_dato: '6', nombre: 'Ojos', status: 'a', tipo_dato: 'caracteristica'},
-    ];
-
-    this.listaParametros = [
-      {id_parametro: '1', id_dato: '1', nombre: 'Hombre', tipo: 'basico'},
-      {id_parametro: '2', id_dato: '1', nombre: 'Mujer', tipo: 'basico'},
-      {id_parametro: '3', id_dato: '2', nombre: 'Joven', tipo: 'basico'},
-      {id_parametro: '4', id_dato: '2', nombre: 'Adulto Mayor', tipo: 'basico'},
-      {id_parametro: '5', id_dato: '4', nombre: 'Tipo de rostro', tipo: 'basico'},
-      {id_parametro: '6', id_dato: '5', nombre: 'Tipo de cabello', tipo: 'basico'},
-
-    ];
-
-    this.listavalorparametro = [
-      {id_valor: '1', id_parametro: '5', nombre: 'Largo', descripcion: 'El rostro es estirado'},
-      {id_valor: '2', id_parametro: '5', nombre: 'Redondo', descripcion: 'El redondeado'},
-      {id_valor: '3', id_parametro: '6', nombre: 'Ondulado', descripcion: 'su cabello presenta ondas'},
-      {id_valor: '4', id_parametro: '6', nombre: 'Crespo', descripcion: 'es un cabello dificil de manejar'},
-    ];
-  }
+    }
 
   ngOnInit() {
+    this.getTipoParametros();
+    this.getValorParametros();
+    this.getParametros();
+    this.getServicios();
+    this.getCategorias();
+   
+    this.promocion = {
+      id_servicio: 0,
+      nombre: '',
+      descripcion: '',
+      porcentaje_descuento: 0,
+      precio_promocion: '',
+      imagen:  '',
+      fecha_inicio: new Date(),
+      fecha_fin: new Date(),
+      estatus: '',
+      fecha_creacion: new Date(),
+     // valor_parametro: [{id_promocion: 0, id_valor_parametro: 0}],
+     valor_parametro: []
+    };
 
       }
+
   cargarParametro(id) {
     let j = 0;
-    this.listaParametro = [];
+   this.listaParametro = [];
     for (let i = 0; i < this.listaParametros.length; i++) {
-      if (this.listaParametros[i].id_dato === id) {
+      if (this.listaParametros[i].id_tipo_parametro === id) {
         this.listaParametro[j] = this.listaParametros[i];
         console.log(id);
         j++;
-        console.log(this.listaParametro);
-      }
-    }
+       // console.log(this.listaParametro);
+      }}
+    return this.listaParametro;
   }
   cargarValorParametro(id) {
     let j = 0;
@@ -80,7 +102,82 @@ export class ConfigPromocionComponent implements OnInit {
   }
   guardarDatoBasico(data) {
     this.datoBasico.push(data);
+    console.log(this.datoBasico);
   }
   Guardar() {
   }
+
+//Metodos para Cargar datos (Todos)
+
+getParametros() {
+  this.parametroServ.getParametros().subscribe((resp) => {
+    this.listaParametros = resp['data'];
+   // console.log(this.listaParametros);
+  }, (error) => {
+      console.log(error);
+    });
+
+
+}
+
+getTipoParametros() {
+  this.tipo_para_serv.getTipoParametros().subscribe((resp) => {
+    this.listaTipoParametro = resp['data'];
+   // console.log(this.listaTipoParametro );
+  }, (error) => {
+      console.log(error);
+    });
+}
+
+
+getValorParametros() {
+  this.valor_para_ser.getValoresParametros().subscribe((resp) => {
+    this.listavalorparametro = resp['data'];
+    console.log(this.listavalorparametro);
+  }, (error) => {
+      console.log(error);
+    });
+}
+
+
+getCategorias() {
+  this.categoria_servicio.getCategorias().subscribe((resp) => {
+    this.pro = resp['data'];
+    console.log(this.pro);
+  }, (error) => {
+      console.log(error);
+    });
+  }
+
+  getServicios() {
+    this.servici.getServicios().subscribe((resp) => {
+      this.servicio = resp['data'];
+      console.log(this.servicio);
+    }, (error) => {
+        console.log(error);
+      });
+    }
+
+
+    addPromocionyValores() {
+      console.log(this.promocion);
+      this.promocion.estatus = 'A';
+      // Para imprimir el arreglo que tiene los valores seleccionados si lo hace
+      console.log(this.datoBasico);
+      let k = 0;
+      // carga el arreglo del objeto con los valores seleccionados de la vista
+      for (let index = 0; index < this.datoBasico.length; index++) {
+        this.promocion.valor_parametro[k] = this.datoBasico[index].id;
+        
+       k++;
+      }
+      this.gestion.addPromociones(this.promocion).subscribe((resp) => {
+        this.msj = resp['data'].message;
+        console.log(this.msj);
+        alert(this.msj);
+      }, (error) => {
+          console.log(error);
+        });
+
+     }
 }

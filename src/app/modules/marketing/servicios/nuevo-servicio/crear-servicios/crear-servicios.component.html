@@ -7,6 +7,32 @@
 <div class="ctn">
 
     <!--  <mat-card class="card">!-->
+    <h3 class="title">
+        Nuevo Servicio
+    </h3>
+    <!--  <selec>!-->
+    <div class="select">
+        <mat-form-field class="valor inputs">
+            <mat-select placeholder="Seleccione el tipo servicio ">
+                <mat-option *ngFor="let filtro of filtro" [value]="filtro.value">
+                    {{ filtro.viewValue }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <!--  <texto>!-->
+
+    <mat-form-field class="example-full-width inputs">
+        <textarea matInput placeholder="Nombre del servicio" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">Maquillaje de contorno </textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width inputs">
+        <input matInput placeholder="descripcion del servicio" value="para la iluminacion del rostro">
+    </mat-form-field>
+    <mat-form-field class="example-full-width inputs">
+        <input matInput placeholder="garantia del servicio" value="tres dias ">
+    </mat-form-field>
+
+    <!--  <mat-card class="card">!-->
     <mat-card>
         <h3 class="title">
             Nuevo Servicio
@@ -21,6 +47,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
+        <!--
         <div class="select">
             <mat-form-field class="valor inputs">
                 <mat-select placeholder="Seleccione El Tipo de Servicio ">
@@ -30,7 +57,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
-
+    -->
         <!--  <texto>!-->
 
         <mat-form-field class="example-full-width inputs">
@@ -69,18 +96,17 @@
                 <input placeholder="Insumos" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
             </mat-chip-list>
         </mat-form-field>
-
-        <!--</mat-card>!-->
-        <!--  <boton>!-->
-        <!--  <botonde imagen>!-->
-        <div class="btn-fin">
-            <div class="div-btn">
-                <input id="fileInput2" style="display: none;" type='file'>
-                <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: grey;">
-                         <mat-icon>backup</mat-icon>Subir imagen</button><br>
-            </div>
-        </div>
     </mat-card>
+    <!--</mat-card>!-->
+    <!--  <boton>!-->
+    <!--  <botonde imagen>!-->
+    <div class="btn-fin">
+        <div class="div-btn">
+            <input id="fileInput2" style="display: none;" type='file'>
+            <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: grey;">
+                         <mat-icon>backup</mat-icon>Subir imagen</button><br>
+        </div>
+    </div>
     <div class="btn-fin">
 
         <div style="padding-top: 5px; width:95%; display:flex; justify-content: flex-end;">

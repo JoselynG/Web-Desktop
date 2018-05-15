@@ -16,7 +16,7 @@ export class ServiciosService {
 
    getServicios(){
 
- return this.http.get(API_URL+this.listado_servicio);
+ return this.http.get(API_URL + this.listado_servicio);
 
    }
 
