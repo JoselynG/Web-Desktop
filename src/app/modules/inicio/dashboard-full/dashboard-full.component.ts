@@ -31,16 +31,12 @@ export class DashboardFullComponent implements OnInit {
     },
     {
       nombre: 'Desriz',
-      hora: '8:00 AM'
+      hora: '11:00 AM'
     },
     {
       nombre: 'Trenzado',
-      hora: '8:00 AM'
+      hora: '12:00 PM'
     },
-    {
-      nombre: 'Maquillaje de día',
-      hora: '11:00 AM'
-    }
 
   ];
   constructor() { }
