@@ -31,10 +31,10 @@
             </mat-form-field>
         </div>
         <div class="select2 mat-elevation-z1">
-            <mat-form-field class="valor filtro">
-                <mat-select [(ngModel)]="filtroSelec">
-                    <mat-option *ngFor="let filtro of filtro" selected="todo" [value]="filtro.value">
-                        {{ filtro.viewValue }}
+            <mat-form-field class="valor inputs">
+                <mat-select name="tipo" placeholder="Seleccione comentario " [(ngModel)]="datosMostrar.id_tipo_comentario">
+                    <mat-option *ngFor="let item of tCom" [value]="item.id">
+                        {{ item.nombre }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -49,30 +49,28 @@
             <h4>Fecha de realización</h4>
         </div>
         <div class="origen">
-            <h4>Origen del reclamo</h4>
+            <h4>Origen del comentario</h4>
         </div>
     </div>
     <div class="panel">
         <mat-accordion>
-            <mat-expansion-panel *ngFor="let dato of datos">
+            <mat-expansion-panel *ngFor="let item of coment">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="title">
-                        {{dato.nombre}}
+                        {{item.nombre}}
                     </mat-panel-title>
-                    <!-- <mat-panel-description class="order">
-                    #{{dato.orden}}
-                </mat-panel-description>-->
+                   
                     <mat-panel-description class="date">
-                        {{dato.fecha}}
+                        {{item.fecha_creacion}}
                     </mat-panel-description>
                     <mat-panel-description class="type">
-                        {{dato.tipoR}}
+                        {{item.tipo_comentario}}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="desc">
                     <br>
                     <h3>Descripción:</h3><br>
-                    <p>{{dato.descripcion}}</p><br>
+                    <p>{{item.descripcion}}</p><br>
                 </div>
                 <mat-divider></mat-divider>
                 <button mat-raised-button color="accent" class="btn" (click)="openDialog()">Dar Respuesta</button>

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { ReclamoService } from '../../../provider/reclamo/reclamo.service';
 import { TipoRepuestaReclamoService } from '../../../provider/tipo-repuesta-reclamo/tipo-repuesta-reclamo.service';
 import { RepuestaReclamoService } from '../../../provider/repuesta-reclamo/repuesta-reclamo.service';
+import { VistaReclamoService } from '../../../provider/vista-reclamo/vista-reclamo.service';
 
 
 interface Datos_reclamo{
@@ -54,18 +55,18 @@ export class ReclamosOrdenComponent implements OnInit {
   
   //siempre va eso asi  cambia el nombre de la clase 
 
-  constructor(public dialog: MatDialog, public reclamo: ReclamoService,public repuesta:TipoRepuestaReclamoService ) 
+  constructor(public dialog: MatDialog, public reclamo:VistaReclamoService,public repuesta:TipoRepuestaReclamoService ) 
    {
-      this.getReclamo();
+      this.getVistaReclamo();
       
    }
 
   ngOnInit() {
-  this.getReclamo(); 
+  this.getVistaReclamo(); 
   
   }
-  getReclamo(){
-   this.reclamo.getReclamo().subscribe((resp)=>{
+  getVistaReclamo(){
+   this.reclamo.getVistaReclamo().subscribe((resp)=>{
      this.rec= resp['data'];
      console.log(this.rec);
 

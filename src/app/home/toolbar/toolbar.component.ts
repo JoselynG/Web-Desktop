@@ -30,7 +30,7 @@ interface notificacion{
 
 export class ToolbarComponent implements OnInit {
   userInfo: user = {
-    fullName: "Maynard J. Keenan",
+    fullName: "Veronica Uzcategui",
     email: "maynard@tool.com",
     imageUrl: "/assets/img/perfil.jpg",
     id: "1",

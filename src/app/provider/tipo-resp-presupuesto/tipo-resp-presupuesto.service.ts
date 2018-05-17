@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 const API_URL="http://localhost:3000/api/"
 
 @Injectable()
-export class TiposServiciosService {
-  url: String = 'tipo_servicio/';
+export class TipoRespPresupuestoService {
+  url: String = 'tipo_respuesta_presupuesto/';
   
   constructor(public http: HttpClient) { }
   
-  getTipoServicio(){
+  getTipoRespPresupuesto(){
     return this.http.get(API_URL+this.url);
   }
 }

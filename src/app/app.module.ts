@@ -1,3 +1,11 @@
+import { VistaReclamoService } from './provider/vista-reclamo/vista-reclamo.service';
+import { VComentariosService } from './provider/v-cometarios/v-comentarios.service';
+import { TipoRepuestaComentarioService } from './provider/tipo-repuesta-comentario/tipo-repuesta-comentario.service';
+import { TiporeclamoService } from './provider/tipo-reclamo/tiporeclamo.service';
+import { RespuestaComentarioService } from './provider/respuesta-comentario/respuesta-comentario.service';
+import { ComentarioService } from './provider/comentario/comentario.service';
+import { TiposServiciosService } from './provider/tipos-servicios/tipos-servicios.service';
+import { VistaServicioCategoriaService } from './provider/vista-servicio-categoria/vista-servicio-categoria.service';
 import { VistaEmpleadosCategoriaService } from './provider/vista-empleados-categoria/vista-empleados-categoria.service';
 import { SolicitudService } from './provider/solicitud/solicitud.service';
 import { TipoRepuestaReclamoService } from './provider/tipo-repuesta-reclamo/tipo-repuesta-reclamo.service';
@@ -63,6 +71,9 @@ import { ReclamoService } from './provider/reclamo/reclamo.service';
 import { RepuestaReclamoService } from './provider/repuesta-reclamo/repuesta-reclamo.service';
 import { EspecialidadService } from './provider/especialidad/especialidad.service';
 import { CategoriaParametroService } from './provider/categoria-parametro/categoria-parametro.service';
+import { TipoRespPresupuestoService } from './provider/tipo-resp-presupuesto/tipo-resp-presupuesto.service';
+import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentario.service';
+
 
 @NgModule({
   declarations: [
@@ -133,7 +144,17 @@ import { CategoriaParametroService } from './provider/categoria-parametro/catego
     SolicitudService,
     CategoriaParametroService,
     VistaEmpleadosCategoriaService,
-
+    TipoRespPresupuestoService,
+    VistaServicioCategoriaService,
+    TiposServiciosService,
+    ComentarioService,
+    RespuestaComentarioService,
+  TipoComentarioService,
+    TiporeclamoService,
+    TipoRepuestaComentarioService,
+    VComentariosService,
+    VistaReclamoService
+    
   ],
     
   entryComponents: [
