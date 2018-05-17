@@ -9,29 +9,30 @@
         <span *ngFor="let serv of solicitud.servicios_solicitados">{{serv.tipo_servicio}} {{serv.nombre_servicio}}, </span>
 
     </mat-form-field>
-    <mat-form-field class="example-full-width inputs" *ngIf="solicitud.empleado_pelu != null">
-        <input matInput placeholder="Empleado a cargo del servicio de peluquería" [value]="empleadoP" disabled>
+    <mat-form-field class="example-full-width inputs" *ngIf="solicitud.empleado != null">
+        <input matInput placeholder="Empleado a cargo del servicio de peluquería" disabled>
+        <span class="norm" *ngFor="let empleado of solicitud.empleadoBusqueda"> {{empleado.nombre}} {{empleado.apellido}}, </span>
     </mat-form-field>
     <!-- se muestra para seleccionar empleado de peluq sólo si el campo es nulo-->
-    <mat-form-field class="valor" *ngIf="solicitud.empleado_pelu == null">
-        <mat-select name="resp" [(ngModel)]="this.actualizarSolic.empleado_pelu" placeholder="Empleado a cargo del servicio de peluquería">
-            <mat-option name="pp" *ngFor="let filtro of filtro" [value]="filtro.value">
-                {{ filtro.viewValue }}
+    <mat-form-field class="valor" *ngIf="solicitud.empleado == null || catPelu">
+        <mat-select name="resp" [(ngModel)]="empleadoP" placeholder="Empleado a cargo del servicio de peluquería">
+            <mat-option name="pp" *ngFor="let filtro of empleadosPeluq" [value]="filtro.id_empleado">
+                {{ filtro.nombre }} {{ filtro.apellido }}
             </mat-option>
         </mat-select>
     </mat-form-field>
     <!--
     <mat-form-field class="example-full-width inputs">
         <input matInput placeholder="Servicios de maquillaje" value="Maquillaje completo" disabled>
-    </mat-form-field>-->
-    <mat-form-field class="example-full-width inputs" *ngIf="solicitud.empleado_maqui != null">
-        <input matInput placeholder="Empleado a cargo del servicio de maquillaje" [value]="empleadoM" disabled>
     </mat-form-field>
+    <mat-form-field class="example-full-width inputs" *ngIf="solicitud.empleado != null">
+        <input matInput placeholder="Empleado a cargo del servicio de maquillaje" [value]="empleadoM" disabled>
+    </mat-form-field>-->
     <!-- se muestra para seleccionar empleado de peluq sólo si el campo es nulo-->
-    <mat-form-field class="valor" *ngIf="solicitud.empleado_maqui == null">
-        <mat-select name="resp" [(ngModel)]="this.actualizarSolic.empleado_maqui" placeholder="Empleado a cargo del servicio de maquillaje">
-            <mat-option name="pp" *ngFor="let filtro of filtro" [value]="filtro.value">
-                {{ filtro.viewValue }}
+    <mat-form-field class="valor" *ngIf="solicitud.empleado == null || catMaqui">
+        <mat-select name="resp" [(ngModel)]="empleadoM" placeholder="Empleado a cargo del servicio de maquillaje">
+            <mat-option name="pp" *ngFor="let fil of empleadosMaquil" [value]="fil.id_empleado">
+                {{ fil.nombre }} {{ fil.apellido }}
             </mat-option>
         </mat-select>
     </mat-form-field>

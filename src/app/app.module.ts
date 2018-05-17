@@ -1,3 +1,4 @@
+import { VistaEmpleadosCategoriaService } from './provider/vista-empleados-categoria/vista-empleados-categoria.service';
 import { SolicitudService } from './provider/solicitud/solicitud.service';
 import { TipoRepuestaReclamoService } from './provider/tipo-repuesta-reclamo/tipo-repuesta-reclamo.service';
 import { DescripcionNegocioService } from './provider/descripcion-negocio/descripcion-negocio.service';
@@ -96,8 +97,6 @@ import { CategoriaParametroService } from './provider/categoria-parametro/catego
     PerfilModule,
     HttpClientModule
   ],
-
-
   providers: [
     ConsejosService,
     ClientesService,
@@ -132,7 +131,8 @@ import { CategoriaParametroService } from './provider/categoria-parametro/catego
     TipoRepuestaReclamoService,
     EspecialidadService,
     SolicitudService,
-    CategoriaParametroService
+    CategoriaParametroService,
+    VistaEmpleadosCategoriaService,
 
   ],
     
