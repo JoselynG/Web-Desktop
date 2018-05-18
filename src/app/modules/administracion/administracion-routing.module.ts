@@ -36,12 +36,8 @@ const routes: Routes = [
   },
   {
     path: 'nuevoConsejo',
-    component: CrearConsejoComponent
-  },
-  {
-    path: 'nuevoConsejo/Pasos',
     component: PasosComponent
-  }
+  },
 ];
 
 @NgModule({
