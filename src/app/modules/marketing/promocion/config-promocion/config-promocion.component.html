@@ -26,8 +26,14 @@
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
+
+                        <mat-form-field class="inputs">
+                            <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de finalización de la promoción" [(ngModel)]="promocion.fecha_fin">
+                            <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerEnd></mat-datepicker>
+                        </mat-form-field>
                     </div>
-                    
+                    <div class="col2">
                     <mat-form-field class="example-full-width inputs">
                         <input matInput placeholder="Nombre" [(ngModel)]="promocion.nombre"  value="">
                     </mat-form-field>
@@ -36,24 +42,20 @@
                             <input matInput placeholder="Descripción" [(ngModel)]="promocion.descripcion"  value=""><br>
                         </mat-form-field>
                         <mat-form-field class="inputs">
-                            <input matInput placeholder="Porcentaje dne Descuento" [(ngModel)]="promocion.porcentaje_descuento"  >
-                        </mat-form-field>
-                        <mat-form-field class="inputs">
-                            <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de finalización de la promoción" [(ngModel)]="promocion.fecha_fin">
-                            <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
-                            <mat-datepicker #pickerEnd></mat-datepicker>
-                        </mat-form-field>
+                            <input matInput placeholder="Porcentaje de Descuento" [(ngModel)]="promocion.porcentaje_descuento"  >
+                        </mat-form-field><br>
                         
-                        
+                        <div >
+                            <input  id="fileInput2 " style="display :none;" type='file' name="archivo" >
+                           <button mat-raised-button  (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: gray;">
+                           <mat-icon>backup</mat-icon> Subir Imagen</button><br>
+                        </div>
+                    </div>  
                         
                 </div>
                 
                 
-                <div class="div-btn">
-                    <input  id="fileInput2 " style="display :none;" type='file' name="archivo" >
-                   <button mat-raised-button  (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: gray;">
-                   <mat-icon>backup</mat-icon> Subir Imagen</button><br>
-                </div>
+                
                 
                
             
