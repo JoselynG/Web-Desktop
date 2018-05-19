@@ -14,7 +14,7 @@
 <div class="div-inicial">
     <mat-card style="display:flex; flex-wrap:wrap;">
         <div class="div-dentro">
-            <h4>Información de <span [style.color]="(genero=='f')?'#fd0087':'#0065ff'">{{infoCliente.nombre+' '+infoCliente.apellido}}</span></h4>
+            <h4>Información de <span [style.color]="(genero=='m')?'#0065ff':'#fd0087'">{{infoCliente.nombre+' '+infoCliente.apellido}}</span></h4>
             <div style="height: 150px;opacity: 0.75;text-align: center;">
                 <mat-icon [style.color]="(genero=='f')?'#fd0087':'#0065ff'" style="font-size: 150px;margin-left: -125px;">account_circle</mat-icon>
             </div>
@@ -71,7 +71,7 @@
         <h4 class="opaque">Aspecto</h4><br>
         <mat-card style="padding: 0;">
             <div *ngFor="let tipo_param of tipParametros; index as tp">
-                <!--<div *ngIf="tipo_param.nombre!='Sexo'">-->
+                <div *ngIf="tipo_param.estatus!='I'">
                     <div *ngIf="tp!=0">
                         <mat-divider></mat-divider>
                     </div>
@@ -82,7 +82,7 @@
                             <mat-icon>arrow_forward</mat-icon>
                         </div>
                     </div>
-                <!--</div>-->
+                </div>
             </div>
         </mat-card>
     </div>
@@ -92,7 +92,7 @@
         <h4 class="opaque" *ngIf="actual_tipP">Caracteristica</h4><br>
         <mat-card style="padding: 0;">
             <div *ngFor="let param of parametros; index as p">
-                <div *ngIf="param.nombre!='sexo' && param.id_tipo_parametro==actual_tipP">
+                <div *ngIf="param.nombre!='sexo' && param.id_tipo_parametro==actual_tipP && param.estatus!='I'">
                 <div *ngIf="p!=0">
                     <mat-divider></mat-divider>
                 </div>
@@ -114,7 +114,7 @@
             <mat-card style="padding-top:0;">
                 <mat-card-content>
                     <div *ngFor="let valor of valParametros">
-                        <div *ngIf="valor.id_parametro==actual_par">
+                        <div *ngIf="valor.id_parametro==actual_par && valor.estatus!='I'">
                             <mat-divider></mat-divider><br>
                         <mat-radio-button [checked]="estaSeleccionadoVP(valor.id)"
                             (change)="gestionarPerfil(valor,$event)">

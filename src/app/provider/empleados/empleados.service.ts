@@ -19,6 +19,12 @@ export class EmpleadosService {
   getEmpleados(){
     return this.http.get(API_URL+this.url_empleados);
   }
+  getEmpleado(id){
+    return this.http.get(API_URL+this.url_empleados+'/'+id);
+  }
+  putEmpleado(id,empleado){
+    return this.http.put(API_URL+this.url_empleados+'/'+id, empleado);
+  }
   getEmpleadoEspecifico(id){
     return this.http.get(API_URL+this.url_empleados+id);
   }

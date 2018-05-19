@@ -7,6 +7,7 @@ import { UsuariosService } from '../../../provider/usuarios/usuarios.service';
 import { ClientesService } from '../../../provider/clientes/clientes.service';
 import { EmpleadosService } from '../../../provider/empleados/empleados.service';
 import { RolesService } from '../../../provider/roles/roles.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-seguridad-funcional',
@@ -16,7 +17,7 @@ import { RolesService } from '../../../provider/roles/roles.service';
 export class SeguridadFuncionalComponent implements OnInit {
 
   usuariosArr:any;empleadosArr:any;clientesArr:any;
-  lista_usuarios:Array<{usuario: string,correo: string,telefono: string,rol: string}>=[];
+  lista_usuarios:Array<{usuario: string,correo: string,telefono: string,rol: string,id:number}>=[];
 
   displayedColumns = ['usuario', 'correo', 'telefono', 'rol', 'menu'];
   dataSource : any;
@@ -32,7 +33,8 @@ export class SeguridadFuncionalComponent implements OnInit {
   constructor(public dialog: MatDialog, public servicio_usuario: UsuariosService,
     public servicio_empleado: EmpleadosService,
     public servicio_cliente: ClientesService,
-    public servicio_rol: RolesService) {}//for having access to a modal
+    public servicio_rol: RolesService, private router: Router, private route: ActivatedRoute) {}
+
   ngOnInit(){
     this.getRoles();this.getUsuariosInfo();
   }
@@ -57,7 +59,7 @@ export class SeguridadFuncionalComponent implements OnInit {
                   for (let j = 0; j < this.usuariosArr.length; j++) {//RECORRE LA LISTA DE empleados 
                     if(empl.id_usuario==this.usuariosArr[j].id){//SI EL empleado EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
                       this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:this.usuariosArr[j].correo,
-                      telefono:empl.telefono, rol:this.nombreRol(this.usuariosArr[j].id_rol)});
+                      telefono:empl.telefono, rol:this.nombreRol(this.usuariosArr[j].id_rol),id:empl.id});
                       break;
                     }
                   }
@@ -66,7 +68,7 @@ export class SeguridadFuncionalComponent implements OnInit {
                   for (let i = 0; i < this.usuariosArr.length; i++) {//RECORRE LA LISTA DE clientes 
                     if(cli.id_usuario==this.usuariosArr[i].id){//SI EL cliente EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
                       this.lista_usuarios.push({usuario:(cli.nombre+" "+cli.apellido), correo:this.usuariosArr[i].correo,
-                      telefono:cli.telefono, rol:this.nombreRol(this.usuariosArr[i].id_rol)});
+                      telefono:cli.telefono, rol:this.nombreRol(this.usuariosArr[i].id_rol),id: cli.id});
                       break;
                     }
                   }
@@ -119,6 +121,9 @@ export class SeguridadFuncionalComponent implements OnInit {
     });
   }
 
+  asignarFuncionesAUsuario(user) {
+    this.router.navigate(['asignarfunciones/'+user.id], { relativeTo: this.route });
+ }
 
 }
 
