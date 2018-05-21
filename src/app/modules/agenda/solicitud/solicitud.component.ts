@@ -13,6 +13,9 @@ import { EmpleadosService } from '../../../provider/empleados/empleados.service'
 
 import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
 import { ActivatedRoute, Router} from '@angular/router';
+import { PresupuestoService } from '../../../provider/presupuesto/presupuesto.service';
+import { ServiciosService } from '../../../provider/servicios/servicios.service';
+import { PromocionesService } from '../../../provider/promocion/promociones.service';
 
 interface Detalle{
   clientName: string;
@@ -238,7 +241,12 @@ export class ResponderSolicitudComponent {
   catPelu: boolean;
   catMaqui: boolean;
   espec: any;
-  
+  presupuesto: {
+    id_solicitud: number;
+    monto_total: number;
+  }
+  promciones: any;
+  busqServ: any;
   constructor(public dialogRef: MatDialogRef<ResponderSolicitudComponent>,
     private route: ActivatedRoute,
     public dialog: MatDialog, 
@@ -249,6 +257,9 @@ export class ResponderSolicitudComponent {
     public especialidad: EspecialidadService,
     public empleadosCat: VistaEmpleadosCategoriaService,
     public actSolic: SolicitudService,
+    public servPresup: PresupuestoService,
+    public service: ServiciosService,
+    public promo: PromocionesService,
     @Inject(MAT_DIALOG_DATA) public data: any){
   
       this.tipoRespSelec = 1;
@@ -281,10 +292,14 @@ export class ResponderSolicitudComponent {
     this.empleadosMaquiAux = false
     this.catMaqui = true
     this.catPelu = true
-    this.router.onSameUrlNavigation = 'reload'
+    this.presupuesto = {
+      id_solicitud: this.solicitud.id,
+      monto_total: 0
+    }
   }
   
   ngOnInit() {  
+    this.getPresupuesto();
     this.getEmpleadosCat();  
     this.getTipoResp();
     this.getEmpleados();
@@ -345,12 +360,38 @@ export class ResponderSolicitudComponent {
 
     )
   }
+
+  getPresupuesto(){
+    if(this.solicitud.id_promocion != null){
+        this.promo.getPromocionEspec(this.solicitud.id_promocion).subscribe(
+          (data) => {
+            this.promciones = data ['data']
+            console.log(this.promciones)
+          }
+        )
+    }else{
+      for(let i = 0; i<this.solicitud.servicios_solicitados.length; i++){
+          this.service.getServicioEspec(this.solicitud.servicios_solicitados[i].id_servicio).subscribe(
+            (data) => {
+              this.busqServ = data['data']       
+              this.presupuesto.monto_total = this.presupuesto.monto_total + this.busqServ.precio
+              
+            }, (error) => {
+              
+            }
+            
+          )
+      }
+    }
+  }
     responder(){
       this.respuesta.registrarRespSolic(this.enviarResp).subscribe(
         (res)=>{
           
           if(this.enviarResp.id_tipo_respuesta_solicitud === 1){
             this.actualizarSolic.estado = 'E'
+
+            
           }else{
             this.actualizarSolic.estado = 'D'
           }
@@ -370,6 +411,16 @@ export class ResponderSolicitudComponent {
 
           this.actSolic.updateSolicitud(this.solicitud.id, this.actualizarSolic).subscribe(
             (data) => {
+              /*if(this.actualizarSolic.estado === 'E'){
+                this.servPresup.postPresupuesto(this.presupuesto).subscribe(
+                  (data)=>{
+                    console.log('OK')
+                  },(error)=>{
+                    console.log(error)
+                  }
+                )
+              }*/
+              
               this.dialogRef.close();
               this.mostrarMensajeExito();
             },(error) =>{
@@ -381,6 +432,8 @@ export class ResponderSolicitudComponent {
         }
       )
     }
+
+  
 
 mostrarMensajeExito(): void {//opens the modal
   let dialogRef = this.dialog.open(MensajeExitoComponent, {
