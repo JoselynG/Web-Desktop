@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 const API_URL = 'http://localhost:3000/api/'
 @Injectable()
 export class ServiciosService {
-  listado_servicio = 'servicio'
+  listado_servicio = 'servicio/'
   constructor( public http:HttpClient) { }
 
   private httpOptions = { 
@@ -18,6 +18,10 @@ export class ServiciosService {
 
  return this.http.get(API_URL + this.listado_servicio);
 
+   }
+
+   getServicioEspec(id){
+    return this.http.get(API_URL + this.listado_servicio + id);
    }
 
   
