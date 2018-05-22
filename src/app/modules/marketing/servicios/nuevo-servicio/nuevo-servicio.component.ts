@@ -171,7 +171,7 @@ getCategorias() {
         console.log(error);
       });
     }
-
+  
 
     addPromocionyValores() {
       console.log(this.promocion);
@@ -195,15 +195,6 @@ getCategorias() {
 
      }
 
-  getServicios() {
-    this.servici.getServicios().subscribe((resp) => {
-      this.servicio = resp['data'];
-      console.log(this.servicio);
-    }, (error) => {
-        console.log(error);
-      });
-    }
-
 
     addServicioyValores() {
       console.log(this.ser);
@@ -217,14 +208,14 @@ getCategorias() {
         
        k++;
       }
-      this.gestion.addServicio(this.ser).subscribe((resp) => {
+  /*    this.gestion.addServicio(this.ser).subscribe((resp) => {
         this.msj = resp['data'].message;
         console.log(this.msj);
         alert(this.msj);
       }, (error) => {
           console.log(error);
         });
-
+*/
      }
 
 }
