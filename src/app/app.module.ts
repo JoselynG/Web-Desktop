@@ -1,3 +1,4 @@
+import { PresupuestoService } from './provider/presupuesto/presupuesto.service';
 import { VistaReclamoService } from './provider/vista-reclamo/vista-reclamo.service';
 import { VComentariosService } from './provider/v-cometarios/v-comentarios.service';
 import { TipoRepuestaComentarioService } from './provider/tipo-repuesta-comentario/tipo-repuesta-comentario.service';
@@ -153,7 +154,8 @@ import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentari
     TiporeclamoService,
     TipoRepuestaComentarioService,
     VComentariosService,
-    VistaReclamoService
+    VistaReclamoService,
+    PresupuestoService
     
   ],
     

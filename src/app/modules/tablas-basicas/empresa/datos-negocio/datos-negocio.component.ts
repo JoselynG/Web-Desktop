@@ -6,6 +6,8 @@ import { Time } from '@angular/common';
 import { DescripcionNegocioService } from '../../../../provider/descripcion-negocio/descripcion-negocio.service';
 import { ContactoNegocioService } from '../../../../provider/contacto-negocio/contacto-negocio.service';
 import { ObjetivoService } from '../../../../provider/objetivo/objetivo.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MensajeExitoComponent } from '../../../../mensajes/mensaje-exito/mensaje-exito.component';
 
 @Component({
   selector: 'app-datos-negocio',
@@ -258,7 +260,10 @@ estado = [
     public negocio: NegocioService,
     public descripc: DescripcionNegocioService,
     public contac: ContactoNegocioService,
-    public obj: ObjetivoService
+    public obj: ObjetivoService,
+    private route: ActivatedRoute,
+    private router: Router,
+    
   ) { 
     this.datosMostrar = {
       id: 0,
@@ -628,7 +633,7 @@ estado = [
         console.log(error);
       } 
     )
-    console.log('ahí voy');
+    
     this.contac.updateNegocio(this.datosMostrarCorreo.id, this.datosModificarCorreo).subscribe(
       (data) => {
       },(error) =>{
@@ -674,9 +679,23 @@ estado = [
         console.log(error);
       } 
     )
-    
+    this.mostrarMensajeExito()
   }
-
+  mostrarMensajeExito(): void {//opens the modal
+    let dialogRef = this.dialog.open(MensajeExitoComponent, {
+      width: '300px',//sets the width
+      height: '140px', 
+      data: { msj: 'Datos del negocio modificados exitosamente' }//send this class's attributes to the modal
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+      console.log('Modal closed!');
+      this.router.navigate(['empresaEditar']);
+      //this.router.onSameUrlNavigation
+      
+    });  
+  }
+  
 }
 
 
