@@ -4,6 +4,8 @@ import { ReclamoService } from '../../../provider/reclamo/reclamo.service';
 import { TipoRepuestaReclamoService } from '../../../provider/tipo-repuesta-reclamo/tipo-repuesta-reclamo.service';
 import { RepuestaReclamoService } from '../../../provider/repuesta-reclamo/repuesta-reclamo.service';
 import { VistaReclamoService } from '../../../provider/vista-reclamo/vista-reclamo.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
 
 
 interface Datos_reclamo{
@@ -55,7 +57,13 @@ export class ReclamosOrdenComponent implements OnInit {
   
   //siempre va eso asi  cambia el nombre de la clase 
 
-  constructor(public dialog: MatDialog, public reclamo:VistaReclamoService,public repuesta:TipoRepuestaReclamoService ) 
+  constructor(public dialog: MatDialog,
+     public reclamo:VistaReclamoService,
+     public repuesta:TipoRepuestaReclamoService,
+     private route: ActivatedRoute,
+     private router: Router,
+ 
+     ) 
    {
       this.getVistaReclamo();
       
@@ -113,7 +121,12 @@ datosMostrar: {
   descripcion: String,
 };
 
-constructor(public dialog: MatDialog,public repuesta:TipoRepuestaReclamoService, public repuestaR:RepuestaReclamoService ) 
+constructor(public dialog: MatDialog,
+  public repuesta:TipoRepuestaReclamoService,
+   public repuestaR:RepuestaReclamoService,
+   private route: ActivatedRoute,
+  private router: Router,
+   ) 
 {
 this.getRepuestaReclamo();
 
@@ -149,10 +162,27 @@ ngOnInit() {
     this.repuestaR.postRepuestaRec(this.datosMostrar).subscribe((resp)=>{
       this.msj= resp['data'].message;
       console.log(this.msj);
-       alert(this.msj)
+       //alert(this.msj)
+       this.mostrarMensajeExito()
     },(error)=>{
       console.log(error);
     }
    )
   } 
+
+  
+mostrarMensajeExito(): void {//opens the modal
+  let dialogRef = this.dialog.open(MensajeExitoComponent, {
+    width: '300px',//sets the width
+    height: '140px', 
+    data: { msj: 'Respuesta enviada exitosamente' }//send this class's attributes to the modal
+  });
+
+  dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+    console.log('Modal closed!');
+    this.router.navigate(['reclamosOrdenes']);
+    //this.router.onSameUrlNavigation
+    
+  });  
+}
 }

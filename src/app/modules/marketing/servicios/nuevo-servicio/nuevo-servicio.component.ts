@@ -6,8 +6,8 @@ import {ParametrosService} from '../../../../provider/parametros/parametros.serv
 import {TiposParametrosService} from '../../../../provider/tipos-parametros/tipos-parametros.service';
 import { CategoriasServicioService } from '../../../../provider/categorias-servicio/categorias-servicio.service';
 import { ServiciosService } from '../../../../provider/servicios/servicios.service';
-import { GestionPromocionService } from '../../../../provider/gestion-promocion/gestion-promocion.service';
 import { variable } from '@angular/compiler/src/output/output_ast';
+import { GestionServicioService } from '../../../../provider/gestion-servicio/gestion-servicio.service';
 
 @Component({
   selector: 'app-nuevo-servicio',
@@ -15,16 +15,13 @@ import { variable } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./nuevo-servicio.component.scss']
 })
 export class NuevoServicioComponent implements OnInit {
-
-  promocion: {
+  ser: {
     id_servicio: number;
     nombre: String;
     descripcion: String;
-    porcentaje_descuento: number;
-    precio_promocion: String;
+    duracion:number;
+    precio: number;
     imagen: string;
-    fecha_inicio: Date;
-    fecha_fin: Date;
     estatus: String;
     fecha_creacion: Date;
     //valor_parametro: Array<{id_promocion: number , id_valor_parametro: number}>;
@@ -46,7 +43,7 @@ export class NuevoServicioComponent implements OnInit {
   prueba: number;
   constructor(public dialog: MatDialog, public parametroServ: ParametrosService, public tipo_para_serv: TiposParametrosService,
     public valor_para_ser: ValoresParametrosService, public categoria_servicio: CategoriasServicioService, 
-    public servici: ServiciosService , public gestion: GestionPromocionService ) {
+    public servici: ServiciosService , public gestion: GestionServicioService ) {
   
 
     }
@@ -58,15 +55,13 @@ export class NuevoServicioComponent implements OnInit {
     this.getServicios();
     this.getCategorias();
    
-    this.promocion = {
+    this.ser = {
       id_servicio: 0,
       nombre: '',
       descripcion: '',
-      porcentaje_descuento: 0,
-      precio_promocion: '',
+      duracion:0,
+      precio: 0,
       imagen:  '',
-      fecha_inicio: new Date(),
-      fecha_fin: new Date(),
       estatus: '',
       fecha_creacion: new Date(),
      // valor_parametro: [{id_promocion: 0, id_valor_parametro: 0}],
@@ -161,19 +156,19 @@ getCategorias() {
     }
 
 
-    addPromocionyValores() {
-      console.log(this.promocion);
-      this.promocion.estatus = 'A';
+    addServicioyValores() {
+      console.log(this.ser);
+      this.ser.estatus = 'A';
       // Para imprimir el arreglo que tiene los valores seleccionados si lo hace
       console.log(this.datoBasico);
       let k = 0;
       // carga el arreglo del objeto con los valores seleccionados de la vista
       for (let index = 0; index < this.datoBasico.length; index++) {
-        this.promocion.valor_parametro[k] = this.datoBasico[index].id;
+        this.ser.valor_parametro[k] = this.datoBasico[index].id;
         
        k++;
       }
-      this.gestion.addPromociones(this.promocion).subscribe((resp) => {
+      this.gestion.addServicio(this.ser).subscribe((resp) => {
         this.msj = resp['data'].message;
         console.log(this.msj);
         alert(this.msj);
