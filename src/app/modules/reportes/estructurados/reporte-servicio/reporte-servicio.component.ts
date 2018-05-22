@@ -31,7 +31,7 @@ export class ReporteServicioComponent implements OnInit {
     {value: 'todos', viewValue: 'Todos'},
   ];
 
-  displayedColumns = ['servicio', 'tipo', 'categoria', 'cantidad'];
+  displayedColumns = ['servicio', 'tipo', 'categoria', 'cantidad', 'rec', 'inc', 'calif'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(filterValue: string) {
@@ -105,10 +105,13 @@ export interface Element {
   tipo: string;
   categoria: string;
   cantidad: number;
+  rec: number;
+  calif: number;
+  inc: number;
 }
 
 const ELEMENT_DATA: Element[] = [
-  {servicio: 'Corte Bob', tipo: "Corte", categoria: "Peluquería", cantidad: 20},
-  {servicio: 'Maquillaje de día con técnica Strobing', tipo: "Maquillaje de día", categoria: "Maquillaje", cantidad: 15},
-  {servicio: 'Alisado con Queratina', tipo: "alisado", categoria: "Peluquería", cantidad: 10},
+  {servicio: 'Corte Bob', tipo: "Corte", categoria: "Peluquería", cantidad: 20, rec: 3, inc: 1, calif: 5 },
+  {servicio: 'Maquillaje de día con técnica Strobing', tipo: "Maquillaje de día", categoria: "Maquillaje", cantidad: 15, rec: 3, inc: 1, calif: 5},
+  {servicio: 'Alisado con Queratina', tipo: "alisado", categoria: "Peluquería", cantidad: 10, rec: 3, inc: 1, calif: 5},
 ];

@@ -5,6 +5,8 @@ import { TipoComentarioService } from '../../../provider/tipo-comentario/tipo-co
 import { TipoRepuestaComentarioService } from '../../../provider/tipo-repuesta-comentario/tipo-repuesta-comentario.service';
 import { RespuestaComentarioService } from '../../../provider/respuesta-comentario/respuesta-comentario.service';
 import { VComentariosService } from '../../../provider/v-cometarios/v-comentarios.service';
+import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 interface Datos_reclamo{
 	nombre: string;
@@ -160,7 +162,12 @@ datosMostrar: {
   descripcion: String,
 };
 
-constructor(public dialog: MatDialog,public repuesta:TipoRepuestaComentarioService,public repuestaC: RespuestaComentarioService ) 
+constructor(public dialog: MatDialog,
+  public repuesta:TipoRepuestaComentarioService,
+  public repuestaC: RespuestaComentarioService,
+  private route: ActivatedRoute,
+  private router: Router,
+) 
 {
 this.getTipoRepuestaC();
 this.datosMostrar = {
@@ -193,11 +200,26 @@ postRepuestaComentario() {
   this.repuestaC.postRepuestaComentario(this.datosMostrar).subscribe((resp)=>{
     this.msj= resp['data'].message;
     console.log(this.msj);
-     alert(this.msj)
+     //alert(this.msj)
+     this.mostrarMensajeExito()
   },(error)=>{
     console.log(error);
   }
  )
 } 
 
+mostrarMensajeExito(): void {//opens the modal
+  let dialogRef = this.dialog.open(MensajeExitoComponent, {
+    width: '300px',//sets the width
+    height: '140px', 
+    data: { msj: 'Respuesta enviada exitosamente' }//send this class's attributes to the modal
+  });
+
+  dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+    console.log('Modal closed!');
+    this.router.navigate(['atencionCliente']);
+    //this.router.onSameUrlNavigation
+    
+  });  
+}
 }

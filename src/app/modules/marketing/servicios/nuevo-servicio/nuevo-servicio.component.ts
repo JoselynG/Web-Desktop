@@ -15,6 +15,18 @@ import { variable } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./nuevo-servicio.component.scss']
 })
 export class NuevoServicioComponent implements OnInit {
+  ser: {
+    id_servicio: number;
+    nombre: String;
+    descripcion: String;
+    duracion:number;
+    precio: number;
+    imagen: string;
+    estatus: String;
+    fecha_creacion: Date;
+    //valor_parametro: Array<{id_promocion: number , id_valor_parametro: number}>;
+    valor_parametro: number[];
+    };
 
   promocion: {
     id_servicio: number;
@@ -174,6 +186,38 @@ getCategorias() {
        k++;
       }
       this.gestion.addPromociones(this.promocion).subscribe((resp) => {
+        this.msj = resp['data'].message;
+        console.log(this.msj);
+        alert(this.msj);
+      }, (error) => {
+          console.log(error);
+        });
+
+     }
+
+  getServicios() {
+    this.servici.getServicios().subscribe((resp) => {
+      this.servicio = resp['data'];
+      console.log(this.servicio);
+    }, (error) => {
+        console.log(error);
+      });
+    }
+
+
+    addServicioyValores() {
+      console.log(this.ser);
+      this.ser.estatus = 'A';
+      // Para imprimir el arreglo que tiene los valores seleccionados si lo hace
+      console.log(this.datoBasico);
+      let k = 0;
+      // carga el arreglo del objeto con los valores seleccionados de la vista
+      for (let index = 0; index < this.datoBasico.length; index++) {
+        this.ser.valor_parametro[k] = this.datoBasico[index].id;
+        
+       k++;
+      }
+      this.gestion.addServicio(this.ser).subscribe((resp) => {
         this.msj = resp['data'].message;
         console.log(this.msj);
         alert(this.msj);
