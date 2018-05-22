@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const API_URL = 'http://localhost:3000/api/'
 
-
 @Injectable()
-export class ValorParametroService {
+export class TituloSeccionService {
+  url = 'titulo_seccion';
 
-  url_valorP = 'valor_parametro';
+  constructor(public http: HttpClient) { }
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -15,14 +15,12 @@ export class ValorParametroService {
     })
   };
 
-  constructor(public http: HttpClient) { }
-
-
-  getValorParametros() {
-    return this.http.get(API_URL + this.url_valorP);
+  getTituloSeccion() {
+    return this.http.get(API_URL + this.url);
   }
 
-  postValorParametros(valorParametro) {
-    return this.http.post(API_URL + this.url_valorP, valorParametro);
+  putTituloSeccion(tituloId, tituloSeccion) {
+    return this.http.put(API_URL + this.url + '/' + tituloId, tituloSeccion);
   }
+
 }
