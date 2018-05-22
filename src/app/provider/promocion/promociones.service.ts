@@ -32,4 +32,8 @@ addPromociones(promocion) {
 }
 
 
+putPromocion(promoId, promo) {
+  return this.http.put(API_URL + this.url_listado_promociones + '/' + promoId, promo);
+}
+
 }
