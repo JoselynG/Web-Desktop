@@ -25,5 +25,8 @@ export class UsuariosService {
   putUsuario(id,usuario){
     return this.http.put(API_URL+this.url_listado_usuarios+'/'+id, usuario);
   }
+  postUsuario(usuario){
+    return this.http.post(API_URL+this.url_listado_usuarios, usuario);
+  }
 
 }

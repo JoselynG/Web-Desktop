@@ -10,8 +10,9 @@ export class NuevoRolComponent implements OnInit {
   /*Attributes of the modal
   animal: string;
   name: string;*/
+  id:number;
   nombre:string;
-  descripcion:string;
+  accion:string="crear";
 
     items = [
     {descripcion: 'Maestros', estatus: 'true'},
@@ -37,11 +38,9 @@ export class NuevoRolComponent implements OnInit {
   ];
 
   constructor(
-    public dialogRef: MatDialogRef<NuevoRolComponent>//,for sending inf to the parent component
-    /*@Inject(MAT_DIALOG_DATA) public data: any*/) { //for adquiring data from the parent component
-      /*instanciating modal's attributes by parent's attributes
-      this.animal=data.animal;
-      this.name=data.name;*/
+    public dialogRef: MatDialogRef<NuevoRolComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      if(data.nombre){this.id=data.id;this.nombre=data.nombre;this.accion=data.accion;}
     }
 
   ngOnInit(){}
@@ -52,8 +51,8 @@ export class NuevoRolComponent implements OnInit {
 
   closeDialog() {//method returning the animal property to the parent component
     //this.dialogRef.close(this.animal);
-    if(this.nombre!=null && this.nombre!="" && this.descripcion!=null && this.descripcion!=""){
-      this.dialogRef.close({nombre:this.nombre,descripcion:this.descripcion});
+    if(this.nombre!=null && this.nombre!=""){
+      this.dialogRef.close({id:this.id,nombre:this.nombre,accion:this.accion});
     }else{
       this.dialogRef.close(null);
     }

@@ -17,7 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SeguridadFuncionalComponent implements OnInit {
 
   usuariosArr:any;empleadosArr:any;clientesArr:any;
-  lista_usuarios:Array<{usuario: string,correo: string,telefono: string,rol: string,id:number}>=[];
+  lista_usuarios:Array<{usuario: string,correo: string,telefono: string,rol: string,id:number,af:boolean/*Asignar Funciones*/}>=[];
 
   displayedColumns = ['usuario', 'correo', 'telefono', 'rol', 'menu'];
   dataSource : any;
@@ -57,9 +57,14 @@ export class SeguridadFuncionalComponent implements OnInit {
                 ///////////////////
                 this.empleadosArr.forEach(empl => {
                   for (let j = 0; j < this.usuariosArr.length; j++) {//RECORRE LA LISTA DE empleados 
+                    if (empl.id_usuario==null) {//SE TRAE AL EMPLEADO AUN CUANDO ESTE NO TIENE UN USUARIO ASIGNADO
+                      this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:"",
+                      telefono:empl.telefono, rol:"",id:empl.id,af:true});
+                      break;
+                    }
                     if(empl.id_usuario==this.usuariosArr[j].id){//SI EL empleado EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
                       this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:this.usuariosArr[j].correo,
-                      telefono:empl.telefono, rol:this.nombreRol(this.usuariosArr[j].id_rol),id:empl.id});
+                      telefono:empl.telefono, rol:this.nombreRol(this.usuariosArr[j].id_rol),id:empl.id,af:true});
                       break;
                     }
                   }
@@ -68,7 +73,7 @@ export class SeguridadFuncionalComponent implements OnInit {
                   for (let i = 0; i < this.usuariosArr.length; i++) {//RECORRE LA LISTA DE clientes 
                     if(cli.id_usuario==this.usuariosArr[i].id){//SI EL cliente EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
                       this.lista_usuarios.push({usuario:(cli.nombre+" "+cli.apellido), correo:this.usuariosArr[i].correo,
-                      telefono:cli.telefono, rol:this.nombreRol(this.usuariosArr[i].id_rol),id: cli.id});
+                      telefono:cli.telefono, rol:this.nombreRol(this.usuariosArr[i].id_rol),id: cli.id,af:false});
                       break;
                     }
                   }
@@ -100,7 +105,7 @@ export class SeguridadFuncionalComponent implements OnInit {
     ); 
   }
 
-  nombreRol(id):string{
+  nombreRol(id):string{//METODO QUE RETORNA LA CADENA STRING PARA MOSTRAR EL NOMBRE DEL ROL
     if(this.roles){
       for (let i = 0; i < this.roles.length; i++) {
         if(id==this.roles[i].id){

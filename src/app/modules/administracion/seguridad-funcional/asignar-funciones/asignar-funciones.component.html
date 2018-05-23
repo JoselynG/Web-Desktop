@@ -8,11 +8,19 @@
 
         <div class="clase1">
             <mat-form-field>
-                <input matInput placeholder="Correo" [(ngModel)]="usuario.correo">
+                    <input id="usucorreo" ngModel #usucorreo="ngModel" name="usucorreo"
+                     matInput required placeholder="Correo" [(ngModel)]="usuario.correo">
+                    <mat-error *ngIf="usucorreo.invalid && usucorreo.errors.required">
+                        Por favor, tipee el correo del usuario.
+                    </mat-error>
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput type="password" placeholder="Contraseña" [(ngModel)]="usuario.contrasenia">
+                <input id="usucontrasenia" ngModel #usucontrasenia="ngModel" name="usucontrasenia"
+                 matInput required type="password" placeholder="Contraseña" [(ngModel)]="usuario.contrasenia">
+                 <mat-error *ngIf="usucontrasenia.invalid && usucontrasenia.errors.required">
+                    Por favor, tipee la contraseña del usuario.
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-select placeholder="Rol" [(ngModel)]="usuario.id_rol">
@@ -25,6 +33,6 @@
         <br>
 
         <br>
-        <button mat-raised-button color="accent" (click)="editarUsuario()">Guardar</button>
+        <button type="submit" mat-raised-button color="accent" (click)="editarUsuario()">Guardar</button>
     </mat-card>
 </div>
