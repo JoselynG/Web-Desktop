@@ -1,3 +1,4 @@
+import { VistaAgendasService } from './provider/vista-agendas/vista-agendas.service';
 import { PresupuestoService } from './provider/presupuesto/presupuesto.service';
 import { VistaReclamoService } from './provider/vista-reclamo/vista-reclamo.service';
 import { VComentariosService } from './provider/v-cometarios/v-comentarios.service';
@@ -155,7 +156,8 @@ import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentari
     TipoRepuestaComentarioService,
     VComentariosService,
     VistaReclamoService,
-    PresupuestoService
+    PresupuestoService,
+    VistaAgendasService
     
   ],
     

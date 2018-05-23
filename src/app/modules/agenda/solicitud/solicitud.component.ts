@@ -16,6 +16,7 @@ import { ActivatedRoute, Router} from '@angular/router';
 import { PresupuestoService } from '../../../provider/presupuesto/presupuesto.service';
 import { ServiciosService } from '../../../provider/servicios/servicios.service';
 import { PromocionesService } from '../../../provider/promocion/promociones.service';
+import { TiposServiciosService } from '../../../provider/tipos-servicios/tipos-servicios.service';
 
 interface Detalle{
   clientName: string;
@@ -168,6 +169,7 @@ export class SolicitudComponent implements OnInit {
             }
           }
         }
+        console.log(this.solicitud)
       },(error) =>{
         console.log(error);
       }
@@ -247,6 +249,10 @@ export class ResponderSolicitudComponent {
   }
   promciones: any;
   busqServ: any;
+  servP:boolean;
+  servM: boolean;
+  tipo: any;
+  
   constructor(public dialogRef: MatDialogRef<ResponderSolicitudComponent>,
     private route: ActivatedRoute,
     public dialog: MatDialog, 
@@ -260,11 +266,12 @@ export class ResponderSolicitudComponent {
     public servPresup: PresupuestoService,
     public service: ServiciosService,
     public promo: PromocionesService,
+    public tipoServ: TiposServiciosService,
     @Inject(MAT_DIALOG_DATA) public data: any){
   
       this.tipoRespSelec = 1;
     this.solicitud = data.solic;   
-    console.log(this.solicitud) 
+    
     this.cliente = this.solicitud.nombre + ' ' + this.solicitud.apellido;
     this.servicios = [];
     for(let i=0; i<this.solicitud.servicios_solicitados.length; i++){
@@ -285,7 +292,9 @@ export class ResponderSolicitudComponent {
     } 
     if(this.solicitud.empleado != null){
       this.actualizarSolic.empleado = this.solicitud.empleado
-    } 
+    }
+    
+    
     this.empleadosPeluq = []
     this.empleadosMaquil = []
     this.empleadosPeluAux = false
@@ -296,6 +305,8 @@ export class ResponderSolicitudComponent {
       id_solicitud: this.solicitud.id,
       monto_total: 0
     }
+    this.servM = false
+    this.servP = false
   }
   
   ngOnInit() {  
@@ -307,27 +318,52 @@ export class ResponderSolicitudComponent {
   }
 
   getEmpleados(){
-    if(this.solicitud.empleado.length === 2){
-      this.catMaqui = false
-      this.catPelu = false
-    }else if(this.solicitud.empleado.length === 1){
-      this.especialidad.getEspecialidad().subscribe(
-        (data)=>{
-          this.espec = data['data']
-          for(let i = 0; i<this.espec.length; i++){
-            if(this.espec[i].id_empleado === this.solicitud.empleado[0]){
-              if(this.espec[i].id_categoria_servicio === 1){
-                this.catPelu = false
-              }else if(this.espec[i].id_categoria_servicio === 2){
-                this.catMaqui = false
-              }
+    //Para saber la categoría de los servicios escogidos
+    for(let i=0; i<this.solicitud.servicios_solicitados.length; i++) {
+        this.service.getServicioEspec(this.solicitud.servicios_solicitados[i].id_servicio).subscribe(
+        (data) => {
+          this.busqServ = data['data']
+          this.tipoServ.getTipoServicioEsp(this.busqServ.id_tipo_servicio).subscribe(
+            (res)=>{
+                this.tipo = res['data']
+                if(this.tipo.id_categoria_servicio === 1){
+                  this.servP = true
+                }else if(this.tipo.id_categoria_servicio === 2){
+                  this.servM = true                  
+                }
+            }, (error) =>{
+              console.log(error)
             }
-          }
-        }, (error)=>{
+          )
+          
+        }, (error) =>{
           console.log(error)
         }
+        )
+    }
+    if(this.solicitud.empleado != null){  
+      if(this.solicitud.empleado.length === 2){
+        this.catMaqui = false
+        this.catPelu = false
+      }else if(this.solicitud.empleado.length === 1){
+        this.especialidad.getEspecialidad().subscribe(
+          (data)=>{
+            this.espec = data['data']
+            for(let i = 0; i<this.espec.length; i++){
+              if(this.espec[i].id_empleado === this.solicitud.empleado[0]){
+                if(this.espec[i].id_categoria_servicio === 1){
+                  this.catPelu = false
+                }else if(this.espec[i].id_categoria_servicio === 2){
+                  this.catMaqui = false
+                }
+              }
+            }
+          }, (error)=>{
+            console.log(error)
+          }
 
-      )
+        )
+      }
     }
     
   }
@@ -340,10 +376,8 @@ export class ResponderSolicitudComponent {
         for (let i = 0; i < this.empleadosCategoria.length; i++){
           if(this.empleadosCategoria[i].id === 1){
             this.empleadosPeluq=this.empleadosCategoria[i].empleados
-            console.log(this.empleadosPeluq)  
-          }else{
+          }else if(this.empleadosCategoria[i].id === 2){
             this.empleadosMaquil=this.empleadosCategoria[i].empleados
-            console.log(this.empleadosMaquil)
           }
         }
       }

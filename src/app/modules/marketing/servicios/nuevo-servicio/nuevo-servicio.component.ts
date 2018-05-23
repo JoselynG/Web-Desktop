@@ -58,7 +58,7 @@ export class NuevoServicioComponent implements OnInit {
   prueba: number;
   constructor(public dialog: MatDialog, public parametroServ: ParametrosService, public tipo_para_serv: TiposParametrosService,
     public valor_para_ser: ValoresParametrosService, public categoria_servicio: CategoriasServicioService, 
-    public servici: ServiciosService , public gestion: GestionPromocionService ) {
+    public servici: ServiciosService , /*public gestion: GestionPromocionService */) {
   
 
     }
