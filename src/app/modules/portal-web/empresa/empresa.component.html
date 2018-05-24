@@ -21,12 +21,37 @@
             </mat-form-field>
         </form>
         <br>
-        <div *ngFor="let item of items">
+        <div>
             <br>
             <div style="display: flex;">
-                <span>Mostrar {{item.nombre}}</span>
+                <span>Mostrar Direccion</span>
                 <span style="flex: 1 1 auto;"></span>
-                <mat-slide-toggle [checked]="item.status"></mat-slide-toggle>
+                <mat-slide-toggle [(ngModel)]="toggleDireccion" [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
+            </div>
+            <br>
+            <div style="display: flex;">
+                <span>Mostrar Telefono</span>
+                <span style="flex: 1 1 auto;"></span>
+                <mat-slide-toggle [(ngModel)]="toggleTelefono" [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
+            </div>
+            <br>
+            <div style="display: flex;">
+                <span>Mostrar Correo</span>
+                <span style="flex: 1 1 auto;"></span>
+                <mat-slide-toggle [(ngModel)]="toggleCorreo" [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
+            </div>
+            <br>
+            <div style="display: flex;">
+                <span>Mostrar Mision</span>
+                <span style="flex: 1 1 auto;"></span>
+                <mat-slide-toggle [(ngModel)]="toggleMision" [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
+            </div>
+
+            <br>
+            <div style="display: flex;">
+                <span>Mostrar Vision</span>
+                <span style="flex: 1 1 auto;"></span>
+                <mat-slide-toggle [(ngModel)]="toggleVision" [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
             </div>
         </div>
     </mat-card>
