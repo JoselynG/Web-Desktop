@@ -77,6 +77,7 @@ import { EspecialidadService } from './provider/especialidad/especialidad.servic
 import { CategoriaParametroService } from './provider/categoria-parametro/categoria-parametro.service';
 import { TipoRespPresupuestoService } from './provider/tipo-resp-presupuesto/tipo-resp-presupuesto.service';
 import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentario.service';
+import { GestionServicioService } from './provider/gestion-servicio/gestion-servicio.service';
 
 
 @NgModule({
@@ -161,7 +162,8 @@ import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentari
     PresupuestoService,
     VistaAgendasService,
     RazonIncidenciaService,
-    VistaOrdenCitaService
+    VistaOrdenCitaService,
+    GestionServicioService
     
   ],
     

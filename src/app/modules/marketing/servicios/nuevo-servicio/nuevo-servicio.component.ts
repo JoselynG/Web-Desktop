@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import {ValoresParametrosService} from '../../../../provider/valores-parametros/valores-parametros.service';
@@ -6,8 +7,10 @@ import {ParametrosService} from '../../../../provider/parametros/parametros.serv
 import {TiposParametrosService} from '../../../../provider/tipos-parametros/tipos-parametros.service';
 import { CategoriasServicioService } from '../../../../provider/categorias-servicio/categorias-servicio.service';
 import { ServiciosService } from '../../../../provider/servicios/servicios.service';
-import { GestionPromocionService } from '../../../../provider/gestion-promocion/gestion-promocion.service';
 import { variable } from '@angular/compiler/src/output/output_ast';
+import { GestionServicioService } from '../../../../provider/gestion-servicio/gestion-servicio.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MensajeExitoComponent } from '../../../../mensajes/mensaje-exito/mensaje-exito.component';
 
 @Component({
   selector: 'app-nuevo-servicio',
@@ -16,32 +19,22 @@ import { variable } from '@angular/compiler/src/output/output_ast';
 })
 export class NuevoServicioComponent implements OnInit {
   ser: {
-    id_servicio: number;
-    nombre: String;
-    descripcion: String;
-    duracion:number;
-    precio: number;
-    imagen: string;
+  
+    id_tipo_servicio: any;
+    nombre:any;
+    descripcion: any;
+    duracion:any;
+    precio: any;
+    imagen: any;
     estatus: String;
     fecha_creacion: Date;
-    //valor_parametro: Array<{id_promocion: number , id_valor_parametro: number}>;
+    
     valor_parametro: number[];
     };
+  inputEl: any;
+  fileCount: number;
+  formData = new FormData();
 
-  promocion: {
-    id_servicio: number;
-    nombre: String;
-    descripcion: String;
-    porcentaje_descuento: number;
-    precio_promocion: String;
-    imagen: string;
-    fecha_inicio: Date;
-    fecha_fin: Date;
-    estatus: String;
-    fecha_creacion: Date;
-    //valor_parametro: Array<{id_promocion: number , id_valor_parametro: number}>;
-    valor_parametro: number[];
-    };
 
   [x: string]: any;
   consejo: Array<{id: number, nombre: string, id_tipo_parametro: number, fecha_creacion: Date }> = [];
@@ -58,7 +51,8 @@ export class NuevoServicioComponent implements OnInit {
   prueba: number;
   constructor(public dialog: MatDialog, public parametroServ: ParametrosService, public tipo_para_serv: TiposParametrosService,
     public valor_para_ser: ValoresParametrosService, public categoria_servicio: CategoriasServicioService, 
-    public servici: ServiciosService , /*public gestion: GestionPromocionService */) {
+    public servici: ServiciosService , public gestion: GestionServicioService, private route: ActivatedRoute,
+    private router: Router, ) {
   
 
     }
@@ -70,15 +64,13 @@ export class NuevoServicioComponent implements OnInit {
     this.getServicios();
     this.getCategorias();
    
-    this.promocion = {
-      id_servicio: 0,
+    this.ser = {
+      id_tipo_servicio: null,
       nombre: '',
       descripcion: '',
-      porcentaje_descuento: 0,
-      precio_promocion: '',
+      duracion:0,
+      precio: 0,
       imagen:  '',
-      fecha_inicio: new Date(),
-      fecha_fin: new Date(),
       estatus: '',
       fecha_creacion: new Date(),
      // valor_parametro: [{id_promocion: 0, id_valor_parametro: 0}],
@@ -171,51 +163,67 @@ getCategorias() {
         console.log(error);
       });
     }
-  
-
-    addPromocionyValores() {
-      console.log(this.promocion);
-      this.promocion.estatus = 'A';
-      // Para imprimir el arreglo que tiene los valores seleccionados si lo hace
-      console.log(this.datoBasico);
-      let k = 0;
-      // carga el arreglo del objeto con los valores seleccionados de la vista
-      for (let index = 0; index < this.datoBasico.length; index++) {
-        this.promocion.valor_parametro[k] = this.datoBasico[index].id;
-        
-       k++;
-      }
-      this.gestion.addPromociones(this.promocion).subscribe((resp) => {
-        this.msj = resp['data'].message;
-        console.log(this.msj);
-        alert(this.msj);
-      }, (error) => {
-          console.log(error);
-        });
-
-     }
 
 
     addServicioyValores() {
-      console.log(this.ser);
-      this.ser.estatus = 'A';
-      // Para imprimir el arreglo que tiene los valores seleccionados si lo hace
-      console.log(this.datoBasico);
-      let k = 0;
+        //agregar imagen
+        this.inputEl = document.getElementById('fileInput');
+        this.fileCount = this.inputEl.files.length;
+
+        if (this.fileCount > 0) {
+          this.formData.append('archivo', this.inputEl.files.item(0));
+        }
+
+        //arreglo valors
+        let k = 0;
       // carga el arreglo del objeto con los valores seleccionados de la vista
       for (let index = 0; index < this.datoBasico.length; index++) {
         this.ser.valor_parametro[k] = this.datoBasico[index].id;
         
        k++;
       }
-  /*    this.gestion.addServicio(this.ser).subscribe((resp) => {
+    
+      //Agregar Campos
+     this.formData.append('id_tipo_servicio', this.ser.id_tipo_servicio);
+      this.formData.append('nombre', this.ser.nombre);
+      this.formData.append('descripcion', this.ser.descripcion);
+      this.formData.append('duracion', this.ser.duracion);
+      this.formData.append('precio', this.ser.precio);
+     // this.formData.append('valor_parametro', this.ser.valor_parametro);
+      
+      console.log('----------------------')
+      console.log(this.ser.valor_parametro)
+      console.log('----------------------')
+      
+      console.log(this.ser);
+      
+      //Ejecutar postw
+      this.gestion.addServicio(this.formData).subscribe((resp) => {
         this.msj = resp['data'].message;
-        console.log(this.msj);
-        alert(this.msj);
+        
+        this.mostrarMensajeExito()
       }, (error) => {
           console.log(error);
         });
-*/
      }
+
+     onFileChange(event) {
+      this.files = event.target.files;
+    }
+
+    mostrarMensajeExito(): void {//opens the modal
+      let dialogRef = this.dialog.open(MensajeExitoComponent, {
+        width: '300px',//sets the width
+        height: '140px', 
+        data: { msj: 'Respuesta enviada exitosamente' }//send this class's attributes to the modal
+      });
+    
+      dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+        console.log('Modal closed!');
+        this.router.navigate(['servicios']);
+        //this.router.onSameUrlNavigation
+        
+      });  
+    } 
 
 }

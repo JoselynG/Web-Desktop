@@ -1,3 +1,4 @@
+<form class="clase1">
 <div class="ctn">
     <mat-horizontal-stepper #stepper="matHorizontalStepper">
         <mat-step>
@@ -8,44 +9,53 @@
 
 
                         <mat-form-field class="valor inputs">
-                            <mat-select name="resp" [(ngModel)]="valor" placeholder="Categoria de Servicios">
-                                <mat-option name="pp" *ngFor="let filtro of pro " [value]="filtro.nombre">
+                            <mat-select name="resp" [(ngModel)]="ser.id_tipo_servicio" placeholder="Categoria de Servicios">
+                                <mat-option name="pp" *ngFor="let filtro of pro " [value]="filtro.id">
                                     {{ filtro.nombre }}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
 
                         <mat-form-field class="example-full-width inputs">
-                            <input matInput placeholder="Nombre" [(ngModel)]="promocion.nombre" value="">
+                            <input name="nombre" matInput placeholder="Nombre" [(ngModel)]="ser.nombre" value="">
                         </mat-form-field>
 
                         <mat-form-field class="example-full-width inputs">
-                            <input matInput placeholder="Descripción" [(ngModel)]="promocion.descripcion" value=""><br>
-                        </mat-form-field>
-                        <mat-form-field class="example-full-width inputs">
-                            <input matInput placeholder="garantia del servicio" value="tres dias ">
+                            <input name="descripcion" matInput placeholder="Descripción" [(ngModel)]="ser.descripcion" value=""><br>
                         </mat-form-field>
 
 
                     </div>
+                    <div class="col2">
+                            <mat-form-field class="example-full-width inputs">
+                                    <input matInput name="precio" placeholder="Precio" [(ngModel)]="ser.precio" value=""><br>
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width inputs">
+                              <input matInput name="garantia" placeholder="Garantia" [(ngModel)]="ser.duracion" value=""><br>
+
+                             </mat-form-field>
+                            
+                                    <div>
+                                      <input #fileButton name="archivo" id="fileInput" style="display: none;" type='file' name="archivo">
+                                      <button mat-button (click)="fileButton.click()">
+                                        <mat-icon>backup</mat-icon> Reemplazar</button>
+                                    </div>
+                                  
+
+                    </div>
+
 
                 </div>
 
 
-                <div class="div-btn">
-                    <input id="fileInput2 " style="display :none;" type='file' name="archivo">
-                    <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: gray;">
-                 <mat-icon>backup</mat-icon> Subir Imagen</button><br>
-                </div>
+              
 
-
-
-
+            </div>
                 <div class="btn">
                     <button mat-raised-button color="accent" matStepperNext>Siguiente</button>
 
                 </div>
-            </div>
+            
         </mat-step>
         <mat-step label="Datos Básicos">
             <mat-accordion>
@@ -73,7 +83,7 @@
         <mat-step label="Caracteristicas">
             <mat-accordion>
                 <mat-expansion-panel *ngFor="let item of listaTipoParametro" (click)="cargarParametro(item.id)">
-                    <mat-expansion-panel-header *ngIf="item.nombre == 'Gustos y Preferencias'">
+                    <mat-expansion-panel-header *ngIf="item.nombre !='Datos Basicos'">
                         <mat-panel-title>
                             {{item.nombre}}
                         </mat-panel-title>
@@ -109,8 +119,9 @@
             </mat-accordion>
 
             <div text-right style="margin-top:20px" class="btn">
-                <button mat-raised-button color="accent" (click)="addPromocionyValores()">Guardar</button>
+                <button mat-raised-button color="accent" (click)="addServicioyValores()">Guardar</button>
             </div>
         </mat-step>
     </mat-horizontal-stepper>
 </div>
+</form>
