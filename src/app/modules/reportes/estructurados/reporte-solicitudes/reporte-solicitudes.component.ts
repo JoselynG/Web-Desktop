@@ -34,7 +34,9 @@ export class ReporteSolicitudesComponent implements OnInit {
   respPresup: any;
   filtroServicio: any;
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  
+  dateInic: Date;
+  dateFin: Date;
+  fecha: boolean;
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -61,6 +63,14 @@ export class ReporteSolicitudesComponent implements OnInit {
       this.getServicios();
     }
   
+    validateDate(){
+      if(this.dateFin<this.dateInic){
+        this.fecha = true
+      }else{
+        this.fecha = false
+      }
+      console.log(this.fecha)
+    }
     getRespSolic(){
       this.tipoRespSolic.getTipoRespSolicitud().subscribe(
         (data) => {

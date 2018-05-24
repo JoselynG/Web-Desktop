@@ -7,7 +7,7 @@
             <h4>Registro de servicio prestado</h4>
             <mat-card class="detalle">
                 <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Cliente" value="Illyrio Mopatis" disabled>
+                    <input matInput placeholder="Cliente" [(value)]="nombreCliente" disabled>
                 </mat-form-field>
                 <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Fecha" value="02 Mar 2018" disabled>
@@ -15,10 +15,7 @@
                 <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Hora de inicio" value="03:30 PM" disabled>
                 </mat-form-field>
-                <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Hora de finalización" value="04:30" disabled>
-                </mat-form-field>
-                <mat-form-field class="valor inputs">
+                <mat-form-field class="valor inputs" *ngIf="servP">
                     <mat-select placeholder="Servicios de peluquería " [(ngModel)]="servicioPSeleccionados" multiple>
                         <mat-select-trigger>
                             {{servicioPSeleccionados ? servicioPSeleccionados[0] : ''}}
@@ -26,7 +23,7 @@
                                         (+{{servicioPSeleccionados.length - 1}} otros)
                                     </span>
                         </mat-select-trigger>
-                        <mat-option color="accent" *ngFor="let serv of serviciosP" [value]="serv">{{serv}}</mat-option>
+                        <mat-option color="accent" *ngFor="let serv of serviciosP" [value]="serv.nombre_servicio">{{serv.tipo_servicio}} {{serv.nombre_servicio}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
@@ -39,10 +36,7 @@
                         <input placeholder="Servicios de peluquería prestados" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" disabled/>
                     </mat-chip-list>
                 </mat-form-field>
-                <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Empleado que realizó el servicio de peluquería" value="Septa Lemore" disabled>
-                </mat-form-field>
-                <mat-form-field class="valor inputs">
+                <mat-form-field class="valor inputs" *ngIf="servM">
                     <mat-select placeholder="Servicios de maquillaje " [(ngModel)]="servicioMSeleccionados" multiple>
                         <mat-select-trigger>
                             {{servicioMSeleccionados ? servicioMSeleccionados[0] : ''}}
@@ -50,21 +44,26 @@
                                         (+{{servicioMSeleccionados.length - 1}} otros)
                                     </span>
                         </mat-select-trigger>
-                        <mat-option color="accent" *ngFor="let serv of serviciosM" [value]="serv">{{serv}}</mat-option>
+                        <mat-option color="accent" *ngFor="let serv of serviciosM" [value]="serv.nombre_servicio">{{serv.tipo_servicio}} {{serv.nombre_servicio}} </mat-option>
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field class="demo-chip-list inputs">
+                <mat-form-field class="demo-chip-list inputs" *ngIf="servM">
                     <mat-chip-list #chipList>
                         <mat-chip *ngFor="let ins of servicioMSeleccionados" [selectable]="selectable">
                             {{ins}}
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
                         <input placeholder="Servicios de peluquería prestados" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" disabled/>
+
+
                     </mat-chip-list>
                 </mat-form-field>
+
+
                 <mat-form-field class="example-full-width inputs">
-                    <input matInput placeholder="Empleado que realizó el servicio de maquillaje" value="Jon Connington" disabled>
+                    <input matInput placeholder="Empleado(s) encargados de los servicios" value=" " disabled>
+                    <span *ngFor="let empleado of orden.empleados_asignados">{{empleado.nombre}} {{empleado.apellido}}, </span>
                 </mat-form-field>
 
                 <!--  <mat-form-field class="example-full-width inputs">

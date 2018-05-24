@@ -252,7 +252,7 @@ export class ResponderSolicitudComponent {
   servP:boolean;
   servM: boolean;
   tipo: any;
-  
+  sexo: boolean
   constructor(public dialogRef: MatDialogRef<ResponderSolicitudComponent>,
     private route: ActivatedRoute,
     public dialog: MatDialog, 
@@ -307,6 +307,12 @@ export class ResponderSolicitudComponent {
     }
     this.servM = false
     this.servP = false
+    if(this.solicitud.sexo === 'cualquiera'){
+      this.sexo = true
+    }else{
+      this.sexo = false
+    }
+    
   }
   
   ngOnInit() {  
@@ -374,11 +380,20 @@ export class ResponderSolicitudComponent {
       (data)=>{
         this.empleadosCategoria = data['data']       
         for (let i = 0; i < this.empleadosCategoria.length; i++){
-          if(this.empleadosCategoria[i].id === 1){
-            this.empleadosPeluq=this.empleadosCategoria[i].empleados
-          }else if(this.empleadosCategoria[i].id === 2){
-            this.empleadosMaquil=this.empleadosCategoria[i].empleados
+          if(!this.sexo){
+            if(this.empleadosCategoria[i].id === 1){
+              this.empleadosPeluq=this.empleadosCategoria[i].empleados
+            }else if(this.empleadosCategoria[i].id === 2){
+              this.empleadosMaquil=this.empleadosCategoria[i].empleados
+            }
+          }else{
+            if(this.empleadosCategoria[i].id === 1 && this.empleadosCategoria[i].sexo === this.solicitud.sexo){
+              this.empleadosPeluq=this.empleadosCategoria[i].empleados
+            }else if(this.empleadosCategoria[i].id === 2 && this.empleadosCategoria[i].sexo === this.solicitud.sexo){
+              this.empleadosMaquil=this.empleadosCategoria[i].empleados
+            }
           }
+          
         }
       }
     )
@@ -445,7 +460,7 @@ export class ResponderSolicitudComponent {
 
           this.actSolic.updateSolicitud(this.solicitud.id, this.actualizarSolic).subscribe(
             (data) => {
-              /*if(this.actualizarSolic.estado === 'E'){
+              if(this.actualizarSolic.estado === 'E'){
                 this.servPresup.postPresupuesto(this.presupuesto).subscribe(
                   (data)=>{
                     console.log('OK')
@@ -453,7 +468,7 @@ export class ResponderSolicitudComponent {
                     console.log(error)
                   }
                 )
-              }*/
+              }
               
               this.dialogRef.close();
               this.mostrarMensajeExito();

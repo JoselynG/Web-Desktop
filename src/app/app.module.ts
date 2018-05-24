@@ -1,3 +1,5 @@
+import { VistaOrdenCitaService } from './provider/vista-orden-cita/vista-orden-cita.service';
+import { RazonIncidenciaService } from './provider/razon-incidencia/razon-incidencia.service';
 import { VistaAgendasService } from './provider/vista-agendas/vista-agendas.service';
 import { PresupuestoService } from './provider/presupuesto/presupuesto.service';
 import { VistaReclamoService } from './provider/vista-reclamo/vista-reclamo.service';
@@ -157,7 +159,9 @@ import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentari
     VComentariosService,
     VistaReclamoService,
     PresupuestoService,
-    VistaAgendasService
+    VistaAgendasService,
+    RazonIncidenciaService,
+    VistaOrdenCitaService
     
   ],
     

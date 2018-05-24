@@ -24,7 +24,7 @@ const routes: Routes = [
     component: SolicitudComponent
   },
   {
-    path: 'registrarDetalle',
+    path: 'citas/registrarDetalle/:id',
     component: RegistrarDetalleComponent
   }
 ];
