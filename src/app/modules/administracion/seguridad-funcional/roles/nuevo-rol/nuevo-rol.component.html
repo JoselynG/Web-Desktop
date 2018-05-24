@@ -7,9 +7,16 @@
     </mat-form-field>
 
     <label>Funciones para este <b><i>rol</i></b></label>
-    <div *ngFor="let item of items">
-        <br>
-        <mat-checkbox [checked]="item.estatus">{{item.descripcion}}</mat-checkbox>
+    <div *ngFor="let funcion of funciones">
+        <div *ngIf="funcion.id_funcion==null; else elseBlock">
+                <br>
+                <mat-checkbox (change)="activarOdesactivar(funcion)" [checked]="funcion.activa" 
+                    [disabled]="habilitarOdeshabilitar(funcion)" style="font-weight: bold;">{{funcion.nombre}}</mat-checkbox>
+        </div>
+        <ng-template #elseBlock>
+                <mat-checkbox (change)="activarOdesactivar(funcion)" [checked]="funcion.activa"
+                    [disabled]="habilitarOdeshabilitar(funcion)" style="margin-left: 20px;">{{funcion.nombre}}</mat-checkbox>
+        </ng-template>
     </div>
 </mat-dialog-content>
 

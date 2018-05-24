@@ -73,6 +73,8 @@ import { EspecialidadService } from './provider/especialidad/especialidad.servic
 import { CategoriaParametroService } from './provider/categoria-parametro/categoria-parametro.service';
 import { TipoRespPresupuestoService } from './provider/tipo-resp-presupuesto/tipo-resp-presupuesto.service';
 import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentario.service';
+import { FuncionesService } from './provider/funciones/funciones.service';
+import { RolFuncionService } from './provider/rol-funcion/rol-funcion.service';
 
 
 @NgModule({
@@ -153,8 +155,9 @@ import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentari
     TiporeclamoService,
     TipoRepuestaComentarioService,
     VComentariosService,
-    VistaReclamoService
-    
+    VistaReclamoService,
+    FuncionesService,
+    RolFuncionService 
   ],
     
   entryComponents: [

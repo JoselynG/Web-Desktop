@@ -56,7 +56,8 @@ export class SeguridadFuncionalComponent implements OnInit {
                 console.log(this.usuariosArr);
                 ///////////////////
                 this.empleadosArr.forEach(empl => {
-                  for (let j = 0; j < this.usuariosArr.length; j++) {//RECORRE LA LISTA DE empleados 
+                  if(this.usuariosArr.length>0)
+                  {for (let j = 0; j < this.usuariosArr.length; j++) {//RECORRE LA LISTA DE empleados 
                     if (empl.id_usuario==null) {//SE TRAE AL EMPLEADO AUN CUANDO ESTE NO TIENE UN USUARIO ASIGNADO
                       this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:"",
                       telefono:empl.telefono, rol:"",id:empl.id,af:true});
@@ -67,6 +68,8 @@ export class SeguridadFuncionalComponent implements OnInit {
                       telefono:empl.telefono, rol:this.nombreRol(this.usuariosArr[j].id_rol),id:empl.id,af:true});
                       break;
                     }
+                  }}else{
+                      this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:"",telefono:empl.telefono,rol:"",id:empl.id,af:true});
                   }
                 });
                 this.clientesArr.forEach(cli => {

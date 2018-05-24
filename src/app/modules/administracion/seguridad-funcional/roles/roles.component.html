@@ -16,7 +16,7 @@
       <strong style="flex: 1;">{{rol.nombre}}</strong>
       <button mat-raised-button style="flex: 0;" (click)="openDialog(rol.id,rol.nombre,'editar')">Editar</button>
     </div>
-    <label *ngIf="rol.nombre.toLowerCase()!='administrador' && rol.nombre.toLowerCase()!='admin'" id="x-eliminar" (click)="eliminarRol(rol)">x</label>
+    <label *ngIf="rol.nombre.toLowerCase()!='administrador' && rol.nombre.toLowerCase()!='admin' && rol.nombre.toLowerCase()!='gerente'" id="x-eliminar" (click)="eliminarRol(rol)">x</label>
   </mat-card>
 
 </div>

@@ -4,6 +4,7 @@ import { NuevoRolComponent } from './nuevo-rol/nuevo-rol.component';//this is th
 import { RolesService } from '../../../../provider/roles/roles.service';
 import { error } from 'util';
 import { MensajeExitoComponent } from '../../../../mensajes/mensaje-exito/mensaje-exito.component';
+import { RolFuncionService } from '../../../../provider/rol-funcion/rol-funcion.service';
 
 @Component({
   selector: 'app-roles',
@@ -16,7 +17,7 @@ export class RolesComponent implements OnInit {
   name: string;*/
   roles:Array<{id:number,nombre:string,estatus:string,fecha_creacion:Date}>=[];
 
-  constructor(public dialog: MatDialog, public servicio_rol: RolesService) {}
+  constructor(public dialog: MatDialog, public servicio_rol: RolesService, public servicio_rol_funcion: RolFuncionService) {}
 
   ngOnInit(){
     this.roles=[];
@@ -58,15 +59,21 @@ export class RolesComponent implements OnInit {
         if(result.accion=="crear"){
           this.servicio_rol.postRol({nombre:result.nombre}).subscribe(
             (data)=>{
-              this.mostrarMensajeExito(data['data'].message+" con éxito!");
-              this.ngOnInit();
+              this.servicio_rol.getRoles().subscribe(
+                data2=>{
+                  let arrid_para_rol:Array<any>=data2['data'];//OBTENIDOS TODOS LOS roles
+                  let arr:Array<any>=arrid_para_rol.sort((a,b) => (b.id - a.id));//EL MAS NUEVO LO COLOCAMOS EN LA PRIMERA POSICION
+                  let mensaje=this.servicio_rol_funcion.postRolFuncionVarios(arr[0].id,result.menu);
+                  this.mostrarMensajeExito(mensaje);
+                  this.ngOnInit();
+                },error=>{console.log(error)}
+              );
             },(error)=>{console.log(error);}
           );
         }else{
           this.servicio_rol.putRol(result.id,{nombre:result.nombre}).subscribe(
             (data)=>{
-              this.mostrarMensajeExito(data['data'].message+" con éxito!");
-              this.ngOnInit();
+                //FALTA ESTE
             },(error)=>{console.log(error);}
           );
         }
