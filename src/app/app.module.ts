@@ -1,3 +1,5 @@
+import { VistaOrdenCitaService } from './provider/vista-orden-cita/vista-orden-cita.service';
+import { RazonIncidenciaService } from './provider/razon-incidencia/razon-incidencia.service';
 import { VistaAgendasService } from './provider/vista-agendas/vista-agendas.service';
 import { PresupuestoService } from './provider/presupuesto/presupuesto.service';
 import { VistaReclamoService } from './provider/vista-reclamo/vista-reclamo.service';
@@ -75,6 +77,7 @@ import { EspecialidadService } from './provider/especialidad/especialidad.servic
 import { CategoriaParametroService } from './provider/categoria-parametro/categoria-parametro.service';
 import { TipoRespPresupuestoService } from './provider/tipo-resp-presupuesto/tipo-resp-presupuesto.service';
 import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentario.service';
+import { GestionServicioService } from './provider/gestion-servicio/gestion-servicio.service';
 
 
 @NgModule({
@@ -157,7 +160,10 @@ import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentari
     VComentariosService,
     VistaReclamoService,
     PresupuestoService,
-    VistaAgendasService
+    VistaAgendasService,
+    RazonIncidenciaService,
+    VistaOrdenCitaService,
+    GestionServicioService
     
   ],
     
