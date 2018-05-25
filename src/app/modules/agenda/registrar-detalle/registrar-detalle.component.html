@@ -89,7 +89,32 @@
             </div>
             <div class="insumos">
                 <h4>Insumos</h4>
-                <app-insumos-utilizados></app-insumos-utilizados>
+                <!-- <app-insumos-utilizados></app-insumos-utilizados>-->
+                <mat-card class="add">
+                    <div *ngFor="let order of orden.servicios_solicitados">
+                        <div class="title">
+                            <h5>Insumos de {{order.tipo_servicio}} {{order.nombre_servicio}} </h5>
+                        </div>
+
+                        <div class="insumos" *ngFor="let insumos of order.insumos_asociados">
+                            <div class="left">
+                                <h6>{{insumos.tipo_insumo}} {{insumos.nombre}} </h6>
+                            </div>
+                            <div class="right">
+                                <div class="input">
+                                    <mat-form-field class="nn">
+                                        <input matInput type="number" [(ngModel)]="insumos.utilizado" value="0">
+                                    </mat-form-field>
+                                </div>
+                                <h6>{{insumos.unidad}} </h6>
+                            </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                    </div>
+                </mat-card>
+                <div class="">
+                    <button mat-button class="btn" (click)="openDialog()">AGREGAR INSUMOS ADICIONALES</button>
+                </div>
             </div>
         </div>
     </div>

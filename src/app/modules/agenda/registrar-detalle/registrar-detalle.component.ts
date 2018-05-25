@@ -16,7 +16,17 @@ export class RegistrarDetalleComponent implements OnInit {
   removable: boolean = true;
   addOnBlur: boolean = true;
   servicioPSeleccionados = [];
-  
+  datosGuardar: {
+    id_orden_servicio: number;
+    id_servicio_solicitado: number; 
+    realizacion: boolean;
+    id_tipo_incidencia: number;
+    descripcion: string; 
+    insumos: Array<{
+      id_insumo: number;
+      cantidad: number;
+    }>
+  }
   
   servicioMSeleccionados = ['Maquillaje de día'];
   
@@ -32,12 +42,64 @@ export class RegistrarDetalleComponent implements OnInit {
   serviciosM: Array <{}>;
   serviciosP: Array <{}>;
   ordenId: number; 
-  orden: any;
+  orden: {
+    id: number;
+    id_solicitud: number;
+    estado: string;
+    status: string;
+    solicitud: number;
+    id_cliente: number;
+    estado_s: string;
+    cliente: number;
+    nombre: string;
+    apellido: string;
+    citas: Array<{
+      id: number;
+      id_orden_servicio: number;
+      fecha_creacion: string;
+      estatus: string;
+      estado: string;
+      id_agenda: number;
+    }>
+    empleados_asignados: Array<{
+      id: number;
+      id_empleado: number;
+      id_orden_servicio: number;
+      nombre: string;
+      apellido: string
+      cedula: string
+      telefono: string
+      direccion: string
+      fecha_nacimiento: string;
+      sexo: string;
+    }>
+    servicios_solicitados: Array<{
+      id: number;
+      id_servicio_solicitado: number;
+      id_solicitud: number;
+      nombre_servicio: string;
+      tipo_servicio: string
+      insumos_asociados:  Array<{
+        insumo_asociado: number
+        id_insumo: number;
+        id_servicio: number;
+        id: number;
+        nombre: string;
+        tipo_insumo: string
+        id_tipo_insumo: number
+        cantidad: number
+        unidad: number
+        id_unidad: number
+        utilizado: number
+      }>
+    }>
+  };
   nombreCliente: string;
   servicios: any;
   tipo: any;
   servP: boolean;
   servM: boolean;
+  insumosUsados: any;
 
   constructor(public dialog: MatDialog,
     private route: ActivatedRoute,
@@ -48,10 +110,39 @@ export class RegistrarDetalleComponent implements OnInit {
     ) { 
       this.serviciosM = []
       this.serviciosP = []
+      this.datosGuardar = {
+        id_orden_servicio: null,
+        id_servicio_solicitado: null, 
+        realizacion: true,
+        id_tipo_incidencia: null,
+        descripcion: '',
+        insumos: []
+      }
       
     }
     ngOnInit() {
       this.getOrdenInfo()
+    }
+
+    postOrden(){
+      let insumoAux ={
+        id_insumo: null,
+        cantidad: null
+      }
+      for(let i=0; i<this.orden.servicios_solicitados.length; i++){
+
+        this.datosGuardar.id_orden_servicio = this.orden.citas[0].id_orden_servicio
+        this.datosGuardar.id_servicio_solicitado = this.orden.servicios_solicitados[i].id_servicio_solicitado 
+
+        for(let j=0; j<this.orden.servicios_solicitados[i].insumos_asociados.length; j++){
+          insumoAux.id_insumo = this.orden.servicios_solicitados[i].insumos_asociados[j].id_insumo;
+          insumoAux.cantidad = this.orden.servicios_solicitados[i].insumos_asociados[j].utilizado;
+
+          this.datosGuardar.insumos.push(insumoAux)  
+          }       
+          
+      }
+      
     }
     getOrdenInfo(){
       ///
@@ -64,7 +155,7 @@ export class RegistrarDetalleComponent implements OnInit {
         (data) => {
           this.orden = data['data']
           this.nombreCliente = this.orden.nombre + ' ' + this.orden.apellido
-
+          
           for(let i=0; i<this.orden.servicios_solicitados.length; i++){
             this.serviciosServ.getServicioEspec(this.orden.servicios_solicitados[i].id).subscribe(
               (data) => {
