@@ -1,3 +1,5 @@
+import { RedSocialService } from './provider/red-social/red-social.service';
+import { OrdenServicioService } from './provider/orden-servicio/orden-servicio.service';
 import { GestionDetalleServicioService } from './provider/gestion-detalle-servicio/gestion-detalle-servicio.service';
 import { VistaOrdenCitaService } from './provider/vista-orden-cita/vista-orden-cita.service';
 import { RazonIncidenciaService } from './provider/razon-incidencia/razon-incidencia.service';
@@ -165,7 +167,9 @@ import { GestionServicioService } from './provider/gestion-servicio/gestion-serv
     RazonIncidenciaService,
     VistaOrdenCitaService,
     GestionServicioService,
-    GestionDetalleServicioService
+    GestionDetalleServicioService,
+    OrdenServicioService,
+    RedSocialService
     
   ],
     

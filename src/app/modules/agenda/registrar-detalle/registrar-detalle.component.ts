@@ -1,3 +1,5 @@
+import { OrdenServicioService } from './../../../provider/orden-servicio/orden-servicio.service';
+import { GestionDetalleServicioService } from './../../../provider/gestion-detalle-servicio/gestion-detalle-servicio.service';
 import { VistaOrdenCitaService } from './../../../provider/vista-orden-cita/vista-orden-cita.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent } from '@angular/material';
@@ -100,6 +102,9 @@ export class RegistrarDetalleComponent implements OnInit {
   servP: boolean;
   servM: boolean;
   insumosUsados: any;
+  estado: {
+    estado: string
+  }
 
   constructor(public dialog: MatDialog,
     private route: ActivatedRoute,
@@ -107,6 +112,8 @@ export class RegistrarDetalleComponent implements OnInit {
     public ordenVista: VistaOrdenCitaService,
     public serviciosServ: ServiciosService,
     public tipoService: TiposServiciosService,
+    public gestion: GestionDetalleServicioService,
+    public ordenS: OrdenServicioService
     ) { 
       this.serviciosM = []
       this.serviciosP = []
@@ -118,7 +125,9 @@ export class RegistrarDetalleComponent implements OnInit {
         descripcion: '',
         insumos: []
       }
-      
+      this.estado = {
+        estado: ''
+      }
     }
     ngOnInit() {
       this.getOrdenInfo()
@@ -142,6 +151,24 @@ export class RegistrarDetalleComponent implements OnInit {
           }       
           
       }
+
+      this.gestion.postDetalle(this.datosGuardar).subscribe(
+        (data) => {
+          console.log('done')
+          this.estado.estado = "R"
+            this.ordenS.putOrden(this.orden.citas[0].id_orden_servicio, this.estado).subscribe(
+              (res) => {
+                console.log('actualizado')
+              }, (error) => {
+                console.log(error)
+              }
+            )
+        }, (error) => {
+          console.log(error)
+          
+        }
+
+      )
       
     }
     getOrdenInfo(){

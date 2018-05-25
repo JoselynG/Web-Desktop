@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const API_URL = 'http://localhost:3000/api/';
 
-
 @Injectable()
-export class GestionPromocionService {
-  url_gestion_promociones = 'agregar_promocion';
+export class OrdenServicioService {
+  url = 'orden_servicio/';
   constructor(public http: HttpClient) { }
 
   private httpOptions = {
@@ -14,21 +13,8 @@ export class GestionPromocionService {
       'Authorization': 'my-auth-token'
     })
   };
+   putOrden(id, datos) {
 
-  getPromociones() {
-
-    return this.http.get(API_URL + this.url_gestion_promociones);
+      return this.http.put(API_URL + this.url + id, datos );
   }
-
-  addPromociones(promocion) {
-
-    return this.http.post(API_URL + this.url_gestion_promociones, promocion );
-  }
-
-
-
-
-
-
-
 }

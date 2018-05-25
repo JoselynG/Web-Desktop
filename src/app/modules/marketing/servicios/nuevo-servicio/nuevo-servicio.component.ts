@@ -29,7 +29,7 @@ export class NuevoServicioComponent implements OnInit {
     estatus: String;
     fecha_creacion: Date;
     
-    valor_parametro: number[];
+    valor_parametro: any[];
     };
   inputEl: any;
   fileCount: number;
@@ -189,6 +189,9 @@ getCategorias() {
       this.formData.append('descripcion', this.ser.descripcion);
       this.formData.append('duracion', this.ser.duracion);
       this.formData.append('precio', this.ser.precio);
+      for(let i=0;i<this.ser.valor_parametro.length;i++){
+        this.formData.append('valor_parametro[]',this.ser.valor_parametro[i]);
+      }
      // this.formData.append('valor_parametro', this.ser.valor_parametro);
       
       console.log('----------------------')
@@ -196,7 +199,7 @@ getCategorias() {
       console.log('----------------------')
       
       console.log(this.ser);
-      
+      console.log(this.formData);
       //Ejecutar postw
       this.gestion.addServicio(this.formData).subscribe((resp) => {
         this.msj = resp['data'].message;
