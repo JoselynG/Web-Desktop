@@ -1,6 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { variable } from '@angular/compiler/src/output/output_ast';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GestionConsejoService } from '../../../provider/gestion-consejo/gestion-consejo.service';
+import { ConsejosService } from '../../../provider/consejos/consejos.service';
+import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
+import { ParametrosService } from '../../../provider/parametros/parametros.service';
+import { ValoresParametrosService } from '../../../provider/valores-parametros/valores-parametros.service';
+import { TiposParametrosService } from '../../../provider/tipos-parametros/tipos-parametros.service';
 
 @Component({
   selector: 'app-pasos',
@@ -8,59 +17,76 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./pasos.component.scss']
 })
 export class PasosComponent implements OnInit {
+  con: {
+  
+    id: any;
+    titulo:any;
+    descripcion: any;
+    autor: any;
+    imagen: any;
+    estatus: String;
+    fecha_creacion: Date;
+    
+    valor_parametro: any[];
+    };
+  inputEl: any;
+  fileCount: number;
+  formData = new FormData();
+
+
   [x: string]: any;
-  consejo: Array<{}> = [];
-  datoBasico: Array<{}> = [];
-  listaParametro: Array<{}> = [];
+  consejo: Array<{id: number, nombre: string, id_tipo_parametro: number, fecha_creacion: Date }> = [];
+  datoBasico: Array<{id: number, nombre: string, id_tipo_parametro: number, fecha_creacion: Date }> = [];
+  listaParametro: Array<{ }> ;
   listaValor: Array<{}> = [];
   tipoparametro: any;
-    listaTipoParametro: Array<{id_dato: string, nombre: string, status: string, tipo_dato: string }>;
+  listaTipoParametro: any;
+  listaParametros: any ;
+  listavalorparametro: any;
+  //arreglo de Servicio y Categoria
+  pro: any;
+  servicio: any;
+  prueba: number;
+  constructor(public dialog: MatDialog, public parametroServ: ParametrosService, public tipo_para_serv: TiposParametrosService,
+    public valor_para_ser: ValoresParametrosService, public consej: ConsejosService, public gestion: GestionConsejoService, private route: ActivatedRoute,
+    private router: Router, ) {
+  
 
-  listaParametros: Array<{id_dato: string, id_parametro: string, nombre: string, tipo: string}>;
-
-  listavalorparametro: Array<{id_valor: string, id_parametro: string, nombre: string, descripcion: string}>;
-  constructor(public dialog: MatDialog) {
-    this.listaTipoParametro = [
-      {id_dato: '1', nombre: 'Sexo', status: 'a', tipo_dato: 'basico'},
-      {id_dato: '2', nombre: 'Rango de edad', status: 'a', tipo_dato: 'basico'},
-      {id_dato: '3', nombre: 'Numero de hijos', status: 'a', tipo_dato: 'basico'},
-      {id_dato: '4', nombre: 'Rostro', status: 'a', tipo_dato: 'caracteristica'},
-      {id_dato: '5', nombre: 'Cabello', status: 'a', tipo_dato: 'caracteristica'},
-      {id_dato: '6', nombre: 'Ojos', status: 'a', tipo_dato: 'caracteristica'},
-    ];
-
-    this.listaParametros = [
-      {id_parametro: '1', id_dato: '1', nombre: 'Hombre', tipo: 'basico'},
-      {id_parametro: '2', id_dato: '1', nombre: 'Mujer', tipo: 'basico'},
-      {id_parametro: '3', id_dato: '2', nombre: 'Joven', tipo: 'basico'},
-      {id_parametro: '4', id_dato: '2', nombre: 'Adulto Mayor', tipo: 'basico'},
-      {id_parametro: '5', id_dato: '4', nombre: 'Tipo de rostro', tipo: 'basico'},
-      {id_parametro: '6', id_dato: '5', nombre: 'Tipo de cabello', tipo: 'basico'},
-
-    ];
-
-    this.listavalorparametro = [
-      {id_valor: '1', id_parametro: '5', nombre: 'Largo', descripcion: 'El rostro es estirado'},
-      {id_valor: '2', id_parametro: '5', nombre: 'Redondo', descripcion: 'El redondeado'},
-      {id_valor: '3', id_parametro: '6', nombre: 'Ondulado', descripcion: 'su cabello presenta ondas'},
-      {id_valor: '4', id_parametro: '6', nombre: 'Crespo', descripcion: 'es un cabello dificil de manejar'},
-    ];
-  }
+    }
 
   ngOnInit() {
+    this.getTipoParametros();
+    this.getValorParametros();
+    this.getParametros();
+    this.getConsejo();
+
+  
+   
+    this.con = {
+      id: null,
+      titulo: '',
+      descripcion: '',
+       autor: '',
+      imagen:  '',
+      estatus: '',
+      fecha_creacion: new Date(),
+     // valor_parametro: [{id_promocion: 0, id_valor_parametro: 0}],
+     valor_parametro: []
+    };
 
       }
+
   cargarParametro(id) {
     let j = 0;
-    this.listaParametro = [];
+   this.listaParametro = [];
     for (let i = 0; i < this.listaParametros.length; i++) {
-      if (this.listaParametros[i].id_dato === id) {
+      if (this.listaParametros[i].id_tipo_parametro === id) {
         this.listaParametro[j] = this.listaParametros[i];
         console.log(id);
         j++;
-        console.log(this.listaParametro);
-      }
-    }
+       // console.log(this.listaParametro);
+      }}
+    return this.listaParametro;
   }
   cargarValorParametro(id) {
     let j = 0;
@@ -79,7 +105,123 @@ export class PasosComponent implements OnInit {
   }
   guardarDatoBasico(data) {
     this.datoBasico.push(data);
+    console.log(this.datoBasico);
   }
   Guardar() {
   }
+
+//Metodos para Cargar datos (Todos)
+
+getParametros() {
+  this.parametroServ.getParametros().subscribe((resp) => {
+    this.listaParametros = resp['data'];
+   // console.log(this.listaParametros);
+  }, (error) => {
+      console.log(error);
+    });
+
+
+}
+
+getTipoParametros() {
+  this.tipo_para_serv.getTipoParametros().subscribe((resp) => {
+    this.listaTipoParametro = resp['data'];
+   // console.log(this.listaTipoParametro );
+  }, (error) => {
+      console.log(error);
+    });
+}
+
+
+getValorParametros() {
+  this.valor_para_ser.getValoresParametros().subscribe((resp) => {
+    this.listavalorparametro = resp['data'];
+    console.log(this.listavalorparametro);
+  }, (error) => {
+      console.log(error);
+    });
+}
+
+
+getCategorias() {
+  this.categoria_servicio.getCategorias().subscribe((resp) => {
+    this.pro = resp['data'];
+    console.log(this.pro);
+  }, (error) => {
+      console.log(error);
+    });
+  }
+
+  getConsejo() {
+    this.consej.getConsejo().subscribe((resp) => {
+      this.servicio = resp['data'];
+      console.log(this.servicio);
+    }, (error) => {
+        console.log(error);
+      });
+    }
+
+    addConsejoyValores() {
+        //agregar imagen
+        this.inputEl = document.getElementById('fileInput');
+        this.fileCount = this.inputEl.files.length;
+
+        if (this.fileCount > 0) {
+          this.formData.append('archivo', this.inputEl.files.item(0));
+        }
+
+        //arreglo valors
+        let k = 0;
+      // carga el arreglo del objeto con los valores seleccionados de la vista
+      for (let index = 0; index < this.datoBasico.length; index++) {
+        this.con.valor_parametro[k] = this.datoBasico[index].id;
+        
+       k++;
+      }
+    
+      //Agregar Campos
+     
+      this.formData.append('titulo', this.con.titulo);
+      this.formData.append('descripcion', this.con.descripcion);
+      this.formData.append('autor', this.con.autor);
+      
+    for(let i=0;i<this.con.valor_parametro.length;i++){
+      this.formData.append('valor_parametro[]',this.con.valor_parametro[i]);
+      }
+      //this.formData.append('valor_parametro', this.con.valor_parametro);
+      
+      console.log('----------------------');
+      console.log(this.con.valor_parametro);
+      console.log('----------------------');
+      
+      console.log(this.con);
+      console.log(this.formData);
+      //Ejecutar postw
+      this.gestion.addConsejo(this.formData).subscribe((resp) => {
+        this.msj = resp['data'].message;
+        
+        this.mostrarMensajeExito()
+      }, (error) => {
+          console.log(error);
+        });
+     }
+
+     onFileChange(event) {
+      this.files = event.target.files;
+    }
+
+    mostrarMensajeExito(): void {//opens the modal
+      let dialogRef = this.dialog.open(MensajeExitoComponent, {
+        width: '300px',//sets the width
+        height: '140px', 
+        data: { msj: 'Respuesta enviada exitosamente' }//send this class's attributes to the modal
+      });
+    
+      dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+        console.log('Modal closed!');
+        this.router.navigate(['consejos']);
+        //this.router.onSameUrlNavigation
+        
+      });  
+    } 
 }

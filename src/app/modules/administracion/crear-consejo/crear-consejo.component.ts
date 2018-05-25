@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import {ConsejosService } from '../../../provider/consejos/consejos.service';
 @Component({
   selector: 'app-crear-consejo',
@@ -11,7 +11,7 @@ enabled: Boolean = false;
 verBasico: Boolean = true;
 consejo: {id: string, titulo: string, descripcion: string, autor: string, imagen: string , estatus: string, fec: Date };
 
-  constructor(public crear_consejo_ser: ConsejosService) {
+  constructor(public crear_consejo_s: ConsejosService) {
     this.categorias = [
       {nombre: 'Peluqueria'},
       {nombre: 'Maquillaje'},
@@ -36,17 +36,17 @@ consejo: {id: string, titulo: string, descripcion: string, autor: string, imagen
     }
   }
 
-crearConsejo() {
-this.crear_consejo_ser.setServicio(this.consejo).subscribe((data) => {
+/*crearConsejo() {
+this.crear_consejo_com.setConsejo(this.consejo).subscribe((data) => {
 console.log(data);
 
 
 },
 (error) => {console.log(error) }
-);
+);* */
 
-}
+//}
 
 
 
-}
+

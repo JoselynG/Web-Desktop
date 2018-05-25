@@ -13,10 +13,10 @@ export class ConsejosService {
   };
   constructor(public http: HttpClient) { }
 
-  getServicios() {
+  getConsejo() {
     return this.http.get(API_URL + this.url_listado_consejos);
   }
-  setServicio(consejo) {
+  setConsejo(consejo) {
     return this.http.post(API_URL + this.url_listado_consejos, consejo);
   }
 

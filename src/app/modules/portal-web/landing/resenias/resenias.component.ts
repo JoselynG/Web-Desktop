@@ -44,7 +44,7 @@ export class ReseniasComponent implements OnInit {
   }
 
   getConsejo() {
-    this.consejoService.getServicios().subscribe(
+    this.consejoService.getConsejo().subscribe(
       (data) => {
         this.listadoConsejo = data['data'];
         var date_sort_asc = function (a, b) {

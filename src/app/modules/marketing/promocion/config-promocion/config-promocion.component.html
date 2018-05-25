@@ -6,7 +6,7 @@
                 <div class="ctn">
                     <div class="col1">
 
-
+                        <mat-form-field class="valor inputs">
                         <mat-form-field class="valor inputs">
                             <mat-select name="resp" [(ngModel)]="valor" placeholder="Categoria de Servicios">
                                 <mat-option name="pp" *ngFor="let filtro of pro " [value]="filtro.nombre">
@@ -15,46 +15,46 @@
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field class="valor inputs">
-                            <mat-select name="resp" placeholder="Servicio a Promocionar" [(ngModel)]="promocion.id_servicio">
+                            <mat-select name="resp" placeholder="Servicio a Promocionar" [(ngModel)]="id_servicio">
                                 <mat-option name="pp" *ngFor="let filtro of  servicio " [value]="filtro.id">
-                                    {{ filtro.descripcion }}
+                                    {{ filtro.nombre }}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field class="inputs">
-                            <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio de la promoción" [(ngModel)]="promocion.fecha_inicio">
+                            <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio de la promoción" [(ngModel)]="fecha_inicio">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
 
                         <mat-form-field class="inputs">
-                            <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de finalización de la promoción" [(ngModel)]="promocion.fecha_fin">
+                            <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de finalización de la promoción" [(ngModel)]="fecha_fin">
                             <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                             <mat-datepicker #pickerEnd></mat-datepicker>
                         </mat-form-field>
+                    </mat-form-field>
                     </div>
                     <div class="col2">
                         <mat-form-field class="example-full-width inputs">
-                            <input matInput placeholder="Nombre" [(ngModel)]="promocion.nombre" value="">
+                            <input matInput placeholder="Nombre" [(ngModel)]="nombre" value="">
                         </mat-form-field>
 
                         <mat-form-field class="example-full-width inputs">
-                            <input matInput placeholder="Descripción" [(ngModel)]="promocion.descripcion" value=""><br>
+                            <input matInput placeholder="Descripción" [(ngModel)]="descripcion" value=""><br>
                         </mat-form-field>
                         <mat-form-field class="inputs">
-                            <input matInput placeholder="Porcentaje de Descuento" [(ngModel)]="promocion.porcentaje_descuento" type="number">
+                            <input matInput placeholder="Porcentaje de Descuento" [(ngModel)]="porcentaje_descuento" type="number">
                         </mat-form-field><br>
 
-                        <div>
-                            <input id="fileInput2 " style="display :none;" [(ngModel)]="promocion.imagen" type='file' name="archivo">
-                            <button mat-raised-button (click)="$event.currentTarget.previousElementSibling.click()" style="background-color: ghostwhite; color: gray;">
-                           <mat-icon>backup</mat-icon> Subir Imagen</button><br>
-                        </div>
+                        <div class= "loco">
+                            <input id="fileInput" type='file' name="archivo"  [(ngModel)]="imagen"    >
+                        
+                        </div> 
                     </div>
 
                 </div>
 
-
+ 
 
 
 
@@ -92,7 +92,7 @@
         <mat-step label="Caracteristicas">
             <mat-accordion>
                 <mat-expansion-panel *ngFor="let item of listaTipoParametro" (click)="cargarParametro(item.id)">
-                    <mat-expansion-panel-header *ngIf="item.nombre != 'Datos Basicos'">
+                    <mat-expansion-panel-header *ngIf="item.nombre != 'Datos y Basicos'">
                         <mat-panel-title>
                             {{item.nombre}}
                         </mat-panel-title>
