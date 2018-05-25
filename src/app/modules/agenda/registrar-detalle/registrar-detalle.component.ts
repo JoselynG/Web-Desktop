@@ -1,15 +1,216 @@
+import { VistaOrdenCitaService } from './../../../provider/vista-orden-cita/vista-orden-cita.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent } from '@angular/material';
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ServiciosService } from '../../../provider/servicios/servicios.service';
+import { TiposServiciosService } from '../../../provider/tipos-servicios/tipos-servicios.service';
 @Component({
   selector: 'app-registrar-detalle',
   templateUrl: './registrar-detalle.component.html',
   styleUrls: ['./registrar-detalle.component.scss']
 })
 export class RegistrarDetalleComponent implements OnInit {
+  visible: boolean = true;
+  selectable: boolean = true;
+  removable: boolean = true;
+  addOnBlur: boolean = true;
+  servicioPSeleccionados = [];
+  datosGuardar: {
+    id_orden_servicio: number;
+    id_servicio_solicitado: number; 
+    realizacion: boolean;
+    id_tipo_incidencia: number;
+    descripcion: string; 
+    insumos: Array<{
+      id_insumo: number;
+      cantidad: number;
+    }>
+  }
+  
+  servicioMSeleccionados = ['Maquillaje de día'];
+  
+  // Enter, comma
+  separatorKeysCodes = [ENTER, COMMA];
 
-  constructor(public dialog: MatDialog) { }
+  insumos = [
+    { name: 'Champú' },
+    { name: 'Tinte' },
+    { name: 'Gel' },
+  ];
 
+  serviciosM: Array <{}>;
+  serviciosP: Array <{}>;
+  ordenId: number; 
+  orden: {
+    id: number;
+    id_solicitud: number;
+    estado: string;
+    status: string;
+    solicitud: number;
+    id_cliente: number;
+    estado_s: string;
+    cliente: number;
+    nombre: string;
+    apellido: string;
+    citas: Array<{
+      id: number;
+      id_orden_servicio: number;
+      fecha_creacion: string;
+      estatus: string;
+      estado: string;
+      id_agenda: number;
+    }>
+    empleados_asignados: Array<{
+      id: number;
+      id_empleado: number;
+      id_orden_servicio: number;
+      nombre: string;
+      apellido: string
+      cedula: string
+      telefono: string
+      direccion: string
+      fecha_nacimiento: string;
+      sexo: string;
+    }>
+    servicios_solicitados: Array<{
+      id: number;
+      id_servicio_solicitado: number;
+      id_solicitud: number;
+      nombre_servicio: string;
+      tipo_servicio: string
+      insumos_asociados:  Array<{
+        insumo_asociado: number
+        id_insumo: number;
+        id_servicio: number;
+        id: number;
+        nombre: string;
+        tipo_insumo: string
+        id_tipo_insumo: number
+        cantidad: number
+        unidad: number
+        id_unidad: number
+        utilizado: number
+      }>
+    }>
+  };
+  nombreCliente: string;
+  servicios: any;
+  tipo: any;
+  servP: boolean;
+  servM: boolean;
+  insumosUsados: any;
+
+  constructor(public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
+    public ordenVista: VistaOrdenCitaService,
+    public serviciosServ: ServiciosService,
+    public tipoService: TiposServiciosService,
+    ) { 
+      this.serviciosM = []
+      this.serviciosP = []
+      this.datosGuardar = {
+        id_orden_servicio: null,
+        id_servicio_solicitado: null, 
+        realizacion: true,
+        id_tipo_incidencia: null,
+        descripcion: '',
+        insumos: []
+      }
+      
+    }
+    ngOnInit() {
+      this.getOrdenInfo()
+    }
+
+    postOrden(){
+      let insumoAux ={
+        id_insumo: null,
+        cantidad: null
+      }
+      for(let i=0; i<this.orden.servicios_solicitados.length; i++){
+
+        this.datosGuardar.id_orden_servicio = this.orden.citas[0].id_orden_servicio
+        this.datosGuardar.id_servicio_solicitado = this.orden.servicios_solicitados[i].id_servicio_solicitado 
+
+        for(let j=0; j<this.orden.servicios_solicitados[i].insumos_asociados.length; j++){
+          insumoAux.id_insumo = this.orden.servicios_solicitados[i].insumos_asociados[j].id_insumo;
+          insumoAux.cantidad = this.orden.servicios_solicitados[i].insumos_asociados[j].utilizado;
+
+          this.datosGuardar.insumos.push(insumoAux)  
+          }       
+          
+      }
+      
+    }
+    getOrdenInfo(){
+      ///
+      this.route.paramMap.subscribe((params: ParamMap) => {
+        let id = parseInt(params.get('id'));
+        this.ordenId = id;
+      });
+      ///
+      this.ordenVista.getOrdenCitaEspec(this.ordenId).subscribe(
+        (data) => {
+          this.orden = data['data']
+          this.nombreCliente = this.orden.nombre + ' ' + this.orden.apellido
+          
+          for(let i=0; i<this.orden.servicios_solicitados.length; i++){
+            this.serviciosServ.getServicioEspec(this.orden.servicios_solicitados[i].id).subscribe(
+              (data) => {
+                  this.servicios = data ['data']
+                  this.tipoService.getTipoServicioEsp(this.servicios.id_tipo_servicio).subscribe(
+                    (res) =>{
+                        this.tipo = res ['data']
+                        if(this.tipo.id_categoria_servicio === 1){
+                          this.serviciosP.push(this.orden.servicios_solicitados[i])
+                          this.servP = true;
+                        }else if(this.tipo.id_categoria_servicio === 2){
+                          this.serviciosM.push(this.orden.servicios_solicitados[i])
+                          this.servM = true;
+                        }
+                    }, (error) => {
+                            console.log(error)
+                        }
+                  )
+              }, (error) => {
+                  console.log(error)
+              }
+            )
+          }
+        }, (error) =>{
+          console.log(error)
+        }
+
+      )
+    }
+
+    getServicios(){
+      for(let i=0; i<this.orden.servicios_solicitados.length; i++){
+        this.serviciosServ.getServicioEspec(this.orden.servicios_solicitados[i].id).subscribe(
+          (data) => {
+              this.servicios = data ['data']
+              this.tipoService.getTipoServicioEsp(this.servicios.id_tipo_servicio).subscribe(
+                (res) =>{
+                    this.tipo = res ['data']
+                    if(this.tipo.id_categoria_servicio === 1){
+                      this.serviciosP.push(this.orden.servicios_solicitados[i])
+                    }else if(this.tipo.id_categoria_servicio === 2){
+                      this.serviciosM.push(this.orden.servicios_solicitados[i])
+                    }
+                }, (error) => {
+                        console.log(error)
+                    }
+              )
+          }, (error) => {
+              console.log(error)
+          }
+        )
+      }
+      console.log(this.serviciosM)
+      console.log(this.serviciosP)
+    }
   openDialog(){
     const dialogRef = this.dialog.open(IncidenciaServicioComponent, {
       height: '350px',
@@ -20,25 +221,6 @@ export class RegistrarDetalleComponent implements OnInit {
       console.log('mostrado');
     });
  }
- visible: boolean = true;
-  selectable: boolean = true;
-  removable: boolean = true;
-  addOnBlur: boolean = true;
-  servicioPSeleccionados = ['Corte de cabello', 'Aplicación de tinte', 'Secado'];
-  serviciosP = ['Corte de cabello', 'Aplicación de tinte', 'Secado'];
-  
-  servicioMSeleccionados = ['Maquillaje de día'];
-  serviciosM = ['Maquillaje de día'];
-  // Enter, comma
-  separatorKeysCodes = [ENTER, COMMA];
-
-  insumos = [
-    { name: 'Champú' },
-    { name: 'Tinte' },
-    { name: 'Gel' },
-  ];
-
-
   add(event: MatChipInputEvent): void {
     let input = event.input;
     let value = event.value;
@@ -61,8 +243,7 @@ export class RegistrarDetalleComponent implements OnInit {
       this.serviciosP.splice(index, 1);
     }
   }
-  ngOnInit() {
-  }
+  
 
 }
 
@@ -84,5 +265,7 @@ export class IncidenciaServicioComponent {
     }
   ngOnInit() {
   }
+  
 
 }
+

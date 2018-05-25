@@ -11,4 +11,8 @@ export class TiposServiciosService {
   getTipoServicio(){
     return this.http.get(API_URL+this.url);
   }
+
+  getTipoServicioEsp(id){
+    return this.http.get(API_URL+this.url+id);
+  }
 }
