@@ -1,3 +1,4 @@
+import { GestionDetalleServicioService } from './provider/gestion-detalle-servicio/gestion-detalle-servicio.service';
 import { VistaOrdenCitaService } from './provider/vista-orden-cita/vista-orden-cita.service';
 import { RazonIncidenciaService } from './provider/razon-incidencia/razon-incidencia.service';
 import { VistaAgendasService } from './provider/vista-agendas/vista-agendas.service';
@@ -163,7 +164,8 @@ import { GestionServicioService } from './provider/gestion-servicio/gestion-serv
     VistaAgendasService,
     RazonIncidenciaService,
     VistaOrdenCitaService,
-    GestionServicioService
+    GestionServicioService,
+    GestionDetalleServicioService
     
   ],
     
