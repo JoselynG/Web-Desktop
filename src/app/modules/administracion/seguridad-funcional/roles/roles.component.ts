@@ -41,7 +41,17 @@ export class RolesComponent implements OnInit {
 
   eliminarRol(rol){
     this.servicio_rol.putRol(rol.id,{estatus:"I"}).subscribe(
-      data=>{this.mostrarMensajeExito("Rol eliminado con éxito!");this.ngOnInit();},
+      data=>{
+        this.servicio_rol_funcion.getRolFuncion().subscribe(data2=>{
+          let datos=data2['data'].filter((el, i, arr)=>(el.id_rol == rol.id));
+          for (let i = 0; i < datos.length; i++) {
+            this.servicio_rol_funcion.putRolFuncion(datos[i].id,{estatus:"I"}).subscribe(data3=>{
+              console.log('rolfuncion actualizado!');
+            },error=>{console.log(error);});
+          }
+            this.mostrarMensajeExito("Rol eliminado con éxito!");this.ngOnInit();
+        },error=>{console.log(error);});
+    },
       error=>{console.log(error)}
     );
   }
@@ -73,7 +83,9 @@ export class RolesComponent implements OnInit {
         }else{
           this.servicio_rol.putRol(result.id,{nombre:result.nombre}).subscribe(
             (data)=>{
-                //FALTA ESTE
+              let mens=this.servicio_rol_funcion.putRolFuncionVarios(result.id,result.menu);
+              this.mostrarMensajeExito(mens);
+              this.ngOnInit();
             },(error)=>{console.log(error);}
           );
         }

@@ -32,6 +32,7 @@ export class AsignarFuncionesComponent implements OnInit {
       fecha_creacion:new Date(),visible:false};
     this.usuario={id:0,id_rol:0,correo:'',contrasenia:'',
       ultimo_acceso:new Date(),fecha_creacion:new Date(),estatus:''};
+    this.roles=[];
     this.obtenerUsuario();
     this.obtenerRoles();
   }
@@ -65,7 +66,13 @@ export class AsignarFuncionesComponent implements OnInit {
   obtenerRoles(){//METODO QUE LLENA EL COMBOBOX DE ROLES
     this.servicio_rol.getRoles().subscribe(
       (data)=>{
-        this.roles=data['data'];//SE ASIGNAN LOS ROLES AL COMBO
+        //SE ASIGNAN LOS ROLES AL COMBO
+        data['data'].forEach(element => {
+          if(element.estatus=="A"){
+            this.roles.push(element);
+          }
+        });
+
       },(error)=>{
         console.log(error);
       }
