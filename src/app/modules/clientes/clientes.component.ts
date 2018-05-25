@@ -227,11 +227,11 @@ obtenerTipParParamValPar(){
                       }
                       let cont=0;
                       for (let j = 0; j < this.valParametros.length; j++) {
-                        if (this.valParametros[j].nombre=='mujer') {
+                        if (this.valParametros[j].nombre.toLowerCase()=='mujer' || this.valParametros[j].nombre.toLowerCase()=='femenino') {
                           id_f=this.valParametros[j].id;
                           cont++;
                         }
-                        if (this.valParametros[j].nombre=='hombre') {
+                        if (this.valParametros[j].nombre.toLowerCase()=='hombre' || this.valParametros[j].nombre.toLowerCase()=='masculino') {
                           id_m=this.valParametros[j].id;
                           cont++;
                         }
@@ -272,7 +272,7 @@ obtenerTipParParamValPar(){
 }
 setearActualPar(){//NECESARIO PARA MOSTRAR LOS ITEMS DE CARACTERISTICA
   for (let l = 0; l < this.parametros.length; l++){
-    if(this.parametros[l].id_tipo_parametro==this.actual_tipP && this.parametros[l].nombre!="sexo"){
+    if(this.parametros[l].id_tipo_parametro==this.actual_tipP && this.parametros[l].nombre.toLowerCase()!="sexo" && this.parametros[l].nombre.toLowerCase()!="rango de edad"){
       this.actual_par=this.parametros[l].id; break;}
     }
     this.setearActualValPar();
