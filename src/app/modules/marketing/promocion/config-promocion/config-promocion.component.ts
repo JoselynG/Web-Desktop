@@ -19,7 +19,7 @@ export class ConfigPromocionComponent implements OnInit {
     nombre: String;
     descripcion: String;
     porcentaje_descuento: number;
-    precio_promocion: String;
+    precio_promocion: number;
     imagen: string;
     fecha_inicio: Date;
     fecha_fin: Date;
@@ -61,7 +61,7 @@ export class ConfigPromocionComponent implements OnInit {
       nombre: '',
       descripcion: '',
       porcentaje_descuento: 0,
-      precio_promocion: '',
+      precio_promocion: 0,
       imagen:  '',
       fecha_inicio: new Date(),
       fecha_fin: new Date(),

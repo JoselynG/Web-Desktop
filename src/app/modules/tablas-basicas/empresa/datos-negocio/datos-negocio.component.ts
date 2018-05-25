@@ -6,6 +6,9 @@ import { Time } from '@angular/common';
 import { DescripcionNegocioService } from '../../../../provider/descripcion-negocio/descripcion-negocio.service';
 import { ContactoNegocioService } from '../../../../provider/contacto-negocio/contacto-negocio.service';
 import { ObjetivoService } from '../../../../provider/objetivo/objetivo.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MensajeExitoComponent } from '../../../../mensajes/mensaje-exito/mensaje-exito.component';
+import { RedSocialService } from '../../../../provider/red-social/red-social.service';
 
 @Component({
   selector: 'app-datos-negocio',
@@ -122,6 +125,15 @@ export class DatosNegocioComponent implements OnInit {
     estatus: string;
     fecha_creacion: string;
   };
+  datosMostrarTwttir: {
+    id: number;
+    id_negocio: number;
+    nombre: string;
+    url: String;
+    visible: boolean;
+    estatus: string;
+    fecha_creacion: string; 
+  };
 
 
   datosModificar: {
@@ -235,10 +247,22 @@ export class DatosNegocioComponent implements OnInit {
     estatus: string;
     fecha_creacion: string;  
   }
+  datosModificarTwttir: {
+    id: number;
+    id_negocio: number;
+    nombre: string;
+    url: String;
+    visible: boolean;
+    estatus: string;
+    fecha_creacion: string; 
+  };
  
   desc: any;
   contacto:any;
   objetivo: any;
+  redS:any;
+
+  
 //selec crear servicio
 filtroSelec = '';
 filtro = [
@@ -258,7 +282,11 @@ estado = [
     public negocio: NegocioService,
     public descripc: DescripcionNegocioService,
     public contac: ContactoNegocioService,
-    public obj: ObjetivoService
+    public obj: ObjetivoService,
+    public red: RedSocialService,
+    private route: ActivatedRoute,
+    private router: Router,
+    
   ) { 
     this.datosMostrar = {
       id: 0,
@@ -478,6 +506,26 @@ estado = [
     estatus: "",
     fecha_creacion: "",
   }
+ this.datosModificarTwttir = {
+    id: 0,
+    id_negocio: 0,
+    nombre: "",
+    url: "",
+    visible: true,
+    estatus: "",
+    fecha_creacion: "", 
+  }
+
+  
+ this.datosMostrarTwttir = {
+  id: 0,
+  id_negocio: 0,
+  nombre: "",
+  url: "",
+  visible: true,
+  estatus: "",
+  fecha_creacion: "", 
+}
 
   }
 
@@ -486,6 +534,7 @@ estado = [
     this.getDescripcion();
     this.getContacto();
     this.getObjetivo();
+    this.getRedS();
   }
   openDialog() {
     const dialogRef = this.dialog.open(CrearObjetivosComponent, {
@@ -506,6 +555,20 @@ estado = [
         this.datosModificar = this.datosMostrar;
         console.log(this.empresa);
         console.log(this.datosMostrar);
+      },(error) =>{
+        console.log(error);
+      }
+    )
+  }
+  getRedS(){
+    console.log('OK');
+    this.red.getRedS().subscribe(
+      (data)=>{
+        this.red = data['data'];
+        this.datosMostrarTwttir = this.red[0];
+        this.datosModificarTwttir = this.datosMostrarTwttir;
+        console.log(this.red)
+  
       },(error) =>{
         console.log(error);
       }
@@ -628,7 +691,7 @@ estado = [
         console.log(error);
       } 
     )
-    console.log('ahí voy');
+    
     this.contac.updateNegocio(this.datosMostrarCorreo.id, this.datosModificarCorreo).subscribe(
       (data) => {
       },(error) =>{
@@ -674,9 +737,30 @@ estado = [
         console.log(error);
       } 
     )
-    
+    this.red.updateRedS(this.datosMostrarTwttir.id, this.datosModificarTwttir).subscribe(
+      (data) => {
+                
+      },(error) =>{
+        console.log(error);
+      } 
+    )
+    this.mostrarMensajeExito()
   }
-
+  mostrarMensajeExito(): void {//opens the modal
+    let dialogRef = this.dialog.open(MensajeExitoComponent, {
+      width: '300px',//sets the width
+      height: '140px', 
+      data: { msj: 'Datos del negocio modificados exitosamente' }//send this class's attributes to the modal
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+      console.log('Modal closed!');
+      this.router.navigate(['empresaEditar']);
+      //this.router.onSameUrlNavigation
+      
+    });  
+  }
+  
 }
 
 

@@ -28,7 +28,7 @@ imagen: string;
 fecha_inicio: Date;
 fecha_fin: Date;
 estatus: String;
-fecha_creacion: Date;
+//fecha_creacion: Date;
 };
   servP = [
     {value: 'corte', viewValue: 'Corte de cabello'},
@@ -48,12 +48,7 @@ fecha_creacion: Date;
   constructor(public categoria_servicio: CategoriasServicioService , public promo: PromocionesService,
     public servici: ServiciosService ) {
     this.getPromociones();
-   }
-
-  ngOnInit() {
-     this.getServicios();
-     this.getPromociones();
-     this.promocion = {
+    this.promocion = {
       id_servicio: 0,
       nombre: '',
       descripcion: '',
@@ -63,8 +58,14 @@ fecha_creacion: Date;
       fecha_inicio: new Date(),
       fecha_fin: new Date(),
       estatus: '',
-      fecha_creacion: new Date()
+      //fecha_creacion: new Date()
       };
+
+   }
+
+  ngOnInit() {
+     this.getServicios();
+     this.getPromociones();
 
   }
 

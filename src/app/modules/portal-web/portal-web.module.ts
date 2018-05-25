@@ -16,10 +16,6 @@ import { PromocionesComponent } from './landing/promociones/promociones.componen
 import { ReseniasComponent } from './landing/resenias/resenias.component';
 import { EstilistasComponent } from './landing/estilistas/estilistas.component';
 import { TwitterComponent } from './landing/twitter/twitter.component';
-import { LandingPromocionesComponent } from './landing-promociones/landing-promociones.component';
-import { LandingEstilistasComponent } from './landing-estilistas/landing-estilistas.component';
-import { LandingConsejosComponent } from './landing-consejos/landing-consejos.component';
-import { LandingTwiterComponent } from './landing-twiter/landing-twiter.component';
 import { DatosSuscripcionComponent } from './datos-suscripcion/datos-suscripcion.component';
 
 @NgModule({
@@ -38,11 +34,7 @@ import { DatosSuscripcionComponent } from './datos-suscripcion/datos-suscripcion
     TipografiaComponent,
     EmpresaComponent,
     LandingComponent,
-    GaleriaComponent,
-    LandingPromocionesComponent,
-    LandingEstilistasComponent,
-    LandingConsejosComponent,
-    LandingTwiterComponent
+    GaleriaComponent
   ],
   declarations: [DisenioComponent, 
     ImagenesComponent, ColoresComponent,
@@ -51,10 +43,6 @@ import { DatosSuscripcionComponent } from './datos-suscripcion/datos-suscripcion
      PrincipalComponent, ServiciosComponent,
       PromocionesComponent, ReseniasComponent, 
       EstilistasComponent, TwitterComponent,
-    LandingPromocionesComponent,
-    LandingEstilistasComponent,
-    LandingConsejosComponent,
-    LandingTwiterComponent,
     DatosSuscripcionComponent]
 })
 export class PortalWebModule { }

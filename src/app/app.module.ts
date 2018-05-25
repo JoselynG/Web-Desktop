@@ -1,3 +1,10 @@
+import { RedSocialService } from './provider/red-social/red-social.service';
+import { OrdenServicioService } from './provider/orden-servicio/orden-servicio.service';
+import { GestionDetalleServicioService } from './provider/gestion-detalle-servicio/gestion-detalle-servicio.service';
+import { VistaOrdenCitaService } from './provider/vista-orden-cita/vista-orden-cita.service';
+import { RazonIncidenciaService } from './provider/razon-incidencia/razon-incidencia.service';
+import { VistaAgendasService } from './provider/vista-agendas/vista-agendas.service';
+import { PresupuestoService } from './provider/presupuesto/presupuesto.service';
 import { VistaReclamoService } from './provider/vista-reclamo/vista-reclamo.service';
 import { VComentariosService } from './provider/v-cometarios/v-comentarios.service';
 import { TipoRepuestaComentarioService } from './provider/tipo-repuesta-comentario/tipo-repuesta-comentario.service';
@@ -75,6 +82,7 @@ import { TipoRespPresupuestoService } from './provider/tipo-resp-presupuesto/tip
 import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentario.service';
 import { FuncionesService } from './provider/funciones/funciones.service';
 import { RolFuncionService } from './provider/rol-funcion/rol-funcion.service';
+import { GestionServicioService } from './provider/gestion-servicio/gestion-servicio.service';
 
 
 @NgModule({
@@ -157,7 +165,16 @@ import { RolFuncionService } from './provider/rol-funcion/rol-funcion.service';
     VComentariosService,
     VistaReclamoService,
     FuncionesService,
-    RolFuncionService 
+    RolFuncionService, 
+    PresupuestoService,
+    VistaAgendasService,
+    RazonIncidenciaService,
+    VistaOrdenCitaService,
+    GestionServicioService,
+    GestionDetalleServicioService,
+    OrdenServicioService,
+    RedSocialService
+    
   ],
     
   entryComponents: [
