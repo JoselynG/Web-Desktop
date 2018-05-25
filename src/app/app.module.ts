@@ -1,3 +1,5 @@
+import { GestionConsejoService } from './provider/gestion-consejo/gestion-consejo.service';
+
 import { RedSocialService } from './provider/red-social/red-social.service';
 import { OrdenServicioService } from './provider/orden-servicio/orden-servicio.service';
 import { GestionDetalleServicioService } from './provider/gestion-detalle-servicio/gestion-detalle-servicio.service';
@@ -62,8 +64,6 @@ import { UserService } from './provider/user/user.service';
 import { ValoresParametrosService } from './provider/valores-parametros/valores-parametros.service';
 import { ParametrosService } from './provider/parametros/parametros.service';
 import { TiposParametrosService } from './provider/tipos-parametros/tipos-parametros.service';
-import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
-
 import { RolesService } from './provider/roles/roles.service';
 import { PerfilService } from './provider/perfil/perfil.service';
 import { MensajeExitoComponent } from './mensajes/mensaje-exito/mensaje-exito.component';
@@ -83,6 +83,7 @@ import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentari
 import { FuncionesService } from './provider/funciones/funciones.service';
 import { RolFuncionService } from './provider/rol-funcion/rol-funcion.service';
 import { GestionServicioService } from './provider/gestion-servicio/gestion-servicio.service';
+import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
 
 
 @NgModule({
@@ -173,7 +174,8 @@ import { GestionServicioService } from './provider/gestion-servicio/gestion-serv
     GestionServicioService,
     GestionDetalleServicioService,
     OrdenServicioService,
-    RedSocialService
+    RedSocialService,
+    GestionConsejoService
     
   ],
     
