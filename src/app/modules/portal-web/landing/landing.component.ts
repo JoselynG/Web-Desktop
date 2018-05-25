@@ -20,3 +20,25 @@ export class LandingComponent implements OnInit {
     }
   }*/
 }
+
+export interface ItituloSeccion {
+  id_sistema: Number;
+  boton: String;
+  titulo: String;
+  tipo_seccion: String;
+  descripcion: String;
+  estatus: String;
+  fecha_creacion: Date;
+  visible: Boolean;
+}
+
+export interface Iimagen {
+  id_sistema: Number;
+  imagen: String;
+  boton: String;
+  titulo: String;
+  tipo_imagen: String;
+  descripcion: String;
+  estatus: String;
+  fecha_creacion: Date;
+}

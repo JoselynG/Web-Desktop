@@ -15,8 +15,6 @@ export class GestionPromocionService {
     })
   };
 
-
-
   getPromociones() {
 
     return this.http.get(API_URL + this.url_gestion_promociones);
