@@ -1,30 +1,30 @@
 <div class="boton">
-    <span class="span1" matTooltip="Listado"><button mat-raised-button routerLink="../"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
+    <span class="span1" matTooltip="Listado"><button mat-raised-button routerLink="../../"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
 </div>
 <div style="padding: 30px 30px 30px 60px; max-width: 800px;">
-    <h4 style="opacity: 0.5; margin-left: 100px;">Asignar funciones a {{estedeaca.value}}</h4>
+    <h4 style="opacity: 0.5; margin-left: 100px;">Asignar funciones a {{empleado.nombre+" "+empleado.apellido}}</h4>
     <br>
     <mat-card style="margin-left: 100px;">
 
-        <form class="clase1">
+        <div class="clase1">
             <mat-form-field>
-                <input #estedeaca matInput placeholder="Correo" value="Corina_Smith@gmail.com">
+                <input matInput placeholder="Correo" [(ngModel)]="usuario.correo">
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput type="password" placeholder="Contraseña" value="12345">
+                <input matInput type="password" placeholder="Contraseña" [(ngModel)]="usuario.contrasenia">
             </mat-form-field>
             <mat-form-field>
-                <mat-select placeholder="Rol" value="2">
-                    <mat-option *ngFor="let rol of roles" [value]="rol.value">
-                        {{ rol.viewValue }}
+                <mat-select placeholder="Rol" [(ngModel)]="usuario.id_rol">
+                    <mat-option *ngFor="let rol of roles" [value]="rol.id">
+                        {{ rol.nombre }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </form>
+        </div>
         <br>
 
         <br>
-        <button mat-raised-button color="accent">Guardar</button>
+        <button mat-raised-button color="accent" (click)="editarUsuario()">Guardar</button>
     </mat-card>
 </div>

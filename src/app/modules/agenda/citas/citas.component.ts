@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { TipoIncidenciaService } from '../../../provider/tipo-incidecia/tipo-incidencia.service';
 interface Detalle{
   clientName: string;
   servicios: string;
@@ -93,12 +94,34 @@ export class CitasComponent implements OnInit {
   styleUrls: ['./cancelar-cita.component.scss']
 })
 export class CancelarCitaComponent  {
+  tipo: Array<{
+    value: number,
+    viewValue: string
+  }>
   filtro = [
     {value: 'empleado', viewValue: 'Empleado'},
     {value: 'cliente', viewValue: 'Cliente'},
     {value: 'servicio', viewValue: 'Servicio'},
     
   ];
+  incidencia: any;
+  constructor(public tipoInc: TipoIncidenciaService){
+    this.tipo = []
+  } 
+  
+  ngOnInit() {
+    this.getTipoIncidencia();
+  }
+
+  getTipoIncidencia(){
+    this.tipoInc.getTipoIncidencia().subscribe(
+    (data)=>{
+      this.incidencia = data['data']
+    },(error) => {
+      console.log(error);
+    }
+    )
+  }
 }
 
 @Component({

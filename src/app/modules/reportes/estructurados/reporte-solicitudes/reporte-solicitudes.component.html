@@ -1,5 +1,5 @@
 <div class="selectFilter">
-    <mat-form-field class="valor">
+    <!--<mat-form-field class="valor">
         <mat-select placeholder="Empleados" [(ngModel)]="empleadosSeleccionados" multiple>
             <mat-select-trigger>
                 {{empleadosSeleccionados ? empleadosSeleccionados[0] : ''}}
@@ -9,7 +9,7 @@
             </mat-select-trigger>
             <mat-option color="accent" *ngFor="let empleado of empleados" [value]="empleado">{{empleado}}</mat-option>
         </mat-select>
-    </mat-form-field>
+    </mat-form-field>-->
     <mat-form-field class="valor">
         <mat-select placeholder="Clientes" [(ngModel)]="clientesSeleccionados" multiple>
             <mat-select-trigger>
@@ -29,13 +29,23 @@
                 (+{{servicioSeleccionados.length - 1}} otros)
             </span>
             </mat-select-trigger>
-            <mat-option color="accent" *ngFor="let servicio of servicios" [value]="servicio">{{servicio}}</mat-option>
+            <mat-option color="accent" *ngFor="let servicio of filtroServicio" [value]="servicio.id">
+                {{servicio.tipo_servicio}} {{servicio.nombre}}
+            </mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field class="valor">
-        <mat-select [(ngModel)]="filtroTipoRespSelec" placeholder="Tipo de respuesta" class="letra">
-            <mat-option *ngFor="let filtroTipo of filtroTipoResp" [value]="filtroTipo.value">
-                {{ filtroTipo.viewValue }}
+        <mat-select [(ngModel)]="TipoRespSolicSelec" placeholder="Tipo de respuesta solicitud" class="letra">
+            <mat-option *ngFor="let filtroTipo of respSolic" [value]="filtroTipo.id">
+                {{ filtroTipo.nombre }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="valor">
+        <mat-select [(ngModel)]="TipoRespPresupSelec" placeholder="Tipo de respuesta presupuesto" class="letra">
+            <mat-option *ngFor="let filtroTipo of respPresup" [value]="filtroTipo.id">
+                {{ filtroTipo.nombre }}
             </mat-option>
         </mat-select>
     </mat-form-field>
@@ -75,23 +85,30 @@
             </mat-header-cell>
             <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.empleado}} </mat-cell>
         </ng-container>
-
-        <!-- Correo Column -->
-        <ng-container matColumnDef="tipoR">
+        <ng-container matColumnDef="tipoRS">
             <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
-                <h3>Tipo de respuesta</h3>
+                <h3>Tipo de respuesta Solicitud</h3>
             </mat-header-cell>
-            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.tipoR}} </mat-cell>
+            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.tipoRS}} </mat-cell>
         </ng-container>
-
-        <!-- Direccion Column -->
-        <ng-container matColumnDef="resp">
+        <ng-container matColumnDef="respS">
             <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
-                <h3>Respuesta</h3>
+                <h3>Respuesta de Solicitud</h3>
             </mat-header-cell>
-            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.resp}} </mat-cell>
+            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.respS}} </mat-cell>
         </ng-container>
-
+        <ng-container matColumnDef="tipoRP">
+            <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
+                <h3>Tipo de respuesta presupuesto</h3>
+            </mat-header-cell>
+            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.tipoRP}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="respP">
+            <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
+                <h3>Respuesta presupuesto</h3>
+            </mat-header-cell>
+            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.respP}} </mat-cell>
+        </ng-container>
 
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -10,7 +10,7 @@ export class GestionPromocionService {
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
+      'Content-Type':  'undefined',
       'Authorization': 'my-auth-token'
     })
   };
@@ -24,7 +24,7 @@ export class GestionPromocionService {
 
   addPromociones(promocion) {
 
-    return this.http.post(API_URL + this.url_gestion_promociones, promocion );
+    return this.http.post(API_URL + this.url_gestion_promociones, promocion);
   }
 
 

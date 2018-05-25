@@ -1,6 +1,6 @@
 <div class="selectFilter">
     <mat-form-field class="valor">
-        <mat-select [(ngModel)]="filtroTipoComSelec" placeholder="Categoría del servicio" class="letra">
+        <mat-select [(ngModel)]="filtroTipoComSelec" placeholder="Tipo de comentario" class="letra">
             <mat-option *ngFor="let filtroCom of filtroTipoCom" [value]="filtroCom.value">
                 {{ filtroCom.viewValue }}
             </mat-option>

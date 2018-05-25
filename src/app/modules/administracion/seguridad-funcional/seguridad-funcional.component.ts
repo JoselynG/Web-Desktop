@@ -6,6 +6,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';//nee
 import { UsuariosService } from '../../../provider/usuarios/usuarios.service';
 import { ClientesService } from '../../../provider/clientes/clientes.service';
 import { EmpleadosService } from '../../../provider/empleados/empleados.service';
+import { RolesService } from '../../../provider/roles/roles.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-seguridad-funcional',
@@ -15,7 +17,7 @@ import { EmpleadosService } from '../../../provider/empleados/empleados.service'
 export class SeguridadFuncionalComponent implements OnInit {
 
   usuariosArr:any;empleadosArr:any;clientesArr:any;
-  lista_usuarios:Array<{usuario: string,correo: string,telefono: string,rol: string}>=[];
+  lista_usuarios:Array<{usuario: string,correo: string,telefono: string,rol: string,id:number}>=[];
 
   displayedColumns = ['usuario', 'correo', 'telefono', 'rol', 'menu'];
   dataSource : any;
@@ -26,68 +28,85 @@ export class SeguridadFuncionalComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  usuarios = [
-    {value: '1', viewValue: 'Administrador'},
-    {value: '2', viewValue: 'Recepcionista'},
-    {value: '3', viewValue: 'Estilista'}
-  ];
-
+  roles:any;
+  
   constructor(public dialog: MatDialog, public servicio_usuario: UsuariosService,
     public servicio_empleado: EmpleadosService,
-    public servicio_cliente: ClientesService) {}//for having access to a modal
+    public servicio_cliente: ClientesService,
+    public servicio_rol: RolesService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(){
-    this.getUsuariosInfo();
+    this.getRoles();this.getUsuariosInfo();
   }
   
   getUsuariosInfo(){//METODO PARA LLENAR LA lista_usuarios
     this.servicio_empleado.getEmpleados().subscribe(//SERVICIO DE empleados QUE RETORNA JSON DE TABLA empleado
       (data1)=>{
         this.empleadosArr=data1['data'];
-      }, (error)=>{
-        console.log(error);
-      }
-    );
-    this.servicio_cliente.getClientes().subscribe(//SERVICIO DE Clientes QUE RETORNA JSON DE TABLA cliente
-      (data2)=>{
-        this.clientesArr=data2['data'];
-        console.log(this.empleadosArr);
-        console.log(this.clientesArr);
-      }, (error)=>{
-        console.log(error);
-      }
-    );
-    this.servicio_usuario.getUsuarios().subscribe(//SERVICIO DE USUARIOS QUE RETORNA JSON DE TABLA USUARIO
-      (data3)=>{
-        this.usuariosArr=data3['data'];
-        ///////////////////
-        this.empleadosArr.forEach(empl => {
-          for (let j = 0; j < this.usuariosArr.length; j++) {//RECORRE LA LISTA DE empleados 
-            if(empl.id_usuario==this.usuariosArr[j].id){//SI EL empleado EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
-              this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:this.usuariosArr[j].correo,
-              telefono:empl.telefono, rol:this.usuariosArr[j].id_rol});
-              break;
-            }
+        ///----------------->
+        this.servicio_cliente.getClientes().subscribe(//SERVICIO DE Clientes QUE RETORNA JSON DE TABLA cliente
+          (data2)=>{
+            this.clientesArr=data2['data'];
+            console.log(this.empleadosArr);
+            ///----------------->
+            this.servicio_usuario.getUsuarios().subscribe(//SERVICIO DE USUARIOS QUE RETORNA JSON DE TABLA USUARIO
+              (data3)=>{
+                this.usuariosArr=data3['data'];
+                console.log(this.clientesArr);
+                console.log(this.usuariosArr);
+                ///////////////////
+                this.empleadosArr.forEach(empl => {
+                  for (let j = 0; j < this.usuariosArr.length; j++) {//RECORRE LA LISTA DE empleados 
+                    if(empl.id_usuario==this.usuariosArr[j].id){//SI EL empleado EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
+                      this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:this.usuariosArr[j].correo,
+                      telefono:empl.telefono, rol:this.nombreRol(this.usuariosArr[j].id_rol),id:empl.id});
+                      break;
+                    }
+                  }
+                });
+                this.clientesArr.forEach(cli => {
+                  for (let i = 0; i < this.usuariosArr.length; i++) {//RECORRE LA LISTA DE clientes 
+                    if(cli.id_usuario==this.usuariosArr[i].id){//SI EL cliente EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
+                      this.lista_usuarios.push({usuario:(cli.nombre+" "+cli.apellido), correo:this.usuariosArr[i].correo,
+                      telefono:cli.telefono, rol:this.nombreRol(this.usuariosArr[i].id_rol),id: cli.id});
+                      break;
+                    }
+                  }
+                });
+                this.dataSource=new MatTableDataSource(this.lista_usuarios);//le mandamos los datos a la tabla
+                console.log(this.lista_usuarios);
+                ///////////////////
+              }, (error)=>{
+                console.log(error);
+              }
+            );
+          }, (error)=>{
+            console.log(error);
           }
-        });
-        this.clientesArr.forEach(cli => {
-          for (let i = 0; i < this.usuariosArr.length; i++) {//RECORRE LA LISTA DE clientes 
-            if(cli.id_usuario==this.usuariosArr[i].id){//SI EL cliente EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
-              this.lista_usuarios.push({usuario:(cli.nombre+" "+cli.apellido), correo:this.usuariosArr[i].correo,
-              telefono:cli.telefono, rol:this.usuariosArr[i].id_rol});
-              break;
-            }
-          }
-        });
-        this.dataSource=new MatTableDataSource(this.lista_usuarios);//le mandamos los datos a la tabla
-        console.log(this.lista_usuarios);
-        ///////////////////
+        );
       }, (error)=>{
         console.log(error);
       }
-    );
-    
+    ); 
   }
+
+  getRoles(){//METODO PARA LLENAR LA lista de roles
+    this.servicio_rol.getRoles().subscribe(//SERVICIO DE roles QUE RETORNA JSON DE TABLA rol
+      (data)=>{
+        this.roles=data['data'];
+      }, (error)=>{
+        console.log(error);
+      }
+    ); 
+  }
+
+  nombreRol(id):string{
+    if(this.roles){
+      for (let i = 0; i < this.roles.length; i++) {
+        if(id==this.roles[i].id){
+          return this.roles[i].nombre;
+  }}}}
+
 
   openModal(): void {//opens the modal
     let dialogRef = this.dialog.open(NuevoUsuarioComponent, {
@@ -102,6 +121,9 @@ export class SeguridadFuncionalComponent implements OnInit {
     });
   }
 
+  asignarFuncionesAUsuario(user) {
+    this.router.navigate(['asignarfunciones/'+user.id], { relativeTo: this.route });
+ }
 
 }
 
