@@ -64,8 +64,6 @@ import { UserService } from './provider/user/user.service';
 import { ValoresParametrosService } from './provider/valores-parametros/valores-parametros.service';
 import { ParametrosService } from './provider/parametros/parametros.service';
 import { TiposParametrosService } from './provider/tipos-parametros/tipos-parametros.service';
-import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
-
 import { RolesService } from './provider/roles/roles.service';
 import { PerfilService } from './provider/perfil/perfil.service';
 import { MensajeExitoComponent } from './mensajes/mensaje-exito/mensaje-exito.component';
@@ -85,7 +83,11 @@ import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentari
 import { FuncionesService } from './provider/funciones/funciones.service';
 import { RolFuncionService } from './provider/rol-funcion/rol-funcion.service';
 import { GestionServicioService } from './provider/gestion-servicio/gestion-servicio.service';
+<<<<<<< HEAD
 import { MensajeConfirmarComponent } from './mensajes/mensaje-confirmar/mensaje-confirmar.component';
+=======
+import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
+>>>>>>> da79602dfd7e91a0c5c144ee9fba0a31723bdc1b
 
 
 @NgModule({
