@@ -83,11 +83,8 @@ import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentari
 import { FuncionesService } from './provider/funciones/funciones.service';
 import { RolFuncionService } from './provider/rol-funcion/rol-funcion.service';
 import { GestionServicioService } from './provider/gestion-servicio/gestion-servicio.service';
-<<<<<<< HEAD
 import { MensajeConfirmarComponent } from './mensajes/mensaje-confirmar/mensaje-confirmar.component';
-=======
 import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
->>>>>>> da79602dfd7e91a0c5c144ee9fba0a31723bdc1b
 
 
 @NgModule({
