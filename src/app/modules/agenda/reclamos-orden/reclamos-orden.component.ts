@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { ReclamoService } from '../../../provider/reclamo/reclamo.service';
+import { TipoRepuestaReclamoService } from '../../../provider/tipo-repuesta-reclamo/tipo-repuesta-reclamo.service';
+import { RepuestaReclamoService } from '../../../provider/repuesta-reclamo/repuesta-reclamo.service';
+import { VistaReclamoService } from '../../../provider/vista-reclamo/vista-reclamo.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
 
 
 interface Datos_reclamo{
@@ -21,6 +27,9 @@ interface Datos_reclamo{
   styleUrls: ['./reclamos-orden.component.scss']
 })
 export class ReclamosOrdenComponent implements OnInit {
+  //siempre va
+ rec: any;
+ 
  hoy= new Date();
   datos: Datos_reclamo[]= [
     {
@@ -46,11 +55,38 @@ export class ReclamosOrdenComponent implements OnInit {
 
  ];
   
-  constructor(public dialog: MatDialog) { }
+  //siempre va eso asi  cambia el nombre de la clase 
+
+  constructor(public dialog: MatDialog,
+     public reclamo:VistaReclamoService,
+     public repuesta:TipoRepuestaReclamoService,
+     private route: ActivatedRoute,
+     private router: Router,
+ 
+     ) 
+   {
+      this.getVistaReclamo();
+      
+   }
 
   ngOnInit() {
+  this.getVistaReclamo(); 
+  
   }
-  openDialog(){
+  getVistaReclamo(){
+   this.reclamo.getVistaReclamo().subscribe((resp)=>{
+     this.rec= resp['data'];
+     console.log(this.rec);
+
+   },(error)=>{
+     console.log(error);
+   }
+  )
+}
+
+  openDialog(id){
+    console.log(id);
+    this.repuesta.setIdReclamo(id);
     const dialogRef = this.dialog.open( DarRepuestaComponent, {
       height: '320px',
       width: '420px'
@@ -69,7 +105,9 @@ export class ReclamosOrdenComponent implements OnInit {
   styleUrls: ['./dar-repuesta.component.scss']
 })
 export class DarRepuestaComponent {
-
+  resp:any[]; 
+  respuestarec:any;
+  msj:string;
 //selec pregunta
 filtroSelec = '';
 filtro = [
@@ -77,5 +115,74 @@ filtro = [
   {value: 'negativa', viewValue: 'No procede'},
   
 ];
+datosMostrar: {
+  id_reclamo: number,
+  id_tipo_repuesta_reclamo: number,
+  descripcion: String,
+};
 
+constructor(public dialog: MatDialog,
+  public repuesta:TipoRepuestaReclamoService,
+   public repuestaR:RepuestaReclamoService,
+   private route: ActivatedRoute,
+  private router: Router,
+   ) 
+{
+this.getRepuestaReclamo();
+
+}
+
+  
+
+ngOnInit() {
+  this.datosMostrar = {
+    id_reclamo: 0,
+    id_tipo_repuesta_reclamo: 0,
+    descripcion:`` ,
+    
+  };
+
+}
+  getRepuestaReclamo(){
+    this.repuesta.getRepuestaReclamo().subscribe((resp)=>{
+      this.resp= resp['data'];
+      console.log(this.resp);
+  
+    },(error)=>{
+      console.log(error);
+    }
+   )
+  }
+  
+  
+  //guardar
+  postRepuestaRec() {
+    this.datosMostrar.id_reclamo=this.repuesta.returnIdReclamo();
+    console.log(this.datosMostrar);
+    this.repuestaR.postRepuestaRec(this.datosMostrar).subscribe((resp)=>{
+      this.msj= resp['data'].message;
+      console.log(this.msj);
+       //alert(this.msj)
+       this.mostrarMensajeExito()
+    },(error)=>{
+      console.log(error);
+    }
+   )
+  } 
+
+  
+mostrarMensajeExito(): void {//opens the modal
+  let dialogRef = this.dialog.open(MensajeExitoComponent, {
+    width: '300px',//sets the width
+    height: '140px', 
+    data: { msj: 'Respuesta enviada exitosamente' }//send this class's attributes to the modal
+  });
+
+  dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+    console.log('Modal closed!');
+    this.router.navigate(['reclamosOrdenes']);
+    //this.router.onSameUrlNavigation
+    
+  });  
+}
 }

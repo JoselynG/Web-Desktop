@@ -1,5 +1,9 @@
+import { VistaServicioCategoriaService } from './../../../../provider/vista-servicio-categoria/vista-servicio-categoria.service';
+import { TipoRespPresupuestoService } from './../../../../provider/tipo-resp-presupuesto/tipo-resp-presupuesto.service';
+import { TipoRespSolicitudService } from './../../../../provider/tipo-resp-solicitud/tipo-resp-solicitud.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
+import { ServiciosService } from '../../../../provider/servicios/servicios.service';
 
 @Component({
   selector: 'app-reporte-solicitudes',
@@ -7,8 +11,8 @@ import { MatTableDataSource, MatSort } from '@angular/material';
   styleUrls: ['./reporte-solicitudes.component.scss']
 })
 export class ReporteSolicitudesComponent implements OnInit {
-  filtroTipoRecSelec = 'todos';
-  filtroTipoRespSelec = 'todos';
+  TipoRespPresupSelec = '';
+  TipoRespSolicSelec = '';
   filtroTipoRec = [
     {value: 'a', viewValue: 'A'},
     {value: 'b', viewValue: 'B'},
@@ -25,10 +29,14 @@ export class ReporteSolicitudesComponent implements OnInit {
   clientesSeleccionados = [];
   empleados = ['Qohollo', 'Irri Handmaiden', 'Thoros', 'Maester'];
   servicioSeleccionados = [];
-  servicios = ['Lavado', 'secado', 'tinte'];
-  displayedColumns = ['cliente', 'fecha', 'servicio',  'empleado', 'tipoR', 'resp'];
+  displayedColumns = ['cliente', 'fecha', 'servicio',  'empleado', 'tipoRS', 'respS', 'tipoRP', 'respP'];
+  respSolic: any;
+  respPresup: any;
+  filtroServicio: any;
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  
+  dateInic: Date;
+  dateFin: Date;
+  fecha: boolean;
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -43,11 +51,57 @@ export class ReporteSolicitudesComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
-    constructor() { }
+    constructor(
+      public tipoRespSolic: TipoRespSolicitudService,
+      public TipoRespPresup: TipoRespPresupuestoService,
+      public servicios: VistaServicioCategoriaService
+    ) { }
   
     ngOnInit() {
+      this.getRespSolic()
+      this.getRespPresup()
+      this.getServicios();
     }
   
+    validateDate(){
+      if(this.dateFin<this.dateInic){
+        this.fecha = true
+      }else{
+        this.fecha = false
+      }
+      console.log(this.fecha)
+    }
+    getRespSolic(){
+      this.tipoRespSolic.getTipoRespSolicitud().subscribe(
+        (data) => {
+          this.respSolic = data['data']
+        }, (error) => {
+          console.log(error)
+        }
+      )
+    }
+
+    getRespPresup(){
+      this.TipoRespPresup.getTipoRespPresupuesto().subscribe(
+        (data) => {
+          this.respPresup = data['data']
+        }, (error) => {
+          console.log(error)
+        }
+      )
+    }
+
+    getServicios(){
+      this.servicios.getServicios().subscribe(
+        (data) => {
+          this.filtroServicio = data['data']
+       
+        }, (error) => {
+          console.log(error)
+        }
+      )
+    }
+
   }
   
   export interface Element {
@@ -55,13 +109,15 @@ export class ReporteSolicitudesComponent implements OnInit {
     fecha: string;
     servicio: string;
     empleado: string;
-    tipoR: string;
-    resp: string;
+    tipoRS: string;
+    respS: string;
+    tipoRP: string;
+    respP: string;
   }
   
   const ELEMENT_DATA: Element[] = [
-    {cliente: 'Pepito López', fecha: '05/03/2018', servicio: 'Secado, planchado', empleado: "lorem", tipoR: "Negativa", resp: "lorem"},
-    {cliente: 'Pepito López', fecha: '05/03/2018', servicio: 'Secado, planchado, tinte', empleado: "lorem", tipoR: "Positiva", resp: "lorem"},
-    {cliente: 'Pepito López', fecha: '05/03/2018', servicio: 'Secado, planchado, Queratina', empleado: "lorem", tipoR: "Positiva", resp: "lorem"},
+    {cliente: 'Pepito López', fecha: '05/03/2018', servicio: 'Secado, planchado', empleado: "lorem", tipoRS: "Negativa", respS: "lorem", tipoRP: "Negativa", respP: "lorem"},
+    {cliente: 'Pepito López', fecha: '05/03/2018', servicio: 'Secado, planchado, tinte', empleado: "lorem", tipoRS: "Positiva", respS: "lorem", tipoRP: "Negativa", respP: "lorem"},
+    {cliente: 'Pepito López', fecha: '05/03/2018', servicio: 'Secado, planchado, Queratina', empleado: "lorem", tipoRS: "Positiva", respS: "lorem", tipoRP: "Negativa", respP: "lorem"},
   ];
   

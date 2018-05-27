@@ -19,5 +19,14 @@ export class RolesService {
   getRoles(){
     return this.http.get(API_URL+this.url_roles);
   }
+  getRol(id){
+    return this.http.get(API_URL+this.url_roles+"/"+id);
+  }
+  putRol(id,rol){
+    return this.http.put(API_URL+this.url_roles+"/"+id,rol);
+  }
+  postRol(rol){
+    return this.http.post(API_URL+this.url_roles,rol);
+  }
 
 }

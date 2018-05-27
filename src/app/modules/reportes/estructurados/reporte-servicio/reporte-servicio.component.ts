@@ -1,3 +1,7 @@
+import { CategoriasServicioService } from './../../../../provider/categorias-servicio/categorias-servicio.service';
+import { CategoriaService } from './../../../../provider/categoria/categoria.service';
+import { error } from 'util';
+import { TiposServiciosService } from './../../../../provider/tipos-servicios/tipos-servicios.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 
@@ -7,29 +11,15 @@ import { MatTableDataSource, MatSort } from '@angular/material';
   styleUrls: ['./reporte-servicio.component.scss']
 })
 export class ReporteServicioComponent implements OnInit {
-  filtroServCatSelec = 'todos';
+  filtroServCatSelec = 0;
   filtroServTipoPSelec = 'todos';
   filtroServTipoMSelec = 'todos';
   filtroServTipoTodosSelec = 'todos';
-  filtroServCat = [
-    {value: 'peluqueria', viewValue: 'Peluquería'},
-    {value: 'maquillaje', viewValue: 'Maquillaje'},
-    {value: 'todos', viewValue: 'Todos'},
-  ];
-
-  filtroServTipoP = [
-    {value: 'corte', viewValue: 'Corte de Cabello'},
-    {value: 'secado', viewValue: 'Secado de Cabello'},
-    {value: 'tinte', viewValue: 'Tinte'},
-    {value: 'todos', viewValue: 'Todos'},
-  ];
-
-
-  filtroServTipoM = [
-    {value: 'dia', viewValue: 'Maquillaje de día'},
-    {value: 'noche', viewValue: 'Maquillaje de noche'},
-    {value: 'todos', viewValue: 'Todos'},
-  ];
+  filtroServCat: any;
+  filtroServTipoP: Array<{}>;
+  filtroServTipoM: Array<{}>;
+  filtroTipo: any;
+  tipoServicios: any;
 
 
   filtroServTipoTodos = [
@@ -41,7 +31,7 @@ export class ReporteServicioComponent implements OnInit {
     {value: 'todos', viewValue: 'Todos'},
   ];
 
-  displayedColumns = ['servicio', 'tipo', 'categoria', 'cantidad'];
+  displayedColumns = ['servicio', 'tipo', 'categoria', 'cantidad', 'rec', 'inc', 'calif'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(filterValue: string) {
@@ -59,9 +49,54 @@ export class ReporteServicioComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
  
-  constructor() { }
+  constructor(
+    public categoria: CategoriasServicioService,
+    public tipoServ: TiposServiciosService
+  ) { }
 
   ngOnInit() {
+    this.getCategorias()
+    this.getTipoServ()
+  }
+
+  getTipoServ(){
+    this.tipoServ.getTipoServicio().subscribe(
+      (data) => {
+        this.tipoServicios = data ['data']
+        console.log(this.tipoServicios)
+        for(let i=0; i<this.tipoServicios.length; i++){
+          if(this.tipoServicios[i].id_categoria_servicio === 1){
+            this.filtroServTipoP.push(this.tipoServicios[i])
+          }else{
+            this.filtroServTipoM.push(this.tipoServicios[i])
+          }
+        }        
+      }, (error) => {
+        console.log(error)
+      } ) 
+  }
+
+  getFiltroTipo(){
+    if(this.filtroServCatSelec === 1){
+      this.filtroTipo = this.filtroServTipoP
+      console.log(this.filtroTipo)
+    }else{
+      this.filtroTipo = this.filtroServTipoM
+      console.log(this.filtroTipo)
+    }
+  }
+
+
+  getCategorias(){
+    this.categoria.getCategorias().subscribe(
+    (data) => {
+      this.filtroServCat = data ['data']
+      console.log(this.filtroServCat)
+    }, (error) => {
+      console.log(error)
+    }
+
+    )
   }
 
 }
@@ -70,10 +105,13 @@ export interface Element {
   tipo: string;
   categoria: string;
   cantidad: number;
+  rec: number;
+  calif: number;
+  inc: number;
 }
 
 const ELEMENT_DATA: Element[] = [
-  {servicio: 'Corte Bob', tipo: "Corte", categoria: "Peluquería", cantidad: 20},
-  {servicio: 'Maquillaje de día con técnica Strobing', tipo: "Maquillaje de día", categoria: "Maquillaje", cantidad: 15},
-  {servicio: 'Alisado con Queratina', tipo: "alisado", categoria: "Peluquería", cantidad: 10},
+  {servicio: 'Corte Bob', tipo: "Corte", categoria: "Peluquería", cantidad: 20, rec: 3, inc: 1, calif: 5 },
+  {servicio: 'Maquillaje de día con técnica Strobing', tipo: "Maquillaje de día", categoria: "Maquillaje", cantidad: 15, rec: 3, inc: 1, calif: 5},
+  {servicio: 'Alisado con Queratina', tipo: "alisado", categoria: "Peluquería", cantidad: 10, rec: 3, inc: 1, calif: 5},
 ];

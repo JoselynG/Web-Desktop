@@ -41,43 +41,43 @@
     </div>
     <div class="panel">
         <mat-accordion>
-            <mat-expansion-panel *ngFor="let dato of datos">
+            <mat-expansion-panel *ngFor="let item of rec">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="title">
-                        {{dato.nombre}}
+                        {{item.nombre}}
                     </mat-panel-title>
                     <mat-panel-description class="order">
-                        #{{dato.orden}}
+                        #{{item.id_orden_servicio}}
                     </mat-panel-description>
                     <mat-panel-description class="date">
-                        {{dato.fecha | date:'d MMMM, y'}}
+                        {{item.registro_reclamo}}
                     </mat-panel-description>
                     <mat-panel-description class="type">
-                        {{dato.tipoR}}
+                        {{item.tipo_servicio}}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="desc">
                     <br>
                     <h3>Descripcion del reclamo:</h3><br>
-                    <p>{{dato.descripcion}}</p><br>
+                    <p>{{item.descripcion}}</p><br>
                 </div>
                 <mat-divider></mat-divider>
                 <div class="garantia">
                     <br>
                     <h3>Garantia del servicio.</h3><br>
                     <dl>
-                        <div *ngFor="let servicio of dato.servicios">
-                            <dt>- {{servicio.nombre}}</dt>
-                            <dd>{{servicio.descripcion}}</dd><br>
+                        <div>
+                            <dt>- {{item.servicio_reclamado}}</dt>
+                            
                         </div>
                     </dl>
                     <div class="gar">
                         <span>Fecha de vencimiento de garantia: </span>
-                        <span class="venc" [style.color]="((hoy | date) > (dato.fechaV | date)) ? 'red':'green'">
-                            {{dato.fechaV | date:'dd/MM/yyyy'}}</span>
+                        <span class="venc" [style.color]="((hoy | date) > (item.fecha_creacion | date)) ? 'red':'green'">
+                            {{item.garantia }}  dias </span>
                     </div>
                 </div>
-                <button mat-raised-button color="accent" (click)="openDialog()" class="btn">Dar Respuesta</button>
+                <button mat-raised-button color="accent" (click)="openDialog(item.id)" class="btn">Dar Respuesta</button>
             </mat-expansion-panel>
         </mat-accordion>
     </div>

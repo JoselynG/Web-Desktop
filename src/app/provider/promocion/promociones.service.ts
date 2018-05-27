@@ -21,6 +21,19 @@ getPromociones() {
   return this.http.get(API_URL + this.url_listado_promociones);
 }
 
+getPromocionEspec(id) {
 
+  return this.http.get(API_URL + this.url_listado_promociones, id);
+}
+
+addPromociones(promocion) {
+
+  return this.http.post(API_URL + this.url_listado_promociones, promocion );
+}
+
+
+putPromocion(promoId, promo) {
+  return this.http.put(API_URL + this.url_listado_promociones + '/' + promoId, promo);
+}
 
 }

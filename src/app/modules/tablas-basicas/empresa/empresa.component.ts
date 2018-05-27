@@ -14,7 +14,7 @@ filtro = [
   {value: 'Barquisimeto', viewValue: 'Barquisimeto'},
   {value: 'Merida', viewValue: 'Merida'},
   {value: 'trujillo', viewValue: 'trujillo'},
-  
+
 ];
   constructor(
     public dialog: MatDialog,

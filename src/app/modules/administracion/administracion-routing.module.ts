@@ -23,7 +23,7 @@ const routes: Routes = [
     component: SeguridadFuncionalComponent
   },
   {
-    path: 'seguridadfuncional/asignarfunciones',
+    path: 'seguridadfuncional/asignarfunciones/:id',
     component: AsignarFuncionesComponent
   },
   {
@@ -36,12 +36,8 @@ const routes: Routes = [
   },
   {
     path: 'nuevoConsejo',
-    component: CrearConsejoComponent
-  },
-  {
-    path: 'nuevoConsejo/Pasos',
     component: PasosComponent
-  }
+  },
 ];
 
 @NgModule({

@@ -21,30 +21,39 @@
                 </mat-select>
             </mat-form-field>
         </div>-->
+    <div *ngIf="pendientes">
+        <div class="citas" *ngFor="let detalle of solicitud">
+            <mat-card class="detalle">
+                <div class="contenido">
+                    <div class="client">
+                        <div class="name">
+                            <span class="bold">{{detalle.nombre}} {{detalle.apellido}}</span><span> hizo una solicitud para:</span>
+                        </div>
+                    </div>
+                    <div class="det">
+                        <h4>Servicios: <span *ngFor="let serv of detalle.servicios_solicitados">{{serv.tipo_servicio}} {{serv.nombre_servicio}}, </span> </h4>
+                        <h4>Empleado:
+                            <span class="warn" *ngIf="detalle.empleado == null"> Sin seleccionar</span>
+                            <span class="norm" *ngFor="let empleado of detalle.empleadoBusqueda"> {{empleado.nombre}} {{empleado.apellido}}, </span>
 
-    <div class="citas" *ngFor="let detalle of detalles">
-        <mat-card class="detalle">
-            <div class="contenido">
-                <div class="client">
-                    <div class="img-radius">
-                        <img src="/assets/img/perfil.jpg" class="img-perfil" alt="perfil">
+                            <!--*ngIf="detalle.empleado != null" -->
+
+                        </h4>
                     </div>
-                    <div class="name">
-                        <span class="bold">{{detalle.clientName}}</span><span> hizo una solicitud para:</span>
+                    <div class="btn" (click)="openDialogResponder(detalle)">
+                        <button mat-button class="sec">DAR RESPUESTA</button>
                     </div>
                 </div>
-                <div class="det">
-                    <h4>Servicios: {{detalle.servicios}}</h4>
-                    <h4>Empleado: {{detalle.empleado}}</h4>
-                </div>
-                <div class="btn" (click)="openDialogResponder()">
-                    <button mat-button class="sec">DAR RESPUESTA</button>
-                </div>
-            </div>
+                <!--
             <div class="codigo">
                 <mat-icon *ngIf="detalle.icon">{{detalle.iconName}}</mat-icon>
                 <h4>{{detalle.codigo}}</h4>
-            </div>
-        </mat-card>
+            </div>-->
+            </mat-card>
+        </div>
+    </div>
+    
+    <div *ngIf="!pendientes">
+        <h3>No hay solicitudes pendientes por responder</h3>
     </div>
 </div>

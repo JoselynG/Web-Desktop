@@ -66,7 +66,8 @@ export class UserService {
 
   logout(){
    localStorage.removeItem('auth_token');
-   localStorage.removeItem('id');
+   localStorage.removeItem('id_user');/*Yanior:: "Edité esto porque vi que tenias tipeado 'id' en lugar de 'id_user'" 
+        localStorage.removeItem('id');*/
   }
 
 }

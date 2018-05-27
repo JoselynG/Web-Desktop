@@ -25,17 +25,30 @@
             </div>
 
             <mat-form-field class="textarea">
-                <textarea matInput placeholder="Descripción del negocio" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">Peluquería Luque es un salón de belleza especializado en tratamiento de peluquería y estética, confía en nuestros expertos</textarea>
+                <textarea matInput placeholder="Descripción del negocio" [(ngModel)]="datosModificarDesc.descripcion" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">{{datosMostrarDesc.descripcion}}</textarea>
             </mat-form-field>
             <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Misión ">
+                    <textarea matInput placeholder="Mision" [(ngModel)]="datosModificarMision.descripcion"matTextareaAutosize matAutosizeMinRows="1"matAutosizeMaxRows="1" >{{datosMostrarMision.descripcion}}</textarea>
             </mat-form-field>
             <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Visión">
+                    <textarea matInput placeholder="Vision" [(ngModel)]="datosModificarVision.descripcion"matTextareaAutosize matAutosizeMinRows="1"matAutosizeMaxRows="1" >{{datosMostrarVision.descripcion}}</textarea>
+             </mat-form-field>
+            
+            <mat-form-field class="example-full-width inputs">
+                 <textarea matInput placeholder="Objetivo general" [(ngModel)]="datosModificarObjetivoGe.descripcion"matTextareaAutosize matAutosizeMinRows="1"matAutosizeMaxRows="1" >{{datosMostrarObjetivoG.descripcion}}</textarea>
             </mat-form-field>
-            <div class="btnObje">
-                <button mat-raised-button color="accent" (click)="openDialog()">Agregar Objetivos </button>
-            </div>
+            <mat-form-field class="example-full-width inputs">
+                    <textarea matInput placeholder="Objetivo especifico" [(ngModel)]="datosModificarObjetivoE1.descripcion"matTextareaAutosize matAutosizeMinRows="1"matAutosizeMaxRows="1" >{{datosMostrarObjetivoE1.descripcion}}</textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width inputs">
+                    <textarea matInput placeholder="Objetivo especifico" [(ngModel)]="datosModificarObjetivoE2.descripcion"matTextareaAutosize matAutosizeMinRows="1"matAutosizeMaxRows="1" >{{datosMostrarObjetivoE2.descripcion}}</textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width inputs">
+                    
+                <textarea matInput placeholder="Objetivo especifico" [(ngModel)]="datosModificarObjetivoE3.descripcion"matTextareaAutosize matAutosizeMinRows="1"matAutosizeMaxRows="1" >{{datosMostrarObjetivoE3.descripcion}}</textarea>
+            </mat-form-field>
+        
+
             <mat-divider></mat-divider><br><br>
             <div>
                 <p> Datos de Contacto:</p><br>
@@ -59,15 +72,19 @@
             </div>
 
             <mat-form-field class="textarea">
-                <textarea matInput placeholder="Dirección" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">Urb. Los Crepúsculos</textarea>
-            </mat-form-field>
+                <textarea matInput placeholder="Dirección" [(ngModel)]="datosModificarDirec.descripcion" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="1">{{datosMostrarDirec.descripcion}}</textarea>
+            </mat-form-field> 
 
             <mat-form-field class="example-full-width inputs">
-                <input type="email" matInput placeholder="Correo" value="luque@gmail.com">
+                <input type="email" matInput placeholder="Correo" [(ngModel)]="datosModificarCorreo.descripcion" [value]="datosMostrarCorreo.descripcion">
 
             </mat-form-field>
             <mat-form-field class="example-full-width inputs">
-                <input type="text" matInput placeholder="Teléfono" value="0251">
+                <input type="text" matInput placeholder="Teléfono" [(ngModel)]="datosModificarTelefono.descripcion" [value]="datosMostrarTelefonoc.descripcion">
+
+            </mat-form-field>
+            <mat-form-field class="example-full-width inputs">
+                <input type="text" matInput placeholder="twitter" [(ngModel)]="datosModificarTwttir.url" [value]="datosMostrarTwttir.url">
 
             </mat-form-field>
 

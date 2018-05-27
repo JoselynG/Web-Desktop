@@ -22,4 +22,9 @@ getTipoParametros(){
   return this.http.get(API_URL+this.url_tipoP);
 }
 
+  postTipoParametros(tipoParametro) {
+
+    return this.http.post(API_URL + 'agregar_tipo_parametro', tipoParametro);
+
+  }
 }
