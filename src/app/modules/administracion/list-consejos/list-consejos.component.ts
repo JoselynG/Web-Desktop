@@ -10,15 +10,16 @@ export class ListConsejosComponent implements OnInit {
 
   pro: any;
   constructor(public servi_servicio: ConsejosService )  {
-    this.getServicios();
+    this.getConsejo();
 }
 
   ngOnInit() {
-    this.getServicios();
+    
+    this.getConsejo();
   }
 
-  getServicios() {
-    this.servi_servicio.getServicios().subscribe((resp) => {
+  getConsejo() {
+    this.servi_servicio.getConsejo().subscribe((resp) => {
       this.pro = resp['data'];
       console.log(this.pro);
     }, (error) => {

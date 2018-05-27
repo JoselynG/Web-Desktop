@@ -107,7 +107,6 @@ export class RolFuncionService/* implements OnInit*/{
     },error=>{console.log(error);});
   }
 
-
  
 
 }
