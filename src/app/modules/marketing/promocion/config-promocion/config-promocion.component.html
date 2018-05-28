@@ -16,7 +16,7 @@
                         </mat-form-field>
                         <mat-form-field class="valor inputs">
                             <mat-select name="resp" placeholder="Servicio a Promocionar" [(ngModel)]="id_servicio">
-                                <mat-option name="pp" *ngFor="let filtro of  servicio " [value]="filtro.id">
+                                <mat-option name="pp" *ngFor="let filtro of  servicios " [value]="filtro.id" (click)="obtenerMonto(filtro.id)" >
                                     {{ filtro.nombre }}
                                 </mat-option>
                             </mat-select>

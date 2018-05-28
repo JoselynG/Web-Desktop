@@ -1,3 +1,7 @@
+import { GestionConsejoService } from './provider/gestion-consejo/gestion-consejo.service';
+
+import { RedSocialService } from './provider/red-social/red-social.service';
+import { OrdenServicioService } from './provider/orden-servicio/orden-servicio.service';
 import { GestionDetalleServicioService } from './provider/gestion-detalle-servicio/gestion-detalle-servicio.service';
 import { VistaOrdenCitaService } from './provider/vista-orden-cita/vista-orden-cita.service';
 import { RazonIncidenciaService } from './provider/razon-incidencia/razon-incidencia.service';
@@ -60,8 +64,6 @@ import { UserService } from './provider/user/user.service';
 import { ValoresParametrosService } from './provider/valores-parametros/valores-parametros.service';
 import { ParametrosService } from './provider/parametros/parametros.service';
 import { TiposParametrosService } from './provider/tipos-parametros/tipos-parametros.service';
-import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
-
 import { RolesService } from './provider/roles/roles.service';
 import { PerfilService } from './provider/perfil/perfil.service';
 import { MensajeExitoComponent } from './mensajes/mensaje-exito/mensaje-exito.component';
@@ -78,7 +80,10 @@ import { EspecialidadService } from './provider/especialidad/especialidad.servic
 import { CategoriaParametroService } from './provider/categoria-parametro/categoria-parametro.service';
 import { TipoRespPresupuestoService } from './provider/tipo-resp-presupuesto/tipo-resp-presupuesto.service';
 import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentario.service';
+import { FuncionesService } from './provider/funciones/funciones.service';
+import { RolFuncionService } from './provider/rol-funcion/rol-funcion.service';
 import { GestionServicioService } from './provider/gestion-servicio/gestion-servicio.service';
+import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
 
 
 @NgModule({
@@ -160,12 +165,17 @@ import { GestionServicioService } from './provider/gestion-servicio/gestion-serv
     TipoRepuestaComentarioService,
     VComentariosService,
     VistaReclamoService,
+    FuncionesService,
+    RolFuncionService, 
     PresupuestoService,
     VistaAgendasService,
     RazonIncidenciaService,
     VistaOrdenCitaService,
     GestionServicioService,
-    GestionDetalleServicioService
+    GestionDetalleServicioService,
+    OrdenServicioService,
+    RedSocialService,
+    GestionConsejoService
     
   ],
     

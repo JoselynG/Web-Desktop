@@ -8,6 +8,7 @@ import { ContactoNegocioService } from '../../../../provider/contacto-negocio/co
 import { ObjetivoService } from '../../../../provider/objetivo/objetivo.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MensajeExitoComponent } from '../../../../mensajes/mensaje-exito/mensaje-exito.component';
+import { RedSocialService } from '../../../../provider/red-social/red-social.service';
 
 @Component({
   selector: 'app-datos-negocio',
@@ -124,6 +125,15 @@ export class DatosNegocioComponent implements OnInit {
     estatus: string;
     fecha_creacion: string;
   };
+  datosMostrarTwttir: {
+    id: number;
+    id_negocio: number;
+    nombre: string;
+    url: String;
+    visible: boolean;
+    estatus: string;
+    fecha_creacion: string; 
+  };
 
 
   datosModificar: {
@@ -237,10 +247,22 @@ export class DatosNegocioComponent implements OnInit {
     estatus: string;
     fecha_creacion: string;  
   }
+  datosModificarTwttir: {
+    id: number;
+    id_negocio: number;
+    nombre: string;
+    url: String;
+    visible: boolean;
+    estatus: string;
+    fecha_creacion: string; 
+  };
  
   desc: any;
   contacto:any;
   objetivo: any;
+  redS:any;
+
+  
 //selec crear servicio
 filtroSelec = '';
 filtro = [
@@ -261,6 +283,7 @@ estado = [
     public descripc: DescripcionNegocioService,
     public contac: ContactoNegocioService,
     public obj: ObjetivoService,
+    public red: RedSocialService,
     private route: ActivatedRoute,
     private router: Router,
     
@@ -483,6 +506,26 @@ estado = [
     estatus: "",
     fecha_creacion: "",
   }
+ this.datosModificarTwttir = {
+    id: 0,
+    id_negocio: 0,
+    nombre: "",
+    url: "",
+    visible: true,
+    estatus: "",
+    fecha_creacion: "", 
+  }
+
+  
+ this.datosMostrarTwttir = {
+  id: 0,
+  id_negocio: 0,
+  nombre: "",
+  url: "",
+  visible: true,
+  estatus: "",
+  fecha_creacion: "", 
+}
 
   }
 
@@ -491,6 +534,7 @@ estado = [
     this.getDescripcion();
     this.getContacto();
     this.getObjetivo();
+    this.getRedS();
   }
   openDialog() {
     const dialogRef = this.dialog.open(CrearObjetivosComponent, {
@@ -511,6 +555,20 @@ estado = [
         this.datosModificar = this.datosMostrar;
         console.log(this.empresa);
         console.log(this.datosMostrar);
+      },(error) =>{
+        console.log(error);
+      }
+    )
+  }
+  getRedS(){
+    console.log('OK');
+    this.red.getRedS().subscribe(
+      (data)=>{
+        this.red = data['data'];
+        this.datosMostrarTwttir = this.red[0];
+        this.datosModificarTwttir = this.datosMostrarTwttir;
+        console.log(this.red)
+  
       },(error) =>{
         console.log(error);
       }
@@ -673,6 +731,13 @@ estado = [
     )
     
     this.obj.updateNegocio(this.datosMostrarObjetivoE3.id, this.datosModificarObjetivoE3).subscribe(
+      (data) => {
+                
+      },(error) =>{
+        console.log(error);
+      } 
+    )
+    this.red.updateRedS(this.datosMostrarTwttir.id, this.datosModificarTwttir).subscribe(
       (data) => {
                 
       },(error) =>{

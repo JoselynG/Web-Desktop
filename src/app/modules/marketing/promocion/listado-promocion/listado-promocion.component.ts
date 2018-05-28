@@ -49,6 +49,7 @@ export class ListadoPromocionComponent implements OnInit {
 getPromociones() {
 this.promo_servicio.getPromociones().subscribe((resp) => {
   this.pro = resp['data'];
+  
   console.log(this.pro);
 }, (error) => {
     console.log(error);

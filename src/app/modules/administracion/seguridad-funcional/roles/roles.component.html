@@ -3,7 +3,7 @@
 </div>
 <div class="boton btnrole">
     <span class="span1" matTooltip="Listado"><button class="right" mat-raised-button color="accent" title="Nuevo rol"
-    (click)="openDialog()"><mat-icon>add</mat-icon> Agregar Rol</button></span>
+    (click)="openDialog(0,null,'crear')"><mat-icon>add</mat-icon> Agregar Rol</button></span>
 </div>
 
 <h4>
@@ -11,12 +11,12 @@
 </h4>
 <div class="container">
 
-  <mat-card style="width: 400px;" *ngFor="let rol of roles">
+  <mat-card style="width: 400px; position: relative;" *ngFor="let rol of roles">
     <div style="display: flex;">
       <strong style="flex: 1;">{{rol.nombre}}</strong>
-      <button mat-raised-button style="flex: 0;">Editar</button>
-    </div><br>
-    <p>{{rol.descripcion}}</p>
+      <button mat-raised-button style="flex: 0;" (click)="openDialog(rol.id,rol.nombre,'editar')">Editar</button>
+    </div>
+    <label *ngIf="rol.nombre.toLowerCase()!='administrador' && rol.nombre.toLowerCase()!='admin' && rol.nombre.toLowerCase()!='gerente'" id="x-eliminar" (click)="eliminarRol(rol)">x</label>
   </mat-card>
 
 </div>
