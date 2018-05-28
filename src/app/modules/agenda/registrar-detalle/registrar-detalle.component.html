@@ -17,16 +17,18 @@
                 </mat-form-field>
                 <mat-form-field class="valor inputs" *ngIf="servP">
                     <mat-select placeholder="Servicios de peluquería " [(ngModel)]="servicioPSeleccionados" multiple>
-                        <mat-select-trigger>
+                        <!--<mat-select-trigger>
                             {{servicioPSeleccionados ? servicioPSeleccionados[0] : ''}}
                             <span *ngIf="servicioPSeleccionados.length > 1">
                                         (+{{servicioPSeleccionados.length - 1}} otros)
                                     </span>
-                        </mat-select-trigger>
-                        <mat-option color="accent" *ngFor="let serv of serviciosP" [value]="serv.nombre_servicio">{{serv.tipo_servicio}} {{serv.nombre_servicio}}</mat-option>
+                        </mat-select-trigger>-->
+                        <mat-option color="accent" *ngFor="let serv of serviciosP, let i = index" [(ngModel)]="serviciosP[i].select" [value]="serv.nombre_servicio">{{serv.tipo_servicio}} {{serv.nombre_servicio}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-
+                <div class="">
+                    <button mat-button class="btn" (click)="getServSelec()">AGREGAR SERVICIO</button>
+                </div>
                 <mat-form-field class="demo-chip-list inputs">
                     <mat-chip-list #chipList>
                         <mat-chip *ngFor="let ins of servicioPSeleccionados" [selectable]="selectable" [removable]="removable">

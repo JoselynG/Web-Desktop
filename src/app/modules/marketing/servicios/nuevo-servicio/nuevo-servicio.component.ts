@@ -28,7 +28,8 @@ export class NuevoServicioComponent implements OnInit {
     imagen: any;
     estatus: String;
     fecha_creacion: Date;
-    
+    visible: boolean
+
     valor_parametro: any[];
     };
   inputEl: any;
@@ -53,7 +54,7 @@ export class NuevoServicioComponent implements OnInit {
     public valor_para_ser: ValoresParametrosService, public categoria_servicio: CategoriasServicioService, 
     public servici: ServiciosService , public gestion: GestionServicioService, private route: ActivatedRoute,
     private router: Router, ) {
-  
+      
 
     }
 
@@ -73,6 +74,7 @@ export class NuevoServicioComponent implements OnInit {
       imagen:  '',
       estatus: '',
       fecha_creacion: new Date(),
+      visible: true,
      // valor_parametro: [{id_promocion: 0, id_valor_parametro: 0}],
      valor_parametro: []
     };
@@ -218,7 +220,7 @@ getCategorias() {
       let dialogRef = this.dialog.open(MensajeExitoComponent, {
         width: '300px',//sets the width
         height: '140px', 
-        data: { msj: 'Respuesta enviada exitosamente' }//send this class's attributes to the modal
+        data: { msj: 'Servicio registrado exitosamente' }//send this class's attributes to the modal
       });
     
       dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
