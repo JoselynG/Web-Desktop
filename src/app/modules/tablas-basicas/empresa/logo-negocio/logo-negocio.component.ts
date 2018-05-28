@@ -31,7 +31,7 @@ export class LogoNegocioComponent implements OnInit {
         console.log(error);
       });
     }
-
+/*
     updateNegocio() {
       //agregar imagen
       this.inputEl = document.getElementById('#fileInput');
@@ -47,7 +47,7 @@ export class LogoNegocioComponent implements OnInit {
   }
   
       
-      
+  */    
     
    
 

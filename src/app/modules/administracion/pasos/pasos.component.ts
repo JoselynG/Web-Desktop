@@ -26,7 +26,7 @@ export class PasosComponent implements OnInit {
     imagen: any;
     estatus: String;
     fecha_creacion: Date;
-    
+    visible: boolean,
     valor_parametro: any[];
     };
   inputEl: any;
@@ -69,6 +69,7 @@ export class PasosComponent implements OnInit {
        autor: '',
       imagen:  '',
       estatus: '',
+      visible: true,
       fecha_creacion: new Date(),
      // valor_parametro: [{id_promocion: 0, id_valor_parametro: 0}],
      valor_parametro: []
@@ -214,7 +215,7 @@ getCategorias() {
       let dialogRef = this.dialog.open(MensajeExitoComponent, {
         width: '300px',//sets the width
         height: '140px', 
-        data: { msj: 'Respuesta enviada exitosamente' }//send this class's attributes to the modal
+        data: { msj: 'Consejo creado exitosamente' }//send this class's attributes to the modal
       });
     
       dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
