@@ -15,7 +15,7 @@
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input id="usucontrasenia" ngModel #usucontrasenia="ngModel" name="usucontrasenia"
+                <input id="usucontrasenia" ngModel #usucontrasenia="ngModel" name="usucontrasenia" (change)="cambio=true"
                  matInput required type="password" placeholder="Contraseña" [(ngModel)]="usuario.contrasenia">
                  <mat-error *ngIf="usucontrasenia.invalid && usucontrasenia.errors.required">
                     Por favor, tipee la contraseña del usuario.
