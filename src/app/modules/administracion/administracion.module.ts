@@ -14,7 +14,6 @@ import { AsignarFuncionesComponent } from './seguridad-funcional/asignar-funcion
 import { RolesComponent } from './seguridad-funcional/roles/roles.component';
 import { NuevoRolComponent } from './seguridad-funcional/roles/nuevo-rol/nuevo-rol.component';
 import { ListConsejosComponent } from './list-consejos/list-consejos.component';
-import { CrearConsejoComponent } from './crear-consejo/crear-consejo.component';
 import { PasosComponent } from './pasos/pasos.component';
 import { DepuracionesComponent } from './base-datos/depuraciones/depuraciones.component';
 import { HistoricosComponent } from './base-datos/historicos/historicos.component';
@@ -41,7 +40,7 @@ import { ImportarComponent } from './base-datos/importar/importar.component';
     NuevoRolComponent,
     NuevoUsuarioComponent,
     ListConsejosComponent,
-    CrearConsejoComponent,
+    //CrearConsejoComponent,
     AuditoriaComponent,
     DepuracionesComponent,
     HistoricosComponent,

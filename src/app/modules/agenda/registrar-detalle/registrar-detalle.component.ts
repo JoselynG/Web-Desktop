@@ -7,6 +7,7 @@ import {ENTER, COMMA} from '@angular/cdk/keycodes';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ServiciosService } from '../../../provider/servicios/servicios.service';
 import { TiposServiciosService } from '../../../provider/tipos-servicios/tipos-servicios.service';
+import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
 @Component({
   selector: 'app-registrar-detalle',
   templateUrl: './registrar-detalle.component.html',
@@ -113,7 +114,8 @@ export class RegistrarDetalleComponent implements OnInit {
     public serviciosServ: ServiciosService,
     public tipoService: TiposServiciosService,
     public gestion: GestionDetalleServicioService,
-    public ordenS: OrdenServicioService
+    public ordenS: OrdenServicioService,
+    
     ) { 
       this.serviciosM = []
       this.serviciosP = []
@@ -154,11 +156,11 @@ export class RegistrarDetalleComponent implements OnInit {
 
       this.gestion.postDetalle(this.datosGuardar).subscribe(
         (data) => {
-          console.log('done')
+          
           this.estado.estado = "R"
             this.ordenS.putOrden(this.orden.citas[0].id_orden_servicio, this.estado).subscribe(
               (res) => {
-                console.log('actualizado')
+                this.mostrarMensajeExito()
               }, (error) => {
                 console.log(error)
               }
@@ -171,6 +173,21 @@ export class RegistrarDetalleComponent implements OnInit {
       )
       
     }
+    mostrarMensajeExito(): void {//opens the modal
+      let dialogRef = this.dialog.open(MensajeExitoComponent, {
+        width: '300px',//sets the width
+        height: '140px', 
+        data: { msj: 'Registro realizado exitosamente' }//send this class's attributes to the modal
+      });
+    
+      dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+        console.log('Modal closed!');
+        this.router.navigate(['solicitudes']);
+        //this.router.onSameUrlNavigation
+        
+      });  
+    }
+    
     getOrdenInfo(){
       ///
       this.route.paramMap.subscribe((params: ParamMap) => {

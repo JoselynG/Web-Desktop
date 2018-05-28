@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import {ValoresParametrosService} from '../../../../provider/valores-parametros/valores-parametros.service';
@@ -14,21 +14,21 @@ import { variable } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./config-promocion.component.scss']
 })
 export class ConfigPromocionComponent implements OnInit {
-  promocion: {
-    id_servicio: number;
-    nombre: String;
-    descripcion: String;
-    porcentaje_descuento: number;
+ // promocion: {
+    id_servicio: Blob;
+    nombre: Blob;
+    descripcion: Blob;
+    porcentaje_descuento: Blob;
     precio_promocion: number;
-    imagen: string;
-    fecha_inicio: Date;
+    imagen: String;
+    fecha_inicio: any;
     fecha_fin: Date;
     estatus: String;
     fecha_creacion: Date;
-    //valor_parametro: Array<{id_promocion: number , id_valor_parametro: number}>;
-    valor_parametro: number[];
-    };
+    valor_parametro: any[];
+   //
 
+// Carga de Parametros
   [x: string]: any;
   consejo: Array<{id: number, nombre: string, id_tipo_parametro: number, fecha_creacion: Date }> = [];
   datoBasico: Array<{id: number, nombre: string, id_tipo_parametro: number, fecha_creacion: Date }> = [];
@@ -41,11 +41,14 @@ export class ConfigPromocionComponent implements OnInit {
   //arreglo de Servicio y Categoria
   pro: any;
   servicio: any;
-  prueba: number;
-  constructor(public dialog: MatDialog, public parametroServ: ParametrosService, public tipo_para_serv: TiposParametrosService,
+  input: HTMLInputElement;
+  form = new FormData();
+  cantidad: number;
+   i: number;
+    constructor(public dialog: MatDialog, public parametroServ: ParametrosService, public tipo_para_serv: TiposParametrosService,
     public valor_para_ser: ValoresParametrosService, public categoria_servicio: CategoriasServicioService, 
-    public servici: ServiciosService , public gestion: GestionPromocionService ) {
-  
+    public servici: ServiciosService , public gestion: GestionPromocionService, private el: ElementRef) {
+      this.valor_parametro = [];
 
     }
 
@@ -55,9 +58,9 @@ export class ConfigPromocionComponent implements OnInit {
     this.getParametros();
     this.getServicios();
     this.getCategorias();
-   
+    
     this.promocion = {
-      id_servicio: 0,
+      id_servicio: 0 ,
       nombre: '',
       descripcion: '',
       porcentaje_descuento: 0,
@@ -70,7 +73,7 @@ export class ConfigPromocionComponent implements OnInit {
      // valor_parametro: [{id_promocion: 0, id_valor_parametro: 0}],
      valor_parametro: []
     };
-
+   
       }
 
   cargarParametro(id) {
@@ -107,7 +110,7 @@ export class ConfigPromocionComponent implements OnInit {
   Guardar() {
   }
 
-//Metodos para Cargar datos (Todos)
+// Metodos para Cargar datos (Todos)
 
 getParametros() {
   this.parametroServ.getParametros().subscribe((resp) => {
@@ -158,20 +161,32 @@ getCategorias() {
       });
     }
 
-
     addPromocionyValores() {
-      console.log(this.promocion);
-      this.promocion.estatus = 'A';
-      // Para imprimir el arreglo que tiene los valores seleccionados si lo hace
-      console.log(this.datoBasico);
+     this.input = this.el.nativeElement.querySelector('#fileInput');
+     this.cantidad = this.input.files.length;
+     if ( this.cantidad > 0) {
+     this.form.append('archivo', this.input.files.item(0));
+     this.form.append('id_servicio', this.id_servicio);
+     this.form.append('descripcion', this.descripcion);
+     this.form.append('nombre', this.nombre);
+     //this.form.append('fecha_inicio', this.fecha_inicio);
+     this.form.append('porcentaje_descuento', this.porcentaje_descuento);
+    }
+     console.log(this.datoBasico);
       let k = 0;
-      // carga el arreglo del objeto con los valores seleccionados de la vista
       for (let index = 0; index < this.datoBasico.length; index++) {
-        this.promocion.valor_parametro[k] = this.datoBasico[index].id;
-        
-       k++;
+        this.valor_parametro[k] = this.datoBasico[index].id;
+       
+         k++;
       }
-      this.gestion.addPromociones(this.promocion).subscribe((resp) => {
+      
+      for ( this.i = 0; this.i < this.valor_parametro.length; this.i++) {
+      this.form.append('valor_parametro[]', this.valor_parametro[this.i]);
+     }
+
+      console.log(this.valor_parametro);
+      console.log(this.form);
+      this.gestion.addPromociones(this.form).subscribe((resp) => {
         this.msj = resp['data'].message;
         console.log(this.msj);
         alert(this.msj);
