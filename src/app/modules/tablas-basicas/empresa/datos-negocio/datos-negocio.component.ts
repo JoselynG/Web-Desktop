@@ -737,13 +737,14 @@ estado = [
         console.log(error);
       } 
     )
-    this.red.updateRedS(this.datosMostrarTwttir.id, this.datosModificarTwttir).subscribe(
+   /*
+    this.red.updateRedS(1, this.datosModificarTwttir).subscribe(
       (data) => {
                 
       },(error) =>{
         console.log(error);
       } 
-    )
+    )*/
     this.mostrarMensajeExito()
   }
   mostrarMensajeExito(): void {//opens the modal

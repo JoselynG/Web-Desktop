@@ -7,32 +7,32 @@
                     <div class="col1">
 
                         <mat-form-field class="valor inputs">
-                        <mat-form-field class="valor inputs">
-                            <mat-select name="resp" [(ngModel)]="valor" placeholder="Categoria de Servicios">
-                                <mat-option name="pp" *ngFor="let filtro of pro " [value]="filtro.nombre">
-                                    {{ filtro.nombre }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field class="valor inputs">
-                            <mat-select name="resp" placeholder="Servicio a Promocionar" [(ngModel)]="id_servicio">
-                                <mat-option name="pp" *ngFor="let filtro of  servicios " [value]="filtro.id" (click)="obtenerMonto(filtro.id)" >
-                                    {{ filtro.nombre }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field class="inputs">
-                            <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio de la promoción" [(ngModel)]="fecha_inicio">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
+                            <mat-form-field class="valor inputs">
+                                <mat-select name="resp" [(ngModel)]="valor" placeholder="Categoria de Servicios">
+                                    <mat-option name="pp" *ngFor="let filtro of pro " [value]="filtro.nombre">
+                                        {{ filtro.nombre }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="valor inputs">
+                                <mat-select name="resp" placeholder="Servicio a Promocionar" [(ngModel)]="id_servicio">
+                                    <mat-option name="pp" *ngFor="let filtro of  servicios " [value]="filtro.id" (click)="obtenerMonto(filtro.id)">
+                                        {{ filtro.nombre }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="inputs">
+                                <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio de la promoción" [(ngModel)]="fecha_inicio">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
 
-                        <mat-form-field class="inputs">
-                            <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de finalización de la promoción" [(ngModel)]="fecha_fin">
-                            <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
-                            <mat-datepicker #pickerEnd></mat-datepicker>
+                            <mat-form-field class="inputs">
+                                <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de finalización de la promoción" [(ngModel)]="fecha_fin">
+                                <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerEnd></mat-datepicker>
+                            </mat-form-field>
                         </mat-form-field>
-                    </mat-form-field>
                     </div>
                     <div class="col2">
                         <mat-form-field class="example-full-width inputs">
@@ -46,15 +46,15 @@
                             <input matInput placeholder="Porcentaje de Descuento" [(ngModel)]="porcentaje_descuento" type="number">
                         </mat-form-field><br>
 
-                        <div class= "loco">
-                            <input id="fileInput" type='file' name="archivo"  [(ngModel)]="imagen"    >
-                        
-                        </div> 
+                        <div class="loco">
+                            <input id="fileInput" type='file' name="archivo" [(ngModel)]="imagen">
+
+                        </div>
                     </div>
 
                 </div>
 
- 
+
 
 
 

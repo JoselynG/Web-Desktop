@@ -144,18 +144,20 @@ export class SolicitudComponent implements OnInit {
       (data)=>{
         this.solicitudAux = data ['data'];       
         console.log(this.solicitud.length)
+        console.log(this.solicitudAux)
         for(let i = 0; i<this.solicitudAux.length; i++){
           
           if(this.solicitudAux[i].estado === 'P'){
             this.solicitud.push(this.solicitudAux[i])
           }
+          
         }
         if(this.solicitud.length > 0){
           this.pendientes = true
         }
 
         for(let i = 0; i<this.solicitud.length; i++){
-          if(this.solicitud[i].empleado != null){
+          if(this.solicitud[i].empleado.length > 0){
             this.solicitud[i].empleadoBusqueda=[];
             for(let j=0; j<this.solicitud[i].empleado.length; j++){
               this.empleado.getEmpleadoEspecifico(this.solicitud[i].empleado[j]).subscribe(
@@ -294,7 +296,7 @@ export class ResponderSolicitudComponent {
       this.actualizarSolic.empleado = this.solicitud.empleado
     }
     
-    
+    console.log(this.solicitud)
     this.empleadosPeluq = []
     this.empleadosMaquil = []
     this.empleadosPeluAux = false
@@ -308,9 +310,9 @@ export class ResponderSolicitudComponent {
     this.servM = false
     this.servP = false
     if(this.solicitud.sexo === 'cualquiera'){
-      this.sexo = true
-    }else{
       this.sexo = false
+    }else{
+      this.sexo = true
     }
     
   }
@@ -347,7 +349,7 @@ export class ResponderSolicitudComponent {
         }
         )
     }
-    if(this.solicitud.empleado != null){  
+    if(this.solicitud.empleado.length > 0){  
       if(this.solicitud.empleado.length === 2){
         this.catMaqui = false
         this.catPelu = false
@@ -379,18 +381,36 @@ export class ResponderSolicitudComponent {
     this.empleadosCat.getEmpleadosCat().subscribe(
       (data)=>{
         this.empleadosCategoria = data['data']       
+        console.log(this.empleadosCategoria)
         for (let i = 0; i < this.empleadosCategoria.length; i++){
+          console.log(i)
+          console.log(this.sexo)
           if(!this.sexo){
             if(this.empleadosCategoria[i].id === 1){
               this.empleadosPeluq=this.empleadosCategoria[i].empleados
+              
             }else if(this.empleadosCategoria[i].id === 2){
               this.empleadosMaquil=this.empleadosCategoria[i].empleados
+              
             }
-          }else{
-            if(this.empleadosCategoria[i].id === 1 && this.empleadosCategoria[i].sexo === this.solicitud.sexo){
-              this.empleadosPeluq=this.empleadosCategoria[i].empleados
-            }else if(this.empleadosCategoria[i].id === 2 && this.empleadosCategoria[i].sexo === this.solicitud.sexo){
-              this.empleadosMaquil=this.empleadosCategoria[i].empleados
+          }else if(this.sexo ){
+            if(this.empleadosCategoria[i].id === 1 ){
+              
+              for(let j=0; j<this.empleadosCategoria[i].empleados.length; j++){
+              
+                if(this.empleadosCategoria[i].empleados[j].sexo === this.solicitud.sexo){
+                  this.empleadosPeluq.push(this.empleadosCategoria[i].empleados[j])
+              
+                }
+              }              
+            }else if(this.empleadosCategoria[i].id === 2){
+              for(let j=0; j<this.empleadosCategoria[i].empleados.length; j++){
+                if(this.empleadosCategoria[i].empleados[j].sexo === this.solicitud.sexo){
+                  this.empleadosMaquil.push(this.empleadosCategoria[i].empleados[j])
+              
+                }
+              }
+              
             }
           }
           
@@ -444,10 +464,13 @@ export class ResponderSolicitudComponent {
           }else{
             this.actualizarSolic.estado = 'D'
           }
-            if(this.solicitud.empleado === null){
+            if(this.solicitud.empleado.length === 0){
               
                 this.actualizarSolic.empleado.push(this.empleadoP)
-                this.actualizarSolic.empleado.push(this.empleadoM)
+                if(this.empleadoM != null){
+                  this.actualizarSolic.empleado.push(this.empleadoM)
+                }
+                
                 console.log(this.actualizarSolic)              
             }else {
                 if(this.catMaqui){

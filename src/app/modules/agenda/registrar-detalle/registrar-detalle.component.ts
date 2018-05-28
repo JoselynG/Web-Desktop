@@ -43,7 +43,27 @@ export class RegistrarDetalleComponent implements OnInit {
   ];
 
   serviciosM: Array <{}>;
-  serviciosP: Array <{}>;
+  serviciosP: Array <{
+    id: number;
+      id_servicio_solicitado: number;
+      id_solicitud: number;
+      nombre_servicio: string;
+      tipo_servicio: string
+      insumos_asociados:  Array<{
+        insumo_asociado: number
+        id_insumo: number;
+        id_servicio: number;
+        id: number;
+        nombre: string;
+        tipo_insumo: string
+        id_tipo_insumo: number
+        cantidad: number
+        unidad: number
+        id_unidad: number
+        utilizado: number
+      }>
+      select: boolean
+  }>;
   ordenId: number; 
   orden: {
     id: number;
@@ -95,6 +115,10 @@ export class RegistrarDetalleComponent implements OnInit {
         id_unidad: number
         utilizado: number
       }>
+<<<<<<< HEAD
+=======
+      select: boolean
+>>>>>>> master
     }>
   };
   nombreCliente: string;
@@ -188,6 +212,12 @@ export class RegistrarDetalleComponent implements OnInit {
       });  
     }
     
+<<<<<<< HEAD
+=======
+    getServSelec(){
+      console.log(this.serviciosP)
+    }
+>>>>>>> master
     getOrdenInfo(){
       ///
       this.route.paramMap.subscribe((params: ParamMap) => {

@@ -6,6 +6,8 @@ import { TipoParametroService } from '../../../provider/tipo-parametro/tipo-para
 import { ValorParametroService } from '../../../provider/valor-parametro/valor-parametro.service';
 import { CategoriasServicioService } from '../../../provider/categorias-servicio/categorias-servicio.service';
 import { CategoriaParametroService } from '../../../provider/categoria-parametro/categoria-parametro.service';
+import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface TipoParametro {
   nombreTP: string;
@@ -195,7 +197,11 @@ export class AgregarTipoParametroComponent implements OnInit {
   categoryList: any;
   nombre: String;
   categoriaServicio: Number[];
-  constructor(public dialogRef: MatDialogRef<AgregarTipoParametroComponent>, public tipoParametroService: TipoParametroService,
+  constructor(public dialogRef: MatDialogRef<AgregarTipoParametroComponent>,
+     public tipoParametroService: TipoParametroService,
+     private route: ActivatedRoute,
+    public dialog: MatDialog, 
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.categoryList = data.modal_categoryList;
   }
@@ -209,10 +215,24 @@ export class AgregarTipoParametroComponent implements OnInit {
 
   yesOK() {
     let TipoParametroAPostear = { nombre: this.nombre, categoria_servicio: this.categoriaServicio };
-    this.tipoParametroService.postTipoParametros(TipoParametroAPostear).subscribe(data => { alert("Tipo parametro creado exitosamente") }, Error => { console.log(Error) });
+    this.tipoParametroService.postTipoParametros(TipoParametroAPostear).subscribe(data => {
+       this.mostrarMensajeExito() }, Error => { console.log(Error) });
     this.dialogRef.close();
   }
-
+  mostrarMensajeExito(): void {//opens the modal
+    let dialogRef = this.dialog.open(MensajeExitoComponent, {
+      width: '300px',//sets the width
+      height: '140px', 
+      data: { msj: 'Tipo parametro creado exitosamente' }//send this class's attributes to the modal
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+      console.log('Modal closed!');
+    //  this.router.navigate(['solicitudes']);
+      //this.router.onSameUrlNavigation
+      
+    });  
+  }
 }
 @Component({
   selector: 'app-crear-nuevo-parametro',
@@ -225,6 +245,9 @@ export class AgregarParametroComponent implements OnInit {
   id_tipo_parametro: Number;
   constructor(public dialogRef: MatDialogRef<AgregarParametroComponent>,
     public parametroService: ParametroService,
+    private route: ActivatedRoute,
+    public dialog: MatDialog, 
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.id_tipo_parametro = data.modal_id_tipo_parametro;
   }
@@ -240,10 +263,25 @@ export class AgregarParametroComponent implements OnInit {
     let parametroAPostear =
       { nombre: this.nombre, id_tipo_parametro: this.id_tipo_parametro, estatus: 'A', subscripcion: false };
 
-    this.parametroService.postParametros(parametroAPostear).subscribe(data => { alert("Parametro creado exitosamente") }, Error => { alert("Lo sentimos, intente de nuevo más tarde.") });
+    this.parametroService.postParametros(parametroAPostear).subscribe(data => { 
+     this.mostrarMensajeExito() 
+    }, Error => { alert("Lo sentimos, intente de nuevo más tarde.") });
     this.dialogRef.close();
   }
-
+  mostrarMensajeExito(): void {//opens the modal
+    let dialogRef = this.dialog.open(MensajeExitoComponent, {
+      width: '300px',//sets the width
+      height: '140px', 
+      data: { msj: 'Parámetro creado exitosamente' }//send this class's attributes to the modal
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+      console.log('Modal closed!');
+    //  this.router.navigate(['solicitudes']);
+      //this.router.onSameUrlNavigation
+      
+    });  
+  }
   yesOK() {
 
     this.dialogRef.close();

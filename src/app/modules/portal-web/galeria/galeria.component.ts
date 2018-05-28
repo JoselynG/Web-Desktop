@@ -1,6 +1,9 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { TituloSeccionService } from '../../../provider/titulo-seccion/titulo-seccion.service';
 import { ImagenService } from '../../../provider/imagen/imagen.service';
+import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-galeria',
@@ -23,7 +26,11 @@ export class GaleriaComponent implements OnInit {
   files: any[];
 
   titulo: Ititle = {} as any;
-  constructor(public tituloSeccionService: TituloSeccionService, public imagenService: ImagenService, private el: ElementRef) { }
+  constructor(public tituloSeccionService: TituloSeccionService, 
+    private route: ActivatedRoute,
+    public dialog: MatDialog, 
+    private router: Router,
+    public imagenService: ImagenService, private el: ElementRef) { }
 
   getTituloSeccion() {
     this.tituloSeccionService.getTituloSeccion().subscribe(
@@ -81,8 +88,10 @@ export class GaleriaComponent implements OnInit {
     formData.append('titulo', this.tituloNuevo);
     formData.append('descripcion', this.descripcionNuevo);
     formData.append('tipo_imagen', 'portfolio');
-    this.imagenService.postImagen(formData).subscribe(data => { this.ngOnInit(); alert('Exito'); }, Error => { console.log(Error); });
+    this.imagenService.postImagen(formData).subscribe(data => { this.ngOnInit(); 
+      alert('Exito'); }, Error => { console.log(Error); });
   }
+
 
   onFileChange(event) {
     this.files = event.target.files;
@@ -121,9 +130,18 @@ export class GaleriaComponent implements OnInit {
     }
     formData.append('descripcion', inputDescripcionEl.value);
     formData.append('titulo', inputTituloEl.value);
-    this.imagenService.putImagen(id, formData).subscribe(data => { this.ngOnInit(); alert('Imagen de la galeria actualizada.'); }, Error => { alert('Error'); console.log(Error); });
+    this.imagenService.putImagen(id, formData).subscribe(data => { this.ngOnInit();
+       alert('Imagen de la galeria actualizada.'); }, Error => { alert('Error'); console.log(Error); });
   }
-}
+   
+mostrarMensajeExito(): void {//opens the modal
+  let dialogRef = this.dialog.open(MensajeExitoComponent, {
+    width: '300px',//sets the width
+    height: '140px', 
+    data: { msj: 'Imagen de la galería actualizada.' }//send this class's attributes to the modal
+  });
+
+}}
 
 interface IImagen {
   id?: number;
