@@ -3,6 +3,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CategoriaService } from '../../../provider/categoria/categoria.service';
 import { CategoriaDependienteService } from '../../../provider/categoria/categoria-dependiente.service';
 import { CategoriasServicioService } from '../../../provider/categorias-servicio/categorias-servicio.service';
+import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -186,6 +188,10 @@ export class CrearCategoriaDependienteComponent implements OnInit {
   tabla: String;
 
   constructor(public dialogRef: MatDialogRef<CrearCategoriaDependienteComponent>, public categoriaDependienteService: CategoriaDependienteService,
+    private route: ActivatedRoute,
+    public dialog: MatDialog, 
+    private router: Router,
+    
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.tipo_reclamo = data.modal_tip_reclamo;
     this.tabla = data.modal_tabla;
@@ -205,8 +211,27 @@ export class CrearCategoriaDependienteComponent implements OnInit {
     } else {
       categoriaAPostear = { nombre: this.nombre, id_categoria_servicio: this.idDependiente }
     }
-    this.categoriaDependienteService.postCategoriaDependiente(this.tabla, categoriaAPostear).subscribe(data => { alert("Categoria creada exitosamente") }, Error => { alert("Lo sentimos, intente de nuevo más tarde.") });
+    this.categoriaDependienteService.postCategoriaDependiente(this.tabla, categoriaAPostear).subscribe(
+      data => {
+        this.mostrarMensajeExito()
+        }, Error => {
+           alert("Lo sentimos, intente de nuevo más tarde.") 
+          });
     this.dialogRef.close();
   }
 
+  mostrarMensajeExito(): void {//opens the modal
+    let dialogRef = this.dialog.open(MensajeExitoComponent, {
+      width: '300px',//sets the width
+      height: '140px', 
+      data: { msj: 'Categoría creada exitosamente' }//send this class's attributes to the modal
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+      console.log('Modal closed!');
+    //  this.router.navigate(['solicitudes']);
+      //this.router.onSameUrlNavigation
+      
+    });  
+  }
 }
