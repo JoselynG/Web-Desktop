@@ -92,6 +92,8 @@ export class ClientePrincipalComponent implements OnInit {
 
   ngOnInit() {
     ///
+    this.perfil_global=[];
+    this.perfil_cliente=[];
     this.cliente={
       nombre:'',
       apellido:'',
