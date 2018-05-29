@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatListItem } from '@angular/material';
 
 interface Lista {
   type: string;
@@ -22,5 +23,6 @@ export class NavListComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

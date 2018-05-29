@@ -83,6 +83,7 @@ import { TipoComentarioService } from './provider/tipo-comentario/tipo-comentari
 import { FuncionesService } from './provider/funciones/funciones.service';
 import { RolFuncionService } from './provider/rol-funcion/rol-funcion.service';
 import { GestionServicioService } from './provider/gestion-servicio/gestion-servicio.service';
+import { MensajeConfirmarComponent } from './mensajes/mensaje-confirmar/mensaje-confirmar.component';
 import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
 
 
@@ -96,6 +97,7 @@ import { GestionPromocionService } from './provider/gestion-promocion/gestion-pr
     TestComponent,
     GraficosDirective,
     MensajeExitoComponent,
+    MensajeConfirmarComponent,
   ],
   imports: [
     BrowserModule,
@@ -181,6 +183,7 @@ import { GestionPromocionService } from './provider/gestion-promocion/gestion-pr
     
   entryComponents: [
     MensajeExitoComponent,
+    MensajeConfirmarComponent
   ],
   
 
