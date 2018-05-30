@@ -47,11 +47,7 @@ export class LogoNegocioComponent implements OnInit {
   }
   
       
-<<<<<<< HEAD
-      
-=======
   */    
->>>>>>> master
     
    
 
