@@ -117,10 +117,7 @@ export class RegistrarDetalleComponent implements OnInit {
         id_unidad: number
         utilizado: number
       }>
-<<<<<<< HEAD
-=======
       select: boolean
->>>>>>> master
     }>
   };
   nombreCliente: string;
@@ -308,14 +305,11 @@ export class RegistrarDetalleComponent implements OnInit {
       });  
     }
     
-<<<<<<< HEAD
-=======
     getServSelec(){
       console.log(this.serviciosP)
       console.log(this.servAux)
       this.incidencias();
     }
->>>>>>> master
     getOrdenInfo(){
       ///
       this.route.paramMap.subscribe((params: ParamMap) => {
