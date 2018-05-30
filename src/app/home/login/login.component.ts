@@ -4,6 +4,7 @@ import {FormGroup} from '@angular/forms/src/model'
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { UserService } from '../../provider/user/user.service';
+import { HomeComponent } from '../home.component';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ ide: any
     public formBuilder: FormBuilder,
     public auth: AuthService,
     public router: Router,
-    public usuario: UserService
+    public usuario: UserService,
+    private home: HomeComponent
   ) {
     this.creden = {
       correo: '',
@@ -47,6 +49,8 @@ ide: any
         this.usuario.setAuth();
         this.usuario.setUser(res['data'].id);
         //redireccionar
+        this.home.ngOnInit();//inicializa el homeComponent
+        localStorage.setItem('esta_en_inicio_de_sesion','si');
         this.router.navigate(['dashboard']);
         this.login = false;
       }),(error)=>{

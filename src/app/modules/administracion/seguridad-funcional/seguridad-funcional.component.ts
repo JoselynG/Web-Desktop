@@ -42,16 +42,16 @@ export class SeguridadFuncionalComponent implements OnInit {
   getUsuariosInfo(){//METODO PARA LLENAR LA lista_usuarios
     this.servicio_empleado.getEmpleados().subscribe(//SERVICIO DE empleados QUE RETORNA JSON DE TABLA empleado
       (data1)=>{
-        this.empleadosArr=data1['data'];
+        this.empleadosArr=data1['data'].filter((el, i, arr)=>(el.estatus == "A"));
         ///----------------->
         this.servicio_cliente.getClientes().subscribe(//SERVICIO DE Clientes QUE RETORNA JSON DE TABLA cliente
           (data2)=>{
-            this.clientesArr=data2['data'];
+            this.clientesArr=data2['data'].filter((el, i, arr)=>(el.estatus == "A"));
             console.log(this.empleadosArr);
             ///----------------->
             this.servicio_usuario.getUsuarios().subscribe(//SERVICIO DE USUARIOS QUE RETORNA JSON DE TABLA USUARIO
               (data3)=>{
-                this.usuariosArr=data3['data'];
+                this.usuariosArr=data3['data'].filter((el, i, arr)=>(el.estatus == "A"));
                 console.log(this.clientesArr);
                 console.log(this.usuariosArr);
                 ///////////////////

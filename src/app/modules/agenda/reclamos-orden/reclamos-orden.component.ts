@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { ReclamoService } from '../../../provider/reclamo/reclamo.service';
+import { ReclamoService } from './../../../provider/reclamo/reclamo.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { TipoRepuestaReclamoService } from '../../../provider/tipo-repuesta-reclamo/tipo-repuesta-reclamo.service';
 import { RepuestaReclamoService } from '../../../provider/repuesta-reclamo/repuesta-reclamo.service';
 import { VistaReclamoService } from '../../../provider/vista-reclamo/vista-reclamo.service';
@@ -14,11 +14,8 @@ interface Datos_reclamo{
 	fecha: Date;
 	tipoR: string;
 	descripcion: string;
-	
 	fechaV:Date;
-
 }
-
 
 
 @Component({
@@ -31,29 +28,6 @@ export class ReclamosOrdenComponent implements OnInit {
  rec: any;
  
  hoy= new Date();
-  datos: Datos_reclamo[]= [
-    {
-      nombre: 'Maria Anzola',
-      orden: '001',
-      fecha: new Date('2018/04/10'),
-      tipoR: 'producto',
-      descripcion:'El producto que se utilizo cuando me aplicaron tratamiento de keratina, me causó alergia, pido pronta atencion y me regresen mi dinero.',
-    
-    fechaV: new Date('2018/04/20')
-    },
-
-    {
-        nombre: 'Yanior Zambrano',
-        orden: '002',
-        fecha: new Date('2018/04/11'),
-        tipoR: 'servicio',
-        descripcion:' Me hicieron mal el corte, me di cuenta al irme de la peluqueria',
-        
-        fechaV: new Date('2018/05/20')
-    }
-
-
- ];
   
   //siempre va eso asi  cambia el nombre de la clase 
 
@@ -89,7 +63,8 @@ export class ReclamosOrdenComponent implements OnInit {
     this.repuesta.setIdReclamo(id);
     const dialogRef = this.dialog.open( DarRepuestaComponent, {
       height: '320px',
-      width: '420px'
+      width: '420px',
+      data: {id: id}
     });
   
     dialogRef.afterClosed().subscribe(result => {
@@ -121,26 +96,32 @@ datosMostrar: {
   descripcion: String,
 };
 
+estadoReclamo: {
+  estado: string
+}
+
 constructor(public dialog: MatDialog,
   public repuesta:TipoRepuestaReclamoService,
    public repuestaR:RepuestaReclamoService,
+   public reclamoServ: ReclamoService,
    private route: ActivatedRoute,
   private router: Router,
+  @Inject(MAT_DIALOG_DATA) public data: any
    ) 
 {
+  console.log(data)
 this.getRepuestaReclamo();
-
-}
-
+this.datosMostrar = {
+  id_reclamo: data,
+  id_tipo_repuesta_reclamo: 0,
+  descripcion:'' ,
   
+};
+
+
+} 
 
 ngOnInit() {
-  this.datosMostrar = {
-    id_reclamo: 0,
-    id_tipo_repuesta_reclamo: 0,
-    descripcion:`` ,
-    
-  };
 
 }
   getRepuestaReclamo(){
@@ -158,12 +139,24 @@ ngOnInit() {
   //guardar
   postRepuestaRec() {
     this.datosMostrar.id_reclamo=this.repuesta.returnIdReclamo();
-    console.log(this.datosMostrar);
+    
     this.repuestaR.postRepuestaRec(this.datosMostrar).subscribe((resp)=>{
       this.msj= resp['data'].message;
+      if(this.datosMostrar.id_tipo_repuesta_reclamo === 1){
+        this.estadoReclamo.estado = 'A'
+      }else {
+        this.estadoReclamo.estado = 'R'
+      }
+
+      this.reclamoServ.updateReclamo(this.datosMostrar.id_reclamo, this.estadoReclamo).subscribe(
+        (data) => {
+          console.log ('actualizado')
+          this.mostrarMensajeExito()
+        }
+      )
       console.log(this.msj);
        //alert(this.msj)
-       this.mostrarMensajeExito()
+       
     },(error)=>{
       console.log(error);
     }

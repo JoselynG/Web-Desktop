@@ -13,6 +13,8 @@ import { MensajeExitoComponent } from '../../../../mensajes/mensaje-exito/mensaj
   styleUrls: ['./asignar-funciones.component.scss']
 })
 export class AsignarFuncionesComponent implements OnInit {
+
+  cambio=false;
   
   encontrado:boolean=false;//VARIABLE QUE PERMITE SABER SI UN EMPLEADO TIENE UN USUARIO ASIGNADO
   empleado:{id:number;nombre:string;apellido:string;cedula:string;telefono:string;direccion:string;
@@ -84,11 +86,19 @@ export class AsignarFuncionesComponent implements OnInit {
 
     //ARRAY QUE SERA ENVIADO PARA LA CREACION DE UN NUEVO USUARIO PARA ASIGNARLO AL EMPLEADO ACTUAL
     let usu={id_rol:(this.usuario.id_rol==0?null:this.usuario.id_rol),correo:this.usuario.correo,
-      contrasenia:this.usuario.contrasenia,fecha_creacion:new Date()};
+      contrasenia:this.usuario.contrasenia};
 
   if(correoU!="" && contraseniaU!=""){//SI NO ESTAN EN BLANCO LOS CAMPOS DE CORREO Y CONTRASEÑA, PROCEDEMOS
     if (this.encontrado) {//SE EJECUTA CUANDO UN EMPLEADO TIENE UN USUARIO ASIGNADO, Y SE PROCEDE A MODIFICAR
-       /**/this.servicio_usuario.putUsuario(this.empleado.id_usuario,this.usuario).subscribe(
+       /**/
+       let con_o_sin_cambio={};
+       if(this.cambio==true){
+        con_o_sin_cambio=((usu.id_rol==null)?{correo:usu.correo,contrasenia:usu.contrasenia}:{id_rol:usu.id_rol,correo:usu.correo,contrasenia:usu.contrasenia});
+       }else{
+        con_o_sin_cambio=((usu.id_rol==null)?{correo:usu.correo}:{id_rol:usu.id_rol,correo:usu.correo});
+       }
+       
+       this.servicio_usuario.putUsuario(this.empleado.id_usuario,con_o_sin_cambio).subscribe(
         (data1)=>{
           //console.log(data1['data'].message);
 		  this.mostrarMensajeExito("Usuario actualizado con éxito!");

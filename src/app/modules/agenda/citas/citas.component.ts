@@ -12,13 +12,30 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CitasComponent implements OnInit {
 
-  orden: any;
+  orden: Array<{
+    id: number
+    id_solicitud: number
+    estatus: string
+    estado: string
+    solicitud: number
+    id_cliente: number
+    estado_s: string
+    cliente: number
+    nombre: string
+    apellido: string
+    empleados_asignados: Array<{}>
+    servicios_solicitados: Array<{}>
+    citas: Array<{}>
+  }>
   atender: boolean
+  ordenAux: any
   constructor(
     public dialog: MatDialog, 
     public vistaOrden: VistaOrdenCitaService,
     private router: Router, private route: ActivatedRoute
-    ) { }
+    ) {
+      this.orden = []
+     }
 
   ngOnInit() {
     this.getOrden();
@@ -27,18 +44,20 @@ export class CitasComponent implements OnInit {
   getOrden(){
     this.vistaOrden.getOrdenCita().subscribe(
       (data) => {
-        this.orden = data['data']
-        
-        for(let i=0; i<this.orden.length; i++){
-          
-          if(this.orden[i].estado === "E"){
-            this.atender = true;
-          }else {
-            this.atender = false;
+        this.ordenAux = data['data']
+        console.log(this.ordenAux)
+        for(let i=0; i<this.ordenAux.length; i++){          
+          if(this.ordenAux[i].estado === "E"){
+              this.orden.push(this.ordenAux[i])
           }
         }
-        
-      
+        console.log(this.orden)
+
+        if(this.orden.length > 0){
+          this.atender = true
+        }else{
+          this.atender = false
+        }      
       }
     )
   }
