@@ -63,7 +63,8 @@ export class ReclamosOrdenComponent implements OnInit {
     this.repuesta.setIdReclamo(id);
     const dialogRef = this.dialog.open( DarRepuestaComponent, {
       height: '320px',
-      width: '420px'
+      width: '420px',
+      data: {id: id}
     });
   
     dialogRef.afterClosed().subscribe(result => {
