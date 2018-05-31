@@ -72,6 +72,9 @@ monto: any;
     private route: ActivatedRoute,
     private router: Router, ) {
       this.valor_parametro = [];
+      this.precio = 0
+      this.monto = 0;
+
 
     }
 

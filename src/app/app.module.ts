@@ -1,3 +1,4 @@
+import { CitaService } from './provider/cita/cita.service';
 import { GestionConsejoService } from './provider/gestion-consejo/gestion-consejo.service';
 
 import { RedSocialService } from './provider/red-social/red-social.service';
@@ -85,6 +86,7 @@ import { RolFuncionService } from './provider/rol-funcion/rol-funcion.service';
 import { GestionServicioService } from './provider/gestion-servicio/gestion-servicio.service';
 import { MensajeConfirmarComponent } from './mensajes/mensaje-confirmar/mensaje-confirmar.component';
 import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
+import { IncidenciaOrdenService } from './provider/incidencia-orden/incidencia-orden.service';
 
 
 @NgModule({
@@ -177,7 +179,9 @@ import { GestionPromocionService } from './provider/gestion-promocion/gestion-pr
     GestionDetalleServicioService,
     OrdenServicioService,
     RedSocialService,
-    GestionConsejoService
+    GestionConsejoService,
+    IncidenciaOrdenService,
+    CitaService
     
   ],
     

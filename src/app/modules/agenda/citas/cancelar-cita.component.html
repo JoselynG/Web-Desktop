@@ -15,7 +15,7 @@
 
     <div class="select">
         <mat-form-field class="valor inputs">
-            <mat-select placeholder="Seleccione el tipo de incidencia">
+            <mat-select placeholder="Seleccione el tipo de incidencia" [(ngModel)]="datosEnviar.id_tipo_incidencia">
                 <mat-option *ngFor="let filtro of incidenciaAux" [value]="filtro.id">
                     {{ filtro.nombre }}
                 </mat-option>
@@ -23,9 +23,9 @@
         </mat-form-field>
     </div>
     <mat-form-field class="example-full-width inputs">
-        <textarea matInput placeholder="Descripción de la cancelación de la cita" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+        <textarea matInput [(ngModel)]="datosEnviar.descripcion" placeholder="Descripción de la cancelación de la cita" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
     </mat-form-field>
 
-    <button mat-raised-button color="accent" routerLink="/timeline" class="btn">Cancelar cita</button>
+    <button mat-raised-button color="accent" (click)="enviar()" class="btn">Cancelar cita</button>
     <!-- </mat-card>!-->
 </div>

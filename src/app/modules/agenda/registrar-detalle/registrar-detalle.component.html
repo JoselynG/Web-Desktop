@@ -15,7 +15,7 @@
                 <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Hora de inicio" value="03:30 PM" disabled>
                 </mat-form-field>
-                <mat-form-field class="valor inputs" *ngIf="servP">
+                <mat-form-field class="valor inputs">
                     <mat-select placeholder="Servicios de peluquería " [(ngModel)]="servAux" multiple>
                         <!--<mat-select-trigger>
                             {{servicioPSeleccionados ? servicioPSeleccionados[0] : ''}}
@@ -24,7 +24,7 @@
                                     </span>
                                     [(ngModel)]="serviciosP[i].select"
                         </mat-select-trigger>-->
-                        <mat-option color="accent" *ngFor="let serv of serviciosP, let i = index" [value]="serv">{{serv.tipo_servicio}} {{serv.nombre_servicio}}</mat-option>
+                        <mat-option color="accent" *ngFor="let serv of orden.servicios_solicitados, let i = index" [value]="serv">{{serv.tipo_servicio}} {{serv.nombre_servicio}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field class="demo-chip-list inputs">
@@ -36,7 +36,7 @@
                         <input placeholder="Servicios de peluquería prestados" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" disabled/>
                     </mat-chip-list>
                 </mat-form-field>
-                <mat-form-field class="valor inputs" *ngIf="servM">
+                <!--        <mat-form-field class="valor inputs" *ngIf="servM">
                     <mat-select placeholder="Servicios de maquillaje " [(ngModel)]="servicioMSeleccionados" multiple>
                         <mat-select-trigger>
                             {{servicioMSeleccionados ? servicioMSeleccionados[0] : ''}}
@@ -47,7 +47,6 @@
                         <mat-option color="accent" *ngFor="let serv of serviciosM" [value]="serv.nombre_servicio">{{serv.tipo_servicio}} {{serv.nombre_servicio}} </mat-option>
                     </mat-select>
                 </mat-form-field>
-
                 <mat-form-field class="demo-chip-list inputs" *ngIf="servM">
                     <mat-chip-list #chipList>
                         <mat-chip *ngFor="let ins of servicioMSeleccionados" [selectable]="selectable">
@@ -55,12 +54,8 @@
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
                         <input placeholder="Servicios de peluquería prestados" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" disabled/>
-
-
                     </mat-chip-list>
-                </mat-form-field>
-
-
+                </mat-form-field>-->
                 <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Empleado(s) encargados de los servicios" value=" " disabled>
                     <span *ngFor="let empleado of orden.empleados_asignados">{{empleado.nombre}} {{empleado.apellido}}, </span>

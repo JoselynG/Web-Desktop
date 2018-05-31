@@ -320,8 +320,7 @@ export class RegistrarDetalleComponent implements OnInit {
       this.ordenVista.getOrdenCitaEspec(this.ordenId).subscribe(
         (data) => {
           this.orden = data['data']
-          this.nombreCliente = this.orden.nombre + ' ' + this.orden.apellido
-          
+          this.nombreCliente = this.orden.nombre + ' ' + this.orden.apellido          
           for(let i=0; i<this.orden.servicios_solicitados.length; i++){
             this.serviciosServ.getServicioEspec(this.orden.servicios_solicitados[i].id).subscribe(
               (data) => {
@@ -329,13 +328,13 @@ export class RegistrarDetalleComponent implements OnInit {
                   this.tipoService.getTipoServicioEsp(this.servicios.id_tipo_servicio).subscribe(
                     (res) =>{
                         this.tipo = res ['data']
-                        if(this.tipo.id_categoria_servicio === 1){
+                        /*if(this.tipo.id_categoria_servicio === 1){
                           this.serviciosP.push(this.orden.servicios_solicitados[i])
                           this.servP = true;
                         }else if(this.tipo.id_categoria_servicio === 2){
                           this.serviciosM.push(this.orden.servicios_solicitados[i])
                           this.servM = true;
-                        }
+                        }*/
                     }, (error) => {
                             console.log(error)
                         }
@@ -360,11 +359,11 @@ export class RegistrarDetalleComponent implements OnInit {
               this.tipoService.getTipoServicioEsp(this.servicios.id_tipo_servicio).subscribe(
                 (res) =>{
                     this.tipo = res ['data']
-                    if(this.tipo.id_categoria_servicio === 1){
+                  /*  if(this.tipo.id_categoria_servicio === 1){
                       this.serviciosP.push(this.orden.servicios_solicitados[i])
                     }else if(this.tipo.id_categoria_servicio === 2){
                       this.serviciosM.push(this.orden.servicios_solicitados[i])
-                    }
+                    }*/
                 }, (error) => {
                         console.log(error)
                     }
@@ -374,8 +373,6 @@ export class RegistrarDetalleComponent implements OnInit {
           }
         )
       }
-      console.log(this.serviciosM)
-      console.log(this.serviciosP)
     }
   openDialog(){
     this.incidencias();
@@ -384,7 +381,6 @@ export class RegistrarDetalleComponent implements OnInit {
       width: '500px',
       data: {serv: this.incidenciaServ}
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('mostrado');
       this.incidencia.push(this.ordenS.getIncidencia())
@@ -408,10 +404,15 @@ export class RegistrarDetalleComponent implements OnInit {
   }
 
   remove(servicios: any): void {
-    let index = this.serviciosP.indexOf(servicios);
+    /*let index = this.serviciosP.indexOf(servicios);
 
     if (index >= 0) {
       this.serviciosP.splice(index, 1);
+    }*/
+    let index = this.orden.servicios_solicitados.indexOf(servicios);
+
+    if (index >= 0) {
+      this.orden.servicios_solicitados.splice(index, 1);
     }
   }
   
