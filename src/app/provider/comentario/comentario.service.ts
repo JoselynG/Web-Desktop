@@ -5,7 +5,7 @@ const API_URL="http://localhost:3000/api/"
 export class ComentarioService {
 
   comentario: any;
-  url_negocio: String = 'comentarios/';
+  url_negocio: String = 'comentario/';
   url:string='vista_comentario';
   constructor(public http: HttpClient) { }
   getComentario(){

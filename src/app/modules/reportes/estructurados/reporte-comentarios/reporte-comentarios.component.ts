@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import { TipoComentarioService } from '../../../../provider/tipo-comentario/tipo-comentario.service';
+import { TipoRepuestaComentarioService } from '../../../../provider/tipo-repuesta-comentario/tipo-repuesta-comentario.service';
+import { ReporteComentarioService } from '../../../../provider/reporte-comentario/reporte-comentario.service';
+import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-reporte-comentarios',
@@ -7,6 +11,27 @@ import { MatSort, MatTableDataSource } from '@angular/material';
   styleUrls: ['./reporte-comentarios.component.scss']
 })
 export class ReporteComentariosComponent implements OnInit {
+  datosMostrar: {
+    id_repuesta_comentario:number,
+    tipo_comentario: string,
+    nombre: string,
+    descripcion:string;
+    fecha_creacion:Date;
+    respuesta_comentario: {
+      id: number
+      id_tipo_respuesta_comentario: number
+      id_comentario: number
+      descripcion: string
+      tipo_respuesta_comentario: string
+    };
+  
+    
+  }
+
+  tipo: any;
+  tipoR:any;
+  reporteCom: any ;
+
 filtroTipoComSelec = 'todos';
 filtroTipoRespSelec = 'todos';
 filtroTipoCom = [
@@ -24,7 +49,7 @@ filtroTipoResp = [
 ];
 
 displayedColumns = ['cliente', 'fecha', 'tipo', 'descripcion', 'tipoR', 'resp'];
-dataSource = new MatTableDataSource(ELEMENT_DATA);
+dataSource: any;
 
 applyFilter(filterValue: string) {
   filterValue = filterValue.trim(); // Remove whitespace
@@ -40,24 +65,73 @@ applyFilter(filterValue: string) {
 ngAfterViewInit() {
   this.dataSource.sort = this.sort;
 }
-  constructor() { }
 
-  ngOnInit() {
+  constructor(public dialog: MatDialog,
+    public tiopoC:TipoComentarioService,
+    public tipoRespC: TipoRepuestaComentarioService, 
+    public reporteC: ReporteComentarioService)
+   { this.gettipocomentario();
+    this.gettipoRepuestaC();
+    this.getReporteC();
+
+    this.datosMostrar = {
+      id_repuesta_comentario:0,
+      tipo_comentario: '',
+      nombre: '',
+      descripcion:'' ,
+      fecha_creacion:new Date(),
+      respuesta_comentario: {
+        id: 0,
+        id_tipo_respuesta_comentario: 0,
+        id_comentario: 0,
+        descripcion: '',
+        tipo_respuesta_comentario: '',
+      }
+      
+    };
   }
 
+  ngOnInit() {
+    this.gettipocomentario();
+    this.gettipoRepuestaC();
+    this.getReporteC();
+    //le mandamos los datos a la tabla
+    console.log(this.reporteCom);
+  }
+
+
+gettipocomentario(){
+  this.tiopoC.getTipoComentario().subscribe((resp)=>{
+    this.tipo= resp['data'];
+    console.log(this.tipo);
+
+  },(error)=>{
+    console.log(error);
+  }
+ )
+}
+ 
+
+gettipoRepuestaC(){
+  this.tipoRespC.getTipoRepuestaC().subscribe((resp)=>{
+    this.tipoR= resp['data'];
+    console.log(this.tipoR);
+
+  },(error)=>{
+    console.log(error);
+  }
+ )
 }
 
-export interface Element {
-  cliente: string;
-  fecha: string;
-  tipo: string;
-  descripcion: string;
-  tipoR: string;
-  resp: string;
+getReporteC(){
+  this.reporteC.getReporteC().subscribe((resp)=>{
+    this.reporteCom= resp['data'];
+    
+    console.log(this.reporteCom);
+    this.dataSource=new MatTableDataSource(this.reporteCom);
+  },(error)=>{
+    console.log(error);
+  }
+ )
 }
-
-const ELEMENT_DATA: Element[] = [
-  {cliente: 'Pepito López', fecha: '05/03/2018', tipo: 'Sugerencia', descripcion: "lorem", tipoR: "Negativa", resp: "lorem"},
-  {cliente: 'Pepito López', fecha: '05/03/2018', tipo: 'Opinión', descripcion: "lorem", tipoR: "Positiva", resp: "lorem"},
-  {cliente: 'Pepito López', fecha: '05/03/2018', tipo: 'Duda', descripcion: "lorem", tipoR: "Positiva", resp: "lorem"},
-];
+}

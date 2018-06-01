@@ -54,7 +54,7 @@
                 <button mat-menu-item (click)="irACliente(element)">
                     <mat-icon>edit</mat-icon> Editar Cliente<!--account_circle-->
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="cli_selected=element;mostrarMensajeDeConfirmacion('¿Seguro que desea eliminar a este cliente?')">
                     <mat-icon>delete</mat-icon> Eliminar<!--view_list-->
                 </button>
             </mat-menu>

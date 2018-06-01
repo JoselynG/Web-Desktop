@@ -1,3 +1,4 @@
+import { ReporteComentarioService } from './provider/reporte-comentario/reporte-comentario.service';
 import { CitaService } from './provider/cita/cita.service';
 import { GestionConsejoService } from './provider/gestion-consejo/gestion-consejo.service';
 
@@ -181,8 +182,8 @@ import { IncidenciaOrdenService } from './provider/incidencia-orden/incidencia-o
     RedSocialService,
     GestionConsejoService,
     IncidenciaOrdenService,
-    CitaService
-    
+    CitaService,
+    ReporteComentarioService
   ],
     
   entryComponents: [
