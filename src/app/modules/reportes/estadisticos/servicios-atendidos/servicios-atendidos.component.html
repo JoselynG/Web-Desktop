@@ -1,23 +1,21 @@
 <div class="ctn">
-    <h1 *ngIf='filtroSelec == "mas" && empleadoSelec == ""'>Servicios más solicitados</h1>
-    <h1 *ngIf='filtroSelec == "menos" && empleadoSelec == "" '>Servicios menos solicitados</h1>
-    <h1 *ngIf='filtroSelec == "menos" && empleadoSelec != "" '>Servicios menos solicitados a {{empleadoSelec}} </h1>
-    <h1 *ngIf='filtroSelec == "mas" && empleadoSelec != "" '>Servicios más solicitados a {{empleadoSelec}} </h1>
+    <h1 *ngIf='filtroSelec == "mas"'>Servicios más solicitados</h1>
+    <h1 *ngIf='filtroSelec == "menos" '>Servicios menos solicitados</h1>
     <div class="filtros">
         <div class="select">
             <mat-form-field class="valor">
-                <mat-select [(ngModel)]="filtroSelec" placeholder="Frecuencia" class="letra">
+                <mat-select [(ngModel)]="filtroSelec" placeholder="Tipo de búsqueda" class="letra">
                     <mat-option *ngFor="let filtro of filtro" selected="todo" [value]="filtro.value">
                         {{ filtro.viewValue }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="select1">
+        <div class="select">
             <mat-form-field class="valor">
-                <mat-select [(ngModel)]="empleadoSelec" placeholder="Empleados" class="letra">
-                    <mat-option *ngFor="let emp of empleados" selected="todo" [value]="emp.value">
-                        {{ emp.viewValue }}
+                <mat-select [(ngModel)]="filtroMesSelec" placeholder="Frecuencia" class="letra">
+                    <mat-option *ngFor="let filtro of filtroMes" [value]="filtro.value">
+                        {{ filtro.viewValue }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

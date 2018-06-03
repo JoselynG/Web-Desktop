@@ -1,23 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicioSolicitadoService } from '../../../../provider/servicio-solicitado/servicio-solicitado.service';
+import * as moment from 'moment';
+import { EmpleadosService } from '../../../../provider/empleados/empleados.service';
 
 @Component({
   selector: 'app-servicios-atendidos',
   templateUrl: './servicios-atendidos.component.html',
-  styleUrls: ['./servicios-atendidos.component.scss']
+  styleUrls: ['./servicios-atendidos.component.scss'],
+  providers: [ServicioSolicitadoService, EmpleadosService]
 })
 export class ServiciosAtendidosComponent implements OnInit {
+  listadoServicioSolicitado = [] as any;
+  listadoEmpleados = [] as any;
+  EmpleadoABuscar = [];
+
   filtroSelec = 'mas';
   filtro = [
     {value: 'mas', viewValue: 'Servicios más solicitados'},
     {value: 'menos', viewValue: 'Servicios menos solicitados'},
   ];
-  empleadoSelec = '';
-  empleados = [
-    {value: 'María', viewValue: 'María Pérez'},
-    {value: 'Laura', viewValue: 'Laura López'},
-    {value: 'John', viewValue: 'John Wachu'},
-    {value: '', viewValue: 'Ninguno'},
+
+  filtroMesSelec = 'semana';
+  filtroMes = [
+    { value: 'semana', viewValue: 'Esta semana' },
+    { value: 'mes', viewValue: 'Último mes' },
+    { value: 'trimes', viewValue: 'Último trimestre' },
+    { value: 'seismes', viewValue: 'Último semestre' },
+    { value: 'anno', viewValue: 'Último año' },
   ];
+
   datosMas = {
     type: 'horizontalBar',
     data: {
@@ -87,9 +98,22 @@ export class ServiciosAtendidosComponent implements OnInit {
     }
   };
 
-  constructor() { }
+  constructor(public servicioSolicitadoService: ServicioSolicitadoService, public empleadoService: EmpleadosService) {
+
+   }
+
+   getServicioSolicitado() {
+    this.servicioSolicitadoService.getServicioSolicitado().subscribe(
+      (data) => {
+        this.listadoServicioSolicitado = data['data'];
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
 
   ngOnInit() {
+    this.getServicioSolicitado();
   }
  
  
