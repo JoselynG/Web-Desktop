@@ -4,6 +4,7 @@ import { error } from 'util';
 import { TiposServiciosService } from './../../../../provider/tipos-servicios/tipos-servicios.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
+import { ReporteServicioService } from '../../../../provider/reporte-servicio/reporte-servicio.service';
 
 @Component({
   selector: 'app-reporte-servicio',
@@ -16,10 +17,53 @@ export class ReporteServicioComponent implements OnInit {
   filtroServTipoMSelec = 'todos';
   filtroServTipoTodosSelec = 'todos';
   filtroServCat: any;
-  filtroServTipoP: Array<{}>;
+  filtroServTipoP: Array<{
+    id: number
+    id_categoria_servicio: number
+    nombre: string
+    descripcion: string
+    estatus: string
+    fecha_creacion: string
+  }>;
   filtroServTipoM: Array<{}>;
   filtroTipo: any;
   tipoServicios: any;
+  reporteServ: Array<{
+    id: number
+    nombre: string
+    imagen: string
+    precio: number
+    descripcion: string
+    id_tipo_servicio: number
+    fecha_cracion: Date
+    estatus: string
+    tipo_servicio: string 
+    id_categoria_servicio: number
+    categoria_servicio: string
+    frecuencia_realizacion: number
+    frecuencia_reclamo: number
+    frecuencia_incidencia: number
+  }> ;
+  reporteServR: any
+  /*reporteServR: Array<{
+    id: number
+    nombre: string
+    frecuencia_realizacion: number
+    frecuencia_reclamo: number
+    frecuencia_incidencia: number
+  }> ;*/
+  valoruno: string;
+  valoros: string;
+  valortres: string;
+  valorcuatro: string;
+  caena: string;
+  caena2: string;
+  fechaini: Date;
+  fechafin: Date;
+  valortipo: number;
+  valortipodos: number;
+  id_ser: number;
+  tipoSelect: number;
 
 
   filtroServTipoTodos = [
@@ -32,7 +76,7 @@ export class ReporteServicioComponent implements OnInit {
   ];
 
   displayedColumns = ['servicio', 'tipo', 'categoria', 'cantidad', 'rec', 'inc', 'calif'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource: any;
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -51,26 +95,45 @@ export class ReporteServicioComponent implements OnInit {
  
   constructor(
     public categoria: CategoriasServicioService,
-    public tipoServ: TiposServiciosService
-  ) { }
+    public tipoServ: TiposServiciosService,
+    public reporteS :ReporteServicioService
+  ) {
+    this.reporteServ = []
+    //this.reporteServR = []
+    //this.getReporteSer('', '')
+    this.valoruno = 'tipo_servicio=';
+    this.valoros = '&categoria_servicio=';
+    this.valortres = '&fecha_inicio=';
+    this.valorcuatro = '&fecha_fin=';
+    this.id_ser = 0;
+
+    this.caena = '';
+    this.caena2 = '';
+    this.fechaini = new Date ()
+    this.fechafin = new Date ()
+    this.valortipo = 0;
+    this.valortipodos = 0;
+    this.filtroServTipoP = []
+   }
 
   ngOnInit() {
     this.getCategorias()
     this.getTipoServ()
+    this.getReporteSer('', '')
+    this.getFiltroTipo()
   }
 
   getTipoServ(){
     this.tipoServ.getTipoServicio().subscribe(
       (data) => {
-        this.tipoServicios = data ['data']
-        console.log(this.tipoServicios)
-        for(let i=0; i<this.tipoServicios.length; i++){
-          if(this.tipoServicios[i].id_categoria_servicio === 1){
+        this.tipoServicios = data['data']
+        this.filtroServTipoP = [] 
+       for(let i=0; i<this.tipoServicios.length; i++){
+          if(this.tipoServicios[i].id_categoria_servicio === this.tipoSelect){
             this.filtroServTipoP.push(this.tipoServicios[i])
-          }else{
-            this.filtroServTipoM.push(this.tipoServicios[i])
+            console.log(this.filtroServTipoP)
           }
-        }        
+        }      
       }, (error) => {
         console.log(error)
       } ) 
@@ -86,6 +149,28 @@ export class ReporteServicioComponent implements OnInit {
     }
   }
 
+  crearUrl() {
+ // tslint:disable-next-line:max-line-length
+ let inicio = '';
+ let fin = '';
+ if (this.fechaini != null) {
+  inicio = this.fechaini.toISOString();
+ } else {
+  inicio = '';
+ }
+ if (this.fechafin != null) {
+    fin = this.fechafin.toISOString();
+ } else {
+  fin  = '';
+ }
+ console.log(inicio, fin, this.valoros , this.fechaini.toISOString());
+ // tslint:disable-next-line:max-line-length
+ this.caena = this.valoruno + this.valortipo + this.valoros + this.valortipodos + this.valortres + this.valorcuatro + inicio + fin;
+ //this.caena2 = + inicio + fin;
+this.getReporteSer(inicio, fin)
+}
+
+
 
   getCategorias(){
     this.categoria.getCategorias().subscribe(
@@ -99,8 +184,40 @@ export class ReporteServicioComponent implements OnInit {
     )
   }
 
-}
-export interface Element {
+  getReporte2(i, id, inic, final){
+    console.log(i)
+    this.caena2 = id  + '?fecha_inicio='+ inic +this.valorcuatro + final;
+    console.log(this.caena2)
+    this.reporteS.getReporteSerR(this.caena2).subscribe(
+      (resp) => {
+      this.reporteServR = resp['data'];
+      console.log(this.reporteServR);
+      this.reporteServ[i].frecuencia_reclamo = this.reporteServR.frecuencia_reclamo
+      this.reporteServ[i].frecuencia_incidencia = this.reporteServR.frecuencia_incidencia
+      this.reporteServ[i].frecuencia_realizacion = this.reporteServR.frecuencia_realizacion
+      console.log(this.reporteServ[i])
+      }, (error) => {
+      console.log(error);
+      });
+  }
+
+getReporteSer(inic, final) {
+
+  this.reporteS.getReporteSer(this.caena).subscribe((resp) => {
+    this.reporteServ = resp['data'];
+    console.log('reporte sin')
+    console.log(this.reporteServ);
+    for(let i=0; i<this.reporteServ.length; i++){
+      console.log('reporte con')
+      this.getReporte2(i, this.reporteServ[i].id, inic,final)
+    }
+    this.dataSource = new MatTableDataSource(this.reporteServ);
+    
+    }, (error) => {
+    console.log(error);
+    });
+  }
+/*export interface Element {
   servicio: string;
   tipo: string;
   categoria: string;
@@ -114,4 +231,4 @@ const ELEMENT_DATA: Element[] = [
   {servicio: 'Corte Bob', tipo: "Corte", categoria: "Peluquería", cantidad: 20, rec: 3, inc: 1, calif: 5 },
   {servicio: 'Maquillaje de día con técnica Strobing', tipo: "Maquillaje de día", categoria: "Maquillaje", cantidad: 15, rec: 3, inc: 1, calif: 5},
   {servicio: 'Alisado con Queratina', tipo: "alisado", categoria: "Peluquería", cantidad: 10, rec: 3, inc: 1, calif: 5},
-];
+];*/}

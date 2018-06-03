@@ -11,13 +11,13 @@
         </mat-select>
     </mat-form-field>-->
     <mat-form-field class="fecha valor">
-        <input matInput [matDatepicker]="picker" [(ngModel)]="fechaini" (change)="crearUrl()" placeholder="Fecha de inicio de la búsqueda">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="fechaini" (ngModelChange)="crearUrl()" placeholder="Fecha de inicio de la búsqueda">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="fecha valor">
-        <input matInput [matDatepicker]="pickerEnd" [(ngModel)]="fechafin" (change)="crearUrl()" placeholder="Fecha de fin de la búsqueda">
+        <input matInput [matDatepicker]="pickerEnd" [(ngModel)]="fechafin" (ngModelChange)="crearUrl()" placeholder="Fecha de fin de la búsqueda">
         <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
         <mat-datepicker #pickerEnd (change)="validateDate()"></mat-datepicker>
         <span *ngIf="fecha">La fecha de fin debe ser mayr que la de inicio</span>

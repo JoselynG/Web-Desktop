@@ -90,6 +90,7 @@ import { MensajeConfirmarComponent } from './mensajes/mensaje-confirmar/mensaje-
 import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
 import { IncidenciaOrdenService } from './provider/incidencia-orden/incidencia-orden.service';
 import { AgregarOrdenService } from './provider/agregar-orden/agregar-orden.service';
+import { ReporteServicioService } from './provider/reporte-servicio/reporte-servicio.service';
 
 
 @NgModule({
@@ -187,7 +188,8 @@ import { AgregarOrdenService } from './provider/agregar-orden/agregar-orden.serv
     CitaService,
     ReporteComentarioService,
     ReporteSolicitudService,
-    AgregarOrdenService
+    AgregarOrdenService,
+    ReporteServicioService
   ],
     
   entryComponents: [
