@@ -3,7 +3,7 @@
 <div class="filtros">
     <div class="select">
         <mat-form-field class="valor">
-            <mat-select [(ngModel)]="filtroSelec" placeholder="Frecuencia" class="letra">
+            <mat-select [(ngModel)]="filtroSelec" placeholder="Frecuencia" class="letra" (change)="getReporteReclamos(filtroSelec);">
                 <mat-option *ngFor="let filtro of filtro" selected="todo" [value]="filtro.value">
                     {{ filtro.viewValue }}
                 </mat-option>
@@ -11,9 +11,21 @@
         </mat-form-field>
     </div>
     <div *ngIf='filtroSelec == "semana"'>
-        <canvas appGraficas tipo="bar" [datos]="misDatosSem"></canvas>
+        <canvas appGraficas *ngIf="misDatos.data.datasets.length > 0 && reloadChart" tipo="bar" [datos]="misDatos"></canvas>
     </div>
 
     <div *ngIf='filtroSelec == "mes"'>
-        <canvas appGraficas tipo="bar" [datos]="misDatosMes"></canvas>
+        <canvas appGraficas *ngIf="misDatos.data.datasets.length > 0 && reloadChart" tipo="bar" [datos]="misDatos"></canvas>
+    </div>
+
+    <div *ngIf='filtroSelec == "trimes"'>
+        <canvas appGraficas *ngIf="misDatos.data.datasets.length > 0 && reloadChart" tipo="bar" [datos]="misDatos"></canvas>
+    </div>
+
+    <div *ngIf='filtroSelec == "seismes"'>
+        <canvas appGraficas *ngIf="misDatos.data.datasets.length > 0 && reloadChart" tipo="bar" [datos]="misDatos"></canvas>
+    </div>
+
+    <div *ngIf='filtroSelec == "anno"'>
+        <canvas appGraficas *ngIf="misDatos.data.datasets.length > 0 && reloadChart" tipo="bar" [datos]="misDatos"></canvas>
     </div>

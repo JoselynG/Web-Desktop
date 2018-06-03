@@ -11,13 +11,17 @@ import { EmpleadosService } from '../../../../provider/empleados/empleados.servi
 })
 export class ServiciosAtendidosComponent implements OnInit {
   listadoServicioSolicitado = [] as any;
-  listadoEmpleados = [] as any;
-  EmpleadoABuscar = [];
+
+  labelsMas = [] as any;
+  dataMas = [] as any;
+
+  labelsMenos = [] as any;
+  dataMenos = [] as any;
 
   filtroSelec = 'mas';
   filtro = [
-    {value: 'mas', viewValue: 'Servicios más solicitados'},
-    {value: 'menos', viewValue: 'Servicios menos solicitados'},
+    { value: 'mas', viewValue: 'Servicios más solicitados' },
+    { value: 'menos', viewValue: 'Servicios menos solicitados' },
   ];
 
   filtroMesSelec = 'semana';
@@ -29,83 +33,122 @@ export class ServiciosAtendidosComponent implements OnInit {
     { value: 'anno', viewValue: 'Último año' },
   ];
 
-  datosMas = {
-    type: 'horizontalBar',
-    data: {
-        labels: ["Secado", "Planchado", "Tinte", "Maquillaje de dia", "Lavado de cabello", "Corte de cabello"],
-        datasets: [{
-            label: 'Servicios más solicitados',
-            data: [35, 30, 30, 18, 10, 5],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-            ],
-            borderColor: [
-                'rgba(254,58,239,1)',
-                'rgba(254,58,239,1)',
-                'rgba(254,58,239,1)',
-                'rgba(254,58,239,1)',
-                'rgba(254,58,239,1)',
-                'rgba(254,58,239,1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-      elements: {
-        line: {
-            tension: 0, // disables bezier curves
-        }
-    }
-    }
-  };
-  datosMenos = {
-    type: 'horizontalBar',
-    data: {
-        labels: ["Secado", "Planchado", "Tinte", "Maquillaje de dia", "Lavado de cabello", "Corte de cabello"],
-        datasets: [{
-            label: 'Servicios menos solicitados',
-            data: [9, 8, 6, 4, 3, 1],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-            ],
-            borderColor: [
-                'rgba(254,58,239,1)',
-                'rgba(254,58,239,1)',
-                'rgba(254,58,239,1)',
-                'rgba(254,58,239,1)',
-                'rgba(254,58,239,1)',
-                'rgba(254,58,239,1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-      elements: {
-        line: {
-            tension: 0, // disables bezier curves
-        }
-    }
-    }
-  };
+  datosMas = {};
+  datosMenos = {};
 
   constructor(public servicioSolicitadoService: ServicioSolicitadoService, public empleadoService: EmpleadosService) {
 
-   }
+  }
 
-   getServicioSolicitado() {
-    this.servicioSolicitadoService.getServicioSolicitado().subscribe(
+  getServicioSolicitado(fecha, order) {
+    var fechaBusqueda: String;
+    var orderBusqueda: String;
+
+    if (fecha == 'semana') {
+      fechaBusqueda = moment().subtract(7, 'd').format('DD-MM-YYYY');
+    } else if (fecha == 'mes') {
+      fechaBusqueda = moment().subtract(1, 'M').format('DD-MM-YYYY');
+    } else if (fecha == 'trimes') {
+      fechaBusqueda = moment().subtract(3, 'M').format('DD-MM-YYYY');
+    } else if (fecha == 'seismes') {
+      fechaBusqueda = moment().subtract(6, 'M').format('DD-MM-YYYY');
+    } else if (fecha == 'anno') {
+      fechaBusqueda = moment().subtract(1, 'y').format('DD-MM-YYYY');
+    }
+
+    if (order == 'mas') {
+      orderBusqueda = 'DESC'
+    } else if (order == 'menos') {
+      orderBusqueda = 'ASC'
+    }
+
+    this.servicioSolicitadoService.getServicioSolicitadoReporte(fechaBusqueda, moment().format('DD-MM-YYYY'), orderBusqueda).subscribe(
       (data) => {
         this.listadoServicioSolicitado = data['data'];
+        if (order == 'mas') {
+          for (let i = 0; i < 6; i++) {
+            this.labelsMas.push(this.listadoServicioSolicitado[i].nombre_servicio + ' - ' + this.listadoServicioSolicitado[i].tipo_servicio);
+            this.dataMas.push(this.listadoServicioSolicitado[i].count);
+            this.datosMas = {
+              type: 'horizontalBar',
+              data: {
+                labels: this.labelsMas,
+                datasets: [{
+                  label: 'Servicios más solicitados',
+                  data: this.dataMas,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                  ],
+                  borderColor: [
+                    'rgba(254,58,239,1)',
+                    'rgba(254,58,239,1)',
+                    'rgba(254,58,239,1)',
+                    'rgba(254,58,239,1)',
+                    'rgba(254,58,239,1)',
+                    'rgba(254,58,239,1)',
+                  ],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                elements: {
+                  line: {
+                    tension: 0, // disables bezier curves
+                  }
+                }
+              }
+            }
+          }
+        } else if (order == 'menos') {
+          for (let i = 0; i < 6; i++) {
+            this.labelsMenos.push(this.listadoServicioSolicitado[i].nombre_servicio + ' - ' + this.listadoServicioSolicitado[i].tipo_servicio);
+            this.dataMenos.push(this.listadoServicioSolicitado[i].count);
+            this.datosMenos = {
+              type: 'horizontalBar',
+              data: {
+                labels: this.labelsMenos,
+                datasets: [{
+                  label: 'Servicios menos solicitados',
+                  data: this.dataMenos,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                  ],
+                  borderColor: [
+                    'rgba(254,58,239,1)',
+                    'rgba(254,58,239,1)',
+                    'rgba(254,58,239,1)',
+                    'rgba(254,58,239,1)',
+                    'rgba(254,58,239,1)',
+                    'rgba(254,58,239,1)',
+                  ],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                elements: {
+                  line: {
+                    tension: 0, // disables bezier curves
+                  }
+                }
+              }
+            };
+          }
+        }
+        this.listadoServicioSolicitado = [];
+        this.labelsMas = [];
+        this.labelsMenos = [];
+        this.dataMas = [];
+        this.dataMenos = [];
       }, (error) => {
         console.log(error);
       }
@@ -113,8 +156,8 @@ export class ServiciosAtendidosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getServicioSolicitado();
+    this.getServicioSolicitado('semana', 'mas');
   }
- 
- 
+
+
 }
