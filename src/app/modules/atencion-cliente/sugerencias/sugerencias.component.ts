@@ -243,7 +243,9 @@ mostrarMensajeExito(): void {//opens the modal
 
   dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
     console.log('Modal closed!');
+    
     this.router.navigate(['atencionCliente']);
+    this.dialogRef.close()
     //this.router.onSameUrlNavigation
     
   });  

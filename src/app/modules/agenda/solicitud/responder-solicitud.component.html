@@ -26,7 +26,7 @@
     </mat-form-field>
     <div class="empl" *ngIf="enviarResp.id_tipo_respuesta_solicitud">
         <!-- se muestra para seleccionar empleado de peluq sólo si el campo es nulo-->
-        <mat-form-field class="valor" *ngIf="(solicitud.empleado == null || catPelu) && servP">
+        <mat-form-field class="valor" *ngIf="(solicitud.empleado.length == 0 || catPelu) && servP">
             <mat-select name="resp" [(ngModel)]="empleadoP" placeholder="Empleado a cargo del servicio de peluquería">
                 <mat-option name="pp" *ngFor="let filtro of empleadosPeluq" [value]="filtro.id_empleado">
                     {{ filtro.nombre }} {{ filtro.apellido }}
@@ -41,7 +41,7 @@
         <input matInput placeholder="Empleado a cargo del servicio de maquillaje" [value]="empleadoM" disabled>
     </mat-form-field>-->
         <!-- se muestra para seleccionar empleado de peluq sólo si el campo es nulo-->
-        <mat-form-field class="valor" *ngIf="(solicitud.empleado == null || catMaqui) && servM">
+        <mat-form-field class="valor" *ngIf="(solicitud.empleado.length == 0 || catMaqui) && servM">
             <mat-select name="resp" [(ngModel)]="empleadoM" placeholder="Empleado a cargo del servicio de maquillaje">
                 <mat-option name="pp" *ngFor="let fil of empleadosMaquil" [value]="fil.id_empleado">
                     {{ fil.nombre }} {{ fil.apellido }}

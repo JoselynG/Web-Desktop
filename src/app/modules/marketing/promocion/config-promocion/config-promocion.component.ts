@@ -249,7 +249,7 @@ getCategorias() {
       this.mesn_f = this.mes_f + 1;
       this.dia_f = this.fecha_fin.getDate();
       this.an_f = this.fecha_fin.getFullYear();
-      this.form.append('fecha_fin', this.an_f + '/' + this.mes_f + '/' + '0' + this.dia_f );
+      this.form.append('fecha_fin', this.an_f + '/' + this.mesn_f + '/' + '0' + this.dia_f );
 
     } else {
       this.mes_f = this.mes_f + 1;

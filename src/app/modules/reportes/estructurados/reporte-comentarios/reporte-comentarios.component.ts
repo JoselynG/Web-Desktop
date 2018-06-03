@@ -12,11 +12,11 @@ import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 })
 export class ReporteComentariosComponent implements OnInit {
   datosMostrar: {
-    id_repuesta_comentario:number,
+    id_repuesta_comentario: number,
     tipo_comentario: string,
     nombre: string,
-    descripcion:string;
-    fecha_creacion:Date;
+    descripcion: string;
+    fecha_creacion: Date;
     respuesta_comentario: {
       id: number
       id_tipo_respuesta_comentario: number
@@ -24,12 +24,20 @@ export class ReporteComentariosComponent implements OnInit {
       descripcion: string
       tipo_respuesta_comentario: string
     };
-  
-    
-  }
-
+  };
+  fechaini: Date;
+  fechafin: Date;
+  valortipo: number;
+  valortipodos: number;
+  tipocomentario: number;
+  caena: string;
+  valoruno: string;
+  valoros: string;
+  valortres: string;
+  valorcuatro: string;
+  valorcinco: string;
   tipo: any;
-  tipoR:any;
+  tipoR: any;
   reporteCom: any ;
 
 filtroTipoComSelec = 'todos';
@@ -56,82 +64,113 @@ applyFilter(filterValue: string) {
   filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
   this.dataSource.filter = filterValue;
 }
+// tslint:disable-next-line:member-ordering
 @ViewChild(MatSort) sort: MatSort;
 
 /**
  * Set the sort after the view init since this component will
  * be able to query its view for the initialized sort.
  */
+// tslint:disable-next-line:use-life-cycle-interface
 ngAfterViewInit() {
   this.dataSource.sort = this.sort;
 }
 
   constructor(public dialog: MatDialog,
-    public tiopoC:TipoComentarioService,
-    public tipoRespC: TipoRepuestaComentarioService, 
-    public reporteC: ReporteComentarioService)
-   { this.gettipocomentario();
+    public tiopoC: TipoComentarioService,
+    public tipoRespC: TipoRepuestaComentarioService,
+    public reporteC: ReporteComentarioService) {
+    this.gettipocomentario();
     this.gettipoRepuestaC();
+    this.caena = '';
     this.getReporteC();
-
     this.datosMostrar = {
-      id_repuesta_comentario:0,
+      id_repuesta_comentario: 0,
       tipo_comentario: '',
       nombre: '',
-      descripcion:'' ,
-      fecha_creacion:new Date(),
+      descripcion: '' ,
+      fecha_creacion: new Date(),
       respuesta_comentario: {
         id: 0,
         id_tipo_respuesta_comentario: 0,
         id_comentario: 0,
         descripcion: '',
         tipo_respuesta_comentario: '',
-      }
-      
+      },
     };
+    this.caena = '';
+    this.fechaini = new Date ()
+    this.fechafin = new Date ()
+      this.valortipo = 0;
+    this.valortipodos = 0;
+    this.tipocomentario = 0;
+    this.valoruno = 'tipo_comentario=';
+    this.valoros = '&respuesta_comentario=';
+    this.valortres = '&tipo_respuesta_comentario=';
+    this.valorcuatro = '&fecha_inicio=';
+    this.valorcinco = '&fecha_fin=';
+  }
+
+  private newMethod() {
+    return this;
   }
 
   ngOnInit() {
     this.gettipocomentario();
     this.gettipoRepuestaC();
     this.getReporteC();
-    //le mandamos los datos a la tabla
+    // le mandamos los datos a la tabla
     console.log(this.reporteCom);
   }
 
-
-gettipocomentario(){
-  this.tiopoC.getTipoComentario().subscribe((resp)=>{
-    this.tipo= resp['data'];
-    console.log(this.tipo);
-
-  },(error)=>{
-    console.log(error);
-  }
- )
+crearUrl() {
+ // tslint:disable-next-line:max-line-length
+ let inicio = '';
+ let fin = '';
+ if (this.fechaini != null) {
+  inicio = this.fechaini.toISOString();
+ } else {
+  inicio = '';
+ }
+ if (this.fechafin != null) {
+    fin = this.fechafin.toISOString();
+ } else {
+  fin  = '';
+ }
+ console.log(inicio, fin, this.valoros , this.fechaini.toISOString());
+ // tslint:disable-next-line:max-line-length
+ this.caena = this.valoruno + this.valortipo + this.valoros + this.valortipodos + this.valortres + this.valorcuatro + inicio + this.valorcinco + fin;
+this.getReporteC();
 }
- 
+gettipocomentario() {
+  this.tiopoC.getTipoComentario().subscribe((resp) => {
+    this.tipo = resp['data'];
+    console.log(this.tipo);
+  }, (error) => {
+    console.log(error);
+  });
+}
 
-gettipoRepuestaC(){
-  this.tipoRespC.getTipoRepuestaC().subscribe((resp)=>{
-    this.tipoR= resp['data'];
+gettipoRepuestaC() {
+  this.tipoRespC.getTipoRepuestaC().subscribe((resp) => {
+    this.tipoR = resp['data'];
     console.log(this.tipoR);
 
-  },(error)=>{
+  }, (error) => {
     console.log(error);
   }
- )
+ );
 }
 
-getReporteC(){
-  this.reporteC.getReporteC().subscribe((resp)=>{
-    this.reporteCom= resp['data'];
-    
+getReporteC() {
+
+  this.reporteC.getReporteC(this.caena).subscribe((resp) => {
+    this.reporteCom = resp['data'];
     console.log(this.reporteCom);
-    this.dataSource=new MatTableDataSource(this.reporteCom);
-  },(error)=>{
+    this.dataSource = new MatTableDataSource(this.reporteCom);
+    }, (error) => {
     console.log(error);
+    });
   }
- )
-}
+// tslint:disable-next-line:eofline
 }

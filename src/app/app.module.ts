@@ -1,3 +1,4 @@
+import { ReporteSolicitudService } from './provider/reporte-solicitud/reporte-solicitud.service';
 import { ReporteComentarioService } from './provider/reporte-comentario/reporte-comentario.service';
 import { CitaService } from './provider/cita/cita.service';
 import { GestionConsejoService } from './provider/gestion-consejo/gestion-consejo.service';
@@ -88,6 +89,7 @@ import { GestionServicioService } from './provider/gestion-servicio/gestion-serv
 import { MensajeConfirmarComponent } from './mensajes/mensaje-confirmar/mensaje-confirmar.component';
 import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
 import { IncidenciaOrdenService } from './provider/incidencia-orden/incidencia-orden.service';
+import { AgregarOrdenService } from './provider/agregar-orden/agregar-orden.service';
 
 
 @NgModule({
@@ -183,7 +185,9 @@ import { IncidenciaOrdenService } from './provider/incidencia-orden/incidencia-o
     GestionConsejoService,
     IncidenciaOrdenService,
     CitaService,
-    ReporteComentarioService
+    ReporteComentarioService,
+    ReporteSolicitudService,
+    AgregarOrdenService
   ],
     
   entryComponents: [

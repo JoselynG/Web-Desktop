@@ -9,4 +9,8 @@ export class VistaEmpleadosCategoriaService {
   getEmpleadosCat(){
     return this.http.get(API_URL+this.url);
   }
+
+  getEmpleadosCatEsp(id){
+    return this.http.get(API_URL+this.url+id);
+  }
 }
