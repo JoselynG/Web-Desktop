@@ -4,7 +4,7 @@
     <div class="filtros">
         <div class="select">
             <mat-form-field class="valor">
-                <mat-select [(ngModel)]="filtroSelec" placeholder="Tipo de búsqueda" class="letra">
+                <mat-select [(ngModel)]="filtroSelec" placeholder="Tipo de búsqueda" class="letra" (change)="getServicioSolicitado(filtroMesSelec, filtroSelec);">
                     <mat-option *ngFor="let filtro of filtro" selected="todo" [value]="filtro.value">
                         {{ filtro.viewValue }}
                     </mat-option>
@@ -13,7 +13,7 @@
         </div>
         <div class="select">
             <mat-form-field class="valor">
-                <mat-select [(ngModel)]="filtroMesSelec" placeholder="Frecuencia" class="letra">
+                <mat-select [(ngModel)]="filtroMesSelec" placeholder="Frecuencia" class="letra" (change)="getServicioSolicitado(filtroMesSelec, filtroSelec);">
                     <mat-option *ngFor="let filtro of filtroMes" [value]="filtro.value">
                         {{ filtro.viewValue }}
                     </mat-option>
@@ -23,9 +23,9 @@
     </div>
 
     <div *ngIf='filtroSelec == "mas"'>
-        <canvas appGraficas tipo="horizontalBar" [datos]="datosMas"></canvas>
+        <canvas appGraficas *ngIf="datosMas.data.datasets.length > 0" tipo="horizontalBar" [datos]="datosMas"></canvas>
     </div>
     <div *ngIf='filtroSelec == "menos"'>
-        <canvas appGraficas tipo="horizontalBar" [datos]="datosMenos"></canvas>
+        <canvas appGraficas *ngIf="datosMenos.data.datasets.length > 0" tipo="horizontalBar" [datos]="datosMenos"></canvas>
     </div>
 </div>
