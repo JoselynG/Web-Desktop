@@ -126,30 +126,60 @@ ngAfterViewInit() {
 crearUrl() {
  // tslint:disable-next-line:max-line-length
  let inicio = '';
- let fin = '';
- if (this.fechaini != null) {
-  if (this.fechaini.getMonth() <= 8) {
-   inicio = this.fechaini.getFullYear() + '-'+ (this.fechaini.getMonth()+1) + '-' + this.fechaini.getDate() 
-  }
-  else{
-   inicio = this.fechaini.getFullYear() + '-'+ this.fechaini.getMonth() + '-' + this.fechaini.getDate() 
-  }
-  console.log(inicio)
- } else {
-  inicio = '';
- }
- if (this.fechafin != null) {
-   
-     if (this.fechafin.getMonth() <= 8) {
-      fin = this.fechafin.getFullYear() + '-'+ (this.fechafin.getMonth()+1) + '-' + this.fechafin.getDate() 
-     }
-     else{
-      fin = this.fechafin.getFullYear() + '-'+ this.fechafin.getMonth() + '-' + this.fechafin.getDate() 
-     }
- } else {
-  fin  = '';
- }
- 
+      let fin = '';
+      let dia = ''
+      let mes = ''
+      if (this.fechaini != null) {
+          if(this.fechaini.getDate() <10){
+            dia = '0'+this.fechaini.getDate()
+          }else{
+            dia = ''+this.fechaini.getDate()
+          }
+          if(this.fechaini.getMonth() < 9){
+            mes = '0'+(this.fechaini.getMonth()+1)
+            console.log('menlr')
+          }else if(this.fechaini.getMonth() === 9){
+            mes = '0'+this.fechaini.getMonth()
+            console.log('igual')
+          }else{
+            mes = ''+(this.fechaini.getMonth()+1)
+            console.log('mayor')
+          }
+          if(this.fechaini.getMonth() < 9){
+            inicio = this.fechaini.getFullYear() + '-0'+ (this.fechaini.getMonth()+1) + '-' + dia       
+          }else{
+            inicio = this.fechaini.getFullYear() + '-'+ (this.fechaini.getMonth()+1) + '-' + dia       
+          }        
+       console.log(inicio)
+      } else {
+       inicio = '';
+      }
+      if (this.fechafin != null) {
+
+        if(this.fechafin.getDate() <10){
+          dia = '0'+this.fechafin.getDate()
+        }else{
+          dia = ''+this.fechafin.getDate()
+        }
+        if(this.fechafin.getMonth() < 9){
+          mes = '0'+(this.fechafin.getMonth()+1)
+          console.log('menlr')
+        }else if(this.fechafin.getMonth() === 9){
+          mes = '0'+this.fechafin.getMonth()
+          console.log('igual')
+        }else{
+          mes = ''+(this.fechafin.getMonth()+1)
+          console.log('mayor')
+        }
+        if(this.fechafin.getMonth() < 9){
+          fin = this.fechafin.getFullYear() + '-0'+ (this.fechafin.getMonth()+1) + '-' + dia       
+        }else{
+          fin = this.fechafin.getFullYear() + '-'+ (this.fechafin.getMonth()+1) + '-' + dia       
+        }
+      } else {
+       fin  = '';
+      }
+      
  console.log(inicio, fin, this.valoros , this.fechaini.toISOString());
  // tslint:disable-next-line:max-line-length
  this.caena = this.valoruno + this.valortipo + this.valoros + this.valortipodos + this.valortres + this.valorcuatro + inicio + this.valorcinco + fin;
