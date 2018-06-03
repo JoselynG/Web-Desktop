@@ -27,9 +27,9 @@ export class ReporteComentariosComponent implements OnInit {
   };
   fechaini: Date;
   fechafin: Date;
-  valortipo: number;
-  valortipodos: number;
-  tipocomentario: number;
+  valortipo: string;
+  valortipodos: string;
+  tipocomentario: string;
   caena: string;
   valoruno: string;
   valoros: string;
@@ -101,9 +101,9 @@ ngAfterViewInit() {
     this.caena = '';
     this.fechaini = new Date ()
     this.fechafin = new Date ()
-      this.valortipo = 0;
-    this.valortipodos = 0;
-    this.tipocomentario = 0;
+      this.valortipo = '';
+    this.valortipodos = '';
+    this.tipocomentario = '';
     this.valoruno = 'tipo_comentario=';
     this.valoros = '&respuesta_comentario=';
     this.valortres = '&tipo_respuesta_comentario=';
@@ -120,7 +120,7 @@ ngAfterViewInit() {
     this.gettipoRepuestaC();
     this.getReporteC();
     // le mandamos los datos a la tabla
-    console.log(this.reporteCom);
+
   }
 
 crearUrl() {
@@ -128,15 +128,28 @@ crearUrl() {
  let inicio = '';
  let fin = '';
  if (this.fechaini != null) {
-  inicio = this.fechaini.toISOString();
+  if (this.fechaini.getMonth() <= 8) {
+   inicio = this.fechaini.getFullYear() + '-'+ (this.fechaini.getMonth()+1) + '-' + this.fechaini.getDate() 
+  }
+  else{
+   inicio = this.fechaini.getFullYear() + '-'+ this.fechaini.getMonth() + '-' + this.fechaini.getDate() 
+  }
+  console.log(inicio)
  } else {
   inicio = '';
  }
  if (this.fechafin != null) {
-    fin = this.fechafin.toISOString();
+   
+     if (this.fechafin.getMonth() <= 8) {
+      fin = this.fechafin.getFullYear() + '-'+ (this.fechafin.getMonth()+1) + '-' + this.fechafin.getDate() 
+     }
+     else{
+      fin = this.fechafin.getFullYear() + '-'+ this.fechafin.getMonth() + '-' + this.fechafin.getDate() 
+     }
  } else {
   fin  = '';
  }
+ 
  console.log(inicio, fin, this.valoros , this.fechaini.toISOString());
  // tslint:disable-next-line:max-line-length
  this.caena = this.valoruno + this.valortipo + this.valoros + this.valortipodos + this.valortres + this.valorcuatro + inicio + this.valorcinco + fin;

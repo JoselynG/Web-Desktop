@@ -5,7 +5,7 @@ const API_URL="http://localhost:3000/api/"
 @Injectable()
 export class ReporteSolicitudService {
   reporteC:any
-  url_reporteSol: String = 'reporte_solicitud/';
+  url_reporteSol: String = 'reporte_solicitud?';
     
   url:string='vista_reclamos_realizados';
   constructor(public http: HttpClient) { }
@@ -14,5 +14,9 @@ export class ReporteSolicitudService {
     console.log(url);
     return this.http.get(API_URL + this.url_reporteSol + url);
    }
-  
+   /*
+   getReporteC() {
+    
+    return this.http.get(API_URL + this.url_reporteSol);
+   }*/
 }
