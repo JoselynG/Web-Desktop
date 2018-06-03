@@ -45,7 +45,7 @@
                     </mat-card-header>
                     <div style="width:100%; display: flex; justify-content: center;">
                         <div class="card1">
-                            <img #imag id="imaG{{item.id}}" src="http://localhost:3000/files/imagen/{{item?.id}}.{{item?.imagen}}" alt="logo" style="max-width: 360px;">
+                            <img #imag id="imaG{{item.id}}" src="http://localhost:3000/files/imagen/{{item?.id}}.{{item?.imagen}}" alt="logo" style="max-width: 360px;  max-height: 300px;">
                             <div>
                                 <input #fileButton id="fileInput{{item.id}}" style="display: none;" type='file' name="archivo" (change)="cambiarImagen($event,imag.id); onFileChange($event);">
                                 <button mat-button (click)="fileButton.click()">
