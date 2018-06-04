@@ -26,6 +26,8 @@
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.6",
+    "xlsjs": "^1.0.1",
+    "xlsx": "^0.13.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

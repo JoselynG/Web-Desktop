@@ -77,7 +77,7 @@
                 <button mat-menu-item *ngIf="element.af" (click)="asignarFuncionesAUsuario(element)">
           <mat-icon>list</mat-icon> Asignar funciones<!--view_list-->
         </button>
-                <button mat-menu-item>
+                <button mat-menu-item *ngIf="element.iu" (click)="usu_selected=element;mostrarMensajeDeConfirmacion('¿Seguro que desea eliminar este usuario?')">
           <mat-icon>delete</mat-icon> Eliminar usuario<!--view_list-->
         </button>
             </mat-menu>

@@ -6,6 +6,15 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./historicos.component.scss']
 })
 export class HistoricosComponent implements OnInit {
+
+  hoy=new Date();
+
+  miFiltro = (d: Date): boolean => {
+    const day = d;
+    // Prevent Saturday and Sunday from being selected.
+    return day <= this.hoy;
+  }
+
   filtroSelec = 'respaldar';
   registrosSeleccionados = [];
   registro1 = ['Cliente', 'Reclamos', 'Servicios'];

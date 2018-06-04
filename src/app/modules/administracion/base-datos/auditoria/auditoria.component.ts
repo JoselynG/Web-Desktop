@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AuditoriaService } from '../../../../provider/auditoria/auditoria.service';
+import { MatTableDataSource } from '@angular/material';
+import { getLocaleDateFormat } from '@angular/common';
+import { registerLocaleData } from '@angular/common';
+import localees from '@angular/common/locales/es-VE';
+
+registerLocaleData(localees);
 
 @Component({
   selector: 'app-auditoria',
@@ -7,39 +14,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuditoriaComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns = ['tabla', 'usuario', 'operacion', 'valor_anterior', 'valor_actual','fecha'];
+  dataSource : any;
+  auditoria_datos:Array<{nombre_tabla:string,usuario:string,operacion:string,valor_viejo:string,valor_nuevo:string,fecha_creacion:Date,estatus:string}>=[]
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
+  constructor(public servicio_auditoria:AuditoriaService) { }
 
   ngOnInit() {
+    this.dataSource=null;
+    this.auditoria_datos=[];
+    this.cargarDatosAuditoria();
   }
-  displayedColumns = ['position', 'fecha', 'operacion', 'tabla', 'registro','usuario'];
-  dataSource = ELEMENT_DATA;
+  
+  cargarDatosAuditoria(){
+    this.servicio_auditoria.getAuditoria().subscribe(data=>{
+      this.auditoria_datos=data['data'];
+      this.dataSource= new MatTableDataSource(this.auditoria_datos);
+    },error=>{console.log(error);});
+  }
 
 
 }
-
-export interface Element {
-  fecha: string;
-  operacion: string;
-  position: number;
-  tabla: string;
-  registro: number;
-  usuario: string;
-}
-
-const ELEMENT_DATA: Element[] = [
-  {fecha: '12/09/2017',position: 1, operacion: 'Delete', tabla: 'Servicio', registro: 1, usuario: 'Laurymar'},
-  {fecha: '12/08/2017',position: 2, operacion: 'Update', tabla: 'Servicio', registro: 3, usuario: 'Sohecdy'},
-  {fecha: '12/08/2017',position: 3, operacion: 'Update', tabla: 'Cliente', registro: 7, usuario: 'Joselyn'},
-  {fecha: '12/08/2017',position: 4, operacion: 'Delete', tabla: 'Solicitud', registro: 9, usuario: 'Nathali'},
-  {fecha: '12/07/2017',position: 5, operacion: 'Insert', tabla: 'Servicio', registro: 6, usuario: 'Ricardo'},
-  {fecha: '12/07/2017',position: 6, operacion: 'Delete', tabla: 'Solicitud', registro: 6, usuario: 'Vaamonde'},
-  {fecha: '12/07/2017',position: 7, operacion: 'Insert', tabla: 'Cliente', registro: 8, usuario: 'Alfredo'},
-  {fecha: '12/06/2017',position: 8, operacion: 'Insert', tabla: 'Solicitud', registro: 4, usuario: 'Ricardo'},
-  {fecha: '10/06/2017',position: 9, operacion: 'Delete', tabla: 'Solicitud', registro: 8, usuario: 'Ricardo'},
-  {fecha: '09/06/2017',position: 10, operacion: 'Update', tabla: 'Cliente', registro: 34, usuario: 'Ricardo'},
-  {fecha: '08/06/2017',position: 11, operacion: 'Delete', tabla: 'Reclamo', registro: 78, usuario: 'Ricardo'},
-  {fecha: '07/06/2017',position: 12, operacion: 'Delete', tabla: 'Reclamo', registro: 90, usuario: 'Ricardo'},
-  {fecha: '06/06/2017',position: 13, operacion: 'Insert', tabla: 'Cliente', registro: 45, usuario: 'Ricardo'},
-  {fecha: '05/06/2017',position: 14, operacion: 'Update', tabla: 'Empleado', registro: 56, usuario: 'Ricardo'},
-  {fecha: '04/06/2017',position: 15, operacion: 'Insert', tabla: 'Empleado', registro: 94, usuario: 'Ricardo'},
-];

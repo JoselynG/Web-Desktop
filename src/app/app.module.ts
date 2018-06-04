@@ -85,6 +85,9 @@ import { RolFuncionService } from './provider/rol-funcion/rol-funcion.service';
 import { GestionServicioService } from './provider/gestion-servicio/gestion-servicio.service';
 import { MensajeConfirmarComponent } from './mensajes/mensaje-confirmar/mensaje-confirmar.component';
 import { GestionPromocionService } from './provider/gestion-promocion/gestion-promocion.service';
+import { InsumosService } from './provider/insumos/insumos.service';
+import { TituloSeccionService } from './provider/titulo-seccion/titulo-seccion.service';
+import { AuditoriaService } from './provider/auditoria/auditoria.service';
 
 
 @NgModule({
@@ -177,8 +180,10 @@ import { GestionPromocionService } from './provider/gestion-promocion/gestion-pr
     GestionDetalleServicioService,
     OrdenServicioService,
     RedSocialService,
-    GestionConsejoService
-    
+    GestionConsejoService,
+    InsumosService,
+    TituloSeccionService,
+    AuditoriaService
   ],
     
   entryComponents: [

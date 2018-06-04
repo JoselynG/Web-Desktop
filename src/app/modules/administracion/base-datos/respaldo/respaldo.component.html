@@ -15,7 +15,9 @@
             </mat-form-field>
         </div>
         <div class="botonA">
-            <button mat-raised-button color="accent">Respaldar</button>
+            <button mat-raised-button color="accent" (click)="respaldar()">Respaldar</button>
         </div>
     </mat-card>
 </div>
+
+<a id="descargarbackup" style="display: none;" download="respaldo.backup" (click)="$event.currentTarget.href='respaldo.backup'"></a>

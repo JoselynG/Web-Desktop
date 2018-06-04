@@ -13,7 +13,7 @@
 }
 
 input[type=text] {
-    width: 160px;
+    width: 250px;
     height: 30px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -27,17 +27,17 @@ input[type=text] {
 }
 
 input[type=text]:focus {
-    width: 30%;
+    width: 80%;
 }
 
 .example-header {
     min-height: 64px;
     padding: 30px 15px 0;
-    margin-left: 200px;
+    margin-left: 40px;
 }
 
 .busqueda {
-    width: 160px;
+    width: 200px;
     height: 30px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -51,5 +51,5 @@ input[type=text]:focus {
 }
 
 .busqueda:focus {
-    width: 30%;
+    width: 80%;
 }

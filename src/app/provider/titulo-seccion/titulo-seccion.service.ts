@@ -23,4 +23,8 @@ export class TituloSeccionService {
     return this.http.put(API_URL + this.url + '/' + tituloId, tituloSeccion);
   }
 
+  postTituloSeccion(tituloSeccion){
+    return this.http.post(API_URL+this.url, tituloSeccion);
+  }
+
 }

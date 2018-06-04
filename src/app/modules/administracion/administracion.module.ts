@@ -2,7 +2,7 @@ import { HistoricoServicioComponent } from './base-datos/historicos/historico-se
 import { HistoricoReclamoComponent } from './base-datos/historicos/historico-reclamo/historico-reclamo.component';
 import { HistoricoPromocionComponent } from './base-datos/historicos/historico-promocion/historico-promocion.component';
 import { AuditoriaComponent } from './base-datos/auditoria/auditoria.component';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdministracionRoutingModule } from './administracion-routing.module';
@@ -50,6 +50,7 @@ import { ImportarComponent } from './base-datos/importar/importar.component';
     HistoricoServicioComponent,
     ImportarComponent,
     PasosComponent
-  ]
+  ],
+  providers: [ { provide: LOCALE_ID, useValue: 'es-Ve' } ]
 })
 export class AdministracionModule { }

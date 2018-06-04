@@ -8,6 +8,8 @@ import { ClientesService } from '../../../provider/clientes/clientes.service';
 import { EmpleadosService } from '../../../provider/empleados/empleados.service';
 import { RolesService } from '../../../provider/roles/roles.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
+import { MensajeConfirmarComponent } from '../../../mensajes/mensaje-confirmar/mensaje-confirmar.component';
 
 @Component({
   selector: 'app-seguridad-funcional',
@@ -16,8 +18,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SeguridadFuncionalComponent implements OnInit {
 
+  usu_selected=null;
+
   usuariosArr:any;empleadosArr:any;clientesArr:any;
-  lista_usuarios:Array<{usuario: string,correo: string,telefono: string,rol: string,id:number,af:boolean/*Asignar Funciones*/}>=[];
+  lista_usuarios:Array<{usuario: string,correo: string,telefono: string,rol: string,id:number,af:boolean/*Asignar Funciones*/,iu:number}>=[];
 
   displayedColumns = ['usuario', 'correo', 'telefono', 'rol', 'menu'];
   dataSource : any;
@@ -36,6 +40,8 @@ export class SeguridadFuncionalComponent implements OnInit {
     public servicio_rol: RolesService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(){
+    this.lista_usuarios=[];
+    this.dataSource=null;
     this.getRoles();this.getUsuariosInfo();
   }
   
@@ -51,7 +57,7 @@ export class SeguridadFuncionalComponent implements OnInit {
             ///----------------->
             this.servicio_usuario.getUsuarios().subscribe(//SERVICIO DE USUARIOS QUE RETORNA JSON DE TABLA USUARIO
               (data3)=>{
-                this.usuariosArr=data3['data'].filter((el, i, arr)=>(el.estatus == "A"));
+                this.usuariosArr=data3['data']/*.filter((el, i, arr)=>(el.estatus == "A"))*/;
                 console.log(this.clientesArr);
                 console.log(this.usuariosArr);
                 ///////////////////
@@ -60,23 +66,28 @@ export class SeguridadFuncionalComponent implements OnInit {
                   {for (let j = 0; j < this.usuariosArr.length; j++) {//RECORRE LA LISTA DE empleados 
                     if (empl.id_usuario==null) {//SE TRAE AL EMPLEADO AUN CUANDO ESTE NO TIENE UN USUARIO ASIGNADO
                       this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:"",
-                      telefono:empl.telefono, rol:"",id:empl.id,af:true});
+                      telefono:empl.telefono, rol:"",id:empl.id,af:true,iu:null});
                       break;
                     }
                     if(empl.id_usuario==this.usuariosArr[j].id){//SI EL empleado EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
-                      this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:this.usuariosArr[j].correo,
-                      telefono:empl.telefono, rol:this.nombreRol(this.usuariosArr[j].id_rol),id:empl.id,af:true});
-                      break;
+                      if (this.usuariosArr[j].estatus=="A") {
+                        this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:this.usuariosArr[j].correo,
+                        telefono:empl.telefono, rol:this.nombreRol(this.usuariosArr[j].id_rol),id:empl.id,af:true,iu:this.usuariosArr[j].id});
+                        break;
+                      } else {
+                        this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:"",telefono:empl.telefono, rol:"",id:empl.id,af:true,iu:null});
+                        break;
+                      }
                     }
                   }}else{
-                      this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:"",telefono:empl.telefono,rol:"",id:empl.id,af:true});
+                      this.lista_usuarios.push({usuario:(empl.nombre+" "+empl.apellido), correo:"",telefono:empl.telefono,rol:"",id:empl.id,af:true,iu:null});
                   }
                 });
                 this.clientesArr.forEach(cli => {
                   for (let i = 0; i < this.usuariosArr.length; i++) {//RECORRE LA LISTA DE clientes 
                     if(cli.id_usuario==this.usuariosArr[i].id){//SI EL cliente EN LA POSICION i COMPARTE EL MISMO ID DEL usuario, ENTONCES AGREGAMOS CIERTOS DATOS A LA lista_usuarios
                       this.lista_usuarios.push({usuario:(cli.nombre+" "+cli.apellido), correo:this.usuariosArr[i].correo,
-                      telefono:cli.telefono, rol:this.nombreRol(this.usuariosArr[i].id_rol),id: cli.id,af:false});
+                      telefono:cli.telefono, rol:this.nombreRol(this.usuariosArr[i].id_rol),id: cli.id,af:false,iu:this.usuariosArr[i].id});
                       break;
                     }
                   }
@@ -132,6 +143,43 @@ export class SeguridadFuncionalComponent implements OnInit {
   asignarFuncionesAUsuario(user) {
     this.router.navigate(['asignarfunciones/'+user.id], { relativeTo: this.route });
  }
+
+
+ eliminarUsu(usu){
+    this.servicio_usuario.putUsuario(usu.iu,{estatus:"I"}).subscribe(data=>{
+        console.log("El usuario del cliente ha sido eliminado.");
+        this.mostrarMensajeExito("Usuario eliminado con éxito!");this.ngOnInit();
+    },error=>{console.log(error);});   
+}
+
+mostrarMensajeExito(mns): void {//opens the modal
+  let dialogRef = this.dialog.open(MensajeExitoComponent, {
+    width: '300px',//sets the width
+    height: '140px', 
+    data: { msj: mns }//send this class's attributes to the modal
+  });
+
+  dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+    console.log('modal cerrado');
+  });
+}
+
+mostrarMensajeDeConfirmacion(mnsj): void {//opens the modal
+  let dialogRef = this.dialog.open(MensajeConfirmarComponent, {
+    width: '300px',//sets the width
+    height: '180px', 
+    data: { msj: mnsj }//send this class's attributes to the modal
+  });
+
+  dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+    if(result!=null){
+      if(result=="si"){
+      if(this.usu_selected){
+        this.eliminarUsu(this.usu_selected);
+      }
+    }}
+  });
+}
 
 }
 

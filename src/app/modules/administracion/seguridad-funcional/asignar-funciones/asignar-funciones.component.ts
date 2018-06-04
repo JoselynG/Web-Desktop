@@ -49,16 +49,19 @@ export class AsignarFuncionesComponent implements OnInit {
       (data)=>{
         this.empleado=data['data'];//SE ASIGNA EL EMPLEADO ACTUAL
         //console.log(this.empleado.id_usuario);
-        if (this.empleado.id_usuario) {//SI EL EMPLEADO ACTUAL TIENE UN USUARIO ASIGNADO SE EJECUTA EL if
-          //console.log('entro');
-          this.encontrado=true;//LE DECIMOS A LA VARIABLE QUE ESTE EMPLEADO TIENE UN USER ASIGNADO
-          /**/this.servicio_usuario.getUsuario(this.empleado.id_usuario).subscribe(
-            (data2)=>{
-              this.usuario=data2['data'];//ASIGNAMOS LOS VALORES DEL USUARIO CONCERNIENTE AL CLIENTE ACTUAL
-            },(error)=>{
-              console.log(error);
+        if (this.empleado.id_usuario) {//SI EL EMPLEADO ACTUAL TIENE UN USUARIO ASIGNADO SE EJECUTA EL if  
+          this.servicio_usuario.getUsuario(this.empleado.id_usuario).subscribe(data1=>{
+            if (data1['data'].estatus=="A") {
+              this.encontrado=true;//LE DECIMOS A LA VARIABLE QUE ESTE EMPLEADO TIENE UN USER ASIGNADO
+              /**/this.servicio_usuario.getUsuario(this.empleado.id_usuario).subscribe(
+                (data2)=>{
+                  this.usuario=data2['data'];//ASIGNAMOS LOS VALORES DEL USUARIO CONCERNIENTE AL CLIENTE ACTUAL
+                },(error)=>{
+                  console.log(error);
+                }
+              );/**/
             }
-          );/**/
+          },error=>{console.log(error);});
         }
       },(error)=>{
         console.log(error);
@@ -105,30 +108,39 @@ export class AsignarFuncionesComponent implements OnInit {
         },(error)=>{console.log(error);}
       );/**/
     } else {//SE EJECUTA CUANDO EL EMPLEADO NO TIENE USUARIO ASIGNADO
-      /**/this.servicio_usuario.postUsuario(usu).subscribe(//SE CREA EL USER QUE SERA ASIGNADO AL EMPLEADO ACTUAL
-        (data2)=>{
-          //console.log(data2['data'].message);
-          this.servicio_usuario.getUsuarios().subscribe(//OBTENEMOS TODOS LOS USUARIOS PARA SABER CUAL FUE EL ULTIMO CREADO
-            (data3)=>{
-              let arrid_para_emp:Array<any>=data3['data'];//OBTENIDOS TODOS LOS USERS
-              let arr:Array<any>=arrid_para_emp.sort((a,b) => (b.id - a.id));//EL MAS NUEVO LO COLOCAMOS EN LA PRIMERA POSICION
-              //console.log('entrooo',arr[0].id);
-              
-              let formData = new FormData();//NECESARIO PARA TRABAJAR CON SERVICIOS QUE MANIPULAN IMAGENES(ARCHIVOS)
-              formData.append( 'id_usuario', arr[0].id);//AL id_usuario DEL EMPLEADO LE MANDAMOS EL id DEL USER CREADO RECIENTEMENTE
-              this.servicio_empleado.putEmpleado(this.empleado.id,formData).subscribe(
-                (data4)=>{
-                  //console.log(data4['data'].message);
-				  this.mostrarMensajeExito("El usuario ha sido asignado con éxito!");//LE HEMOS ASIGNADO EL USER AL EMPLEADO!!
-                },(error)=>{console.log(error);}
+      //
+      this.servicio_usuario.getUsuarios().subscribe(dato=>{
+        let resultado=dato['data'].filter((el, i, arr)=>(el.correo == usu.correo));
+        if(resultado.length>0){//////////////////////////////////////////////
+          this.mostrarMensajeValidacion("Por favor, tipee otro correo a asignar.");
+        }else{///////////////////////////////////////////////////////////////
+          /**/this.servicio_usuario.postUsuario(usu).subscribe(//SE CREA EL USER QUE SERA ASIGNADO AL EMPLEADO ACTUAL
+            (data2)=>{
+              //console.log(data2['data'].message);
+              this.servicio_usuario.getUsuarios().subscribe(//OBTENEMOS TODOS LOS USUARIOS PARA SABER CUAL FUE EL ULTIMO CREADO
+                (data3)=>{
+                  let arrid_para_emp:Array<any>=data3['data'];//OBTENIDOS TODOS LOS USERS
+                  let arr:Array<any>=arrid_para_emp.sort((a,b) => (b.id - a.id));//EL MAS NUEVO LO COLOCAMOS EN LA PRIMERA POSICION
+                  //console.log('entrooo',arr[0].id);
+                  
+                  let formData = new FormData();//NECESARIO PARA TRABAJAR CON SERVICIOS QUE MANIPULAN IMAGENES(ARCHIVOS)
+                  formData.append('id_usuario',arr[0].id);//AL id_usuario DEL EMPLEADO LE MANDAMOS EL id DEL USER CREADO RECIENTEMENTE
+                  this.servicio_empleado.putEmpleado(this.empleado.id,formData).subscribe(
+                    (data4)=>{
+                      //console.log(data4['data'].message);
+              this.mostrarMensajeExito("El usuario ha sido asignado con éxito!");//LE HEMOS ASIGNADO EL USER AL EMPLEADO!!
+                    },(error)=>{console.log(error);}
+                  );
+                  //
+                },(error)=>{
+                  console.log(error);
+                }
               );
-              //
-            },(error)=>{
-              console.log(error);
-            }
-          );
-        },(error)=>{console.log(error);}
-      );/**/
+            },(error)=>{console.log(error);}
+          );/**/
+        }
+      },error=>{console.log(error);});
+      //
     }
   }else{//MUESTRA HINTS DE ERROR CUANDO NO SE TIPEA NADA EN LOS CAMPOS DE CORREO Y CONTRASEÑA
     document.getElementById("usucorreo").focus();document.getElementById("usucontrasenia").focus();
@@ -146,6 +158,19 @@ export class AsignarFuncionesComponent implements OnInit {
   dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
     console.log('Modal closed!');
     this.router.navigate(['seguridadfuncional']);
+  });
+}
+
+mostrarMensajeValidacion(mns): void {//opens the modal
+  let dialogRef = this.dialog.open(MensajeExitoComponent, {
+    width: '300px',//sets the width
+    height: '140px', 
+    data: { msj: mns }//send this class's attributes to the modal
+  });
+
+  dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+    console.log('Modal closed!');
+    document.getElementById("usucorreo").focus();
   });
 }
     

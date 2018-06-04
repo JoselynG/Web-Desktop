@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog } from '@angular/material';
+import { MensajeExitoComponent } from '../../../../mensajes/mensaje-exito/mensaje-exito.component';
 
 
 @Component({
@@ -13,9 +14,30 @@ export class RespaldoComponent implements OnInit {
   registro1 = ['Cliente', 'Reclamos', 'Servicios', 'Todos'];
  
  
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  respaldar(valor){
+    if(this.registrosSeleccionados.length>0){
+      document.getElementById('descargarbackup').click();
+      this.mostrarMensajeExito("Los datos han sido respaldados de manera exitosa!");
+    }else{
+      this.mostrarMensajeExito("Debe seleccionar primero para poder respaldar.");
+    }
+  }
+
+  mostrarMensajeExito(mns): void {//opens the modal
+    let dialogRef = this.dialog.open(MensajeExitoComponent, {
+      width: '300px',//sets the width
+      height: '160px', 
+      data: { msj: mns }//send this class's attributes to the modal
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+      console.log('modal cerrado');
+    });
   }
 
 }

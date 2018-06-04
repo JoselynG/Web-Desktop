@@ -1,18 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
+import { ServiciosService } from '../../../../../provider/servicios/servicios.service';
 @Component({
   selector: 'app-historico-servicio',
   templateUrl: './historico-servicio.component.html',
   styleUrls: ['./historico-servicio.component.scss']
 })
 export class HistoricoServicioComponent implements OnInit {
-  displayedColumns = ['servicio', 'tipo', 'cantidad','precio'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns = ['servicio', 'descripcion', 'duracion','precio'];
+  dataSource:any;/* = new MatTableDataSource(ELEMENT_DATA);*/
+  serviciosinactivos:Array<{nombre:string,descripcion:string,duracion:number,precio:number}>=[];
   
-  
-  constructor() { }
+  constructor(public servicio_servicio: ServiciosService) { }
 
   ngOnInit() {
+    this.dataSource=null;
+    this.serviciosinactivos=[];
+    this.cargarServiciosI();
+  }
+
+  cargarServiciosI(){
+    this.servicio_servicio.getServicios().subscribe(data=>{
+      this.serviciosinactivos=data['data'].filter((el, i, arr)=>(el.estatus == "I"));
+      this.dataSource= new MatTableDataSource(this.serviciosinactivos);
+    },error=>{console.log(error);});
   }
 
 }
@@ -22,10 +33,3 @@ export interface Element {
   cantidad: number;
   precio:number;
 }
-
-const ELEMENT_DATA: Element[] = [
-  {servicio: 'Mechas', tipo: "Teñido de cabello",  cantidad: 2, precio: 2500},
-  {servicio: 'Maquillaje clasico', tipo: "Maquillaje", cantidad: 1, precio: 4000},
-  {servicio: 'Alisado con Japones', tipo: "alisado", cantidad: 1, precio: 5067},
-];
-

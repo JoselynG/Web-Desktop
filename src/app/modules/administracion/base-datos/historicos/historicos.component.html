@@ -1,11 +1,11 @@
 <div class="ctn">
     <mat-form-field *ngIf="filtroSelec != ''">
-        <input matInput [matDatepicker]="picker" placeholder="Desde la fecha">
+        <input matInput [matDatepickerFilter]="miFiltro" [matDatepicker]="picker" placeholder="Desde la fecha">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field> &nbsp;&nbsp;&nbsp;
     <mat-form-field *ngIf="filtroSelec != ''">
-        <input matInput [matDatepicker]="picker" placeholder="Hasta la fecha">
+        <input matInput [matDatepickerFilter]="miFiltro" [matDatepicker]="picker" placeholder="Hasta la fecha">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field> &nbsp;&nbsp;&nbsp;
