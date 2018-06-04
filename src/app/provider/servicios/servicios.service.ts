@@ -29,6 +29,8 @@ export class ServiciosService {
     return this.http.get(API_URL + 'reporte_servicio_calificado?orderby=' + order);
   }
 
-
+  getInsumos() {
+    return this.http.get(API_URL + 'insumo');
+  }
 
 }

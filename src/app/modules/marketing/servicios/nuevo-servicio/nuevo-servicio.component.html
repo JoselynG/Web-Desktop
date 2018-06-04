@@ -32,7 +32,13 @@
                             </mat-form-field>
                             <mat-form-field class="example-full-width inputs">
                                 <input matInput name="garantia" placeholder="Garantia" [(ngModel)]="ser.duracion" value=""><br>
+                            </mat-form-field>
 
+                            <mat-form-field class="valor inputs">
+                                <mat-select placeholder="Insumos utilizados" [(ngModel)]="insumoSelec" multiple>
+                                    
+                                    <mat-option color="accent" *ngFor="let ins of insumo" [value]="ins">{{ins.nombre}}</mat-option>
+                                </mat-select>
                             </mat-form-field>
 
                             <div>
