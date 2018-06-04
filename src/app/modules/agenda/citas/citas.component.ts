@@ -46,13 +46,20 @@ export class CitasComponent implements OnInit {
   }
 
   getOrden(){
+    
+    let id = Number(localStorage.getItem('id'))
+    console.log(id)
     this.vistaOrden.getOrdenCita().subscribe(
       (data) => {
         this.ordenAux = data['data']
         console.log(this.ordenAux)
         for(let i=0; i<this.ordenAux.length; i++){          
           if(this.ordenAux[i].estado === "E"){
-              this.orden.push(this.ordenAux[i])
+           for(let j=0; j<this.ordenAux[i].empleados_asignados.length; j++){
+              if(this.ordenAux[i].empleados_asignados[j].id_empleado === id){
+                this.orden.push(this.ordenAux[i])
+              }
+            }        
           }
         }
         console.log(this.orden)
