@@ -48,19 +48,19 @@
                     <h6>Clientes citados para el día de hoy</h6>
                 </div>
                 <div class="cant">
-                    <h1>5</h1>
+                    <h1>{{orden.length}}</h1>
                 </div>
                 <div class="subtitle">
                     <h6>Servicios programados </h6>
                 </div>
             </mat-card-header>
             <mat-card-content>
-                <div class="for" *ngFor="let servicio of servicios">
+                <div class="for" *ngFor="let servicio of orden.servicios_solicitados">
                     <div class="name">
-                        <h5>{{servicio.nombre}}</h5>
+                        <h5>{{servicio.tipo_servicio}} {{servicio.nombre_servicio}}</h5>
                     </div>
                     <div class="hora">
-                        <h5> {{servicio.hora}}</h5>
+                        <h5> {{orden.citas[0].hora_inicio}}</h5>
                     </div>
                 </div>
             </mat-card-content>
