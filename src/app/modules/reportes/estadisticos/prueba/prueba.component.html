@@ -10,9 +10,9 @@
     </mat-form-field>
 </div>
 <div *ngIf='filtroSelec == "presente"'>
-    <canvas appGraficas *ngIf="misDatosCitas.data.datasets.length > 0 && reloadChartCitas" tipo="line" [datos]="misDatosCitas"></canvas>
+    <canvas appGraficas *ngIf="reloadChartCitas" tipo="line" [datos]="misDatosCitas"></canvas>
 </div>
 
 <div *ngIf='filtroSelec == "pasado"'>
-    <canvas appGraficas *ngIf="misDatosCitas.data.datasets.length > 0 && reloadChartCitas" tipo="line" [datos]="misDatosCitas"></canvas>
+    <canvas appGraficas *ngIf="reloadChartCitas" tipo="line" [datos]="misDatosCitas"></canvas>
 </div>

@@ -39,11 +39,19 @@ export class ServiciosAtendidosComponent implements OnInit {
   constructor(public servicioSolicitadoService: ServicioSolicitadoService, public empleadoService: EmpleadosService) {
 
   }
+  reloadChartMas: Boolean = false;
+  reloadChartMenos: Boolean = false;
 
   getServicioSolicitado(fecha, order) {
+    this.reloadChartMas = false;
+    this.reloadChartMenos = false;
     var fechaBusqueda: String;
     var orderBusqueda: String;
-
+    this.listadoServicioSolicitado = [];
+    this.labelsMas = [];
+    this.labelsMenos = [];
+    this.dataMas = [];
+    this.dataMenos = [];
     if (fecha == 'semana') {
       fechaBusqueda = moment().subtract(7, 'd').format('DD-MM-YYYY');
     } else if (fecha == 'mes') {
@@ -104,6 +112,7 @@ export class ServiciosAtendidosComponent implements OnInit {
               }
             }
           }
+          this.reloadChartMas = true;
         } else if (order == 'menos') {
           for (let i = 0; i < 6; i++) {
             this.labelsMenos.push(this.listadoServicioSolicitado[i].nombre_servicio + ' - ' + this.listadoServicioSolicitado[i].tipo_servicio);
@@ -143,12 +152,8 @@ export class ServiciosAtendidosComponent implements OnInit {
               }
             };
           }
+          this.reloadChartMenos = true;
         }
-        this.listadoServicioSolicitado = [];
-        this.labelsMas = [];
-        this.labelsMenos = [];
-        this.dataMas = [];
-        this.dataMenos = [];
       }, (error) => {
         console.log(error);
       }

@@ -23,9 +23,9 @@
     </div>
 
     <div *ngIf='filtroSelec == "mas"'>
-        <canvas appGraficas *ngIf="datosMas.data.datasets.length > 0" tipo="horizontalBar" [datos]="datosMas"></canvas>
+        <canvas appGraficas *ngIf="reloadChartMas" tipo="horizontalBar" [datos]="datosMas"></canvas>
     </div>
     <div *ngIf='filtroSelec == "menos"'>
-        <canvas appGraficas *ngIf="datosMenos.data.datasets.length > 0" tipo="horizontalBar" [datos]="datosMenos"></canvas>
+        <canvas appGraficas *ngIf="reloadChartMenos" tipo="horizontalBar" [datos]="datosMenos"></canvas>
     </div>
 </div>

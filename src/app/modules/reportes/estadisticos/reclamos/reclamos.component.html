@@ -11,21 +11,21 @@
         </mat-form-field>
     </div>
     <div *ngIf='filtroSelec == "semana"'>
-        <canvas appGraficas *ngIf="misDatos.data.datasets.length > 0 && reloadChart" tipo="bar" [datos]="misDatos"></canvas>
+        <canvas appGraficas *ngIf="reloadChart" tipo="bar" [datos]="misDatos"></canvas>
     </div>
 
     <div *ngIf='filtroSelec == "mes"'>
-        <canvas appGraficas *ngIf="misDatos.data.datasets.length > 0 && reloadChart" tipo="bar" [datos]="misDatos"></canvas>
+        <canvas appGraficas *ngIf="reloadChart" tipo="bar" [datos]="misDatos"></canvas>
     </div>
 
     <div *ngIf='filtroSelec == "trimes"'>
-        <canvas appGraficas *ngIf="misDatos.data.datasets.length > 0 && reloadChart" tipo="bar" [datos]="misDatos"></canvas>
+        <canvas appGraficas *ngIf="reloadChart" tipo="bar" [datos]="misDatos"></canvas>
     </div>
 
     <div *ngIf='filtroSelec == "seismes"'>
-        <canvas appGraficas *ngIf="misDatos.data.datasets.length > 0 && reloadChart" tipo="bar" [datos]="misDatos"></canvas>
+        <canvas appGraficas *ngIf="reloadChart" tipo="bar" [datos]="misDatos"></canvas>
     </div>
 
     <div *ngIf='filtroSelec == "anno"'>
-        <canvas appGraficas *ngIf="misDatos.data.datasets.length > 0 && reloadChart" tipo="bar" [datos]="misDatos"></canvas>
+        <canvas appGraficas *ngIf="reloadChart" tipo="bar" [datos]="misDatos"></canvas>
     </div>

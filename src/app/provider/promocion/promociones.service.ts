@@ -36,4 +36,7 @@ putPromocion(promoId, promo) {
   return this.http.put(API_URL + this.url_listado_promociones + '/' + promoId, promo);
 }
 
+getReportePromocion() {
+  return this.http.get(API_URL + 'reporte_promocion');
+}
 }

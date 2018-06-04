@@ -13,21 +13,21 @@
     </mat-form-field>
 </div>
 <div *ngIf='filtroSelec == "semana"'>
-    <canvas appGraficas *ngIf="misDatosSem.data.datasets.length > 0" tipo="pie" [datos]="misDatosSem"></canvas>
+    <canvas appGraficas *ngIf="reloadChartSemana" tipo="pie" [datos]="misDatosSem"></canvas>
 </div>
 
 <div *ngIf='filtroSelec == "mes"'>
-    <canvas appGraficas  tipo="pie" [datos]="misDatosMes"></canvas>
+    <canvas appGraficas *ngIf="reloadChartMes" tipo="pie" [datos]="misDatosMes"></canvas>
 </div>
 
 <div *ngIf='filtroSelec == "trimes"'>
-    <canvas appGraficas  tipo="pie" [datos]="misDatosTrimes"></canvas>
+    <canvas appGraficas *ngIf="reloadChartTrimes" tipo="pie" [datos]="misDatosTrimes"></canvas>
 </div>
 
 <div *ngIf='filtroSelec == "seismes"'>
-    <canvas appGraficas  tipo="pie" [datos]="misDatosSeismes"></canvas>
+    <canvas appGraficas *ngIf="reloadChartSemes" tipo="pie" [datos]="misDatosSeismes"></canvas>
 </div>
 
 <div *ngIf='filtroSelec == "anno"'>
-    <canvas appGraficas  tipo="pie" [datos]="misDatosAnno"></canvas>
+    <canvas appGraficas *ngIf="reloadChartAnno" tipo="pie" [datos]="misDatosAnno"></canvas>
 </div>
