@@ -60,10 +60,13 @@ export class ReporteServicioComponent implements OnInit {
   caena2: string;
   fechaini: Date;
   fechafin: Date;
-  valortipo: number;
-  valortipodos: number;
-  id_ser: number;
-  tipoSelect: number;
+  valortipo: string;
+  valortipodos: string;
+  id_ser: string;
+  tipoSelect: string;
+  dateInic: Date;
+  dateFin: Date;
+  fecha: boolean;
 
 
   filtroServTipoTodos = [
@@ -75,7 +78,7 @@ export class ReporteServicioComponent implements OnInit {
     {value: 'todos', viewValue: 'Todos'},
   ];
 
-  displayedColumns = ['servicio', 'tipo', 'categoria', 'cantidad', 'rec', 'inc', 'calif'];
+  displayedColumns = ['servicio', 'tipo', 'categoria', 'cantidad', 'rec', 'inc'];
   dataSource: any;
 
   applyFilter(filterValue: string) {
@@ -105,14 +108,14 @@ export class ReporteServicioComponent implements OnInit {
     this.valoros = '&categoria_servicio=';
     this.valortres = '&fecha_inicio=';
     this.valorcuatro = '&fecha_fin=';
-    this.id_ser = 0;
+    this.id_ser = '';
 
     this.caena = '';
     this.caena2 = '';
     this.fechaini = new Date ()
     this.fechafin = new Date ()
-    this.valortipo = 0;
-    this.valortipodos = 0;
+    this.valortipo = '';
+    this.valortipodos = '';
     this.filtroServTipoP = []
    }
 
@@ -149,25 +152,82 @@ export class ReporteServicioComponent implements OnInit {
     }
   }
 
+  crearUrl2(){
+    this.getTipoServ()
+    this.crearUrl()
+  }
   crearUrl() {
+    
  // tslint:disable-next-line:max-line-length
  let inicio = '';
  let fin = '';
+ let dia = ''
+ let mes = ''
  if (this.fechaini != null) {
-  inicio = this.fechaini.toISOString();
- } else {
-  inicio = '';
- }
- if (this.fechafin != null) {
-    fin = this.fechafin.toISOString();
- } else {
-  fin  = '';
- }
+  if(this.fechaini.getDate() <10){
+    dia = '0'+this.fechaini.getDate()
+  }else{
+    dia = ''+this.fechaini.getDate()
+  }
+  if(this.fechaini.getMonth() < 9){
+    mes = '0'+(this.fechaini.getMonth()+1)
+    console.log('menlr')
+  }else if(this.fechaini.getMonth() === 9){
+    mes = '0'+this.fechaini.getMonth()
+    console.log('igual')
+  }else{
+    mes = ''+(this.fechaini.getMonth()+1)
+    console.log('mayor')
+  }
+  if(this.fechaini.getMonth() < 9){
+    inicio = this.fechaini.getFullYear() + '-0'+ (this.fechaini.getMonth()+1) + '-' + dia       
+  }else{
+    inicio = this.fechaini.getFullYear() + '-'+ (this.fechaini.getMonth()+1) + '-' + dia       
+  }        
+console.log(inicio)
+} else {
+inicio = '';
+}
+if (this.fechafin != null) {
+
+if(this.fechafin.getDate() <10){
+  dia = '0'+this.fechafin.getDate()
+}else{
+  dia = ''+this.fechafin.getDate()
+}
+if(this.fechafin.getMonth() < 9){
+  mes = '0'+(this.fechafin.getMonth()+1)
+  console.log('menlr')
+}else if(this.fechafin.getMonth() === 9){
+  mes = '0'+this.fechafin.getMonth()
+  console.log('igual')
+}else{
+  mes = ''+(this.fechafin.getMonth()+1)
+  console.log('mayor')
+}
+if(this.fechafin.getMonth() < 9){
+  fin = this.fechafin.getFullYear() + '-0'+ (this.fechafin.getMonth()+1) + '-' + dia       
+}else{
+  fin = this.fechafin.getFullYear() + '-'+ (this.fechafin.getMonth()+1) + '-' + dia       
+}
+} else {
+fin  = '';
+}
+
  console.log(inicio, fin, this.valoros , this.fechaini.toISOString());
  // tslint:disable-next-line:max-line-length
- this.caena = this.valoruno + this.valortipo + this.valoros + this.valortipodos + this.valortres + this.valorcuatro + inicio + fin;
+ this.caena = this.valoruno + this.valortipo + this.valoros + this.valortipodos + this.valortres + inicio + this.valorcuatro + fin;
  //this.caena2 = + inicio + fin;
 this.getReporteSer(inicio, fin)
+}
+
+validateDate(){
+  if(this.dateFin<this.dateInic){
+    this.fecha = true
+  }else{
+    this.fecha = false
+  }
+  console.log(this.fecha)
 }
 
 
@@ -216,19 +276,18 @@ getReporteSer(inic, final) {
     }, (error) => {
     console.log(error);
     });
-  }
-/*export interface Element {
+  }}
+  export interface Element {
   servicio: string;
   tipo: string;
   categoria: string;
   cantidad: number;
   rec: number;
-  calif: number;
   inc: number;
 }
 
-const ELEMENT_DATA: Element[] = [
+/*const ELEMENT_DATA: Element[] = [
   {servicio: 'Corte Bob', tipo: "Corte", categoria: "Peluquería", cantidad: 20, rec: 3, inc: 1, calif: 5 },
   {servicio: 'Maquillaje de día con técnica Strobing', tipo: "Maquillaje de día", categoria: "Maquillaje", cantidad: 15, rec: 3, inc: 1, calif: 5},
   {servicio: 'Alisado con Queratina', tipo: "alisado", categoria: "Peluquería", cantidad: 10, rec: 3, inc: 1, calif: 5},
-];*/}
+];*/

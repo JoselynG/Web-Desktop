@@ -1,3 +1,4 @@
+import { Socket } from 'ng-socket-io';
 import { AuthService } from './../../provider/auth/auth.service';
 import { FormBuilder, Validators} from '@angular/forms';
 import {FormGroup} from '@angular/forms/src/model'
@@ -29,7 +30,8 @@ ide: any
     public auth: AuthService,
     public router: Router,
     public usuario: UserService,
-    private home: HomeComponent
+    private home: HomeComponent,
+    public socket: Socket
   ) {
     this.creden = {
       correo: '',
@@ -48,6 +50,7 @@ ide: any
         localStorage.setItem('auth_token', res['data'].token);
         this.usuario.setAuth();
         this.usuario.setUser(res['data'].id);
+        this.socket.connect();
         //redireccionar
         this.home.ngOnInit();//inicializa el homeComponent
         localStorage.setItem('esta_en_inicio_de_sesion','si');
