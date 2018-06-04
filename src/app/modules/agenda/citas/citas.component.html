@@ -28,8 +28,8 @@
         <div class="citas" *ngFor="let detalle of orden">
             <mat-card class="detalle">
                 <div class="hora">
-                    <h4>{{detalle.fecha}}</h4>
-                    <h4>9:18 am</h4>
+                    <h4>{{detalle.citas[0].hora_inicio}}</h4>
+
                 </div>
                 <div class="contenido">
                     <div class="client">
@@ -56,7 +56,7 @@
     </div>
 
     <div *ngIf="!atender">
-        <h3>No hay solicitudes pendientes por responder</h3>
+        <h3>No hay citas pendientes por atender</h3>
     </div>
 
 </div>

@@ -1,27 +1,27 @@
 <div class="selectFilter">
     <mat-form-field class="fecha valor">
-        <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio de la búsqueda">
+        <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio de la búsqueda" [(ngModel)]="fechaini" (change)="crearUrl()"> 
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="fecha valor">
-        <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de fin de la búsqueda">
+        <input matInput [matDatepicker]="pickerEnd" placeholder="Fecha de fin de la búsqueda" [(ngModel)]="fechafin" (change)="crearUrl()">
         <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
         <mat-datepicker #pickerEnd></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="valor">
-        <mat-select [(ngModel)]="filtroServCatSelec" placeholder="Categoría del servicio" (change)=" getFiltroTipo()" class="letra">
+        <mat-select placeholder="Categoría del servicio" [(ngModel)]="tipoSelect" (change)="getTipoServ()">
             <mat-option *ngFor="let filtroCat of filtroServCat" [value]="filtroCat.id">
                 {{ filtroCat.nombre }}
             </mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field class="valor">
-        <mat-select [(ngModel)]="filtroServTipoPSelec" placeholder="Tipo de servicio" class="letra">
-            <mat-option *ngFor="let filtroTipo of filtroTipo" [value]="filtroTipo.id">
-                {{ filtroTipo.nombre }}
+        <mat-select [(ngModel)]="filtroServTipoPSelec" placeholder="Tipo de servicio" [(ngModel)]="valortipodos" (change)="crearUrl()">
+            <mat-option *ngFor="let filtroTipo1 of filtroServTipoP" [value]="filtroTipo1.id"> 
+                {{ filtroTipo1.nombre }}
             </mat-option>
         </mat-select>
     </mat-form-field>
@@ -49,7 +49,7 @@
                 <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                     <h3>Servicio</h3>
                 </mat-header-cell>
-                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.servicio}} </mat-cell>
+                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.nombre}} </mat-cell>
             </ng-container>
 
             <!-- Telefono column -->
@@ -57,7 +57,7 @@
                 <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                     <h3>Tipo de Servicio</h3>
                 </mat-header-cell>
-                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.tipo}} </mat-cell>
+                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.tipo_servicio}} </mat-cell>
             </ng-container>
 
             <!-- Correo Column -->
@@ -65,7 +65,7 @@
                 <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                     <h3>Categoría</h3>
                 </mat-header-cell>
-                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.categoria}} </mat-cell>
+                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.categoria_servicio}} </mat-cell>
             </ng-container>
 
 
@@ -73,21 +73,21 @@
                 <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                     <h3>Frecuencia de realización</h3>
                 </mat-header-cell>
-                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.cantidad}} </mat-cell>
+                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.frecuencia_realizacion}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="rec">
                 <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                     <h3>Frecuencia de reclamos</h3>
                 </mat-header-cell>
-                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.rec}} </mat-cell>
+                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.frecuencia_reclamo}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="inc">
                 <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                     <h3>Frecuencia de incidencias</h3>
                 </mat-header-cell>
-                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.inc}} </mat-cell>
+                <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.frecuencia_incidencia}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="calif">

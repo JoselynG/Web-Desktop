@@ -288,10 +288,8 @@ export class ResponderSolicitudComponent {
     }    
     this.actualizarSolic = {
       estado: this.solicitud.estado,
-      empleado:[] 
-      
-  
-    } 
+      empleado:[]    
+     } 
     if(this.solicitud.empleado != null){
       this.actualizarSolic.empleado = this.solicitud.empleado
     }
@@ -367,15 +365,12 @@ export class ResponderSolicitudComponent {
               }
             }
           }, (error)=>{
-            console.log(error)
+            console.log(error)  
           }
-
         )
       }
-    }
-    
+    }    
   }
-
   getEmpleadosCat(){
     
     this.empleadosCat.getEmpleadosCat().subscribe(
@@ -431,11 +426,16 @@ export class ResponderSolicitudComponent {
   }
 
   getPresupuesto(){
+    console.log('id')
+    console.log(this.solicitud.id_promocion)
     if(this.solicitud.id_promocion != null){
         this.promo.getPromocionEspec(this.solicitud.id_promocion).subscribe(
           (data) => {
             this.promciones = data ['data']
+            console.log('prommo')
             console.log(this.promciones)
+            this.presupuesto.monto_total = this.presupuesto.monto_total + this.promciones.precio_promocion
+            console.log(this.presupuesto)
           }
         )
     }else{
@@ -466,19 +466,17 @@ export class ResponderSolicitudComponent {
           }
             if(this.solicitud.empleado.length === 0){
               
+              if(this.empleadoP != null){
                 this.actualizarSolic.empleado.push(this.empleadoP)
+              }                
                 if(this.empleadoM != null){
                   this.actualizarSolic.empleado.push(this.empleadoM)
                 }
                 
                 console.log(this.actualizarSolic)              
             }else {
-                if(this.catMaqui){
-                  this.actualizarSolic.empleado.push(this.empleadoM)
-                }
-                if(this.catPelu){
-                  this.actualizarSolic.empleado.push(this.empleadoP)
-                }
+                  this.actualizarSolic.empleado = this.solicitud.empleado
+              
             }
 
           this.actSolic.updateSolicitud(this.solicitud.id, this.actualizarSolic).subscribe(

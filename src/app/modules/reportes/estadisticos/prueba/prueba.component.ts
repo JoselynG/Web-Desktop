@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart} from 'chart.js';
+import { CitaService } from '../../../../provider/cita/cita.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-prueba',
@@ -8,63 +10,69 @@ import {Chart} from 'chart.js';
 })
 
 export class PruebaComponent implements OnInit {
-    filtroSelec = 'semana';
+    listadoCitasPrestadas = [] as any;
+    dataCitas = [] as any;
+    labelCitas = [] as any;
+    filtroSelec = 'presente';
     filtro = [
-      {value: 'semana', viewValue: 'Esta semana'},
-      {value: 'mes', viewValue: 'Último mes'},
+      {value: 'presente', viewValue: 'Este año'},
+      {value: 'pasado', viewValue: 'Año pasado'},
     ];
-  misDatosSem = {
-    type: 'line',
-    data: {
-        labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
-        datasets: [{
-            label: '# Citas recibidas',
-            data: [12, 19, 3, 8, 0, 15, 9],
-            backgroundColor: [
-                'rgba(255, 192, 252, 0)',
-            ],
-            borderColor: [
-                'rgba(254,58,239,1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-      elements: {
-        line: {
-            tension: 0, // disables bezier curves
-        }
-    }
-    }
-  };
-  misDatosMes = {
-    type: 'line',
-    data: {
-        labels: ["Semana 1", "Semana 2", "Semana 3", "Semana 4"],
-        datasets: [{
-            label: '# Citas recibidas',
-            data: [12, 19, 3, 8],
-            backgroundColor: [
-                'rgba(255, 192, 252, 0)',
-            ],
-            borderColor: [
-                'rgba(254,58,239,1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-      elements: {
-        line: {
-            tension: 0, // disables bezier curves
-        }
-    }
-    }
-  };
+    misDatosCitas = {};
 
-  constructor() { }
+  constructor(public citaService : CitaService ) { }
 
-  ngOnInit() {
-  }
+ngOnInit() {
+    this.getReporteCita('presente');
+}
+reloadChartCitas: Boolean = false;
+getReporteCita(fecha) {
+    this.reloadChartCitas = false;
+    var fechaBusqueda: String;
+    this.listadoCitasPrestadas = [];
+    this.dataCitas = [];
+    this.labelCitas = [];
+    if (fecha == 'pasado') {
+        fechaBusqueda = moment().subtract(1, 'y').format('YYYY');
+    } else if (fecha == 'presente') {
+        fechaBusqueda = moment().format('YYYY');
+    }
+    this.citaService.getReporteCita(fechaBusqueda).subscribe(
+        (data) => {
+            this.listadoCitasPrestadas = data['data'];
+            for (let item of this.listadoCitasPrestadas) {
+                this.dataCitas.push(item.citas);
+                this.labelCitas.push(item.mes);
+            }
+            this.misDatosCitas = {
+                type: 'line',
+                data: {
+                    labels: this.labelCitas,
+                    datasets: [{
+                        label: '# Citas recibidas',
+                        data: this.dataCitas,
+                        backgroundColor: [
+                            'rgba(255, 192, 252, 0)',
+                        ],
+                        borderColor: [
+                            'rgba(254,58,239,1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                  elements: {
+                    line: {
+                        tension: 0, // disables bezier curves
+                    }
+                }
+                }
+              };
+            this.reloadChartCitas = true;
+        }, (error) => {
+            console.log(error);
+        }
+    )
+}
 
 }

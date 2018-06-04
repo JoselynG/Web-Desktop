@@ -52,14 +52,14 @@
             <h4>Origen del comentario</h4>
         </div>
     </div>
-    <div class="panel">
+    <div class="panel" *ngIf="mostrar">
         <mat-accordion>
             <mat-expansion-panel *ngFor="let item of coment">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="title">
                         {{item.nombre}}
                     </mat-panel-title>
-                   
+
                     <mat-panel-description class="date">
                         {{item.fecha_creacion}}
                     </mat-panel-description>
@@ -73,8 +73,11 @@
                     <p>{{item.descripcion}}</p><br>
                 </div>
                 <mat-divider></mat-divider>
-                <button mat-raised-button color="accent" class="btn" (click)="openDialog()">Dar Respuesta</button>
+                <button mat-raised-button color="accent" class="btn" (click)="openDialog(item)">Dar Respuesta</button>
             </mat-expansion-panel>
         </mat-accordion>
+    </div>
+    <div *ngIf="!mostrar">
+        <h3>No hay sugerencias pendientes por responder</h3>
     </div>
 </div>

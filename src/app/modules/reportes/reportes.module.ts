@@ -19,6 +19,7 @@ import { ReporteSolicitudesComponent } from './estructurados/reporte-solicitudes
 import { ReporteClientesComponent } from './estructurados/reporte-clientes/reporte-clientes.component';
 import { ReporteIncidenciaOrdenComponent } from './estructurados/reporte-incidencia-orden/reporte-incidencia-orden.component';
 import { ReporteIncidenciaServicioComponent } from './estructurados/reporte-incidencia-servicio/reporte-incidencia-servicio.component';
+import { ReportePromocionesComponent } from './estadisticos/reporte-promociones/reporte-promociones.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { ReporteIncidenciaServicioComponent } from './estructurados/reporte-inci
     ReporteSolicitudesComponent,
     ReporteClientesComponent,
     ReporteIncidenciaOrdenComponent,
-    ReporteIncidenciaServicioComponent
+    ReporteIncidenciaServicioComponent,
+    ReportePromocionesComponent
   ]
 })
 export class ReportesModule { }

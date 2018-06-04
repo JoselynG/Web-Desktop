@@ -1,3 +1,6 @@
+import { ReporteSolicitudService } from './provider/reporte-solicitud/reporte-solicitud.service';
+import { ReporteComentarioService } from './provider/reporte-comentario/reporte-comentario.service';
+import { CitaService } from './provider/cita/cita.service';
 import { GestionConsejoService } from './provider/gestion-consejo/gestion-consejo.service';
 
 import { RedSocialService } from './provider/red-social/red-social.service';
@@ -88,6 +91,9 @@ import { GestionPromocionService } from './provider/gestion-promocion/gestion-pr
 import { InsumosService } from './provider/insumos/insumos.service';
 import { TituloSeccionService } from './provider/titulo-seccion/titulo-seccion.service';
 import { AuditoriaService } from './provider/auditoria/auditoria.service';
+import { IncidenciaOrdenService } from './provider/incidencia-orden/incidencia-orden.service';
+import { AgregarOrdenService } from './provider/agregar-orden/agregar-orden.service';
+import { ReporteServicioService } from './provider/reporte-servicio/reporte-servicio.service';
 
 
 @NgModule({
@@ -183,7 +189,13 @@ import { AuditoriaService } from './provider/auditoria/auditoria.service';
     GestionConsejoService,
     InsumosService,
     TituloSeccionService,
-    AuditoriaService
+    AuditoriaService,
+    IncidenciaOrdenService,
+    CitaService,
+    ReporteComentarioService,
+    ReporteSolicitudService,
+    AgregarOrdenService,
+    ReporteServicioService
   ],
     
   entryComponents: [

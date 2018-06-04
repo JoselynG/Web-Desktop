@@ -15,20 +15,18 @@
                 <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Hora de inicio" value="03:30 PM" disabled>
                 </mat-form-field>
-                <mat-form-field class="valor inputs" *ngIf="servP">
-                    <mat-select placeholder="Servicios de peluquería " [(ngModel)]="servicioPSeleccionados" multiple>
+                <mat-form-field class="valor inputs">
+                    <mat-select placeholder="Servicios de peluquería " [(ngModel)]="servAux" multiple>
                         <!--<mat-select-trigger>
                             {{servicioPSeleccionados ? servicioPSeleccionados[0] : ''}}
                             <span *ngIf="servicioPSeleccionados.length > 1">
                                         (+{{servicioPSeleccionados.length - 1}} otros)
                                     </span>
+                                    [(ngModel)]="serviciosP[i].select"
                         </mat-select-trigger>-->
-                        <mat-option color="accent" *ngFor="let serv of serviciosP, let i = index" [(ngModel)]="serviciosP[i].select" [value]="serv.nombre_servicio">{{serv.tipo_servicio}} {{serv.nombre_servicio}}</mat-option>
+                        <mat-option color="accent" *ngFor="let serv of orden.servicios_solicitados, let i = index" [value]="serv">{{serv.tipo_servicio}} {{serv.nombre_servicio}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <div class="">
-                    <button mat-button class="btn" (click)="getServSelec()">AGREGAR SERVICIO</button>
-                </div>
                 <mat-form-field class="demo-chip-list inputs">
                     <mat-chip-list #chipList>
                         <mat-chip *ngFor="let ins of servicioPSeleccionados" [selectable]="selectable" [removable]="removable">
@@ -38,7 +36,7 @@
                         <input placeholder="Servicios de peluquería prestados" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" disabled/>
                     </mat-chip-list>
                 </mat-form-field>
-                <mat-form-field class="valor inputs" *ngIf="servM">
+                <!--        <mat-form-field class="valor inputs" *ngIf="servM">
                     <mat-select placeholder="Servicios de maquillaje " [(ngModel)]="servicioMSeleccionados" multiple>
                         <mat-select-trigger>
                             {{servicioMSeleccionados ? servicioMSeleccionados[0] : ''}}
@@ -49,7 +47,6 @@
                         <mat-option color="accent" *ngFor="let serv of serviciosM" [value]="serv.nombre_servicio">{{serv.tipo_servicio}} {{serv.nombre_servicio}} </mat-option>
                     </mat-select>
                 </mat-form-field>
-
                 <mat-form-field class="demo-chip-list inputs" *ngIf="servM">
                     <mat-chip-list #chipList>
                         <mat-chip *ngFor="let ins of servicioMSeleccionados" [selectable]="selectable">
@@ -57,12 +54,8 @@
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
                         <input placeholder="Servicios de peluquería prestados" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" disabled/>
-
-
                     </mat-chip-list>
-                </mat-form-field>
-
-
+                </mat-form-field>-->
                 <mat-form-field class="example-full-width inputs">
                     <input matInput placeholder="Empleado(s) encargados de los servicios" value=" " disabled>
                     <span *ngFor="let empleado of orden.empleados_asignados">{{empleado.nombre}} {{empleado.apellido}}, </span>
@@ -77,9 +70,9 @@
         <div class="right">
             <div class="incidencias">
                 <h4>Incidencias</h4>
-                <mat-card class="lista-incidencia">
-                    <h5>Planchado de cabello</h5><br>
-                    <mat-card-content class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam dolorum aut, nobis rem in commodi illo rerum aperiam facilis explicabo deserunt provident dignissimos blanditiis tempora voluptates recusandae, nemo nam natus?</mat-card-content>
+                <mat-card class="lista-incidencia" *ngFor="let inc of incidencia">
+                    <h5>{{inc.nombre}}</h5><br>
+                    <mat-card-content class="content">{{inc.descripcion}}</mat-card-content>
                 </mat-card>
                 <!--  <mat-card class="lista-incidencia">
                     <h5>Baños de color</h5><br>
@@ -93,7 +86,7 @@
                 <h4>Insumos</h4>
                 <!-- <app-insumos-utilizados></app-insumos-utilizados>-->
                 <mat-card class="add">
-                    <div *ngFor="let order of orden.servicios_solicitados">
+                    <div *ngFor="let order of servAux">
                         <div class="title">
                             <h5>Insumos de {{order.tipo_servicio}} {{order.nombre_servicio}} </h5>
                         </div>

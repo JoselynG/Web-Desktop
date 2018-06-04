@@ -1,9 +1,13 @@
+import { IncidenciaOrdenService } from './../../../provider/incidencia-orden/incidencia-orden.service';
 import { VistaOrdenCitaService } from './../../../provider/vista-orden-cita/vista-orden-cita.service';
 import { RazonIncidenciaService } from './../../../provider/razon-incidencia/razon-incidencia.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TipoIncidenciaService } from '../../../provider/tipo-incidecia/tipo-incidencia.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { OrdenServicioService } from '../../../provider/orden-servicio/orden-servicio.service';
+import { CitaService } from '../../../provider/cita/cita.service';
+import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
 
 @Component({
   selector: 'app-citas',
@@ -12,13 +16,30 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CitasComponent implements OnInit {
 
-  orden: any;
+  orden: Array<{
+    id: number
+    id_solicitud: number
+    estatus: string
+    estado: string
+    solicitud: number
+    id_cliente: number
+    estado_s: string
+    cliente: number
+    nombre: string
+    apellido: string
+    empleados_asignados: Array<{}>
+    servicios_solicitados: Array<{}>
+    citas: Array<{}>
+  }>
   atender: boolean
+  ordenAux: any
   constructor(
     public dialog: MatDialog, 
     public vistaOrden: VistaOrdenCitaService,
     private router: Router, private route: ActivatedRoute
-    ) { }
+    ) {
+      this.orden = []
+     }
 
   ngOnInit() {
     this.getOrden();
@@ -27,18 +48,20 @@ export class CitasComponent implements OnInit {
   getOrden(){
     this.vistaOrden.getOrdenCita().subscribe(
       (data) => {
-        this.orden = data['data']
-        
-        for(let i=0; i<this.orden.length; i++){
-          
-          if(this.orden[i].estado === "E"){
-            this.atender = true;
-          }else {
-            this.atender = false;
+        this.ordenAux = data['data']
+        console.log(this.ordenAux)
+        for(let i=0; i<this.ordenAux.length; i++){          
+          if(this.ordenAux[i].estado === "E"){
+              this.orden.push(this.ordenAux[i])
           }
         }
-        
-      
+        console.log(this.orden)
+
+        if(this.orden.length > 0){
+          this.atender = true
+        }else{
+          this.atender = false
+        }      
       }
     )
   }
@@ -103,19 +126,39 @@ export class CancelarCitaComponent  {
   cita: any;
   razon: any;
   razonSelec: number;
-  nombreCliente: string
-
+  nombreCliente: string;
+  datosEnviar: {
+    id_orden_servicio: number
+    id_tipo_incidencia: number
+    descripcion: string
+  }
+  estado:{
+    estado: string
+  }
 
   constructor(public tipoInc: TipoIncidenciaService,
     public razonServ: RazonIncidenciaService,
     public dialogRef: MatDialogRef<CancelarCitaComponent>,
     public dialog: MatDialog, 
+    public incidenciaOrden: IncidenciaOrdenService, 
+    public ordenServ: OrdenServicioService,
+    public citaServ: CitaService,
     @Inject(MAT_DIALOG_DATA) public data: any){
     this.tipo = []
     this.cita = data.cita
+    console.log(this.cita)
     this.incidencia = []
     this.incidenciaAux = []
     this.nombreCliente = this.cita.nombre + ' ' + this.cita.apellido
+//    this.datosEnviar.id_orden_servicio = this.cita.citas[0].id_orden_servicio
+    this.datosEnviar = {
+      id_orden_servicio: this.cita.citas[0].id_orden_servicio,
+      id_tipo_incidencia: null,
+      descripcion: ''
+    }
+    this.estado = {
+      estado: 'K'
+    }
     
   } 
   
@@ -123,7 +166,31 @@ export class CancelarCitaComponent  {
   //  this.getTipoIncidencia();
     this.getRazon()
   }
-
+  enviar(){
+    console.log(this.datosEnviar)
+    this.incidenciaOrden.postIncidencia(this.datosEnviar).subscribe(
+      (data) => {
+        console.log('guardado')
+        this.citaServ.putOrden(this.cita.citas[0].id, this.estado).subscribe(
+          (data) => {
+            console.log('actualizado cita')
+          }, (error) => {
+            console.log(error)
+          }        
+        )
+        this.ordenServ.putOrden(this.cita.citas[0].id, this.estado).subscribe(
+          (data) => {
+            console.log('actualizado orden ')
+          }, (error) => {
+            console.log(error)
+          }        
+        )
+        this.mostrarMensajeExito();
+      }, (error) => {
+        console.log(error)
+      }
+    )
+  }
   //se ejecuta al seleccionar la razón para poder conseguir los tipos de esa razón
   getTipoIncidencia(){
     this.tipoInc.getTipoIncidencia().subscribe(
@@ -140,6 +207,22 @@ export class CancelarCitaComponent  {
     }
     )
   }
+  
+
+mostrarMensajeExito(): void {//opens the modal
+  let dialogRef = this.dialog.open(MensajeExitoComponent, {
+    width: '300px',//sets the width
+    height: '140px', 
+    data: { msj: 'Cita cancelada exitosamente' }//send this class's attributes to the modal
+  });
+
+  dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
+    console.log('Modal closed!');
+    //this.router.navigate(['solicitudes']);
+    //this.router.onSameUrlNavigation
+    
+  });  
+}
 
   getRazon(){
     this.razonServ.getRazonInc().subscribe(

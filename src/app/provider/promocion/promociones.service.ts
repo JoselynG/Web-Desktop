@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:3000/api/';
 
 @Injectable()
 export class PromocionesService {
-url_listado_promociones = 'promocion';
+url_listado_promociones = 'promocion/';
 
   constructor(public http: HttpClient) { }
 
@@ -23,7 +23,7 @@ getPromociones() {
 
 getPromocionEspec(id) {
 
-  return this.http.get(API_URL + this.url_listado_promociones, id);
+  return this.http.get(API_URL + this.url_listado_promociones + id);
 }
 
 addPromociones(promocion) {
@@ -36,4 +36,7 @@ putPromocion(promoId, promo) {
   return this.http.put(API_URL + this.url_listado_promociones + '/' + promoId, promo);
 }
 
+getReportePromocion() {
+  return this.http.get(API_URL + 'reporte_promocion');
+}
 }

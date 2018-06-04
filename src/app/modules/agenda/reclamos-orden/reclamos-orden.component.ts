@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { ReclamoService } from '../../../provider/reclamo/reclamo.service';
+import { error } from 'util';
+import { VistaEmpleadosCategoriaService } from './../../../provider/vista-empleados-categoria/vista-empleados-categoria.service';
+import { AgregarOrdenService } from './../../../provider/agregar-orden/agregar-orden.service';
+import { ReclamoService } from './../../../provider/reclamo/reclamo.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { TipoRepuestaReclamoService } from '../../../provider/tipo-repuesta-reclamo/tipo-repuesta-reclamo.service';
 import { RepuestaReclamoService } from '../../../provider/repuesta-reclamo/repuesta-reclamo.service';
 import { VistaReclamoService } from '../../../provider/vista-reclamo/vista-reclamo.service';
@@ -14,11 +17,8 @@ interface Datos_reclamo{
 	fecha: Date;
 	tipoR: string;
 	descripcion: string;
-	
 	fechaV:Date;
-
 }
-
 
 
 @Component({
@@ -28,32 +28,45 @@ interface Datos_reclamo{
 })
 export class ReclamosOrdenComponent implements OnInit {
   //siempre va
- rec: any;
+ rec: Array<{
+  id: number
+  descripcion: string
+  registro_reclamo: number
+  id_servicio_solicitado: number
+  dia_atendido: Date
+  tipo_servicio: string
+  srvicio_reclamado: string
+  garantia: number
+  id_solicitud: number
+  id_cliente: number
+  nombre: string
+  apellido: string
+  id_categoria_servicio: number
+  categoria_servicio: string
+  estado: string
+}>
+
+ recAux: Array<{
+   id: number
+   descripcion: string
+   registro_reclamo: number
+   id_servicio_solicitado: number
+   dia_atendido: Date
+   tipo_servicio: string
+   srvicio_reclamado: string
+   garantia: number
+   id_solicitud: number
+   id_cliente: number
+   nombre: string
+   apellido: string
+   id_categoria_servicio: number
+   categoria_servicio: string
+   estado: string
+ }>
+
+ mostrar: boolean
  
  hoy= new Date();
-  datos: Datos_reclamo[]= [
-    {
-      nombre: 'Maria Anzola',
-      orden: '001',
-      fecha: new Date('2018/04/10'),
-      tipoR: 'producto',
-      descripcion:'El producto que se utilizo cuando me aplicaron tratamiento de keratina, me causó alergia, pido pronta atencion y me regresen mi dinero.',
-    
-    fechaV: new Date('2018/04/20')
-    },
-
-    {
-        nombre: 'Yanior Zambrano',
-        orden: '002',
-        fecha: new Date('2018/04/11'),
-        tipoR: 'servicio',
-        descripcion:' Me hicieron mal el corte, me di cuenta al irme de la peluqueria',
-        
-        fechaV: new Date('2018/05/20')
-    }
-
-
- ];
   
   //siempre va eso asi  cambia el nombre de la clase 
 
@@ -65,18 +78,35 @@ export class ReclamosOrdenComponent implements OnInit {
  
      ) 
    {
-      this.getVistaReclamo();
-      
+      //this.getVistaReclamo();
+      this.rec = []      
+       this.recAux  = []      
+       this.mostrar = false
    }
 
   ngOnInit() {
   this.getVistaReclamo(); 
   
+  
   }
+
+  limpiar(){
+    this.rec = []      
+    this.recAux  = []      
+    this.mostrar = false
+  }
+
   getVistaReclamo(){
+    this.limpiar()
    this.reclamo.getVistaReclamo().subscribe((resp)=>{
-     this.rec= resp['data'];
-     console.log(this.rec);
+     this.recAux= resp['data'];
+     console.log(this.recAux);
+     for(let i=0; i<this.recAux.length; i++){
+       if(this.recAux[i].estado === 'P'){
+         this.mostrar = true
+         this.rec.push(this.recAux[i])
+       }
+     }
 
    },(error)=>{
      console.log(error);
@@ -84,16 +114,18 @@ export class ReclamosOrdenComponent implements OnInit {
   )
 }
 
-  openDialog(id){
-    console.log(id);
-    this.repuesta.setIdReclamo(id);
+  openDialog(reclamo){
+    console.log(reclamo);
+    this.repuesta.setIdReclamo(reclamo);
     const dialogRef = this.dialog.open( DarRepuestaComponent, {
       height: '320px',
-      width: '420px'
+      width: '420px',
+      data: {rec: reclamo}
     });
   
     dialogRef.afterClosed().subscribe(result => {
       console.log('mostrado');
+      this.getVistaReclamo();
     });
   }
 }
@@ -121,27 +153,76 @@ datosMostrar: {
   descripcion: String,
 };
 
+estadoReclamo: {
+  estado: string
+}
+reclamo: any
+
+datosEnviar: {
+  id_orden_servicio: number
+  estado: string
+  empleados_asignados: Array<{}>
+}
+empleadoCat: any
+empleadoSelec: number
+mostrar: boolean
+
 constructor(public dialog: MatDialog,
   public repuesta:TipoRepuestaReclamoService,
    public repuestaR:RepuestaReclamoService,
+   public reclamoServ: ReclamoService,
    private route: ActivatedRoute,
+   public agregOrd: AgregarOrdenService,
+   public empl: VistaEmpleadosCategoriaService,
   private router: Router,
+  public dialogRef: MatDialogRef<DarRepuestaComponent>,
+  @Inject(MAT_DIALOG_DATA) public data: any
    ) 
 {
-this.getRepuestaReclamo();
-
-}
-
-  
-
-ngOnInit() {
+  console.log(data)
+  this.reclamo = data.rec
+  console.log(this.reclamo)
+  this.getRepuestaReclamo();
   this.datosMostrar = {
-    id_reclamo: 0,
+    id_reclamo: this.reclamo.id,
     id_tipo_repuesta_reclamo: 0,
-    descripcion:`` ,
+    descripcion:'' ,
     
   };
 
+  this.empleadoSelec = null
+  this.datosEnviar = {
+    id_orden_servicio: this.reclamo.id_orden_servicio,
+    estado: 'G',
+    empleados_asignados: []
+  }
+  this.mostrar = false
+  this.estadoReclamo = {
+    estado: ''
+  }
+} 
+
+ngOnInit() {
+  this.getEmpleados()
+}
+
+getEmpleados(){
+  this.empl.getEmpleadosCatEsp(this.reclamo.id_categoria_servicio).subscribe(
+    (data) => {
+      this.empleadoCat = data['data']
+      console.log(this.empleadoCat)
+    },(error) => {
+        console.log(error)
+    },
+  )
+}
+
+imprimir(){
+  if(this.datosMostrar.id_tipo_repuesta_reclamo == 1){
+    this.mostrar = true;
+  }else{
+    this.mostrar = false;
+  }
 }
   getRepuestaReclamo(){
     this.repuesta.getRepuestaReclamo().subscribe((resp)=>{
@@ -157,13 +238,35 @@ ngOnInit() {
   
   //guardar
   postRepuestaRec() {
-    this.datosMostrar.id_reclamo=this.repuesta.returnIdReclamo();
-    console.log(this.datosMostrar);
+    //this.datosMostrar.id_reclamo=this.repuesta.returnIdReclamo();
+    
     this.repuestaR.postRepuestaRec(this.datosMostrar).subscribe((resp)=>{
       this.msj= resp['data'].message;
+      if(this.datosMostrar.id_tipo_repuesta_reclamo === 1){
+        this.estadoReclamo.estado = 'A'
+        this.datosEnviar.empleados_asignados.push(this.empleadoSelec)
+      }else {
+        this.estadoReclamo.estado = 'R'
+      }
+      console.log('resp')
+      this.reclamoServ.updateReclamo(this.datosMostrar.id_reclamo, this.estadoReclamo).subscribe(
+        (data) => {
+          console.log ('actualizado')
+          console.log(this.datosEnviar)
+          this.agregOrd.postOrden(this.datosEnviar).subscribe(
+            (res)=>{
+              console.log ('guardado')
+              this.mostrarMensajeExito()
+            }, (error)=>{
+              console.log (error)
+            }
+          )
+          
+        }
+      )
       console.log(this.msj);
        //alert(this.msj)
-       this.mostrarMensajeExito()
+       
     },(error)=>{
       console.log(error);
     }
@@ -181,6 +284,7 @@ mostrarMensajeExito(): void {//opens the modal
   dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
     console.log('Modal closed!');
     this.router.navigate(['reclamosOrdenes']);
+    this.dialogRef.close()
     //this.router.onSameUrlNavigation
     
   });  

@@ -42,6 +42,7 @@ export class DashboardFullComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(localStorage)
   }
 
 }

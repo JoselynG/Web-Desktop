@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ComentarioService } from '../../../provider/comentario/comentario.service';
 import { TipoComentarioService } from '../../../provider/tipo-comentario/tipo-comentario.service';
 import { TipoRepuestaComentarioService } from '../../../provider/tipo-repuesta-comentario/tipo-repuesta-comentario.service';
@@ -30,67 +30,52 @@ interface servicio{
 export class SugerenciasComponent implements OnInit {
    //siempre va
  tCom: any;
- com:any;
-coment: any;
-  datos: Datos_reclamo[]= [
-    {
-      nombre: 'Maria Anzola',
-      orden: '001',
-      fecha: '10 abril 2018',
-      tipoR: 'Sugerencia',
-      descripcion:'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni architecto necessitatibus exercitationem, quae nam nisi impedit perferendis asperiores recusandae commodi dignissimos, nemo tempora explicabo modi maxime amet, veritatis et autem!',
-      servicios: [
-      {	nombre:'Tratamiento Keratina',
-        descripcion:'wuachu wuachu'
-       }
-                    
-    ],
-    fechaV: '20 abril 2018'
-    },
-
-    {
-        nombre: 'Yanior Zambrano',
-        orden: '002',
-        fecha: '11 abril 2018',
-        tipoR: 'Duda',
-        descripcion:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni architecto necessitatibus exercitationem, quae nam nisi impedit perferendis asperiores recusandae commodi dignissimos, nemo tempora explicabo modi maxime amet, veritatis et autem!',
-        servicios: [
-          {	nombre:'Corte de Cabello',
-            descripcion:'Debe fijarse de su corte antes de salir de la peluqueria'
-          }                    
-        ],
-        fechaV: '20 abril 2018'
-    }
-
-
- ];
- filtroSelec = '';
- filtro = [
-  {value: 'todo', viewValue: 'Todos'},
-  {value: 'sugerencia', viewValue: 'Sugerencia'},
-  {value: 'duda', viewValue: 'Dudas'},
-  {value: 'opinion', viewValue: 'Opiniones'},
-  {value: 'reclamo', viewValue: 'Reclamos'}
-];
+ com: any;
+   
+coment: Array <{
+  id: number
+  id_cliente: number
+  id_tipo_comentario: number
+  nombre: string
+  apellido: string
+  correo: string
+  tipo_comentario: string
+  descripcion: string
+  fecha_creacion: string
+  estado: string
+ }>
+comAux: Array <{
+  id: number
+  id_cliente: number
+  id_tipo_comentario: number
+  nombre: string
+  apellido: string
+  correo: string
+  tipo_comentario: string
+  descripcion: string
+  fecha_creacion: string
+  estado: string
+ }>
 datosMostrar: {
   id_comentario: number,
   id_tipo_comentario: number,
   descripcion: String,
 };
-
+mostrar: boolean
   constructor(public dialog: MatDialog,
     public comentario:ComentarioService,
     public vcoment:VComentariosService,
     public tcomentario:TipoComentarioService) 
   {
-    this.getComentario();
-    this.getVistaComentarios();
     this.datosMostrar = {
       id_comentario: 1,
       id_tipo_comentario: null,
-      descripcion:'' ,
-      
+      descripcion:'' ,    
     };
+
+    this.coment = []
+     this.comAux = []
+     this.mostrar = false
    }
 
   ngOnInit() {
@@ -98,6 +83,12 @@ datosMostrar: {
     this.getTipoComentario();
     this.getVistaComentarios()
     
+  }
+  limpiar(){
+    this.coment = []
+    this.comAux = []
+    this.mostrar = false
+ 
   }
   getComentario(){
     this.comentario.getComentario().subscribe((resp)=>{
@@ -110,8 +101,17 @@ datosMostrar: {
    )
  }
  getVistaComentarios(){
+   this.limpiar()
   this.vcoment.getVistaComentarios().subscribe((resp)=>{
-    this.coment= resp['data'];
+    this.comAux= resp['data'];
+
+    console.log(this.comAux);
+    console.log(this.comAux.length);
+    for(let i = 0; i<this.comAux.length; i++){
+      if(this.comAux[i].estado === 'P')
+      this.coment.push(this.comAux[i])
+      this.mostrar = true;
+    }
     console.log(this.coment);
   },(error)=>{
     console.log(error);
@@ -129,14 +129,16 @@ datosMostrar: {
  )
 }
 
-  openDialog(){
+  openDialog(comentario){
     const dialogRef = this.dialog.open( DarRepuestaComentarioComponent, {
       height: '320px',
-      width: '400px'
+      width: '400px',
+      data: {com: comentario}
     });
   
     dialogRef.afterClosed().subscribe(result => {
       console.log('mostrado');
+      this.getVistaComentarios();
     });
   }
 }
@@ -161,22 +163,36 @@ datosMostrar: {
   id_tipo_respuesta_comentario: number,
   descripcion: String,
 };
-
-constructor(public dialog: MatDialog,
+comentarioResp: any;
+estado:{
+  estado: string
+}
+constructor(
+  public dialogRef: MatDialogRef<DarRepuestaComentarioComponent>,
+  public dialog: MatDialog,
   public repuesta:TipoRepuestaComentarioService,
   public repuestaC: RespuestaComentarioService,
   private route: ActivatedRoute,
   private router: Router,
+  public comentario: ComentarioService,
+  @Inject(MAT_DIALOG_DATA) public data: any
 ) 
-{
-this.getTipoRepuestaC();
-this.datosMostrar = {
-  id_comentario: 1,
-  id_tipo_respuesta_comentario: null,
-  descripcion:'' ,
-  
-};
-}
+  {
+    this.comentarioResp = data.com
+    console.log(this.comentarioResp)
+      this.getTipoRepuestaC();
+      this.datosMostrar = {
+        id_comentario: this.comentarioResp.id,
+        id_tipo_respuesta_comentario: null,
+        descripcion:'' ,
+        
+      };
+
+      this.estado = {
+        estado: 'P'
+      }
+      
+  }
   
 
 ngOnInit() {
@@ -201,7 +217,17 @@ postRepuestaComentario() {
     this.msj= resp['data'].message;
     console.log(this.msj);
      //alert(this.msj)
-     this.mostrarMensajeExito()
+     this.estado.estado = 'R'
+     this.comentario.updateComentario(this.datosMostrar.id_comentario, this.estado).subscribe(
+      (res)=>{
+        console.log(res);
+        this.mostrarMensajeExito()
+        this.dialogRef.close();
+      },(error)=>{
+        console.log(error);
+      }  
+     )
+     
   },(error)=>{
     console.log(error);
   }
@@ -217,7 +243,9 @@ mostrarMensajeExito(): void {//opens the modal
 
   dialogRef.afterClosed().subscribe(result => {//when closing the modal, its results are handled by the result attribute.
     console.log('Modal closed!');
+    
     this.router.navigate(['atencionCliente']);
+    this.dialogRef.close()
     //this.router.onSameUrlNavigation
     
   });  

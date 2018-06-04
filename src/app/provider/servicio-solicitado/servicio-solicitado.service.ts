@@ -10,4 +10,8 @@ export class ServicioSolicitadoService {
   getServicioSolicitado(){
     return this.http.get(API_URL+this.url);
   }
+
+  getServicioSolicitadoReporte(fechaInicio, fechaFin, order){
+    return this.http.get(API_URL + 'reporte_servicios_solicitados?fecha_inicio=' + fechaInicio + '&fecha_fin=' + fechaFin + '&orderby=' + order);
+  }
 }

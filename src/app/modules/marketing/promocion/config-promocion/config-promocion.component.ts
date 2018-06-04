@@ -8,26 +8,38 @@ import { CategoriasServicioService } from '../../../../provider/categorias-servi
 import { ServiciosService } from '../../../../provider/servicios/servicios.service';
 import { GestionPromocionService } from '../../../../provider/gestion-promocion/gestion-promocion.service';
 import { variable } from '@angular/compiler/src/output/output_ast';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MensajeExitoComponent } from '../../../../mensajes/mensaje-exito/mensaje-exito.component';
 @Component({
   selector: 'app-config-promocion',
   templateUrl: './config-promocion.component.html',
   styleUrls: ['./config-promocion.component.scss']
 })
 export class ConfigPromocionComponent implements OnInit {
- // promocion: {
+ // promocion:
     id_servicio: Blob;
     nombre: Blob;
     descripcion: Blob;
-    porcentaje_descuento: Blob;
+    porcentaje_descuento: any;
     precio_promocion: number;
     imagen: String;
-    fecha_inicio: any;
+    fecha_inicio: Date;
     fecha_fin: Date;
     estatus: String;
     fecha_creacion: Date;
     valor_parametro: any[];
-   //
+   //Variables para Obtener Fechas del DataPicker Inicial
+   dia: number;
+   mes: number;
+   an:  number;
+   mesn: number;
+   a: String[];
 
+   //Final
+   dia_f: number;
+   mes_f: number;
+   an_f:  number;
+   mesn_f: number;
 // Carga de Parametros
   [x: string]: any;
   consejo: Array<{id: number, nombre: string, id_tipo_parametro: number, fecha_creacion: Date }> = [];
@@ -41,14 +53,28 @@ export class ConfigPromocionComponent implements OnInit {
   //arreglo de Servicio y Categoria
   pro: any;
   servicio: any;
+    servicios: Array<{id: number,
+    nombre: string,
+    descripcion: string, porcentaje_descuento: number, precio: number ,    
+    imagen: string, fecha_inicio: Date, fecha_fin:  Date }>;
+//Para El Monto
+precio: number;
+monto: any;
+
+  //Variables y arreglos para el Post
   input: HTMLInputElement;
   form = new FormData();
   cantidad: number;
    i: number;
     constructor(public dialog: MatDialog, public parametroServ: ParametrosService, public tipo_para_serv: TiposParametrosService,
     public valor_para_ser: ValoresParametrosService, public categoria_servicio: CategoriasServicioService, 
-    public servici: ServiciosService , public gestion: GestionPromocionService, private el: ElementRef) {
+    public servici: ServiciosService , public gestion: GestionPromocionService, private el: ElementRef,
+    private route: ActivatedRoute,
+    private router: Router, ) {
       this.valor_parametro = [];
+      this.precio = 0
+      this.monto = 0;
+
 
     }
 
@@ -99,13 +125,43 @@ export class ConfigPromocionComponent implements OnInit {
         }
     }
   }
+
   guardarAtributo(data) {
-    this.consejo.push(data);
-    console.log(this.consejo);
+
+    let k = 0;
+    let encontrado = 0;
+    for (let index = 0; index < this.consejo.length; index++) {
+      if (data === this.consejo[index]) {
+     encontrado = 1;
+        this.mostrarMensajeValidacionCara();
+     break;
+      }
+      k++;
+    }
+    
+    if (encontrado === 0) {
+      this.consejo.push(data);
+      console.log(this.consejo);
+    }
+
   }
   guardarDatoBasico(data) {
-    this.datoBasico.push(data);
-    console.log(this.datoBasico);
+    let k = 0;
+    let encontrado = 0;
+    for (let index = 0; index < this.datoBasico.length; index++) {
+      if (data === this.datoBasico[index]) {
+     encontrado = 1;
+        this.mostrarMensajeValidacion();
+     break;
+      }
+      k++;
+    }
+    
+    if (encontrado === 0) {
+      this.datoBasico.push(data);
+      console.log(this.datoBasico);
+    }
+
   }
   Guardar() {
   }
@@ -154,25 +210,59 @@ getCategorias() {
 
   getServicios() {
     this.servici.getServicios().subscribe((resp) => {
-      this.servicio = resp['data'];
-      console.log(this.servicio);
+      this.servicios = resp['data'];
+      console.log(this.servicios);
     }, (error) => {
         console.log(error);
       });
     }
-
+    
     addPromocionyValores() {
      this.input = this.el.nativeElement.querySelector('#fileInput');
      this.cantidad = this.input.files.length;
+     this.monto = (this.precio * this.porcentaje_descuento) / 100;
+      
      if ( this.cantidad > 0) {
      this.form.append('archivo', this.input.files.item(0));
      this.form.append('id_servicio', this.id_servicio);
      this.form.append('descripcion', this.descripcion);
      this.form.append('nombre', this.nombre);
-     //this.form.append('fecha_inicio', this.fecha_inicio);
      this.form.append('porcentaje_descuento', this.porcentaje_descuento);
+     this.form.append('precio_promocion', this.monto);
+     this.mes = this.fecha_inicio.getMonth();
+     if (this.mes <= 8) {
+       this.mesn = this.mes + 1;
+       this.dia = this.fecha_inicio.getDate();
+       this.an = this.fecha_inicio.getFullYear();
+       this.form.append('fecha_inicio', this.an + '/' + this.mesn + '/' + '0' + this.dia );
+
+     } else {
+       this.mes = this.mes + 1;
+       this.dia = this.fecha_inicio.getDate();
+       this.an = this.fecha_inicio.getFullYear();
+      // const c = this.an + '/' + this.dia + '/' + this.mes;
+       this.form.append('fecha_inicio', this.an + '/' + this.mes + '/' + this.dia);
+     }
+
+     this.mes_f = this.fecha_fin.getMonth();
+     if (this.mes_f <= 8) {
+      this.mesn_f = this.mes_f + 1;
+      this.dia_f = this.fecha_fin.getDate();
+      this.an_f = this.fecha_fin.getFullYear();
+      this.form.append('fecha_fin', this.an_f + '/' + this.mesn_f + '/' + '0' + this.dia_f );
+
+    } else {
+      this.mes_f = this.mes_f + 1;
+      this.dia_f = this.fecha_fin.getDate();
+      this.an_f = this.fecha_fin.getFullYear();
+     
+      this.form.append('fecha_fin', this.an_f + '/' + this.mes_f + '/' + this.dia_f);
     }
-     console.log(this.datoBasico);
+
+
+     }
+    
+      console.log(this.datoBasico);
       let k = 0;
       for (let index = 0; index < this.datoBasico.length; index++) {
         this.valor_parametro[k] = this.datoBasico[index].id;
@@ -187,12 +277,71 @@ getCategorias() {
       console.log(this.valor_parametro);
       console.log(this.form);
       this.gestion.addPromociones(this.form).subscribe((resp) => {
-        this.msj = resp['data'].message;
-        console.log(this.msj);
-        alert(this.msj);
+      this.msj = resp['data'].message;
+      console.log(this.msj);
+      this.mostrarMensajeExito();
+        
       }, (error) => {
           console.log(error);
         });
 
-     }
-}
+        
+         }
+
+
+         mostrarMensajeExito(): void {
+          const dialogRef = this.dialog.open(MensajeExitoComponent, {
+            width: '300px',
+            height: '140px', 
+            data: { msj: 'Promoción creada exitosamente' }
+          });
+        
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('Modal closed!');
+            this.router.navigate(['promociones']); });  
+        }
+
+        mostrarMensajeValidacion(): void {
+          const dialogRef = this.dialog.open(MensajeExitoComponent, {
+            width: '300px',
+            height: '140px', 
+            data: { msj: 'No puede Repetir Valores de una Misma Promoción:' }
+          });
+
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('Modal closed!');
+             }); }
+
+             mostrarMensajeValidacionCara(): void {
+              const dialogRef = this.dialog.open(MensajeExitoComponent, {
+                width: '300px',
+                height: '140px', 
+                data: { msj: 'No puede Seleccionar 2 veces la misma Característica o Dato Básico:' }
+              });
+            
+              dialogRef.afterClosed().subscribe(result => {
+                console.log('Modal closed!');
+              }); }
+
+
+     obtenerMonto(codigo: number) {
+          console.log(this.servicios);
+      let k = 0;
+      let encontrado = 0;
+      for (let index = 0; index < this.servicios.length; index++) {
+        if (this.servicios[index].id === codigo) {
+          this.precio = this.servicios[index].precio;
+          encontrado = 1;
+          break;
+        }
+         k++;
+      }
+     console.log(this.precio);
+
+    }
+
+
+
+
+      }
+
