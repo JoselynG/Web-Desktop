@@ -32,7 +32,6 @@ export class ReclamosComponent implements OnInit {
     reloadChart: Boolean = false;
     getReporteReclamos(fecha) {
         this.reloadChart = false;
-        console.log('aqui');
         var fechaBusqueda: String;
         this.listadoReporteReclamos = [];
         this.dataNumeroReclamos = [];
@@ -162,8 +161,7 @@ export class ReclamosComponent implements OnInit {
                     options: {
 
                     }
-                };                
-                console.log(this.listadoReporteReclamos);
+                };
                 this.reloadChart = true;
             }, (error) => {
                 console.log(error);
