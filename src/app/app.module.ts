@@ -91,7 +91,10 @@ import { GestionPromocionService } from './provider/gestion-promocion/gestion-pr
 import { IncidenciaOrdenService } from './provider/incidencia-orden/incidencia-orden.service';
 import { AgregarOrdenService } from './provider/agregar-orden/agregar-orden.service';
 import { ReporteServicioService } from './provider/reporte-servicio/reporte-servicio.service';
-
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+const config: SocketIoConfig = {
+  url : 'http://localhost:3001', options: {}
+};
 
 @NgModule({
   declarations: [
@@ -125,7 +128,8 @@ import { ReporteServicioService } from './provider/reporte-servicio/reporte-serv
     PerfilUsuarioModule,
     PortalWebModule,
     PerfilModule,
-    HttpClientModule
+    HttpClientModule,
+    SocketIoModule.forRoot(config),
   ],
   providers: [
     ConsejosService,
