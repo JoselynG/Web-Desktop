@@ -27,9 +27,10 @@ export class CitasComponent implements OnInit {
     cliente: number
     nombre: string
     apellido: string
-    empleados_asignados: Array<{}>
-    servicios_solicitados: Array<{}>
-    citas: Array<{}>
+    empleados_asignados: any[]
+    servicios_solicitados: any[]
+    citas: any[]
+    fecha: string
   }>
   atender: boolean
   ordenAux: any
@@ -45,8 +46,8 @@ export class CitasComponent implements OnInit {
     this.getOrden();
   }
 
-  getOrden(){
-    
+    getOrden(){
+      
     let id = Number(localStorage.getItem('id'))
     console.log(id)
     this.vistaOrden.getOrdenCita().subscribe(
@@ -62,15 +63,31 @@ export class CitasComponent implements OnInit {
             }        
           }
         }
-        console.log(this.orden)
+        for(let i=0; i<this.orden.length; i++){
+          console.log(i)
+          for(let j=0; j<this.ordenAux.length; j++){
+            console.log(j)
+            if(this.ordenAux[j].id === this.orden[i].id){
+                let fec = new Date(this.ordenAux[j].citas[0].horario_empleado.dia);
+                let fech = fec.getDate()+'/'+(fec.getMonth()+1)+'/'+fec.getFullYear()
+                console.log(fec)
+                this.orden[i].fecha = fech
+                
+                console.log('si')  
+            }else{
+              console.log('no')
+            }
+          }
+        }
+            console.log(this.orden)
 
-        if(this.orden.length > 0){
-          this.atender = true
-        }else{
-          this.atender = false
-        }      
-      }
-    )
+            if(this.orden.length > 0){
+              this.atender = true
+            }else{
+              this.atender = false
+            }      
+          }
+        )
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
