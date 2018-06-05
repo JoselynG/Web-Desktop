@@ -4,7 +4,8 @@
     </div>
     <div class="right">
         <div class="notifications" [matMenuTriggerFor]="menu1">
-            <button mat-icon-button [dirBadge]="conta">
+            <button mat-icon-button>
+                <p style="color:blue; border-radius:5px;">{{conta}}</p>
                 <mat-icon >notifications</mat-icon>
             </button>
         </div>
@@ -20,7 +21,7 @@
                 <div class="name">
                     <span class="bold"> {{item.titulo}} </span>
                     <p class="name"> {{item.mensaje}} </p>
-                    <span class="name"> {{item.fecha | date:'dd/MM/yyyy' }} </span>
+                    <span class="name"> {{item.fecha | date:'dd/MM/yyyy HH:mm' }} </span>
                 </div>
             </mat-card-content>
         </mat-menu>

@@ -117,12 +117,6 @@ export class ToolbarComponent implements OnInit {
       fecha: null,
     };
     this.url = "http://localhost:3000/files/empleado/"
-  }
-
-  ngOnInit() {
-    this.getUser();
-    this.getEmpl();
-
     this.notificacionServicio().subscribe((resp) => {
       console.log(resp);
       this.notificacionSoli = resp;
@@ -135,7 +129,9 @@ export class ToolbarComponent implements OnInit {
       this.notificacionCom = resp;
        console.log('estoy aqui');
        this.conta = this.conta + 1;
+       console.log(this.conta);
        this.notificaciones.push(this.notificacionCom);
+       console.log(this.notificaciones);
     });
     this.notificacionReclamo().subscribe((resp) => {
       console.log(resp);
@@ -144,6 +140,13 @@ export class ToolbarComponent implements OnInit {
        this.conta = this.conta + 1;
        this.notificaciones.push(this.notificacionRec);
     });
+  }
+
+  ngOnInit() {
+    this.getUser();
+    this.getEmpl();
+
+    
   }
 
   getUser() {
@@ -187,8 +190,10 @@ export class ToolbarComponent implements OnInit {
   
   notificacionServicio() {
     const observable = new Observable(observer =>{
-      this.socket.on('solicitu', resp =>{
+      this.socket.on('solicitud', resp =>{
+        console.log('aquuiiiiii')
         observer.next(resp);
+
       });
   });
   return observable;
@@ -197,6 +202,7 @@ export class ToolbarComponent implements OnInit {
     const observable = new Observable(observer =>{
       this.socket.on('reclamo', resp => {
         observer.next(resp);
+        console.log('aquuiiiiii')
       });
   });
   return observable;
@@ -205,6 +211,7 @@ export class ToolbarComponent implements OnInit {
     const observable = new Observable(observer =>{
       this.socket.on('comentario', resp =>{
         observer.next(resp);
+        console.log('aquuiiii')
       });
   });
   return observable;
