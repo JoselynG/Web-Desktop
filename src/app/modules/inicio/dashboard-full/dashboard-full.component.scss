@@ -11,10 +11,14 @@
         .grafico {
             display: flex;
             flex-direction: column;
-            padding: 0;
+            padding: 0 !important;
             height: 400px;
             width: 600px;
             margin-right: 20px;
+            .rep1 {
+                font-size: 12px !important;
+                padding: 0 !important;
+            }
             mat-list {
                 padding: 0;
             }
@@ -22,9 +26,7 @@
                 width: 500px;
                 margin-left: 45px;
                 margin-top: 25px;
-                img {
-                    height: 230px;
-                }
+                height: 320px;
             }
             .row1 {
                 display: flex;
@@ -105,6 +107,7 @@
                     line-height: 19px;
                     height: 30px;
                     margin-top: 10px;
+                    margin-left: 480px;
                 }
             }
         }
@@ -161,8 +164,8 @@
         flex-direction: row;
         margin-bottom: 30px;
         .card1 {
-            height: 300px;
-            width: 290px;
+            height: 350px;
+            width: 520px;
             padding: 0;
             mat-card-header {
                 h5 {
@@ -171,10 +174,10 @@
                 }
             }
             mat-card-content {
-                height: 170px;
-                width: 290px;
+                height: 250px;
+                width: 450px;
                 margin-top: 30px;
-                margin-left: 50px;
+                margin-left: 30px;
                 img {
                     width: 240px;
                 }
@@ -199,12 +202,13 @@
                     line-height: 19px;
                     height: 30px;
                     margin-top: 10px;
+                    margin-left: 400px
                 }
             }
         }
         .card2 {
-            height: 300px;
-            width: 290px;
+            height: 350px;
+            width: 370px;
             margin-left: 20px;
             margin-right: 20px;
             padding: 0;
@@ -215,7 +219,7 @@
                 }
             }
             mat-card-content {
-                height: 170px;
+                height: 260px;
                 width: 290px;
                 margin-top: 30px;
                 margin-left: 30px;
@@ -244,6 +248,7 @@
                     line-height: 19px;
                     height: 30px;
                     margin-top: 10px;
+                    margin-left: 250px
                 }
             }
         }

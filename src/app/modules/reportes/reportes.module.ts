@@ -46,6 +46,25 @@ import { ReportePromocionesComponent } from './estadisticos/reporte-promociones/
     ReporteIncidenciaOrdenComponent,
     ReporteIncidenciaServicioComponent,
     ReportePromocionesComponent
+  ],
+  exports: [
+    PruebaComponent,
+    GraficasDirective,
+    ServiciosAtendidosComponent,
+    ClientesFrecuentesComponent,
+    ReportesComponent,
+    EstadisticosComponent,
+    SuscripcionComponent,
+    EstructuradosComponent,
+    ReclamosComponent,
+    ReporteServicioComponent,
+    ReporteComentariosComponent,
+    ReporteReclamosComponent,
+    ReporteSolicitudesComponent,
+    ReporteClientesComponent,
+    ReporteIncidenciaOrdenComponent,
+    ReporteIncidenciaServicioComponent,
+    ReportePromocionesComponent
   ]
 })
 export class ReportesModule { }
