@@ -4,24 +4,25 @@
 
 
         <mat-card class="detalle">
+            <!-- ESTO ES LO NO QUE GUARDA -->
             <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Nombre" [(ngModel)]="datosModificar.nombre" [value]="datosMostrar.nombre">
+                <input matInput placeholder="Nombre" [(ngModel)]="datos_negocio.nombre" [value]="datosMostrar.nombre">
             </mat-form-field>
 
             <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="RIF: " [value]="datosMostrar.rif" [(ngModel)]="datosModificar.rif">
+                <input matInput placeholder="RIF: " [value]="datosMostrar.rif" [(ngModel)]="datos_negocio.rif">
+            </mat-form-field>
+           <!--HASTA AQUI-->
+            <mat-form-field class="example-full-width inputs">
+                <input matInput placeholder="Hora de inicio de la jornada laboral" [(ngModel)]="datos_negocio.hora_inicio_trabajo"  type="time">
             </mat-form-field>
 
             <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Hora de inicio de la jornada laboral " type="time">
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width inputs">
-                <input matInput placeholder="Hora final de la jornada laboral" type="time">
+                <input matInput placeholder="Hora final de la jornada laboral" [(ngModel)]="datos_negocio.hora_fin_trabajo" type="time">
             </mat-form-field>
             <mat-divider></mat-divider><br><br>
             <div>
-                <p>Razón de Ser del Negocio:</p><br>
+                <p>Razón de ser del Negocio:</p><br>
             </div>
 
             <mat-form-field class="textarea">
@@ -82,11 +83,13 @@
             <mat-form-field class="example-full-width inputs">
                 <input type="text" matInput placeholder="Teléfono" [(ngModel)]="datosModificarTelefono.descripcion" [value]="datosMostrarTelefonoc.descripcion">
 
+                <!--ESTO TAMPOCO-->
             </mat-form-field>
             <mat-form-field class="example-full-width inputs">
-                <input type="text" matInput placeholder="twitter" [(ngModel)]="datosModificarTwttir.url" [value]="datosMostrarTwttir.url">
+                <input type="text" matInput placeholder="twitter" [(ngModel)]="datos_twiter.url" [value]="datosMostrarTwttir.url">
 
             </mat-form-field>
+            <!--////////////////////-->
 
             <button mat-raised-button color="accent" (click)="update()">Guardar</button>
         </mat-card>

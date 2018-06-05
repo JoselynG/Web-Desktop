@@ -27,10 +27,9 @@ export class CitasComponent implements OnInit {
     cliente: number
     nombre: string
     apellido: string
-    empleados_asignados: any[]
-    servicios_solicitados: any[]
-    citas: any[]
-    fecha: string
+    empleados_asignados: Array<{}>
+    servicios_solicitados: Array<{}>
+    citas: Array<{}>
   }>
   atender: boolean
   ordenAux: any
@@ -46,48 +45,25 @@ export class CitasComponent implements OnInit {
     this.getOrden();
   }
 
-    getOrden(){
-      
-    let id = Number(localStorage.getItem('id'))
-    console.log(id)
+  getOrden(){
     this.vistaOrden.getOrdenCita().subscribe(
       (data) => {
         this.ordenAux = data['data']
         console.log(this.ordenAux)
         for(let i=0; i<this.ordenAux.length; i++){          
           if(this.ordenAux[i].estado === "E"){
-           for(let j=0; j<this.ordenAux[i].empleados_asignados.length; j++){
-              if(this.ordenAux[i].empleados_asignados[j].id_empleado === id){
-                this.orden.push(this.ordenAux[i])
-              }
-            }        
+              this.orden.push(this.ordenAux[i])
           }
         }
-        for(let i=0; i<this.orden.length; i++){
-          console.log(i)
-          for(let j=0; j<this.ordenAux.length; j++){
-            console.log(j)
-            if(this.ordenAux[j].id === this.orden[i].id){
-                let fec = new Date(this.ordenAux[j].citas[0].horario_empleado.dia);
-                let fech = fec.getDate()+'/'+(fec.getMonth()+1)+'/'+fec.getFullYear()
-                console.log(fec)
-                this.orden[i].fecha = fech
-                
-                console.log('si')  
-            }else{
-              console.log('no')
-            }
-          }
-        }
-            console.log(this.orden)
+        console.log(this.orden)
 
-            if(this.orden.length > 0){
-              this.atender = true
-            }else{
-              this.atender = false
-            }      
-          }
-        )
+        if(this.orden.length > 0){
+          this.atender = true
+        }else{
+          this.atender = false
+        }      
+      }
+    )
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

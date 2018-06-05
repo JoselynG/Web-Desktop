@@ -17,7 +17,7 @@ import { PresupuestoService } from '../../../provider/presupuesto/presupuesto.se
 import { ServiciosService } from '../../../provider/servicios/servicios.service';
 import { PromocionesService } from '../../../provider/promocion/promociones.service';
 import { TiposServiciosService } from '../../../provider/tipos-servicios/tipos-servicios.service';
-import { Socket } from 'ng-socket-io';
+
 interface Detalle{
   clientName: string;
   servicios: string;
@@ -269,7 +269,6 @@ export class ResponderSolicitudComponent {
     public service: ServiciosService,
     public promo: PromocionesService,
     public tipoServ: TiposServiciosService,
-    public socket: Socket,
     @Inject(MAT_DIALOG_DATA) public data: any){
   
       this.tipoRespSelec = 1;
@@ -482,11 +481,9 @@ export class ResponderSolicitudComponent {
 
           this.actSolic.updateSolicitud(this.solicitud.id, this.actualizarSolic).subscribe(
             (data) => {
-              this.notificar();
               if(this.actualizarSolic.estado === 'E'){
                 this.servPresup.postPresupuesto(this.presupuesto).subscribe(
                   (data)=>{
-                    
                     console.log('OK')
                   },(error)=>{
                     console.log(error)
@@ -506,11 +503,7 @@ export class ResponderSolicitudComponent {
       )
     }
 
-    notificar() {
-      this.socket.emit('nueva_respuesta_solicitud',{
-        mensaje: 'Su solicitud ha sido porcesada',
-        cliente: this.solicitud.id_cliente});
-      }
+  
 
 mostrarMensajeExito(): void {//opens the modal
   let dialogRef = this.dialog.open(MensajeExitoComponent, {

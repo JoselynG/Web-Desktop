@@ -209,9 +209,6 @@ export class RegistrarDetalleComponent implements OnInit {
     ngOnInit() {
       this.getOrdenInfo()
     }
-    myFunctiondeAyuda(la_url: string){
-      return window.open(la_url, '_blank');
-      }
 
     incidencias(){
       let find = false;

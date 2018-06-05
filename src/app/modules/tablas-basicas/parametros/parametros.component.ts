@@ -46,9 +46,6 @@ export class ParametrosComponent implements OnInit {
 
   }
 
-  myFunctiondeAyuda(la_url: string){
-    return window.open(la_url, '_blank');
-    }
   configurarValoresParametro() {
     let nombreSelect: String;
     for (let item of this.listadoTipoParametros) {
@@ -271,7 +268,6 @@ export class AgregarParametroComponent implements OnInit {
     }, Error => { alert("Lo sentimos, intente de nuevo más tarde.") });
     this.dialogRef.close();
   }
-  
   mostrarMensajeExito(): void {//opens the modal
     let dialogRef = this.dialog.open(MensajeExitoComponent, {
       width: '300px',//sets the width

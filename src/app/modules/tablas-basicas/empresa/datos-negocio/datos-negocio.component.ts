@@ -16,6 +16,7 @@ import { RedSocialService } from '../../../../provider/red-social/red-social.ser
   styleUrls: ['./datos-negocio.component.scss']
 })
 export class DatosNegocioComponent implements OnInit {
+  formData=new FormData();
   datosMostrar: {
     id: number;
     rif: string;
@@ -129,7 +130,7 @@ export class DatosNegocioComponent implements OnInit {
     id: number;
     id_negocio: number;
     nombre: string;
-    url: String;
+    url: string;
     visible: boolean;
     estatus: string;
     fecha_creacion: string; 
@@ -251,12 +252,21 @@ export class DatosNegocioComponent implements OnInit {
     id: number;
     id_negocio: number;
     nombre: string;
-    url: String;
+    url: string;
     visible: boolean;
     estatus: string;
     fecha_creacion: string; 
   };
- 
+  datos_negocio:{
+    id:number,    
+    rif:string,
+    nombre:string,
+    hora_inicio_trabajo:Time,
+    hora_fin_trabajo:Time,
+  };
+datos_twiter:{
+  url:string
+}
   desc: any;
   contacto:any;
   objetivo: any;
@@ -288,6 +298,9 @@ estado = [
     private router: Router,
     
   ) { 
+    this.datos_twiter={
+      url:""
+    },
     this.datosMostrar = {
       id: 0,
       rif: '',
@@ -298,6 +311,13 @@ estado = [
       estatus: '',
       id_sistema: 0,
       fecha_creacion: '',
+    },
+    this.datos_negocio={
+      id: 0,
+      rif: '',
+      nombre: '',
+      hora_inicio_trabajo: null,
+      hora_fin_trabajo: null,
     },
     
   this.datosMostrarDesc = {
@@ -552,7 +572,7 @@ estado = [
       (data)=>{
         this.empresa = data['data'];
         this.datosMostrar = this.empresa[0];
-        this.datosModificar = this.datosMostrar;
+       // this.datosModificar = this.datosMostrar;
         console.log(this.empresa);
         console.log(this.datosMostrar);
       },(error) =>{
@@ -566,7 +586,7 @@ estado = [
       (data)=>{
         this.red = data['data'];
         this.datosMostrarTwttir = this.red[0];
-        this.datosModificarTwttir = this.datosMostrarTwttir;
+        //this.datosModificarTwttir = this.datosMostrarTwttir;
         console.log(this.red)
   
       },(error) =>{
@@ -653,9 +673,16 @@ estado = [
       }
     )
   }
+
   update(){
-    
-    this.negocio.updateNegocio(this.datosMostrar.id, this.datosModificar).subscribe(
+    console.log(this.datos_negocio);
+    this.datos_negocio.id=this.datosMostrar.id
+    //UPDATE DE NEGOCIO
+    this.formData.append('rif',this.datos_negocio.rif);
+    this.formData.append('nombre',this.datos_negocio.nombre);
+    this.formData.append('hora_inicio_trabajo',String(this.datos_negocio.hora_inicio_trabajo));
+    this.formData.append('hora_fin_trabajo',String(this.datos_negocio.hora_fin_trabajo));
+    this.negocio.updateNegocio(this.datosMostrar.id, this.formData).subscribe(
       (data) => {
         console.log(data)
       },(error) =>{
@@ -743,16 +770,16 @@ estado = [
       },(error) =>{
         console.log(error);
       } 
-    )
+    );
    
-    this.red.updateRedS(1, this.datosModificarTwttir).subscribe(
+    this.red.updateRedS(this.datosMostrarTwttir.id, this.datos_twiter).subscribe(
       (data) => {
        console.log(data)         
       },(error) =>{
         console.log(error);
       } 
-    )
-    this.mostrarMensajeExito()
+    );
+    this.mostrarMensajeExito();
   }
   mostrarMensajeExito(): void {//opens the modal
     let dialogRef = this.dialog.open(MensajeExitoComponent, {
@@ -784,6 +811,7 @@ export class  CrearObjetivosComponent implements OnInit {
     {value: 'gral', viewValue: 'General'},
     {value: 'esp', viewValue: 'Específicos'},
     
+
     
   ];
 constructor() { }

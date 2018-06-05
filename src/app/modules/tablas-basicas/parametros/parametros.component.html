@@ -1,13 +1,7 @@
 <div class="heading-panel">
-    <div style="text-align: right;" class="btna">
-        <button mat-raised-button class="efectoboton" matTooltip="Presione aquí para ver un manual en PDF con lo que necesita saber sobre la galería" (click)="myFunctiondeAyuda('http://localhost:3000/files/pdf/parametros.pdf')">
-                                      <mat-icon>help</mat-icon> Ayuda
-                                </button>
-    </div>
     <!--Controla el contenido que se despliega en cada tab-->
     <mat-tab-group #grupoTabs (change)="cleanLists()">
         <!--(click)="verificarTab(grupoTabs)" (keydown)="verificarTab(grupoTabs)"-->
-
         <mat-tab label="Aspectos a considerar" (click)="cleanLists()">
             <!--++++++-->
             <div style="padding: 30px 30px 30px 60px; ">
@@ -35,7 +29,8 @@
                                             <mat-grid-tile [colspan]="6" [rowspan]="1"> {{dato.nombre}}</mat-grid-tile>
                                             <mat-grid-tile [colspan]="3" [rowspan]="1">
                                                 <ng-container *ngFor="let categoria of categoriaParametro">
-                                                    <mat-checkbox *ngIf="categoria.id_tipo_parametro == dato.id && categoria.id_categoria_servicio == 1" [checked]="categoria.id_tipo_parametro == dato.id && categoria.id_categoria_servicio == 1" [disabled]="true"></mat-checkbox>
+                                                    <mat-checkbox *ngIf="categoria.id_tipo_parametro == dato.id && categoria.id_categoria_servicio == 1" [checked]="categoria.id_tipo_parametro == dato.id && categoria.id_categoria_servicio == 1"
+                                                        [disabled]="true"></mat-checkbox>
                                                 </ng-container>
                                             </mat-grid-tile>
                                             <mat-grid-tile [colspan]="3" [rowspan]="1">
@@ -148,5 +143,4 @@
             <!--++++++-->
         </mat-tab>
     </mat-tab-group>
-
 </div>

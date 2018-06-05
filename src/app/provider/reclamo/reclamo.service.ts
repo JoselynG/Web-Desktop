@@ -16,7 +16,4 @@ export class ReclamoService {
     return this.http.put(API_URL+this.url_negocio+id, datos);
   }
 
-  getReporteReclamo (fechaInicio, fechaFin) {
-    return this.http.get(API_URL + 'reporte_reclamo?fecha_inicio=' + fechaInicio + '&fecha_fin=' + fechaFin);
-  }
 }
