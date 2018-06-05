@@ -9,7 +9,7 @@ import { DashboardEmpleadoComponent, CancelarComponent } from './dashboard-emple
 import { ReportesModule } from '../reportes/reportes.module';
 import { ClFrecuentesComponent } from './dashboard-full/cl-frecuentes/cl-frecuentes.component';
 import { CitasRecibidasComponent } from './dashboard-full/citas-recibidas/citas-recibidas.component';
-import { ServiciosAtendidosComponent } from './dashboard-full/servicios-atendidos/servicios-atendidos.component';
+
 import { ReportePromocionesComponent } from '../reportes/estadisticos/reporte-promociones/reporte-promociones.component';
 import { ReporteIncidenciaServicioComponent } from '../reportes/estructurados/reporte-incidencia-servicio/reporte-incidencia-servicio.component';
 import { ReporteIncidenciaOrdenComponent } from '../reportes/estructurados/reporte-incidencia-orden/reporte-incidencia-orden.component';
@@ -45,7 +45,7 @@ import { ReporteServicioComponent } from '../reportes/estructurados/reporte-serv
     ClFrecuentesComponent,
     CancelarComponent,
     CitasRecibidasComponent,
-    ServiciosAtendidosComponent,
+
       
   ]
 })

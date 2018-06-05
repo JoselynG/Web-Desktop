@@ -1,4 +1,4 @@
-import { ServiciosAtendidosComponent } from './dashboard-full/servicios-atendidos/servicios-atendidos.component';
+
 import { ClFrecuentesComponent } from './dashboard-full/cl-frecuentes/cl-frecuentes.component';
 import { DashboardFullComponent } from './dashboard-full/dashboard-full.component';
 import { NgModule } from '@angular/core';
@@ -19,10 +19,7 @@ const routes: Routes = [
         path: 'Clientesfrecuentes',
         component: ClFrecuentesComponent
       },       
-      {
-        path: 'serviciosAtendidos',
-        component: ServiciosAtendidosComponent
-      }
+
     ]
   },
   {
