@@ -1,8 +1,10 @@
+import { Socket } from 'ng-socket-io';
 import { UsuariosService } from './../../provider/usuarios/usuarios.service';
 import { UserService } from './../../provider/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmpleadosService } from '../../provider/empleados/empleados.service';
+import { Observable } from 'rxjs/Observable';
 
 interface user{
   fullName: string;
@@ -68,13 +70,21 @@ export class ToolbarComponent implements OnInit {
     sexo: string
     visible: boolean
   }
-  url: string
+  notificaciones: any[];
+  notificacionSoli: any;
+  notificacionCom: any;
+  notificacionRec: any;
+  conta: number;
+  url: string;
   constructor(
     public router: Router,
     public usuario: UserService,
     public user: UsuariosService,
     public emp: EmpleadosService,
+    public socket: Socket
   ) { 
+    this.conta=0;
+    this.notificaciones = [];
     this.empleL = {
       apellido: '',
       nombre: '',
@@ -90,27 +100,64 @@ export class ToolbarComponent implements OnInit {
       telefono: '',  
       sexo: '',
       visible: null
-    }
+    };
+    this.notificacionCom = {
+      titulo: '',
+      mensaje: '',
+      fecha: null,
+    };
+    this.notificacionSoli = {
+      titulo: '',
+      mensaje: '',
+      fecha: null,
+    };
+    this.notificacionRec = {
+      titulo: '',
+      mensaje: '',
+      fecha: null,
+    };
     this.url = "http://localhost:3000/files/empleado/"
   }
 
   ngOnInit() {
-    this.getUser()
-    this.getEmpl()
+    this.getUser();
+    this.getEmpl();
+
+    this.notificacionServicio().subscribe((resp) => {
+      console.log(resp);
+      this.notificacionSoli = resp;
+       console.log('estoy aqui');
+       this.conta = this.conta + 1;
+       this.notificaciones.push(this.notificacionSoli);
+    });
+    this.notificacionComentario().subscribe((resp) => {
+      console.log(resp);
+      this.notificacionCom = resp;
+       console.log('estoy aqui');
+       this.conta = this.conta + 1;
+       this.notificaciones.push(this.notificacionCom);
+    });
+    this.notificacionReclamo().subscribe((resp) => {
+      console.log(resp);
+      this.notificacionRec = resp;
+       console.log('estoy aqui');
+       this.conta = this.conta + 1;
+       this.notificaciones.push(this.notificacionRec);
+    });
   }
 
-  getUser(){
+  getUser() {
     this.user.getUsuario(Number(localStorage.getItem('id_user'))).subscribe(
       (data)=>{
-          this.userI = data['data']
-          console.log(this.userI)
-      }, (error)=>{
-        console.log(error)
+          this.userI = data['data'];
+          console.log(this.userI);
+      }, (error) => {
+        console.log(error);
       }
-    )
+    );
   }
 
-  getEmpl(){
+  getEmpl() {
     let id=Number(localStorage.getItem('id_user'))
     this.emp.getEmpleados().subscribe(
       (data)=>{
@@ -134,6 +181,39 @@ export class ToolbarComponent implements OnInit {
   cerrarSesion(){
     this.usuario.logout()
     this.router.navigate(['']);
+    this.socket.disconnect();
   }
-
+  
+  
+  notificacionServicio() {
+    const observable = new Observable(observer =>{
+      this.socket.on('solicitu', resp =>{
+        observer.next(resp);
+      });
+  });
+  return observable;
+  }
+  notificacionReclamo() {
+    const observable = new Observable(observer =>{
+      this.socket.on('reclamo', resp => {
+        observer.next(resp);
+      });
+  });
+  return observable;
+  }
+  notificacionComentario() {
+    const observable = new Observable(observer =>{
+      this.socket.on('comentario', resp =>{
+        observer.next(resp);
+      });
+  });
+  return observable;
+  }
+  revisado() {
+    if(this.conta > 0) {
+      this.conta = this.conta - 1;
+    } else if (this.conta === -1) {
+      this.conta = 0;
+    }
+  }
 }

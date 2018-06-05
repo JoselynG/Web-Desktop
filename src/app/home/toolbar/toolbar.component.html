@@ -4,11 +4,10 @@
     </div>
     <div class="right">
         <div class="notifications" [matMenuTriggerFor]="menu1">
-            <button mat-icon-button dirBadge="1">
+            <button mat-icon-button [dirBadge]="conta">
                 <mat-icon >notifications</mat-icon>
             </button>
         </div>
-
         <mat-menu #menu1="matMenu">
             <button class="button-info" mat-menu-item disabled>
                 <div class="wrapper-info">
@@ -17,25 +16,14 @@
                     </div>
                 </div>
             </button>
-
-            <mat-card-content>
+            <mat-card-content button (click)="revisado()" *ngFor="let item of notificaciones">
                 <div class="name">
-                    <span class="bold"> {{notiInfo.titulo}} </span>
-                    <p class="name"> {{notiInfo.mensaje}} </p>
-                    <span class="name"> {{notiInfo.fecha}} </span>
-                </div>
-            </mat-card-content>
-
-            <mat-card-content>
-                <div class="name">
-                    <span class="bold"> {{notificaInfo.ti}} </span>
-                    <p class="name"> {{notificaInfo.msj}} </p>
-                    <span class="name"> {{notificaInfo.fech}} </span>
+                    <span class="bold"> {{item.titulo}} </span>
+                    <p class="name"> {{item.mensaje}} </p>
+                    <span class="name"> {{item.fecha | date:'dd/MM/yyyy' }} </span>
                 </div>
             </mat-card-content>
         </mat-menu>
-
-
         <mat-menu #menu="matMenu">
             <button class="button-info" mat-menu-item disabled>
                 <div class="wrapper-info">

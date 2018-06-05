@@ -85,6 +85,7 @@ export class RegistrarDetalleComponent implements OnInit {
       estatus: string;
       estado: string;
       id_agenda: number;
+      hora_inicio: string
     }>
     empleados_asignados: Array<{
       id: number;
@@ -179,6 +180,8 @@ export class RegistrarDetalleComponent implements OnInit {
     nombre: string
   }>
   guardado: boolean
+  fecha: string
+  hora: string
   constructor(public dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
@@ -189,6 +192,8 @@ export class RegistrarDetalleComponent implements OnInit {
     public ordenS: OrdenServicioService,
     
     ) { 
+      this.fecha =''
+      this.hora = ''
       this.serviciosM = []
       this.serviciosP = []
       this.incidenciaServ = []
@@ -323,7 +328,7 @@ export class RegistrarDetalleComponent implements OnInit {
       this.ordenVista.getOrdenCitaEspec(this.ordenId).subscribe(
         (data) => {
           this.orden = data['data']
-          this.nombreCliente = this.orden.nombre + ' ' + this.orden.apellido          
+          this.nombreCliente = this.orden.nombre + ' ' + this.orden.apellido  
           for(let i=0; i<this.orden.servicios_solicitados.length; i++){
             this.serviciosServ.getServicioEspec(this.orden.servicios_solicitados[i].id).subscribe(
               (data) => {

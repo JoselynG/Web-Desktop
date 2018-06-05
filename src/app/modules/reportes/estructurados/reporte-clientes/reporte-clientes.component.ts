@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { TipoComentarioService } from '../../../../provider/tipo-comentario/tipo-comentario.service';
 import { TipoRepuestaComentarioService } from '../../../../provider/tipo-repuesta-comentario/tipo-repuesta-comentario.service';
 import { ReporteComentarioService } from '../../../../provider/reporte-comentario/reporte-comentario.service';
 import { ReporteClienteService } from '../../../../provider/reporte-cliente/reporte-cliente.service';
+import * as jsPDF from 'jspdf';
+import * as $ from 'jquery';
+import * as html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-reporte-clientes',
@@ -44,6 +47,18 @@ export class ReporteClientesComponent implements OnInit {
   tipo: any;
   tipoR: any;
   reporteCom: any ;
+
+  //pdf
+  doc: jsPDF;
+  columns: string[];
+  data: Array<{
+    nombre: string
+    cedula: string
+    telefono: string
+    direccion: string
+    ciudad: string
+    tipo_cliente: string
+  }>;
 
 filtroTipoComSelec = 'todos';
 filtroTipoRespSelec = 'todos';
@@ -88,6 +103,7 @@ ngAfterViewInit() {
     public reporteC: ReporteClienteService,
     
   ) {
+    this.data =[]
     this.gettipocomentario();
     this.gettipoRepuestaC();
     this.caena = '';
@@ -130,7 +146,16 @@ ngAfterViewInit() {
     // le mandamos los datos a la tabla
 
   }
-
+getPDF(){
+  html2canvas(document.querySelector("#content")).then(canvas => {
+    
+      var img = canvas.toDataURL("image/png");
+      var doc = new jsPDF();
+      doc.addImage(img, 'JPEG', 10, 10);
+      doc.save('Reporte-Clientes.pdf');
+    
+  });
+}
 crearUrl() {
  // tslint:disable-next-line:max-line-length
  let inicio = '';
@@ -217,8 +242,10 @@ getReporteC() {
 
   this.reporteC.getReporteC(this.caena).subscribe((resp) => {
     this.reporteCom = resp['data'];
-    console.log(this.reporteCom);
+    
     this.dataSource = new MatTableDataSource(this.reporteCom);
+    this.data = this.reporteCom
+    console.log(this.data)
     }, (error) => {
     console.log(error);
     });

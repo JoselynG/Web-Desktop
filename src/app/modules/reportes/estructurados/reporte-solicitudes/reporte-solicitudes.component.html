@@ -45,10 +45,15 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+    <div class="boton">
+        <button mat-raised-button (click)="getPDF()"> Importar PDF</button>
+    </div>
+
 </div>
 
 
-<div class="tabla">
+<div class="tabla" id="content" #content>
+    <h4>Reporte de solicitudes</h4>
     <mat-table #table [dataSource]="dataSource" matSort>
 
         <!-- Telefono column -->

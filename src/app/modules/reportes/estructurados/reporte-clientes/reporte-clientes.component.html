@@ -35,12 +35,16 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+    <div class="boton">
+        <button mat-raised-button (click)="getPDF()"> Importar PDF</button>
+    </div>
 
 </div>
 
 
-<div class="tabla">
-    <mat-table #table [dataSource]="dataSource" matSort>
+<div class="tabla" id="content" #content>
+    <h4>Reporte de clientes</h4>
+    <mat-table #table [dataSource]="dataSource" matSort id="print" #print id="table-id">
 
         <!-- Telefono column -->
         <ng-container matColumnDef="cliente">
@@ -94,13 +98,25 @@
             <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                 <h3>Sexo</h3>
             </mat-header-cell>
-            <mat-cell style="padding:5px;" *matCellDef="let  elemento"> a </mat-cell>
+            <mat-cell style="padding:5px;" *matCellDef="let  elemento">
+                <div *ngFor="let par of elemento.perfil">
+                    <div *ngIf="par.parametro == 'Sexo'">
+                        {{par.valor}}
+                    </div>
+                </div>
+            </mat-cell>
         </ng-container>
         <ng-container matColumnDef="rgo">
             <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                 <h3>Rango de edad</h3>
             </mat-header-cell>
-            <mat-cell style="padding:5px;" *matCellDef="let  elemento"> a </mat-cell>
+            <mat-cell style="padding:5px;" *matCellDef="let  elemento">
+                <div *ngFor="let par of elemento.perfil">
+                    <div *ngIf="par.parametro == 'Rango de edad'">
+                        {{par.valor}}
+                    </div>
+                </div>
+            </mat-cell>
         </ng-container>
 
 

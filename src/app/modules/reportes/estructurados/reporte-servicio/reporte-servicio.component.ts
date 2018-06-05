@@ -5,6 +5,10 @@ import { TiposServiciosService } from './../../../../provider/tipos-servicios/ti
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { ReporteServicioService } from '../../../../provider/reporte-servicio/reporte-servicio.service';
+import * as jsPDF from 'jspdf';
+import * as $ from 'jquery';
+import * as html2canvas from 'html2canvas';
+
 
 @Component({
   selector: 'app-reporte-servicio',
@@ -96,6 +100,17 @@ export class ReporteServicioComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
  
+getPDF(){
+  html2canvas(document.querySelector("#content")).then(canvas => {
+    
+      var img = canvas.toDataURL("image/png");
+      var doc = new jsPDF();
+      doc.addImage(img, 'JPEG', 10, 10);
+      doc.save('Reporte-Servicios.pdf');
+    
+  });
+}
+
   constructor(
     public categoria: CategoriasServicioService,
     public tipoServ: TiposServiciosService,

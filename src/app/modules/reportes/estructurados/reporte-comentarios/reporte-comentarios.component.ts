@@ -4,6 +4,9 @@ import { TipoComentarioService } from '../../../../provider/tipo-comentario/tipo
 import { TipoRepuestaComentarioService } from '../../../../provider/tipo-repuesta-comentario/tipo-repuesta-comentario.service';
 import { ReporteComentarioService } from '../../../../provider/reporte-comentario/reporte-comentario.service';
 import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
+import * as jsPDF from 'jspdf';
+import * as $ from 'jquery';
+import * as html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-reporte-comentarios',
@@ -205,6 +208,16 @@ gettipoRepuestaC() {
  );
 }
 
+getPDF(){
+  html2canvas(document.querySelector("#content")).then(canvas => {
+    
+      var img = canvas.toDataURL("image/png");
+      var doc = new jsPDF();
+      doc.addImage(img, 'JPEG', 10, 10);
+      doc.save('Reporte-Atención-Cliente.pdf');
+    
+  });
+}
 getReporteC() {
 
   this.reporteC.getReporteC(this.caena).subscribe((resp) => {

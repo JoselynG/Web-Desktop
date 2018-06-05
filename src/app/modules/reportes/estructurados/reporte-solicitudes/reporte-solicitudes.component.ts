@@ -5,6 +5,10 @@ import { TipoRespSolicitudService } from './../../../../provider/tipo-resp-solic
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { ServiciosService } from '../../../../provider/servicios/servicios.service';
+import * as jsPDF from 'jspdf';
+import * as $ from 'jquery';
+import * as html2canvas from 'html2canvas';
+
 
 @Component({
   selector: 'app-reporte-solicitudes',
@@ -99,6 +103,17 @@ export class ReporteSolicitudesComponent implements OnInit {
       this.getServicios();
       this.getReporteSol()
     }
+    
+getPDF(){
+  html2canvas(document.querySelector("#content")).then(canvas => {
+    
+      var img = canvas.toDataURL("image/png");
+      var doc = new jsPDF();
+      doc.addImage(img, 'JPEG', 10, 10);
+      doc.save('Reporte-Solicitudes.pdf');
+    
+  });
+}
 
     crearUrl() {
       // tslint:disable-next-line:max-line-length
