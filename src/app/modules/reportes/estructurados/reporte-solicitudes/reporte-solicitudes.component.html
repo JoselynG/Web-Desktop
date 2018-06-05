@@ -20,7 +20,7 @@
         <input matInput [matDatepicker]="pickerEnd" [(ngModel)]="fechafin" (ngModelChange)="crearUrl()" placeholder="Fecha de fin de la búsqueda">
         <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
         <mat-datepicker #pickerEnd (change)="validateDate()"></mat-datepicker>
-        <span *ngIf="fecha">La fecha de fin debe ser mayr que la de inicio</span>
+        <span *ngIf="fecha">La fecha de fin debe ser mayor que la de inicio</span>
     </mat-form-field>
 
     <mat-form-field class="valor">
@@ -71,7 +71,9 @@
             <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                 <h3>Servicios</h3>
             </mat-header-cell>
-            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.servicios_solicitados.nombre_servicio}} </mat-cell>
+            <mat-cell style="padding:5px;" *matCellDef="let element">
+                <div *ngFor="let serv of element.servicios_solicitados"> {{serv.tipo_servicio}} {{serv.nombre_servicio}}, </div><br>
+            </mat-cell>
         </ng-container>
 
         <!-- Telefono column -->
@@ -97,13 +99,13 @@
             <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                 <h3>Tipo de respuesta presupuesto</h3>
             </mat-header-cell>
-            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.tipoRP}} </mat-cell>
+            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.presupuesto.nombre}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="respP">
             <mat-header-cell style="padding:5px;" *matHeaderCellDef mat-sort-header>
                 <h3>Respuesta presupuesto</h3>
             </mat-header-cell>
-            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.respP}} </mat-cell>
+            <mat-cell style="padding:5px;" *matCellDef="let element"> {{element.presupuesto.descripcion}} </mat-cell>
         </ng-container>
 
 

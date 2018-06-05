@@ -2,6 +2,11 @@
     <div class="boton">
         <span matTooltip="Citas"><button mat-raised-button routerLink="/citas"><mat-icon>keyboard_backspace</mat-icon> Volver</button></span>
     </div>
+    <div style="text-align: right;" class="btna">
+        <button mat-raised-button class="efectoboton" matTooltip="Presione aquí para ver un manual en PDF con lo que necesita saber sobre la galería" (click)="myFunctiondeAyuda('http://localhost:3000/files/pdf/detalle_del_servicio.pdf')">
+                  <mat-icon>help</mat-icon> Ayuda
+            </button>
+    </div>
     <div class="ctn">
         <div class="registro">
             <h4>Registro de servicio prestado</h4>

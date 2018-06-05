@@ -216,6 +216,10 @@ getCategorias() {
         console.log(error);
       });
     }
+    myFunctiondeAyuda(la_url: string){
+      return window.open(la_url, '_blank');
+      }
+
     
     addPromocionyValores() {
      this.input = this.el.nativeElement.querySelector('#fileInput');

@@ -29,7 +29,7 @@ export class NuevoServicioComponent implements OnInit {
     estatus: String;
     fecha_creacion: Date;
     visible: boolean
-    insumo_asociado: Array<{}>
+    insumo_asociado: any[];
     valor_parametro: any[];
     };
   inputEl: any;
@@ -177,10 +177,14 @@ getCategorias() {
           console.log(error);
         });
       }
-
+      mostrar(){
+        console.log(this.insumoSel);
+      
+      }
 
     addServicioyValores() {
         //agregar imagen
+        this.mostrar()
         this.inputEl = document.getElementById('fileInput');
         this.fileCount = this.inputEl.files.length;
 
@@ -196,10 +200,11 @@ getCategorias() {
         
        k++;
       }
-      for(let i=0; i<this.insumoSel.length; i++){
-        this.ser.insumo_asociado.push(this.insumoSel[i].id)
-      }
-    
+      
+        this.ser.insumo_asociado = this.insumoSel
+        console.log(this.ser)
+      
+     
       //Agregar Campos
      this.formData.append('id_tipo_servicio', this.ser.id_tipo_servicio);
       this.formData.append('nombre', this.ser.nombre);
@@ -208,6 +213,9 @@ getCategorias() {
       this.formData.append('precio', this.ser.precio);
       for(let i=0;i<this.ser.valor_parametro.length;i++){
         this.formData.append('valor_parametro[]',this.ser.valor_parametro[i]);
+      }
+      for(let i=0;i<this.ser.insumo_asociado.length;i++){
+        this.formData.append('insumo_asociado[]',this.ser.insumo_asociado[i]);
       }
      // this.formData.append('valor_parametro', this.ser.valor_parametro);
       
