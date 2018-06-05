@@ -1,4 +1,11 @@
 <div style="padding: 30px 30px 30px 60px; max-width: 800px;">
+    <!--inicio boton de ayuda-->
+    <div style="text-align: right;" class="btna">
+        <button mat-raised-button class="efectoboton" matTooltip="Presione aquí para ver un manual en PDF con lo que necesita saber sobre la galería" (click)="myFunctiondeAyuda('http://localhost:3000/files/pdf/portal_web.pdf')">
+                                  <mat-icon>help</mat-icon> Ayuda
+                            </button>
+    </div>
+    <!--fin boton de ayuda-->
     <h4 style="opacity: 0.5;">Configura la galería de tu portal web</h4>
     <br>
     <mat-card style="padding: 50px 120px;">
@@ -15,8 +22,7 @@
             </mat-form-field>
             <br>
             <mat-form-field>
-                <textarea #subtitulo style="resize: none;" maxlength="1100" [(ngModel)]="descripcion" [ngModelOptions]="{standalone: true}"
-                    matInput placeholder="Subtítulo de la sección"></textarea>
+                <textarea #subtitulo style="resize: none;" maxlength="1100" [(ngModel)]="descripcion" [ngModelOptions]="{standalone: true}" matInput placeholder="Subtítulo de la sección"></textarea>
                 <mat-hint align="end">{{subtitulo.value.length}} / 1100</mat-hint>
             </mat-form-field>
         </form>
@@ -35,8 +41,7 @@
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <textarea #descripcionI style="resize: none;" maxlength="300" matInput placeholder="Descripción de la imagen" [(ngModel)]="descripcionNuevo"
-                            [ngModelOptions]="{standalone: true}"></textarea>
+                        <textarea #descripcionI style="resize: none;" maxlength="300" matInput placeholder="Descripción de la imagen" [(ngModel)]="descripcionNuevo" [ngModelOptions]="{standalone: true}"></textarea>
                         <mat-hint align="end">{{descripcionI.value.length}} / 300</mat-hint>
                     </mat-form-field>
                 </form>
@@ -56,8 +61,7 @@
                             </mat-card-title>
                         </mat-card-header>
                         <div style="width:100%;">
-                            <img #imag id="imagen{{imagen?.id}}" src="http://localhost:3000/files/imagen/{{imagen?.id}}.{{imagen?.imagen}}" alt="galeria"
-                                width="350">
+                            <img #imag id="imagen{{imagen?.id}}" src="http://localhost:3000/files/imagen/{{imagen?.id}}.{{imagen?.imagen}}" alt="galeria" width="350">
                             <div class="div-btn">
                                 <input #fileButton id="fileInput{{imagen?.id}}" style="display: none;" type='file' (change)="cambiarImagen($event,imag.id); onFileChange($event);">
                                 <button mat-raised-button (click)="fileButton.click()">

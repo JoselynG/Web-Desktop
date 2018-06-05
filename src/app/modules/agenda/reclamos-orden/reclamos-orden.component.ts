@@ -9,7 +9,7 @@ import { RepuestaReclamoService } from '../../../provider/repuesta-reclamo/repue
 import { VistaReclamoService } from '../../../provider/vista-reclamo/vista-reclamo.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
-
+import { Socket } from 'ng-socket-io';
 
 interface Datos_reclamo{
 	nombre: string;
@@ -75,7 +75,7 @@ export class ReclamosOrdenComponent implements OnInit {
      public repuesta:TipoRepuestaReclamoService,
      private route: ActivatedRoute,
      private router: Router,
- 
+     public socket: Socket,
      ) 
    {
       //this.getVistaReclamo();
@@ -166,7 +166,7 @@ datosEnviar: {
 empleadoCat: any
 empleadoSelec: number
 mostrar: boolean
-
+cliente: any;
 constructor(public dialog: MatDialog,
   public repuesta:TipoRepuestaReclamoService,
    public repuestaR:RepuestaReclamoService,
@@ -175,6 +175,7 @@ constructor(public dialog: MatDialog,
    public agregOrd: AgregarOrdenService,
    public empl: VistaEmpleadosCategoriaService,
   private router: Router,
+  private socket: Socket,
   public dialogRef: MatDialogRef<DarRepuestaComponent>,
   @Inject(MAT_DIALOG_DATA) public data: any
    ) 
@@ -200,6 +201,7 @@ constructor(public dialog: MatDialog,
   this.estadoReclamo = {
     estado: ''
   }
+  this.cliente = this.reclamo.id_cliente;
 } 
 
 ngOnInit() {
@@ -251,6 +253,7 @@ imprimir(){
       console.log('resp')
       this.reclamoServ.updateReclamo(this.datosMostrar.id_reclamo, this.estadoReclamo).subscribe(
         (data) => {
+          this.notificar();
           console.log ('actualizado')
           console.log(this.datosEnviar)
           this.agregOrd.postOrden(this.datosEnviar).subscribe(
@@ -273,7 +276,11 @@ imprimir(){
    )
   } 
 
-  
+  notificar() {
+    this.socket.emit('nueva_respuesta_reclamo', {
+      mensaje: 'Su reclamo ha sido procesado',
+      cliente: this.cliente});
+    }
 mostrarMensajeExito(): void {//opens the modal
   let dialogRef = this.dialog.open(MensajeExitoComponent, {
     width: '300px',//sets the width

@@ -216,11 +216,15 @@ getCategorias() {
         console.log(error);
       });
     }
+    myFunctiondeAyuda(la_url: string){
+      return window.open(la_url, '_blank');
+      }
+
     
     addPromocionyValores() {
      this.input = this.el.nativeElement.querySelector('#fileInput');
      this.cantidad = this.input.files.length;
-     this.monto = (this.precio * this.porcentaje_descuento) / 100;
+     this.monto = (this.precio * (100-this.porcentaje_descuento)) / 100;
       
      if ( this.cantidad > 0) {
      this.form.append('archivo', this.input.files.item(0));

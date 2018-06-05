@@ -94,7 +94,11 @@ import { AuditoriaService } from './provider/auditoria/auditoria.service';
 import { IncidenciaOrdenService } from './provider/incidencia-orden/incidencia-orden.service';
 import { AgregarOrdenService } from './provider/agregar-orden/agregar-orden.service';
 import { ReporteServicioService } from './provider/reporte-servicio/reporte-servicio.service';
-
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { ReporteClienteService } from './provider/reporte-cliente/reporte-cliente.service';
+const config: SocketIoConfig = {
+  url : 'http://localhost:3001', options: {}
+};
 
 @NgModule({
   declarations: [
@@ -128,7 +132,8 @@ import { ReporteServicioService } from './provider/reporte-servicio/reporte-serv
     PerfilUsuarioModule,
     PortalWebModule,
     PerfilModule,
-    HttpClientModule
+    HttpClientModule,
+    SocketIoModule.forRoot(config),
   ],
   providers: [
     ConsejosService,
@@ -195,7 +200,8 @@ import { ReporteServicioService } from './provider/reporte-servicio/reporte-serv
     ReporteComentarioService,
     ReporteSolicitudService,
     AgregarOrdenService,
-    ReporteServicioService
+    ReporteServicioService,
+    ReporteClienteService
   ],
     
   entryComponents: [

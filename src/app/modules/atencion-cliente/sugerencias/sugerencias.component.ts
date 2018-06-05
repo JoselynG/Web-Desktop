@@ -7,6 +7,7 @@ import { RespuestaComentarioService } from '../../../provider/respuesta-comentar
 import { VComentariosService } from '../../../provider/v-cometarios/v-comentarios.service';
 import { MensajeExitoComponent } from '../../../mensajes/mensaje-exito/mensaje-exito.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Socket } from 'ng-socket-io';
 
 interface Datos_reclamo{
 	nombre: string;
@@ -167,6 +168,7 @@ comentarioResp: any;
 estado:{
   estado: string
 }
+cliente: any
 constructor(
   public dialogRef: MatDialogRef<DarRepuestaComentarioComponent>,
   public dialog: MatDialog,
@@ -175,9 +177,11 @@ constructor(
   private route: ActivatedRoute,
   private router: Router,
   public comentario: ComentarioService,
+  public socket: Socket,
   @Inject(MAT_DIALOG_DATA) public data: any
 ) 
   {
+    this.cliente = data.com.id_cliente,
     this.comentarioResp = data.com
     console.log(this.comentarioResp)
       this.getTipoRepuestaC();
@@ -217,6 +221,7 @@ postRepuestaComentario() {
     this.msj= resp['data'].message;
     console.log(this.msj);
      //alert(this.msj)
+     this.notificar();
      this.estado.estado = 'R'
      this.comentario.updateComentario(this.datosMostrar.id_comentario, this.estado).subscribe(
       (res)=>{
@@ -233,6 +238,12 @@ postRepuestaComentario() {
   }
  )
 } 
+
+notificar() {
+  this.socket.emit('nueva_respuesta_comentario', {
+    mensaje: 'Su comentario ha sido atendido',
+    cliente: this.cliente});
+  }
 
 mostrarMensajeExito(): void {//opens the modal
   let dialogRef = this.dialog.open(MensajeExitoComponent, {

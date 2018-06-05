@@ -120,14 +120,14 @@ export class ToolbarComponent implements OnInit {
             if(this.empleado[i].id_usuario === id){
               this.empleL = this.empleado[i]
               i=this.empleado.length;
+              localStorage.setItem('id', String(this.empleL.id))
+              
             }
         }
         this.url = this.url + this.empleL.id +'.'+this.empleL.imagen
       },(error)=>{
-        console.log(error)
-        
+        console.log(error)        
       }
-
     )
   }
 

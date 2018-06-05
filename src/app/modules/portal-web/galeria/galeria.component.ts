@@ -26,11 +26,15 @@ export class GaleriaComponent implements OnInit {
   files: any[];
 
   titulo: Ititle = {} as any;
-  constructor(public tituloSeccionService: TituloSeccionService, 
+  constructor(public tituloSeccionService: TituloSeccionService,
     private route: ActivatedRoute,
-    public dialog: MatDialog, 
+    public dialog: MatDialog,
     private router: Router,
     public imagenService: ImagenService, private el: ElementRef) { }
+
+    myFunctiondeAyuda(la_url: string){
+      return window.open(la_url, '_blank');
+      }
 
   getTituloSeccion() {
     this.tituloSeccionService.getTituloSeccion().subscribe(
@@ -88,7 +92,7 @@ export class GaleriaComponent implements OnInit {
     formData.append('titulo', this.tituloNuevo);
     formData.append('descripcion', this.descripcionNuevo);
     formData.append('tipo_imagen', 'portfolio');
-    this.imagenService.postImagen(formData).subscribe(data => { this.ngOnInit(); 
+    this.imagenService.postImagen(formData).subscribe(data => { this.ngOnInit();
       alert('Exito'); }, Error => { console.log(Error); });
   }
 
@@ -133,11 +137,11 @@ export class GaleriaComponent implements OnInit {
     this.imagenService.putImagen(id, formData).subscribe(data => { this.ngOnInit();
        alert('Imagen de la galeria actualizada.'); }, Error => { alert('Error'); console.log(Error); });
   }
-   
+
 mostrarMensajeExito(): void {//opens the modal
   let dialogRef = this.dialog.open(MensajeExitoComponent, {
     width: '300px',//sets the width
-    height: '140px', 
+    height: '140px',
     data: { msj: 'Imagen de la galería actualizada.' }//send this class's attributes to the modal
   });
 

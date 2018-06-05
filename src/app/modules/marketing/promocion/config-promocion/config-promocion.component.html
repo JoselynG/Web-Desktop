@@ -1,4 +1,9 @@
 <div class="ctn">
+    <div style="text-align: right;">
+        <button mat-raised-button class="efectoboton" matTooltip="Presione aquí para ver un manual en PDF con lo que necesita saber sobre la galería" (click)="myFunctiondeAyuda('http://localhost:3000/files/pdf/Promociones.pdf')">
+              <mat-icon>help</mat-icon> Ayuda
+        </button>
+    </div>
     <mat-horizontal-stepper #stepper="matHorizontalStepper">
         <mat-step>
             <ng-template matStepLabel>Datos de la promoción</ng-template>

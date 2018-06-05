@@ -29,13 +29,13 @@ export class NuevoServicioComponent implements OnInit {
     estatus: String;
     fecha_creacion: Date;
     visible: boolean
-
+    insumo_asociado: any[];
     valor_parametro: any[];
     };
   inputEl: any;
   fileCount: number;
   formData = new FormData();
-
+  insumoSel: any[]
 
   [x: string]: any;
   consejo: Array<{id: number, nombre: string, id_tipo_parametro: number, fecha_creacion: Date }> = [];
@@ -50,6 +50,7 @@ export class NuevoServicioComponent implements OnInit {
   pro: any;
   servicio: any;
   prueba: number;
+  insumo: any;
   constructor(public dialog: MatDialog, public parametroServ: ParametrosService, public tipo_para_serv: TiposParametrosService,
     public valor_para_ser: ValoresParametrosService, public categoria_servicio: CategoriasServicioService, 
     public servici: ServiciosService , public gestion: GestionServicioService, private route: ActivatedRoute,
@@ -64,6 +65,8 @@ export class NuevoServicioComponent implements OnInit {
     this.getParametros();
     this.getServicios();
     this.getCategorias();
+    this.getInsumos();
+    
    
     this.ser = {
       id_tipo_servicio: null,
@@ -75,10 +78,11 @@ export class NuevoServicioComponent implements OnInit {
       estatus: '',
       fecha_creacion: new Date(),
       visible: true,
+      insumo_asociado: [],
      // valor_parametro: [{id_promocion: 0, id_valor_parametro: 0}],
      valor_parametro: []
     };
-
+this.insumoSel = []
       }
 
   cargarParametro(id) {
@@ -165,10 +169,22 @@ getCategorias() {
         console.log(error);
       });
     }
-
+    getInsumos()  {
+      this.servici.getInsumos().subscribe((resp) => {
+        this.insumo = resp['data'];
+        console.log(this.insumo);
+      }, (error) => {
+          console.log(error);
+        });
+      }
+      mostrar(){
+        console.log(this.insumoSel);
+      
+      }
 
     addServicioyValores() {
         //agregar imagen
+        this.mostrar()
         this.inputEl = document.getElementById('fileInput');
         this.fileCount = this.inputEl.files.length;
 
@@ -184,7 +200,11 @@ getCategorias() {
         
        k++;
       }
-    
+      
+        this.ser.insumo_asociado = this.insumoSel
+        console.log(this.ser)
+      
+     
       //Agregar Campos
      this.formData.append('id_tipo_servicio', this.ser.id_tipo_servicio);
       this.formData.append('nombre', this.ser.nombre);
@@ -193,6 +213,9 @@ getCategorias() {
       this.formData.append('precio', this.ser.precio);
       for(let i=0;i<this.ser.valor_parametro.length;i++){
         this.formData.append('valor_parametro[]',this.ser.valor_parametro[i]);
+      }
+      for(let i=0;i<this.ser.insumo_asociado.length;i++){
+        this.formData.append('insumo_asociado[]',this.ser.insumo_asociado[i]);
       }
      // this.formData.append('valor_parametro', this.ser.valor_parametro);
       

@@ -40,11 +40,6 @@ export class SuscripcionComponent implements OnInit {
   constructor(public clienteService: ClientesService) {
 
   }
-  reloadChartSemana: Boolean = false;
-  reloadChartMes: Boolean = false;
-  reloadChartTrimes: Boolean = false;
-  reloadChartSemes: Boolean = false;
-  reloadChartAnno: Boolean = false;
 
   getClientesSemana() {
     this.clienteService.getClientes().subscribe(
@@ -80,7 +75,6 @@ export class SuscripcionComponent implements OnInit {
             }]
           },
         }
-        this.reloadChartSemana = true;
       }, (error) => {
         console.log(error);
       }
@@ -121,7 +115,6 @@ export class SuscripcionComponent implements OnInit {
             }]
           },
         }
-        this.reloadChartMes = true;
       }, (error) => {
         console.log(error);
       }
@@ -162,7 +155,6 @@ export class SuscripcionComponent implements OnInit {
             }]
           },
         }
-        this.reloadChartTrimes = true;
       }, (error) => {
         console.log(error);
       }
@@ -203,7 +195,6 @@ export class SuscripcionComponent implements OnInit {
             }]
           },
         }
-        this.reloadChartSemes = true;
       }, (error) => {
         console.log(error);
       }
@@ -244,7 +235,6 @@ export class SuscripcionComponent implements OnInit {
             }]
           },
         }
-        this.reloadChartAnno = true;
       }, (error) => {
         console.log(error);
       }

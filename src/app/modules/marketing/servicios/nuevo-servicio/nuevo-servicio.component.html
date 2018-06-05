@@ -32,7 +32,12 @@
                             </mat-form-field>
                             <mat-form-field class="example-full-width inputs">
                                 <input matInput name="garantia" placeholder="Garantia" [(ngModel)]="ser.duracion" value=""><br>
+                            </mat-form-field>
 
+                            <mat-form-field class="valor inputs">
+                                <mat-select name="insumo" placeholder="Insumos utilizados" [(ngModel)]="insumoSel" (change)="mostrar()" multiple>
+                                    <mat-option color="accent" *ngFor="let ins of insumo" [value]="ins.id">{{ins.nombre}}</mat-option>
+                                </mat-select>
                             </mat-form-field>
 
                             <div>
@@ -40,19 +45,11 @@
                                 <button mat-button (click)="fileButton.click()">
                                         <mat-icon>backup</mat-icon> Subir imagen</button>
                             </div>
-
-
                         </div>
-
-
                     </div>
-
-
-
-
                 </div>
                 <div class="btn">
-                    <button mat-raised-button color="accent" matStepperNext>Siguiente</button>
+                    <button mat-raised-button color="accent" matStepperNext (click)="mostrar()">Siguiente</button>
 
                 </div>
 
@@ -75,7 +72,7 @@
 
                 </mat-accordion>
                 <div text-right style="margin-top:20px" class="btn">
-                    <button mat-raised-button matStepperNext color="accent">Siguiente</button>
+                    <button mat-raised-button matStepperNext color="accent" (click)="mostrar()">Siguiente</button>
                 </div>
 
             </mat-step>
@@ -95,7 +92,7 @@
                     </mat-expansion-panel>
                 </mat-accordion>
                 <div text-right style="margin-top:20px" class="btn">
-                    <button mat-raised-button matStepperNext color="accent">Siguiente</button>
+                    <button mat-raised-button matStepperNext color="accent" (click)="mostrar()">Siguiente</button>
                 </div>
             </mat-step>
 
